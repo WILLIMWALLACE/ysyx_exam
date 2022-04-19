@@ -19,6 +19,10 @@ sim:
 	#上述sim  target（目标文件.o 、label标签、 执行文件（目前就是当作这些.o文件链接生成的执行文件sim））
 #	cc -o sim $(objects)
 	verilator -Wall --cc top.v --exe --trace --build top_tb.cpp
+CSRC = /csrc
+VSRC = /vsrc
+vpath %.v vsrc
+vpath %.cpp $(CSRC)
 
 
 
