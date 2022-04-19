@@ -5,7 +5,7 @@ all:  sim
 #objects = top_tb.o verilated.o
 CSRC = /csrc
 VSRC = /vsrc
-vpath %.v $(VSRC)
+vpath %.v vsrc
 vpath %.cpp $(CSRC)
 
 #compile: 
