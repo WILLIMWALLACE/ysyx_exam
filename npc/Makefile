@@ -3,6 +3,10 @@ all:  sim
 
 
 #objects = top_tb.o verilated.o
+CSRC = /csrc
+VSRC = /vsrc
+vpath %.v $(VSRC)
+vpath %.cpp $(CSRC)
 
 #compile: 
 #	verilator -Wall --cc top.v --exe --trace --build top_tb.cpp
