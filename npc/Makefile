@@ -1,12 +1,12 @@
-PWD_PATH = $(shell pwd)
-YSYX_PATH = $(PWD_PATH)/ysyx-workbench/
-NPC = $(YSYX_PATH)/npc/
+NPC = $(shell pwd)
+#YSYX_PATH = $(PWD_PATH)/ysyx-workbench/
+#NPC = $(YSYX_PATH)/npc/
 CSRC =$(NPC)/csrc/
 VSRC =$(NPC)/vsrc/
 CPP = $(wildcard $(CSRC)*.cpp)
 VPP = $(wildcard $(VSRC)*.v)
-vpath %.v ./vsrc
-vpath %.cpp $(CSRC)
+#vpath %.v ./vsrc
+#vpath %.cpp $(CSRC)
 
 
 
@@ -25,7 +25,7 @@ sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	#上述sim  target（目标文件.o 、label标签、 执行文件（目前就是当作这些.o文件链接生成的执行文件sim））
 #	cc -o sim $(objects)
-	verilator -Wall --cc --exe --trace --build $(VPP) $(CPP)
+	verilator -Wall --cc --exe --trace --build VPP CPP
 
 
 
