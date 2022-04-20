@@ -23,15 +23,16 @@ sim:
 	verilator -Wall --cc --exe --trace --build $(VPP) $(CPP)
 
 objmk: sim
-	@#找不到makefile文件，因为.mk不叫makfile
+	@#找不到makefile文件，因为.mk不叫makfile,-C就是对应的目录， 自动查找
 	@#$(MAKE) -C $(OBJ_PATH)
+	@#-f执行不改变环境变量， 还是当前目录，只不过进去执行了一下又出来，直接对应的是文件 而不是目录
 	$(MAKE)  -f $(OBJ_MK)
 
-run: objmk	
+run: Vtop	
 	$(OBJ_PATH) ./Vtop
 		
 
-.PHONY: clean
+.PHONY: clean run
 clean:
 	-rm -f  *.o sim objmk all                    
 
