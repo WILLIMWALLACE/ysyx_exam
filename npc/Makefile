@@ -21,7 +21,7 @@ sim:
 #	cc -o sim $(objects)
 	verilator -Wall --cc --exe --trace --build $(VPP) $(CPP)
 
-objmk: $(OBJ_PATH)
+objmk: sim
 	$(MAKE) -C $(OBJ_PATH)
 
 .PHONY: clean
