@@ -18,9 +18,9 @@ sim:
 
 
 
-#CSRC = /csrc
+CSRC = ./csrc
 #VSRC = /vsrc
-vpath %.v vsrc
+vpath %.v ./vsrc/
 vpath %.cpp $(CSRC)
 
 
