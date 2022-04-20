@@ -40,7 +40,7 @@ sim: $(VPP)  $(CPP)  $(NVBOARD_ARCHIVE)
 	@rm -rf $(OBJ_DIR)
 	verilator -Wall -MMD --build -cc -O3 --trace --top-module $(TOPNAME) $^ \
 	$(addprefix -CFLAGS , $(CFLAGS)) $(addprefix -LDFLAGS , $(LDFLAGS)) \
-	--exe -o $(abspath $(BIN))
+	--Mdir $(OBJ_DIR) --exe -o $(abspath $(BIN))
 
 #####################build 创建的 自动化verilator  .mk文件  运行################
 #objmk: sim
