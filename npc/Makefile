@@ -24,11 +24,11 @@ sim:
 
 objmk: sim
 	@#找不到makefile文件，因为.mk不叫makfile
-	#$(MAKE) -C $(OBJ_PATH)
+	@#$(MAKE) -C $(OBJ_PATH)
 	$(MAKE)  -f $(OBJ_MK)
 
 run: objmk	
-	./Vtop
+	$(OBJ_PATH) ./Vtop
 		
 
 .PHONY: clean
