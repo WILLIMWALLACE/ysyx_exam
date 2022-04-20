@@ -39,6 +39,7 @@ sim: $(VPP)  $(CPP)  $(NVBOARD_ARCHIVE)
 	@#上述sim  target（目标文件.o 、label标签、 执行文件（目前就是当作这些.o文件链接生成的执行文件sim））
 	@rm -rf $(OBJ_DIR)
 	verilator -Wall -MMD --build -cc -O3 --trace --top-module $(TOPNAME) $^ \
+	$(addprefix -CFLAGS , $(CFLAGS)) $(addprefix -LDFLAGS , $(LDFLAGS)) \
 	--exe -o $(abspath $(BIN))
 
 #####################build 创建的 自动化verilator  .mk文件  运行################
