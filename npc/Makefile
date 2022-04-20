@@ -15,6 +15,14 @@ BUILD_DIR = ./build
 OBJ_DIR = $(BUILD_DIR)/obj_dir
 BIN = $(BUILD_DIR)/$(TOPNAME)
 
+
+# rules for verilator
+INC_PATH ?=
+INCFLAGS = $(addprefix -I, $(INC_PATH))
+CFLAGS += $(INCFLAGS) -DTOP_NAME="\"V$(TOPNAME)\""
+LDFLAGS += -lSDL2 -lSDL2_image
+
+
 all:  sim run
 	@echo "jmx makefile"
 
@@ -29,7 +37,8 @@ sim: $(VPP)  $(CPP)  $(NVBOARD_ARCHIVE)
 	@#git必须命令
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@#上述sim  target（目标文件.o 、label标签、 执行文件（目前就是当作这些.o文件链接生成的执行文件sim））
-	verilator -Wall -MMD --build -cc --trace  $(VPP) $(CPP) \
+	verilator -Wall -MMD --build -cc --trace --top-module top.v $(VPP) $(CPP) \
+	 $(addprefix -CFLAGS , $(CFLAGS)) $(addprefix -LDFLAGS , $(LDFLAGS)) \
 	--Mdir $(OBJ_DIR) --exe -o $(abspath $(BIN))
 
 #####################build 创建的 自动化verilator  .mk文件  运行################
