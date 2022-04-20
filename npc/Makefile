@@ -6,6 +6,7 @@ VSRC =$(NPC)/vsrc/
 CPP = $(wildcard $(CSRC)*.cpp)
 VPP = $(wildcard $(VSRC)*.v)
 OBJ_PATH = $(NPC)/obj_dir/
+OBJ_MK = $(wildcard $(OBJ_PATH)*.mk)
 #vpath %.v ./vsrc
 #vpath %.cpp $(CSRC)
 
@@ -22,7 +23,7 @@ sim:
 	verilator -Wall --cc --exe --trace --build $(VPP) $(CPP)
 
 objmk: sim
-	$(MAKE) -C $(OBJ_PATH)
+	$(MAKE) -C $(OBJ_MK)
 
 .PHONY: clean
 clean:
