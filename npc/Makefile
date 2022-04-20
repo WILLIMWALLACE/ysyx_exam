@@ -11,7 +11,7 @@ TOPNAME = top
 ################ 接入nvboard #####################
 NXDC_FILES = $(NPC)/constr/top.nxdc
 #尝试创建集成路径
-BUILD_DIR = ./build
+BUILD_DIR = $(NPC)/build
 OBJ_DIR = $(BUILD_DIR)/obj_dir
 BIN = $(BUILD_DIR)/$(TOPNAME)
 
