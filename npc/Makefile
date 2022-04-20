@@ -23,7 +23,7 @@ CFLAGS += $(INCFLAGS) -DTOP_NAME="\"V$(TOPNAME)\""
 LDFLAGS += -lSDL2 -lSDL2_image
 
 
-all:  $(BIN) run
+all:  sim  run
 	@echo "jmx makefile"
 
 # constraint file
@@ -33,14 +33,14 @@ $(SRC_AUTO_BIND): $(NXDC_FILES)
 
 #注意，可以有多个目标文件，但总是默认第一个为最终的文件， 只要 写完最终文件  当即停止
 ####################  verilator  编译执行 ############
-$(BIN): $(VPP)  $(CPP)  $(NVBOARD_ARCHIVE)
+sim: $(VPP)  $(CPP)  $(NVBOARD_ARCHIVE)
 	@#git必须命令
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@#上述sim  target（目标文件.o 、label标签、 执行文件（目前就是当作这些.o文件链接生成的执行文件sim））
 	@rm -rf $(OBJ_DIR)
 	verilator -Wall -MMD --build -cc -O3 --trace --top-module $(TOPNAME) $^ \
 	 $(addprefix -CFLAGS , $(CFLAGS)) $(addprefix -LDFLAGS , $(LDFLAGS)) \
-	--Mdir $(OBJ_DIR) --exe -o $(abspath $(BIN))
+	--exe -o $(abspath $(BIN))
 
 #####################build 创建的 自动化verilator  .mk文件  运行################
 #objmk: sim
@@ -50,7 +50,7 @@ $(BIN): $(VPP)  $(CPP)  $(NVBOARD_ARCHIVE)
 #	$(MAKE)  -f $(OBJ_MK)
 
 ##################  运行 生成的  executable file #################### 注意，波形文件在当前MAKEFILE文件目录下
-run:  $(BIN)	$(SRC_AUTO_BIND)
+run:sim  $(BIN)	$(SRC_AUTO_BIND)
 	@$(BIN)
 
 .PHONY: clean run
