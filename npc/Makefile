@@ -1,23 +1,17 @@
+#打开当前的相对目录
 NPC = $(shell pwd)
-#YSYX_PATH = $(PWD_PATH)/ysyx-workbench/
-#NPC = $(YSYX_PATH)/npc/
 CSRC =$(NPC)/csrc/
 VSRC =$(NPC)/vsrc/
+#wildcard 获取该路径下 所有的  通配符对应 的  文件
 CPP = $(wildcard $(CSRC)*.cpp)
 VPP = $(wildcard $(VSRC)*.v)
+OBJ_PATH = $(NPC)/obj_dir/
 #vpath %.v ./vsrc
 #vpath %.cpp $(CSRC)
 
-
-
-all:  sim
+all:  sim objmk
 	@echo "jmx first makefile"
 
-
-
-#compile: 
-#	verilator -Wall --cc top.v --exe --trace --build top_tb.cpp
-#	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 
 #注意，可以有多个目标文件，但总是默认第一个为最终的文件， 只要 写完最终文件  当即停止
 sim:
@@ -27,11 +21,11 @@ sim:
 #	cc -o sim $(objects)
 	verilator -Wall --cc --exe --trace --build $(VPP) $(CPP)
 
-
-
+objmk: sim
+	$(MAKE) -C $(OBJ_PATH)
 
 .PHONY: clean
 clean:
-	rm -f  *.o sim compile                    
+	-rm -f  *.o sim objmk all                    
 
 include ../Makefile
