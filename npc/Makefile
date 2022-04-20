@@ -37,7 +37,7 @@ sim: $(VPP)  $(CPP)  $(NVBOARD_ARCHIVE)
 	@#git必须命令
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@#上述sim  target（目标文件.o 、label标签、 执行文件（目前就是当作这些.o文件链接生成的执行文件sim））
-	verilator -Wall -MMD --build -cc --trace --top-module $(VSRC)/top.v $(VPP) $(CPP) \
+	verilator -Wall -MMD --build -cc --trace --top-module $(VSRC)top.v $(VPP) $(CPP) \
 	 $(addprefix -CFLAGS , $(CFLAGS)) $(addprefix -LDFLAGS , $(LDFLAGS)) \
 	--Mdir $(OBJ_DIR) --exe -o $(abspath $(BIN))
 
