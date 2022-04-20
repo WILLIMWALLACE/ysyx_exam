@@ -28,7 +28,7 @@ objmk: sim
 	@#-f执行不改变环境变量， 还是当前目录，只不过进去执行了一下又出来，直接对应的是文件 而不是目录
 	$(MAKE)  -f $(OBJ_MK)
 
-run: Vtop	
+run: objmk	
 	$(OBJ_PATH) ./Vtop
 		
 
