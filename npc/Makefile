@@ -17,10 +17,10 @@ BIN = $(BUILD_DIR)/$(TOPNAME)
 
 
 # rules for verilator
-#INC_PATH ?=
-#INCFLAGS = $(addprefix -I, $(INC_PATH))
-#CFLAGS += $(INCFLAGS) -DTOP_NAME="\"V$(TOPNAME)\""
-#LDFLAGS += -lSDL2 -lSDL2_image
+INC_PATH ?=
+INCFLAGS = $(addprefix -I, $(INC_PATH))
+CFLAGS += $(INCFLAGS) -DTOP_NAME="\"V$(TOPNAME)\""
+LDFLAGS += -lSDL2 -lSDL2_image
 
 
 all:  sim  run
