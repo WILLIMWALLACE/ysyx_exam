@@ -23,7 +23,9 @@ sim:
 	verilator -Wall --cc --exe --trace --build $(VPP) $(CPP)
 
 objmk: sim
-	$(MAKE) -C $(OBJ_MK)
+	@#找不到makefile文件，因为.mk不叫makfile
+	#$(MAKE) -C $(OBJ_PATH)
+	$(MAKE)  -f $(OBJ_MK)
 
 .PHONY: clean
 clean:
