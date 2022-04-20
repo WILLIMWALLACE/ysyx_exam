@@ -10,7 +10,7 @@ OBJ_MK = $(wildcard $(OBJ_PATH)*.mk)
 #vpath %.v ./vsrc
 #vpath %.cpp $(CSRC)
 
-all:  sim objmk
+all:  sim objmk run
 	@echo "jmx first makefile"
 
 
@@ -26,6 +26,10 @@ objmk: sim
 	@#找不到makefile文件，因为.mk不叫makfile
 	#$(MAKE) -C $(OBJ_PATH)
 	$(MAKE)  -f $(OBJ_MK)
+
+run: objmk	
+	./Vtop
+		
 
 .PHONY: clean
 clean:
