@@ -29,7 +29,7 @@ objmk: sim
 	$(MAKE)  -f $(OBJ_MK)
 
 run: objmk	
-	$(OBJ_PATH) ./Vtop
+	 /$(OBJ_PATH)/Vtop
 		
 
 .PHONY: clean run
