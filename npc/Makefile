@@ -1,3 +1,10 @@
+CSRC = ./csrc
+#VSRC = /vsrc
+vpath %.v ./vsrc
+vpath %.cpp $(CSRC)
+
+
+
 all:  sim
 	@echo "jmx first makefile"
 
