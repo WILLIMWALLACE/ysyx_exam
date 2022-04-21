@@ -15,6 +15,8 @@ BUILD_DIR = $(NPC)/build
 OBJ_DIR = $(BUILD_DIR)/obj_dir
 BIN = $(BUILD_DIR)/$(TOPNAME)
 
+# rules for NVBoard
+include $(NVBOARD_HOME)/scripts/nvboard.mk
 
 # rules for verilator
 INC_PATH ?=
@@ -58,6 +60,6 @@ clean:
 	-rm -f  *.o sim  all run
 
 # rules for NVBoard
-include $(NVBOARD_HOME)/scripts/nvboard.mk
+#include $(NVBOARD_HOME)/scripts/nvboard.mk
 
 include ../Makefile
