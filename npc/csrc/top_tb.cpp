@@ -30,10 +30,10 @@
   while (!Verilated::gotFinish()) {
   	  nvboard_update();
 
-          int a = rand() & 1;
-          int b = rand() & 1;
-          top->a = a;
-          top->b = b;                                             //top指针操作，赋值a，b
+        //  int a = rand() & 1;
+         // int b = rand() & 1;
+         // top->a = a;
+         // top->b = b;                                             //top指针操作，赋值a，b
           top->eval();                                            //执行一次erilog代码 更新值
           tfp->dump(main_time);
           main_time++;                                            //更新仿真时间
