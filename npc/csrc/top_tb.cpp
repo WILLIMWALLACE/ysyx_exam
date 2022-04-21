@@ -8,7 +8,7 @@
    #include <verilated_vcd_c.h>
    
    vluint64_t   main_time = 0; //仿真时间
-   static TOP_NAME top;
+   static TOP_NAME dut;
 
    double sc_time_stamp() { return  main_time  ; }
    void nvboard_bind_all_pins(Vtop* top);
@@ -27,7 +27,7 @@
 */
   int main(int argc, char** argv, char** env) {
      //接入nvboard
-     nvboard_bind_all_pins(&top); 
+     nvboard_bind_all_pins(&dut); 
      nvboard_init();
     // reset(10);
      //固定内容//////////////////////////
@@ -50,9 +50,9 @@
          // top->a = a;
          // top->b = b;                                             //top指针操作，赋值a，b
          // top->eval();    //执行一次erilog代码 更新值
-         int a = top->a;
-	 int b = top->b;
-	 int f = top->f;
+         int a = dut->a;
+	 int b = dut->b;
+	 int f = dut->f;
 //	  tfp->dump(main_time);
     //      main_time++;                                            //更新仿真时间
           
