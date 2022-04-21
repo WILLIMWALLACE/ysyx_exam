@@ -42,7 +42,7 @@
           
   
      }
-     	  nvboard_quit();
+   //  	  nvboard_quit();
           top->final();
           tfp->close();
           delete top;
