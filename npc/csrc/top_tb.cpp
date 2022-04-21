@@ -38,8 +38,8 @@
           tfp->dump(main_time);
           main_time++;                                            //更新仿真时间
           
-          printf("a = %d, b = %d, f = %d\n", a, b, top->f);       //看看而已
-          assert(top->f == a ^ b);                                //断言检测 
+        //  printf("a = %d, b = %d, f = %d\n", a, b, top->f);       //看看而已
+        //  assert(top->f == a ^ b);                                //断言检测 
           
   
      }
