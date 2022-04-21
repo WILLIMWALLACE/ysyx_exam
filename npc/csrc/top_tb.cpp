@@ -31,14 +31,14 @@
      nvboard_init();
     // reset(10);
      //固定内容//////////////////////////
-   //  Verilated::commandArgs(argc, argv);          // Remember args
-   //  Verilated::traceEverOn(true);                // 导出波形必备  命令行里还需--trace
-   //  VerilatedVcdC*  tfp = new  VerilatedVcdC;    //导出波形需用，且可根据tfp设置trace追踪的层次
-//     Vtop *top = new Vtop("top"); 		  //指向Vtop类的 top地址的指针，new分配内存空间并且调用Vtop的构造函数，新建了一个对象（类）top
+     Verilated::commandArgs(argc, argv);          // Remember args
+     Verilated::traceEverOn(true);                // 导出波形必备  命令行里还需--trace
+     VerilatedVcdC*  tfp = new  VerilatedVcdC;    //导出波形需用，且可根据tfp设置trace追踪的层次
+     Vtop *top = new Vtop("top"); 		  //指向Vtop类的 top地址的指针，new分配内存空间并且调用Vtop的构造函数，新建了一个对象（类）top
      
-    // top->trace(tfp, 99);  // Trace 99 levels of hierarchy (or see below)
-     // tfp->dumpvars(1, "t");  // trace 1 level under "t"
-   //  tfp->open("test.vcd");
+     top->trace(tfp, 99);  // Trace 99 levels of hierarchy (or see below)
+     tfp->dumpvars(1, "t");  // trace 1 level under "t"
+     tfp->open("test.vcd");
   /////////////////////////////产生波形固定内容
 
     // while (sc_time_stamp() < 20 && !Verilated::gotFinish()) {                                                                                                                                            
@@ -49,24 +49,24 @@
          // int b = rand() & 1;
          // top->a = a;
          // top->b = b;                                             //top指针操作，赋值a，b
-         // top->eval();    //执行一次erilog代码 更新值
-         int a = dut->a;
-	 int b = dut->b;
-	 int f = dut->f;
-//	  tfp->dump(main_time);
+         top->eval();    //执行一次erilog代码 更新值
+         int a = top->a;
+	 int b = top->b;
+	 int f = top->f;
+	 tfp->dump(main_time);
     //      main_time++;                                            //更新仿真时间
           
           printf("sw0 = %d, sw1 = %d, ld0 = %d\n", a, b, f);       //看看而已
-        //  assert(top->f == a ^ b);                                //断言检测 
+          assert(top->f == a ^ b);                                //断言检测 
           
   
       }
-   //  	  nvboard_quit();
-  //        top->final();
-    //      tfp->close();
-      //    delete top;
+     	  nvboard_quit();
+          top->final();
+          tfp->close();
+          delete top;
           
-//          return 0;
+          return 0;
   }   
   
 
