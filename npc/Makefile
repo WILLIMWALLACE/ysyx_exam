@@ -14,6 +14,7 @@ NXDC_FILES = $(NPC)/constr/top.nxdc
 BUILD_DIR = $(NPC)/build
 OBJ_DIR = $(BUILD_DIR)/obj_dir
 BIN = $(BUILD_DIR)/$(TOPNAME)
+$(shell mkdir -p $(BUILD_DIR))
 
 # rules for NVBoard
 include $(NVBOARD_HOME)/scripts/nvboard.mk
@@ -52,12 +53,12 @@ sim: $(VPP)  $(CPP) $(SRC_AUTO_BIND)  $(NVBOARD_ARCHIVE)
 #	$(MAKE)  -f $(OBJ_MK)
 
 ##################  运行 生成的  executable file #################### 注意，波形文件在当前MAKEFILE文件目录下
-run:sim  $(BIN)	$(SRC_AUTO_BIND)
+run:  $(BIN)
 	@$(BIN)
 
-.PHONY: clean run
+.PHONY: clean 
 clean:
-	-rm -f  *.o sim  all run
+	rm -rf  $(BUILD_DIR)
 
 # rules for NVBoard
 #include $(NVBOARD_HOME)/scripts/nvboard.mk
