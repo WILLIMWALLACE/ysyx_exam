@@ -15,7 +15,6 @@
    Vtop *top = new Vtop("top");  
    
    static void single_cycle() {
-//	Vtop *top = new Vtop("top");
   	top->clk = 0; top->eval();
   	top->clk = 1; top->eval();
    }
@@ -32,18 +31,18 @@
      nvboard_init();
      reset(10);
      //固定内容//////////////////////////
-     Verilated::commandArgs(argc, argv);          // Remember args
-     Verilated::traceEverOn(true);                // 导出波形必备  命令行里还需--trace
-     VerilatedVcdC*  tfp = new  VerilatedVcdC;    //导出波形需用，且可根据tfp设置trace追踪的层次
+   //  Verilated::commandArgs(argc, argv);          // Remember args
+   //  Verilated::traceEverOn(true);                // 导出波形必备  命令行里还需--trace
+   //  VerilatedVcdC*  tfp = new  VerilatedVcdC;    //导出波形需用，且可根据tfp设置trace追踪的层次
 //     Vtop *top = new Vtop("top"); 		  //指向Vtop类的 top地址的指针，new分配内存空间并且调用Vtop的构造函数，新建了一个对象（类）top
      
-     top->trace(tfp, 99);  // Trace 99 levels of hierarchy (or see below)
+    // top->trace(tfp, 99);  // Trace 99 levels of hierarchy (or see below)
      // tfp->dumpvars(1, "t");  // trace 1 level under "t"
-     tfp->open("test.vcd");
+   //  tfp->open("test.vcd");
   /////////////////////////////产生波形固定内容
 
     // while (sc_time_stamp() < 20 && !Verilated::gotFinish()) {                                                                                                                                            
-  while (!Verilated::gotFinish()) {
+  while (1) {
   	  nvboard_update();
 	  single_cycle();
         //  int a = rand() & 1;
@@ -52,7 +51,7 @@
          // top->b = b;                                             //top指针操作，赋值a，b
          // top->eval();    //执行一次erilog代码 更新值
          
-	  tfp->dump(main_time);
+//	  tfp->dump(main_time);
     //      main_time++;                                            //更新仿真时间
           
         //  printf("a = %d, b = %d, f = %d\n", a, b, top->f);       //看看而已
@@ -61,9 +60,9 @@
   
       }
    //  	  nvboard_quit();
-          top->final();
-          tfp->close();
-          delete top;
+  //        top->final();
+    //      tfp->close();
+      //    delete top;
           
           return 0;
   }   
