@@ -27,7 +27,7 @@
 */
   int main(int argc, char** argv, char** env) {
      //接入nvboard
-     nvboard_bind_all_pins(&top); 
+     nvboard_bind_all_pins(&Vtop); 
      nvboard_init();
     // reset(10);
      //固定内容//////////////////////////
