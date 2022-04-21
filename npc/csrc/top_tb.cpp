@@ -37,7 +37,7 @@
      Vtop *top = new Vtop("top"); 		  //指向Vtop类的 top地址的指针，new分配内存空间并且调用Vtop的构造函数，新建了一个对象（类）top
      
      top->trace(tfp, 99);  // Trace 99 levels of hierarchy (or see below)
-     tfp->dumpvars(1, "t");  // trace 1 level under "t"
+    // tfp->dumpvars(1, "t");  // trace 1 level under "t"
      tfp->open("test.vcd");
   /////////////////////////////产生波形固定内容
 
