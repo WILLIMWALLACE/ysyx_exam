@@ -8,7 +8,7 @@
    #include <verilated_vcd_c.h>
    
    vluint64_t   main_time = 0; //仿真时间
-   static TOP_NAME dut;
+   static TOP_NAME top;
 
    double sc_time_stamp() { return  main_time  ; }
    void nvboard_bind_all_pins(Vtop* top);
@@ -27,7 +27,7 @@
 */
   int main(int argc, char** argv, char** env) {
      //接入nvboard
-     nvboard_bind_all_pins(&dut); 
+     nvboard_bind_all_pins(&top); 
      nvboard_init();
     // reset(10);
      //固定内容//////////////////////////
