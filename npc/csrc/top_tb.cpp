@@ -13,12 +13,12 @@
    double sc_time_stamp() { return  main_time  ; }
    void nvboard_bind_all_pins(Vtop* top);
    
-   void single_cycle() {
+   static void single_cycle() {
   	top->clk = 0; top->eval();
   	top->clk = 1; top->eval();
    }
 
-   void reset(int n) {
+   static void reset(int n) {
   	top->rst = 1;
   	while (n -- > 0) single_cycle();
   	top->rst = 0;
