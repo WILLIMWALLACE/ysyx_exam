@@ -14,7 +14,7 @@
    void nvboard_bind_all_pins(Vtop* top);
    Vtop *top = new Vtop("top");  
    
-   void single_cycle() {
+  /* void single_cycle() {
   	top->clk = 0; top->eval();
   	top->clk = 1; top->eval();
    }
@@ -24,7 +24,7 @@
   	while (n -- > 0) single_cycle();
   	top->rst = 0;
    }
-
+*/
   int main(int argc, char** argv, char** env) {
      //接入nvboard
      nvboard_bind_all_pins(&dut); 
