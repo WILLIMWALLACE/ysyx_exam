@@ -50,11 +50,13 @@
          // top->a = a;
          // top->b = b;                                             //top指针操作，赋值a，b
          // top->eval();    //执行一次erilog代码 更新值
-         
+         int a = top->led;
+	 int b = top->clk;
+	 int f = top->rst;
 //	  tfp->dump(main_time);
     //      main_time++;                                            //更新仿真时间
           
-        //  printf("a = %d, b = %d, f = %d\n", a, b, top->f);       //看看而已
+          printf("a = %d, b = %d, f = %d\n", a, b, top->f);       //看看而已
         //  assert(top->f == a ^ b);                                //断言检测 
           
   
