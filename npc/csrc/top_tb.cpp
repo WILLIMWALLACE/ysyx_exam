@@ -29,7 +29,7 @@
      //接入nvboard
      nvboard_bind_all_pins(&dut); 
      nvboard_init();
-     reset(10);
+    // reset(10);
      //固定内容//////////////////////////
    //  Verilated::commandArgs(argc, argv);          // Remember args
    //  Verilated::traceEverOn(true);                // 导出波形必备  命令行里还需--trace
@@ -44,19 +44,19 @@
     // while (sc_time_stamp() < 20 && !Verilated::gotFinish()) {                                                                                                                                            
   while (1) {
   	  nvboard_update();
-	  single_cycle();
+	 // single_cycle();
         //  int a = rand() & 1;
          // int b = rand() & 1;
          // top->a = a;
          // top->b = b;                                             //top指针操作，赋值a，b
          // top->eval();    //执行一次erilog代码 更新值
-         int a = top->led;
-	 int b = top->clk;
-	 int f = top->rst;
+         int a = top->a;
+	 int b = top->b;
+	 int f = top->f;
 //	  tfp->dump(main_time);
     //      main_time++;                                            //更新仿真时间
           
-          printf("led = %d, clk = %d, rst = %d\n", a, b, f);       //看看而已
+          printf("sw0 = %d, sw1 = %d, ld0 = %d\n", a, b, f);       //看看而已
         //  assert(top->f == a ^ b);                                //断言检测 
           
   
