@@ -56,7 +56,7 @@
 //	  tfp->dump(main_time);
     //      main_time++;                                            //更新仿真时间
           
-          printf("a = %d, b = %d, f = %d\n", a, b, f);       //看看而已
+          printf("led = %d, clk = %d, rst = %d\n", a, b, f);       //看看而已
         //  assert(top->f == a ^ b);                                //断言检测 
           
   
