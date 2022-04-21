@@ -8,7 +8,7 @@
    #include <verilated_vcd_c.h>
    
    vluint64_t   main_time = 0; //仿真时间
-   static TOP_NAME top;
+   static TOP_NAME dut;
 
   double sc_time_stamp() { return  main_time  ; }
   void nvboard_bind_all_pins(Vtop* top);
