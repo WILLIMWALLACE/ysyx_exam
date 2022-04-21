@@ -26,7 +26,8 @@
      // tfp->dumpvars(1, "t");  // trace 1 level under "t"
      tfp->open("test.vcd");
   
-    while (sc_time_stamp() < 20 && !Verilated::gotFinish()) {                                                                                                                                            
+    // while (sc_time_stamp() < 20 && !Verilated::gotFinish()) {                                                                                                                                            
+  while (!Verilated::gotFinish()) {
   	  nvboard_update();
 
           int a = rand() & 1;
