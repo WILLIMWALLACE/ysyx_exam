@@ -12,7 +12,7 @@
 
    double sc_time_stamp() { return  main_time  ; }
    void nvboard_bind_all_pins(Vtop* top);
-   Vtop *top = new Vtop("top");  
+  // Vtop *top = new Vtop("top");  
    
   /* void single_cycle() {
   	top->clk = 0; top->eval();
