@@ -1,4 +1,4 @@
-module top(                                                                                                                                                                                            
+module light(                                                                                                                                                                                            
    input clk,
    input rst,
    output reg [15:0] ledr
