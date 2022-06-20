@@ -7,9 +7,8 @@
    #include <memory>
    #include <verilated_vcd_c.h>
    
-   vluint64_t   main_time = 0; //仿真时间
-   double sc_time_stamp() { return  main_time  ; }     
-   
+  // vluint64_t   main_time = 0; //仿真时间
+  // double sc_time_stamp() { return  main_time  ; }     
    static TOP_NAME dut;
    void nvboard_bind_all_pins(Vtop* top);
   // Vtop *top = new Vtop("top");  
@@ -53,7 +52,7 @@
      //    int a = top->a;
 //	 int b = top->b;
 	// int f = top->f;
-	 tfp->dump(main_time);
+	// tfp->dump(main_time);
     //      main_time++;                                            //更新仿真时间
           
     //      printf("sw0 = %d, sw1 = %d, ld0 = %d\n", a, b, f);       //看看而已
