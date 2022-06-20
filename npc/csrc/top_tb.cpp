@@ -8,28 +8,28 @@
    #include <verilated_vcd_c.h>
    
    vluint64_t   main_time = 0; //仿真时间
+   double sc_time_stamp() { return  main_time  ; }     
+   
    static TOP_NAME dut;
-
-   double sc_time_stamp() { return  main_time  ; }
    void nvboard_bind_all_pins(Vtop* top);
   // Vtop *top = new Vtop("top");  
    
-  /* void single_cycle() {
-  	top->clk = 0; top->eval();
-  	top->clk = 1; top->eval();
+  static void single_cycle() {
+  	dut->clk = 0; dut->eval();
+  	dut->clk = 1; dut->eval();
    }
 
-   void reset(int n) {
-  	top->rst = 1;
+  static void reset(int n) {
+  	dut->rst = 1;
   	while (n -- > 0) single_cycle();
-  	top->rst = 0;
+  	dut->rst = 0;
    }
-*/
+
   int main(int argc, char** argv, char** env) {
      //接入nvboard
      nvboard_bind_all_pins(&dut); 
      nvboard_init();
-    // reset(10);
+     reset(10);
      //固定内容//////////////////////////
      Verilated::commandArgs(argc, argv);          // Remember args
      Verilated::traceEverOn(true);                // 导出波形必备  命令行里还需--trace
@@ -44,15 +44,15 @@
     // while (sc_time_stamp() < 20 && !Verilated::gotFinish()) {                                                                                                                                            
   while (1) {
   	  nvboard_update();
-	 // single_cycle();
-        //  int a = rand() & 1;
-         // int b = rand() & 1;
-         // top->a = a;
-         // top->b = b;                                             //top指针操作，赋值a，b
-         top->eval();    //执行一次erilog代码 更新值
-         int a = top->a;
-	 int b = top->b;
-	 int f = top->f;
+	  single_cycle();
+          int a = rand() & 1;
+          int b = rand() & 1;
+          top->a = a;
+          top->b = b;                                             //top指针操作，赋值a，b
+          top->eval();    //执行一次erilog代码 更新值
+        // int a = top->a;
+	// int b = top->b;
+	// int f = top->f;
 	 tfp->dump(main_time);
     //      main_time++;                                            //更新仿真时间
           
