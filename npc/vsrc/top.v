@@ -8,8 +8,8 @@ module top(
      reg	f;
      reg [31:0] count;
      reg [7:0] led;
-
-     assign f =  a ^ b;
+    
+     assign f =  sw[0] ^ sw[1];
 
      always @(posedge clk) begin
       if (rst) begin led <= 1; count <= 0; end
@@ -19,7 +19,7 @@ module top(
       end
     end
   
-    assign ledr = {led, sw[7:1],f};
+    assign ledr = {led, sw[7:2], 1'b1, f};
 
 
 
