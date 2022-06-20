@@ -1,6 +1,6 @@
 module top(
-  input a,
-  input b,
+//  input a,
+//  input b,
   input rst,
   output f
 );
