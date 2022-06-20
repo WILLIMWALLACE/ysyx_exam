@@ -4,7 +4,7 @@ module top(
   output reg [15:0] ledr
 );
   reg [31:0] count;
-  
+  reg [15:0] led;  
   always @(posedge clk) begin
     if (rst) begin led <= 1; count <= 0; end
     else begin
