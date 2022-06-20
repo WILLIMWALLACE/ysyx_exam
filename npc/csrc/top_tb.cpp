@@ -15,14 +15,14 @@
   // Vtop *top = new Vtop("top");  
    
   static void single_cycle() {
-  	dut->clk = 0; dut->eval();
-  	dut->clk = 1; dut->eval();
+  	dut.clk = 0; dut.eval();
+  	dut.clk = 1; dut.eval();
    }
 
   static void reset(int n) {
-  	dut->rst = 1;
+  	dut.rst = 1;
   	while (n -- > 0) single_cycle();
-  	dut->rst = 0;
+  	dut.rst = 0;
    }
 
   int main(int argc, char** argv, char** env) {
