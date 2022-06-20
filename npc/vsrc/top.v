@@ -5,7 +5,7 @@ module top(
   output [15:0] ledr
 );
  // assign f =  a ^ b;
-  assign f = (rst == 1'b0) ? (1'b1) : (1'b0);
+//  assign f = (rst == 1'b0) ? (1'b1) : (1'b0);
      reg [31:0] count;
      reg [7:0] led;
      always @(posedge clk) begin
