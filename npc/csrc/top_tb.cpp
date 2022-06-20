@@ -50,8 +50,8 @@
          //  top->a = a;
          //  top->b = b;      //top指针操作，赋值a，b
           top->eval();    //执行一次erilog代码 更新值
-        // int a = top->a;
-	// int b = top->b;
+         int a = top->a;
+	 int b = top->b;
 	// int f = top->f;
 	 tfp->dump(main_time);
     //      main_time++;                                            //更新仿真时间
