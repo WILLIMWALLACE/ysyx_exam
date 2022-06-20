@@ -54,7 +54,7 @@ sim: $(VPP)  $(CPP) $(SRC_AUTO_BIND)  $(NVBOARD_ARCHIVE)
 
 ##################  运行 生成的  executable file #################### 注意，波形文件在当前MAKEFILE文件目录下
 run:  $(BIN)
-	@$(BIN)
+	@$^
 
 .PHONY: clean 
 clean:
