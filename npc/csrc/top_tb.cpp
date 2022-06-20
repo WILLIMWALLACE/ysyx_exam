@@ -14,7 +14,7 @@
    void nvboard_bind_all_pins(Vtop* top);
   // Vtop *top = new Vtop("top");  
    
-  static void single_cycle() {
+ /* static void single_cycle() {
   	dut.clk = 0; dut.eval();
   	dut.clk = 1; dut.eval();
    }
@@ -24,12 +24,12 @@
   	while (n -- > 0) single_cycle();
   	dut.rst = 0;
    }
-
+*/
   int main(int argc, char** argv, char** env) {
      //接入nvboard
      nvboard_bind_all_pins(&dut); 
      nvboard_init();
-     reset(10);
+   //  reset(10);
      //固定内容//////////////////////////
      Verilated::commandArgs(argc, argv);          // Remember args
      Verilated::traceEverOn(true);                // 导出波形必备  命令行里还需--trace
@@ -44,7 +44,7 @@
     // while (sc_time_stamp() < 20 && !Verilated::gotFinish()) {                                                                                                                                            
   while (1) {
   	  nvboard_update();
-	  single_cycle();
+	 // single_cycle();
           int a = rand() & 1;
           int b = rand() & 1;
           top->a = a;
