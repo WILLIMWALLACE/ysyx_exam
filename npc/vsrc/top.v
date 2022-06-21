@@ -1,16 +1,17 @@
 module top(
 input 		rst,
 input 		clk,
-input	[7:0]	sw,
-output  [15:0]	ledr,
-output  [7:0] 	seg0,
-output  [7:0] 	seg1,
+//input	[7:0]	sw,
+//output  [15:0]	ledr,
+output  [7:0] 	seg0
+/*output  [7:0] 	seg1,
 output  [7:0] 	seg2,
 output  [7:0] 	seg3,
 output  [7:0] 	seg4,
 output  [7:0] 	seg5,
-output  [7:0] 	seg6,
+output  [7:0] 	seg6,*/
 output  [7:0] 	seg7
+
   );
 
 wire	[2:0]	decimal;
