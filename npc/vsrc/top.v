@@ -2,6 +2,8 @@ module top(
 //  input  [7:0] x,
 // input  [1:0] y,
 //  output [1:0] f
+input 		rst,
+input 		clk,
 input	[7:0]	sw,
 output  [15:0]	ledr
   );
@@ -9,7 +11,15 @@ output  [15:0]	ledr
 wire  [7:0]	x;//四个两位输入信号
 wire  [1:0]	y;//使能key信号
 wire  [1:0]     f;//输出信号
-
+wire		clk_led;
+always@(posedge clk)begin
+	if(rst)begin
+		clk_led <= 1'b1; 
+		end
+	else begin
+		clk_led<= 1'b0;
+		end
+end
   MuxKeyWithDefault #(4, 2, 2) 
   inst  (f, 
   	y, 
@@ -19,7 +29,7 @@ wire  [1:0]     f;//输出信号
     	  2'b10, x[5:4],
     	  2'b11, x[7:6]
   	});
-  assign  ledr[15:0] = {{14{1'b1}},f[1:0]};
+  assign  ledr[15:0] = {clk_led,{13{1'b1}},f[1:0]};
   assign  y[1:0]     = sw[1:0];
   assign  x[7:0]     = {1'b0,1'b1,sw[7:2]};
 
