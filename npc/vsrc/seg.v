@@ -3,12 +3,12 @@ module seg(
   input rst,
   input  [2:0] decimal,
   output reg [7:0] o_seg0,
-  output reg [7:0] o_seg1,
+/*  output reg [7:0] o_seg1,
   output reg [7:0] o_seg2,
   output reg [7:0] o_seg3,
   output reg [7:0] o_seg4,
   output reg [7:0] o_seg5,
-  output reg [7:0] o_seg6,
+  output reg [7:0] o_seg6,*/
   output reg [7:0] o_seg7
 );
 
