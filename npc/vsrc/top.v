@@ -19,7 +19,7 @@ wire		flag;
 //assign	decimal = 3'd6; //test
 
   always@(sw) begin
-	casex(sw) begin
+	casex(sw) 
 	8'b1xxxxxxx: decimal <= 3'd7;
 	8'b01xxxxxx: decimal <= 3'd6;
 	8'b001xxxxx: decimal <= 3'd5;
