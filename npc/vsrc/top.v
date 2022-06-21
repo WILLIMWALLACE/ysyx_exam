@@ -1,36 +1,33 @@
 module top(
-//  input  [7:0] x,
-// input  [1:0] y,
-//  output [1:0] f
 input 		rst,
 input 		clk,
 input	[7:0]	sw,
-output  [15:0]	ledr
+output  [15:0]	ledr,
+output  [7:0] 	seg0,
+output  [7:0] 	seg1,
+output  [7:0] 	seg2,
+output  [7:0] 	seg3,
+output  [7:0] 	seg4,
+output  [7:0] 	seg5,
+output  [7:0] 	seg6,
+output  [7:0] 	seg7
   );
 
-wire  [7:0]	x;//四个两位输入信号
-wire  [1:0]	y;//使能key信号
-wire  [1:0]     f;//输出信号
-reg		clk_led;
-always@(posedge clk)begin
-	if(rst)begin
-		clk_led <= 1'b1; 
-		end
-	else begin
-		clk_led<= 1'b0;
-		end
-end
-  MuxKeyWithDefault #(4, 2, 2) 
-  inst  (f, 
-  	y, 
-  	2'b11, 
-  	{ 2'b00, x[1:0],
-    	  2'b01, x[3:2],
-    	  2'b10, x[5:4],
-    	  2'b11, x[7:6]
-  	});
-  assign  ledr[15:0] = {clk_led,{13{1'b1}},f[1:0]};
-  assign  y[1:0]     = sw[1:0];
-  assign  x[7:0]     = {1'b0,1'b1,sw[7:2]};
+wire	[2:0]	decimal;
+assign	decimal = 3'd6;
+
+  seg seg_inst(
+	clk		(clk),
+	rst		(rst),
+	decimal		(decimal),
+	o_seg0		(seg0),
+	o_seg1		(seg1),
+	o_seg2		(seg2),
+	o_seg3		(seg3),
+	o_seg4		(seg4),
+	o_seg5		(seg5),
+	o_seg6		(seg6),
+	o_seg7		(seg7) );
+
 
 endmodule
