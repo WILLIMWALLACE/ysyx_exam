@@ -17,17 +17,17 @@ wire	[2:0]	decimal;
 assign	decimal = 3'd6;
 
   seg seg_inst(
-	clk		(clk),
-	rst		(rst),
-	decimal		(decimal),
-	o_seg0		(seg0),
-	o_seg1		(seg1),
-	o_seg2		(seg2),
-	o_seg3		(seg3),
-	o_seg4		(seg4),
-	o_seg5		(seg5),
-	o_seg6		(seg6),
-	o_seg7		(seg7) );
+	.clk		(clk),
+	.rst		(rst),
+	.decimal		(decimal),
+	.o_seg0		(seg0),
+	.o_seg1		(seg1),
+	.o_seg2		(seg2),
+	.o_seg3		(seg3),
+	.o_seg4		(seg4),
+	.o_seg5		(seg5),
+	.o_seg6		(seg6),
+	.o_seg7		(seg7) );
 
 
 endmodule
