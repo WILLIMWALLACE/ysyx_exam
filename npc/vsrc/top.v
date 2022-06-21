@@ -1,8 +1,8 @@
 module top(
 input 		rst,
 input 		clk,
-//input	[7:0]	sw,
-//output  [15:0]	ledr,
+input	[7:0]	sw,
+output  [15:0]	ledr,
 output  [7:0] 	seg0,
 /*output  [7:0] 	seg1,
 output  [7:0] 	seg2,
@@ -15,7 +15,24 @@ output  [7:0] 	seg7
   );
 
 wire	[2:0]	decimal;
-assign	decimal = 3'd6;
+wire		flag;
+//assign	decimal = 3'd6; //test
+
+  always@(sw) begin
+	casex(sw) begin
+	8'b1xxxxxxx: decimal <= 3'd7;
+	8'b01xxxxxx: decimal <= 3'd6;
+	8'b001xxxxx: decimal <= 3'd5;
+	8'b0001xxxx: decimal <= 3'd4;
+	8'b00001xxx: decimal <= 3'd3;
+	8'b000001xx: decimal <= 3'd2;
+	8'b0000001x: decimal <= 3'd1;
+	8'b00000001: decimal <= 3'd0;
+	default:     decimal <= 3'd0;
+	endcase
+  end
+  assign flag = (sw == 8'd0) ? 1'b0 : 1'b1;
+  assign ledr[15:0] = {{12{1'b0}},flag,decimal[2:0]};
 
   seg seg_inst(
 	.clk		(clk),
