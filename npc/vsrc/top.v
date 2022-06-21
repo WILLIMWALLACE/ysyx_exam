@@ -11,7 +11,7 @@ output  [15:0]	ledr
 wire  [7:0]	x;//四个两位输入信号
 wire  [1:0]	y;//使能key信号
 wire  [1:0]     f;//输出信号
-wire		clk_led;
+reg		clk_led;
 always@(posedge clk)begin
 	if(rst)begin
 		clk_led <= 1'b1; 
