@@ -24,15 +24,15 @@ module seg(
 
 always@(decimal) begin
 	case(decimal)
-	3'd0:	o_seg0 = segs[0];
-	3'd1:   o_seg0 = segs[1];
-	3'd2:	o_seg0 = segs[2];
-	3'd3:	o_seg0 = segs[3];
-	3'd4:	o_seg0 = segs[4];
-	3'd5:	o_seg0 = segs[5];
-	3'd6:	o_seg0 = segs[6];
-	3'd7:	o_seg0 = segs[7];
-	default: o_seg0 = segs[0];
+	3'd0:	o_seg0 = ~segs[0];
+	3'd1:   o_seg0 = ~segs[1];
+	3'd2:	o_seg0 = ~segs[2];
+	3'd3:	o_seg0 = ~segs[3];
+	3'd4:	o_seg0 = ~segs[4];
+	3'd5:	o_seg0 = ~segs[5];
+	3'd6:	o_seg0 = ~segs[6];
+	3'd7:	o_seg0 = ~segs[7];
+	default: o_seg0 = ~segs[0];
 	endcase
 end
 
@@ -41,9 +41,9 @@ end
 //do not care,just for clk & rst
   always@(posedge clk) begin
 	if(rst) begin
-		o_seg7 <= segs[7];
+		o_seg7 <= ~segs[7];
 		end
 	else
-		o_seg7 <= segs[7];
+		o_seg7 <= ~segs[7];
   end
   endmodule   
