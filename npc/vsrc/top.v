@@ -14,7 +14,7 @@ output  [7:0] 	seg7
 
   );
 
-wire	[2:0]	decimal;
+reg	[2:0]	decimal;
 wire		flag;
 //assign	decimal = 3'd6; //test
 
