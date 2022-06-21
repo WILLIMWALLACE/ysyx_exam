@@ -2,14 +2,14 @@ module seg(
   input clk,
   input rst,
   input  [2:0] decimal,
-  output [7:0] o_seg0,
-  output [7:0] o_seg1,
-  output [7:0] o_seg2,
-  output [7:0] o_seg3,
-  output [7:0] o_seg4,
-  output [7:0] o_seg5,
-  output [7:0] o_seg6,
-  output [7:0] o_seg7
+  output reg [7:0] o_seg0,
+  output reg [7:0] o_seg1,
+  output reg [7:0] o_seg2,
+  output reg [7:0] o_seg3,
+  output reg [7:0] o_seg4,
+  output reg [7:0] o_seg5,
+  output reg [7:0] o_seg6,
+  output reg [7:0] o_seg7
 );
 
   wire [7:0] segs [7:0];
