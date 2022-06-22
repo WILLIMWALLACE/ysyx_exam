@@ -3,15 +3,15 @@ module Barrel_shifter(
 input[7:0]	shift_in,
 input[2:0]	shift_num,
 input[1:0]	shift_ctl,
-output reg [7:0]	shift_out
+output [7:0]	shift_out
 );
 
  reg [7:0]	temp0;
  reg [7:0]      temp1;
  reg [7:0]      temp2;
 
+ assign	shift_out = temp2;
  always@(shift_in or shift_num or shift_ctl)begin
-	shift_out = temp2;
 		case(shift_ctl)
 		2'b00:begin 
 		temp0 = shift_num[0] ? {shift_in[6:0],1'b0} : shift_in;
@@ -33,7 +33,7 @@ output reg [7:0]	shift_out
 		temp1 = shift_num[1] ? {temp0[1:0],temp0[7:2]} : temp0;
 		temp2 = shift_num[2] ? {temp1[3:0],temp1[7:4]} : temp1;
 		end // rotate  right
-		default:begin	shift_out = shift_in;  				end
+		default:begin	temp2 = shift_in;  				end
 		endcase	
  end
 
