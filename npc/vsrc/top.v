@@ -11,9 +11,10 @@ wire[3:0]	sum;
 wire		cout;
 wire		zero;
 reg[3:0]	a;
-reg[3:0]       b;
-reg[3:0]       f;
-
+reg[3:0]        b;
+reg[3:0]        f;
+wire[4:0]	        rongyu;
+assign	rongyu = sw[15:11];
 assign  zero = ~(|sum);
 assign	func[2:0] = sw[10:8];
 assign	ledr[15:0] = {{6{1'b0}},f[3:0],overflow,cout,sum[3:0]};
