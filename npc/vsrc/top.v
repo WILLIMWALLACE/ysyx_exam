@@ -15,7 +15,7 @@ wire[3:0]       b;
 wire[3:0]       f;
 
 assign  zero = ~(|sum);
-assign	func[2：0] = sw[10:8];
+assign	func[2:0] = sw[10:8];
 assign	ledr[15:0] = {{6{1'b0}},f[3:0],overflow,cout,sum[3:0]};
 //assign        ledr = {{10{1'b0}},overflow,cout,sum[3:0]};
 always@(func) begin
