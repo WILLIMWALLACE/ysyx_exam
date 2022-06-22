@@ -15,7 +15,7 @@ reg[3:0]        b;
 reg[3:0]        f;
 assign  zero = ~(|sum);
 assign	func[2:0] = sw[10:8];
-assign	ledr[15:0] = {{6{1'b0}},f[3:0],overflow,cout,sum[3:0]};
+assign	ledr[15:0] = {{5{1'b0}},f[3:0],zero,overflow,cout,sum[3:0]};
 always@(func) begin
 	case(func)
 	3'b000:begin a=sw[3:0]; b=sw[7:4]; f[3:0] = 4'b0000; end //+
