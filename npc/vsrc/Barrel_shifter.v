@@ -3,7 +3,7 @@ module Barrel_shifter(
 input[7:0]	shift_in,
 input[2:0]	shift_num,
 input[1:0]	shift_ctl,
-output[7:0]	shift_out
+output reg [7:0]	shift_out
 );
 
  integer i;

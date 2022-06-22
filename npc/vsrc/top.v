@@ -1,8 +1,8 @@
 module top(
-input 		rst,
-input 		clk,
-input	[12:0]	sw,
-output  [13:0]	ledr
+input 			rst,
+input 			clk,
+input	   [12:0]	sw,
+output reg [13:0]	ledr
   );
   
  wire [7:0]	led;
