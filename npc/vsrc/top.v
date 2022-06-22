@@ -21,12 +21,12 @@ always@(func) begin
 	case(func)
 	3'b000:begin a=sw[3:0]; b=sw[7:4]; end //+
 	3'b001:begin a=sw[3:0]; b=sw[7:4]; end //-
-	3'b010:begin a=4'd0; b=4'd0; logic= ~sw[3:0];          end //~
-  	3'b011:begin a=4'd0; b=4'd0; logic= sw[3:0] & sw[7:4]; end //&
-  	3'b100:begin a=4'd0; b=4'd0; logic= sw[3:0] | sw[7:4]; end //|
-	3'b101:begin a=4'd0; b=4'd0; logic= sw[3:0] ^ sw[7:4]; end // xor
-  	3'b110:begin a=sw[3:0]; b=sw[7:4]; logic= sum[3] ^ overflow; end //a<b则为1 ；>则为0
-  	3'b111:begin a=sw[3:0]; b=sw[7:4]; logic[0]=zero;  end //相等则为1；
+	3'b010:begin a=4'd0; b=4'd0; logic[3:0] = ~sw[3:0];          end //~
+  	3'b011:begin a=4'd0; b=4'd0; logic[3:0] = sw[3:0] & sw[7:4]; end //&
+  	3'b100:begin a=4'd0; b=4'd0; logic[3:0] = sw[3:0] | sw[7:4]; end //|
+	3'b101:begin a=4'd0; b=4'd0; logic[3:0] = sw[3:0] ^ sw[7:4]; end // xor
+  	3'b110:begin a=sw[3:0]; b=sw[7:4]; logic[0] = sum[3] ^ overflow; end //a<b则为1 ；>则为0
+  	3'b111:begin a=sw[3:0]; b=sw[7:4]; logic[0] =zero;  end //相等则为1；
 	default:begin a=4'd0; b=4'd0; logic=4'd0;	end
 	endcase
 end
