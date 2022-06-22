@@ -9,10 +9,10 @@ module fadd (
  );
   reg	 [4:0]   c;//分别对应Gi、Pi和Ci
   wire   [3:0]   g,p;
-  wire	 	 sh,ch,sl,cl;// 最高位和次高位，不考虑下级进位情况下的 和 与 进位
+  wire	 	 ch,cl;// 最高位和次高位，不考虑下级进位情况下的  进位
   
-  assign  {ch,sh} = a[3]+b[3];
-  assign  {cl,sl} = a[2]+b[2];
+  assign  ch = a[3]&b[3];
+  assign  cl = a[2]&b[2];
   assign  overflow = (ch == cl) ? 1'b0 : 1'b1;
   
   assign  p = a | b;// Pi = Ai+Bi   
