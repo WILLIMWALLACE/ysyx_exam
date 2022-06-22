@@ -9,14 +9,15 @@ wire[2:0]	func;
 wire		overflow;
 wire[3:0]	sum;
 wire		cout;
-wire[3:0]	logic;
+//wire[3:0]	logic;
 wire		zero;
 wire[3:0]	a;
 wire[3:0]       b;
 
 assign  zero = ~(|sum);
 assign	func = sw[10:8];
-assign	ledr = {{6{1'b0}},logci[3:0],overflow,cout,sum[3:0]};
+//assign	ledr = {{6{1'b0}},logci[3:0],overflow,cout,sum[3:0]};
+assign        ledr = {{10{1'b0}},overflow,cout,sum[3:0]};
 always@(func) begin
 	case(func)
 	3'b000:begin a=sw[3:0]; b=sw[7:4]; logic=4'd0; end //+
