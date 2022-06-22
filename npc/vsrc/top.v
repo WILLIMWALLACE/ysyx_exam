@@ -2,7 +2,7 @@ module top(
 input 		rst,
 input 		clk,
 input	[15:0]	sw,
-output  [15:0]	ledr,
+output  [15:0]	ledr
   );
   
 wire[2:0]	func;
@@ -19,8 +19,8 @@ assign	func = sw[10:8];
 assign	ledr = {{6{1'b0}},logci[3:0],overflow,cout,sum[3:0]};
 always@(func) begin
 	case(func)
-	3'b000:begin a=sw[3:0]; b=sw[7:4]; end //+
-	3'b001:begin a=sw[3:0]; b=sw[7:4]; end //-
+	3'b000:begin a=sw[3:0]; b=sw[7:4]; logic=4'd0; end //+
+	3'b001:begin a=sw[3:0]; b=sw[7:4]; logic=4'd0; end //-
 	3'b010:begin a=4'd0; b=4'd0; logic[3:0] = ~sw[3:0];          end //~
   	3'b011:begin a=4'd0; b=4'd0; logic[3:0] = sw[3:0] & sw[7:4]; end //&
   	3'b100:begin a=4'd0; b=4'd0; logic[3:0] = sw[3:0] | sw[7:4]; end //|

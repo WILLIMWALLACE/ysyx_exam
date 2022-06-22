@@ -13,7 +13,7 @@ module fadd (
   assign  P = a | b;// Pi = Ai+Bi
   assign  g = a & b;// Gi = Ai.Bi
   assign  c[1] = g[0] | (p[0] & c[0]);//对应图中 C1
-  assign  c[2] = g[1] | (p[1] &(g[0] | (p[0] & c[0]) );
+  assign  c[2] = g[1] | (p[1] & (g[0] | (p[0] & c[0])));
   assign  c[3] = g[2] | (p[2] &(g[1] | (p[1] &(g[0]|(p[0]&c[0])))));
   assign  c[4] = g[3] | (p[3] &(g[2] | (p[2] &(g[1]|(p[1]&(g[0]|(p[0]&c[0])))))));
   assign  overflow = (c[4] == c[3]) ? 1'b0 : 1'b1;
