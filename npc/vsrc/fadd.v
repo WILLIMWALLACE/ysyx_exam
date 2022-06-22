@@ -40,7 +40,7 @@ module fadd (
 	cout	<= 1'b0; 
 		end
 	else	begin
-	sum	<= p ^ c[3:0]; 
+	sum	<= a ^ b ^ c[3:0]; 
 	cout	<= c[4];
 		end
   end
