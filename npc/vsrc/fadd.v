@@ -7,7 +7,8 @@ module fadd (
   input 		clk,
   input			rst
  );
-  wire	 [4:0]   g,p,c;//分别对应Gi、Pi和Ci
+  wire	 [4:0]   c;//分别对应Gi、Pi和Ci
+  wire   [3:0]   g,p;
   
   assign  c[0] = cin;//最低进位为输入进位
   assign  p = a | b;// Pi = Ai+Bi
