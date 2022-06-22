@@ -16,7 +16,7 @@ wire[3:0]       b;
 
 assign  zero = ~(|sum);
 assign	func = sw[10:8];
-assign	ledr = {{6{1'b0}},{logci[3:0]},{overflow},{cout},{sum[3:0]}};
+assign	ledr = {{6{1'b0}},{logic[3:0]},{overflow},{cout},{sum[3:0]}};
 //assign        ledr = {{10{1'b0}},overflow,cout,sum[3:0]};
 always@(func) begin
 	case(func)
