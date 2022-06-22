@@ -10,9 +10,9 @@ wire		overflow;
 wire[3:0]	sum;
 wire		cout;
 wire		zero;
-wire[3:0]	a;
-wire[3:0]       b;
-wire[3:0]       f;
+reg[3:0]	a;
+reg[3:0]       b;
+reg[3:0]       f;
 
 assign  zero = ~(|sum);
 assign	func[2:0] = sw[10:8];
