@@ -42,7 +42,7 @@ output reg[7:0]                 seg5
 
 ps2_keyboard my_keyboard(
     .clk		(clk),
-    .resetn		(~rst),
+    .resetn		(rst),
     .ps2_clk		(ps2_clk),
     .ps2_data		(ps2_data),
     .nextdata_n		(nextdata_n),
