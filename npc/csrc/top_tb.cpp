@@ -29,7 +29,7 @@
      //接入nvboard
      nvboard_bind_all_pins(&dut); 
      nvboard_init();
-     reset(10);
+     reset(10000);
 
      ///////////////////////////固定内容   verilator init/////////////////////////////
      Verilated::commandArgs(argc, argv);          // Remember args
