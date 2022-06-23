@@ -35,7 +35,7 @@ output [7:0] 		seg1 //h 4bit
 	end
  end
 
- always@(lfsr) beign
+ always@(lfsr) begin
 	case(lfsr)
 	8'b0000_0001:begin  seg0 = ~segs[1];  seg1 = ~segs[0]; end
 	8'b1000_0000:begin  seg0 = ~segs[0];  seg1 = ~segs[8]; end
