@@ -23,7 +23,7 @@ output reg[7:0] 		seg1 //h 4bit
  assign segs[7] = 8'b11100000;
  assign segs[8] = 8'b11111111;
  assign	ledr[15:0] = {led_flag,led_zero[4:0],sw[9:0]};
- assign led_zero   = (lfsr[7:0]==8'd0) ? 4'b1111 : 4'b0000;
+ assign led_zero   = (lfsr[7:0]==8'd0) ? 5'b11111 : 5'b00000;
  always@(posedge sw[8])	begin
 	if(sw[9])begin
 	lfsr  <= sw[7:0];
