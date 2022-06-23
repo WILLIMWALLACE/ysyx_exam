@@ -3,9 +3,12 @@ input 			rst,
 input 			clk,
 input 			ps2_clk,
 input 			ps2_data,
-output [15:0]		ledr,//flag,zero_flag,indentify
-output reg[7:0] 		seg0,//l 4bit
-output reg[7:0] 		seg1 //h 4bit
+output [15:0]		ledr,
+output reg[7:0] 		seg0,
+output reg[7:0] 		seg1,
+output reg[7:0]                 seg4,
+output reg[7:0]                 seg5
+
   );
   
  wire [12:0]	led_flag;
