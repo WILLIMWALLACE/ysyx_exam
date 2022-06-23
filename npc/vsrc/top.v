@@ -81,10 +81,10 @@ ps2_keyboard my_keyboard(
 
  always@(posedge clk)begin
 	if(rst)begin
-	led_flag <= 12'd0;
+	led_flag <= 13'd0;
 	end
 	else begin
-	led_flag <= 12'd0;
+	led_flag <= 13'd0;
 	end
  end
 
