@@ -29,7 +29,7 @@
      //接入nvboard
      nvboard_bind_all_pins(&dut); 
      nvboard_init();
-     reset(10000);
+     reset(10);
 
      ///////////////////////////固定内容   verilator init/////////////////////////////
      Verilated::commandArgs(argc, argv);          // Remember args
@@ -59,12 +59,12 @@
         ////////////////////////步进执行并产生波形；更新电路状态////////////////////////////
 
 	////////////////////检测查看用//////////////////////////////////////
-	int ps2_data = dut.ps2_data;
-	int seg0     = dut.seg0;
-	int seg1     = dut.seg1;
-	 printf("ps2_data = %d, seg0=%d,seg1=%d\n", dut.ps2_data,dut.seg0,dut.seg1);       //看看而已
+	//int ps2_data = dut.ps2_data;
+	//int seg0     = dut.seg0;
+	//int seg1     = dut.seg1;
+	// printf("ps2_data = %d, seg0=%d,seg1=%d\n", dut.ps2_data,dut.seg0,dut.seg1);       //看看而已
         //  assert(top->f == a ^ b);                                //断言检测 
-       }
+       } 
 
        //退出nvboard 和 verilator 若不用 第一个while限制次数，则不会走到这
      	  nvboard_quit();
