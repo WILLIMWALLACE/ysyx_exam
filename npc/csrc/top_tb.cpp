@@ -37,7 +37,7 @@
      VerilatedVcdC*  tfp = new  VerilatedVcdC;    //导出波形需用，且可根据tfp设置trace追踪的层次
      Vtop *top = new Vtop("top"); 		  //指向Vtop类的 top地址的指针，new分配内存空间并且调用Vtop的构造函数，新建了一个对象（类）top
      top->trace(tfp, 99);  			  // Trace 99 levels of hierarchy (or see below)
-    // tfp->dumpvars(1, "t");  			  // trace 1 level under "t"
+     tfp->dumpvars(1, "t");  			  // trace 1 level under "t"
      tfp->open("test.vcd"); 
      ///////////////////////////固定内容 verilator init////////////////////////////////
   
@@ -54,8 +54,8 @@
         
         ////////////////////////步进执行并产生波形；更新电路状态/////////////////////////////
         top->eval();    //执行一次erilog代码 更新值
-	// tfp->dump(main_time);
-        // main_time++;                                            //更新仿真时间
+	 tfp->dump(main_time);
+         main_time++;                                            //更新仿真时间
         ////////////////////////步进执行并产生波形；更新电路状态////////////////////////////
 
 	////////////////////检测查看用//////////////////////////////////////
