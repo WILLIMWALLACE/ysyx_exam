@@ -27,7 +27,7 @@ output reg[7:0]                 seg5
  //键盘控制器 
  always@(posedge clk)	begin
 	if(rst)begin
-	nextdata_n  <= 1'b1;
+	nextdata_n  <= 1'b0;
 	mc	    <= 8'd0;
 	cnt	    <= 3'd0;
 	end
