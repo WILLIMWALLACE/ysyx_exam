@@ -6,11 +6,14 @@ module ps2_keyboard(
     input	nextdata_n,
     output [7:0]	data,
     output reg		ready,
-    output reg 		overflow
+    output reg 		overflow,
+
+    output		sampling,
+    output reg [3:0]	count	
     );
 
     reg [9:0] buffer;        // ps2_data bits
-    reg [3:0] count;  // count ps2_data bits
+   // reg [3:0] count;  // count ps2_data bits
     reg [2:0] ps2_clk_sync;
     reg [7:0] fifo[7:0];
     reg [2:0] w_ptr,r_ptr;

@@ -11,15 +11,18 @@ output reg[7:0]                 seg5
 
   );
   
- reg [12:0]	led_flag;
+ reg  [9:0]	led_flag;
  wire [7:0] 	segs [8:0];
  reg		nextdata_n;
  wire [7:0]	data;
  reg  [7:0]	mc;
  wire		ready, overflow;
  reg  [2:0]	cnt;
- 
- assign ledr[15:0]  = {led_flag[12:0],overflow,ready,nextdata_n};
+ //test
+ wire [2:0]	count;	
+ wire 		sampling;
+
+ assign ledr[15:0]  = {led_flag[8:0],sampling,count[2:0],overflow,ready,nextdata_n};
 
  //键盘控制器 
  always@(posedge clk)	begin
@@ -42,13 +45,17 @@ output reg[7:0]                 seg5
 
 ps2_keyboard my_keyboard(
     .clk		(clk),
-    .resetn		(rst),
+    .resetn		(~rst),
     .ps2_clk		(ps2_clk),
     .ps2_data		(ps2_data),
     .nextdata_n		(nextdata_n),
     .data		(data),
     .ready		(ready),
-    .overflow		(overflow));
+    .overflow		(overflow),
+    .sampling		(sampling),
+    .count		(count)
+
+    );
 
  //数码管
  assign segs[0] = 8'b11111101;
@@ -81,10 +88,10 @@ ps2_keyboard my_keyboard(
 
  always@(posedge clk)begin
 	if(rst)begin
-	led_flag <= 13'd0;
+	led_flag <= 9'd0;
 	end
 	else begin
-	led_flag <= 13'd0;
+	led_flag <= 9'd0;
 	end
  end
 
