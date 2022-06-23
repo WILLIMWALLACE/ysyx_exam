@@ -67,7 +67,7 @@ ps2_keyboard my_keyboard(
  assign segs[6] = 8'b10111110;
  assign segs[7] = 8'b11100000;
  assign segs[8] = 8'b11111111;
- always@(mc) begin
+ always@(mc or cnt) begin
 	case(mc)
 	8'b0001_0101:begin  seg0 = ~segs[5];  seg1 = ~segs[1]; end//q ,15h
 	8'b0010_0011:begin  seg0 = ~segs[3];  seg1 = ~segs[2]; end//d, 23h
