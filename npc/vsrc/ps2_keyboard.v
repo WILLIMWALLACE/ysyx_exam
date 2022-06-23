@@ -14,6 +14,7 @@ module ps2_keyboard(
 
     reg [9:0] buffer;        // ps2_data bits
    // reg [3:0] count;  // count ps2_data bits
+   // wire	sampling;
     reg [2:0] ps2_clk_sync;
     reg [7:0] fifo[7:0];
     reg [2:0] w_ptr,r_ptr;
@@ -22,7 +23,7 @@ module ps2_keyboard(
         ps2_clk_sync <=  {ps2_clk_sync[1:0],ps2_clk};
     end
 
-    wire sampling = ps2_clk_sync[2] & ~ps2_clk_sync[1];//抓下降沿
+    assign sampling = ps2_clk_sync[2] & ~ps2_clk_sync[1];//抓下降沿
 
     always @(posedge clk) begin
         if (resetn == 0) begin // reset
