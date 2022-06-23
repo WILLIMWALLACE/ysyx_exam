@@ -11,7 +11,7 @@ output reg[7:0]                 seg5
 
   );
   
- reg  [8:0]	led_flag;
+ reg  [7:0]	led_flag;
  wire [7:0] 	segs [8:0];
  reg		nextdata_n;
  wire [7:0]	data;
@@ -19,10 +19,10 @@ output reg[7:0]                 seg5
  wire		ready, overflow;
  reg  [2:0]	cnt;
  //test
- wire [2:0]	count;	
+ wire [3:0]	count;	
  wire 		sampling;
 
- assign ledr[15:0]  = {led_flag[8:0],sampling,count[2:0],overflow,ready,nextdata_n};
+ assign ledr[15:0]  = {led_flag[7:0],sampling,count[3:0],overflow,ready,nextdata_n};
 
  //键盘控制器 
  always@(posedge clk)	begin
@@ -88,10 +88,10 @@ ps2_keyboard my_keyboard(
 
  always@(posedge clk)begin
 	if(rst)begin
-	led_flag <= 9'd0;
+	led_flag <= 8'd0;
 	end
 	else begin
-	led_flag <= 9'd0;
+	led_flag <= 8'd0;
 	end
  end
 
