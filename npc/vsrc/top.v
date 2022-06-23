@@ -52,7 +52,7 @@ output [7:0] 		seg1 //h 4bit
 	led_flag <= 1'b0;
 	end
 	else begin
-	ledr_flag <= 1'b0;
+	led_flag <= 1'b0;
 	end
  end
 
