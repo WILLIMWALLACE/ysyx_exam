@@ -11,7 +11,7 @@ output reg[7:0]                 seg5
 
   );
   
- wire [12:0]	led_flag;
+ reg [12:0]	led_flag;
  wire [7:0] 	segs [8:0];
  reg		nextdata_n;
  wire [7:0]	data;
