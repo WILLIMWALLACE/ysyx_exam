@@ -3,8 +3,8 @@ input 			rst,
 input 			clk,
 input  [9:0]		sw,//en,clk,seed_datas
 output [15:0]		ledr,//flag,zero_flag,indentify
-output [7:0] 		seg0,//l 4bit
-output [7:0] 		seg1 //h 4bit
+output reg[7:0] 		seg0,//l 4bit
+output reg[7:0] 		seg1 //h 4bit
   );
   
  reg		led_flag;
