@@ -59,8 +59,10 @@
         ////////////////////////步进执行并产生波形；更新电路状态////////////////////////////
 
 	////////////////////检测查看用//////////////////////////////////////
-	int mc = dut.mc;
-	 printf("mc = %d\n", mc);       //看看而已
+	int ps2_data = dut.ps2_data,;
+	int seg0     = dut.seg0;
+	int seg1     = dut.seg1;
+	 printf("ps2_data = %d, seg0=%d,seg1=%d\n", dut.ps2_data,dut.seg0,dut.seg1);       //看看而已
         //  assert(top->f == a ^ b);                                //断言检测 
        }
 
