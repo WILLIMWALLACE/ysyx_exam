@@ -22,7 +22,7 @@ output reg[7:0]                 seg5
  wire [3:0]	count;	
  wire 		sampling;
 
- assign ledr[15:0]  = {led_flag[7:0],sampling,count[3:0],overflow,ready,nextdata_n};
+ assign ledr[15:0]  = {led_flag[7:0], sampling, count[3:0], overflow, ready, nextdata_n};
 
  //键盘控制器 
  always@(posedge clk)	begin
