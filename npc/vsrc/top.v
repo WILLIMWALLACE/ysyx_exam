@@ -66,7 +66,7 @@ output [7:0] 		VGA_B
 	pix_line <= 0;
 	end
 	else begin
-		pix_line <= pix[x]
+		pix_line <= pix[x];
 		if(x==4'd15)begin//x<=16 hang
 		x <= 0;
 		end
