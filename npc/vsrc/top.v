@@ -49,7 +49,9 @@ output [7:0] 		VGA_B
   //q和d的点阵表示，省去了asc码转换的过程，直接用扫描玛映射像素点阵，16个9bit数
   always@(posedge clk)begin
 	if(rst)begin
-	pix <= 0;
+	pix[0] <= 9'h0;pix[1] <= 9'h0; pix[2] <= 9'h0; pix[3] <= 9'h0; pix[4] <= 9'h0; pix[5] <= 9'h0;   
+	pix[6] <= 9'h0;pix[7] <= 9'h0; pix[8] <= 9'h0; pix[9] <= 9'h0; pix[10] <= 9'h0; pix[11] <= 9'h0;
+	pix[15] <= 9'h0; pix[14] <= 9'h0; pix[13] <= 9'h0; pix[12] <= 9'h0;
 	end
 	else begin
 	case(mc)
