@@ -13,8 +13,7 @@ output [7:0] 		VGA_G,
 output [7:0] 		VGA_B
   );
  // ps2键盘输入控制所需信号  
- reg  [7:0]	led_flag;
- wire [7:0] 	segs [8:0];
+ reg  [6:0]	led_flag;
  reg		nextdata_n;
  wire [7:0]	data;
  reg  [7:0]	mc;
@@ -107,13 +106,13 @@ output [7:0] 		VGA_B
     .sampling		(sampling),
     .count		(count));
  //led指示灯
- assign ledr[15:0]  = {led_flag[7:0], sampling, count[3:0], overflow, ready, nextdata_n};
+ assign ledr[15:0]  = {led_flag[6:0],v_addr[0], sampling, count[3:0], overflow, ready, nextdata_n};
  always@(posedge clk)begin
 	if(rst)begin
-	led_flag <= 8'd0;
+	led_flag <= 7'd0;
 	end
 	else begin
-	led_flag <= 8'd0;
+	led_flag <= 7'd0;
 	end
  end
 endmodule
