@@ -162,6 +162,7 @@ end
     .sampling		(sampling),
     .count		(count));
   //数码管
+  wire [7:0]     segs [8:0];
   assign segs[0] = 8'b11111101;
   assign segs[1] = 8'b01100000;
   assign segs[2] = 8'b11011010;
