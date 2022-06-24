@@ -30,27 +30,27 @@ output reg[7:0]                 seg5
 
   always@(posedge clk)   begin
         if(rst)begin
-       	n_state <= 3'd0;
+       	c_state <= 3'd0;
         end
         else begin
-	n_state <= c_state;
+	c_state <= n_state;
         end
   end
   always@(data or flag or rst) begin
 	if(rst)begin
- 	c_state <= 3'd0;
+ 	n_state <= 3'd0;
 	end
 	else if((data!=8'hf0)&&flag && ready) begin
-	c_state <= 3'b001;
+	n_state <= 3'b001;
 	end
 	else if(data == 8'hf0 && ready) begin
-	c_state <= 3'b010;
+	n_state <= 3'b010;
 	end
 	else if(!flag && ready) begin
-	c_state <= 3'b100;
+	n_state <= 3'b100;
 	end
 	else begin
-	c_state <= 3'd0;
+	n_state <= 3'd0;
 	end
   end
   always@(c_state or rst)begin
