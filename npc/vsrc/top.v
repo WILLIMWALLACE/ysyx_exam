@@ -21,11 +21,56 @@ output reg[7:0]                 seg5
  //test
  wire [3:0]	count;	
  wire 		sampling;
-
+ wire  [2:0]	c_state;
+ reg  [2:0]     n_state;
+ wire		flag;//切换 一个按键按下来并松开的三种情况
  assign ledr[15:0]  = {led_flag[7:0], sampling, count[3:0], overflow, ready, nextdata_n};
-
+ 
  //键盘控制器 
- always@(posedge clk)	begin
+
+  always@(posedge clk)   begin
+        if(rst)begin
+       	n_state <= 3'd0;
+        end
+        else begin
+	n_state <= c_state;
+        end
+  end
+  always@(data or flag or rst) begin
+	if(rst)
+ 	c_state <= 3'd0;
+	end
+	else if((data!=8'hf0)&&flag && ready) begin
+	c_state <= 3'b001;
+	end
+	else if(data == 8'hf0 && ready) begin
+	c_state <= 3'b010;
+	end
+	else if(!flag && ready) begin
+	c_state <= 3'b100;
+	end
+	else begin
+	c_state <= 3'd0;
+	end
+  end
+  always@(c_state or rst)begin
+	if(rst)
+	flag = 1'b1;
+	cnt  = 1'b0;
+	mc   =8'd0;
+	nextdata_n = 1'b0;
+	end
+	else begin
+	case(c_state)
+	3'b001:begin  flag = 1'b1; mc = data; cnt = cnt;       nextdata_n = 1'b0; end
+	3'b010:begin  flag = 1'b0; mc = data; cnt = cnt+1'b1;  nextdata_n = 1'b0; end
+	3'b100:begin  flag = 1'b1; mc = data; cnt = cnt;       nextdata_n = 1'b0; end
+	default:begin flag = flag; mc = mc;   cnt = cnt;       nextdata_n = 1'b1; end
+	endcase
+	end
+  end
+
+/*  always@(posedge clk)	begin
 	if(rst)begin
 	nextdata_n  <= 1'b0;
 	mc	    <= 8'd0;
@@ -41,7 +86,7 @@ output reg[7:0]                 seg5
 	nextdata_n  <= 1'b1;
 	cnt	    <= cnt;
 	end
- end
+ end*/
 
 ps2_keyboard my_keyboard(
     .clk		(clk),
