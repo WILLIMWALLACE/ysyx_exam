@@ -25,13 +25,11 @@ output [7:0] 		VGA_B
  reg  [2:0]	c_state;
  reg  [2:0]     n_state;
  reg		flag;//切换 一个按键按下来并松开的三种情况
- reg  [8:0]	pix[15:0];
- reg  [8:0]	pix_line;
- reg  [3:0]	x,y;
+
  //vga控制所需信号
   wire [9:0] h_addr;
   wire [9:0] v_addr;
-  reg [23:0] vga_data;
+  wire [23:0] vga_data;
   assign VGA_CLK = clk;
   vga vga_ctrl(
     .pclk(clk),
@@ -46,55 +44,12 @@ output [7:0] 		VGA_B
     .vga_g(VGA_G),
     .vga_b(VGA_B)
   );
-  //q和d的点阵表示，省去了asc码转换的过程，直接用扫描玛映射像素点阵，16个9bit数
-  always@(posedge clk)begin
-	if(rst)begin
-	pix <= 0;
-	end
-	else begin
-	case(mc)
-	8'b0001_0101:begin pix <= {9'h0,9'h0,9'h0,9'h0,9'h0,9'h0,9'h0fc,9'h0,9'h0,9'h0fc,9'h0,9'h0,9'h0,9'h0,9'h0,9'h0};  end//q ,15h
-	8'b0010_0011:begin pix <= {9'h060,9'h060,9'h060,9'h060,9'h078,9'h0,9'h0,9'h0,9'h0,9'h010,9'h038,9'h06c,9'h0c6,9'h0,9'h0,9'h0}; end//d, 23h
-	default:begin      pix <= pix;  end
-	endcase
-	end
-  end
-  //产生vgadata数据显示,循环显示pix的16行9bit数值！当其为1时显示f黑，为0时显示0白
-  always@(posedge clk) begin
-	if(rst)begin
-	x <= 0;
-	pix_line <= 0;
-	end
-	else begin
-		pix_line <= pix[x]
-		if(x==4'd15)begin//x<=16 hang
-		x <= 0;
-		end
-		else begin
-		x <= x+1;
-		end
-	end
-  end
-  always@(posedge clk) begin
-	if(rst)begin
-      	y <= 0;
-      	end
-	else if(y==8)begin
-	y <= 0;
-	end
-	else begin
-	y <= y+1;
-	end
-  end
-always@(posedge clk) begin
-      	if(rst)begin
-	vga_data <= 24'h0;
-	end
-      	else if(pix_line[y]) begin
-	vga_data <= 24'hffffff;
-	end
-	vga_data <= 24'h0;
-end
+  //读取 图片数据并 转换成vga数据格式
+  vmem my_vmem(
+    .h_addr(h_addr),
+    .v_addr(v_addr[8:0]),
+    .vga_data(vga_data)
+  );
 
  //键盘控制器 ,二段式状态机控制+键盘输入缓冲模块
   always@(posedge clk)   begin
