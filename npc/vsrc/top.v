@@ -10,7 +10,13 @@ output 			VGA_VSYNC,
 output 			VGA_BLANK_N,
 output [7:0] 		VGA_R,
 output [7:0] 		VGA_G,
-output [7:0] 		VGA_B
+output [7:0] 		VGA_B,
+
+output reg[7:0]                 seg0,
+output reg[7:0]                 seg1,
+output reg[7:0]                 seg4,
+output reg[7:0]                 seg5
+
   );
  // ps2键盘输入控制所需信号  
  reg  [6:0]	led_flag;
@@ -155,7 +161,37 @@ end
     .overflow		(overflow),
     .sampling		(sampling),
     .count		(count));
- //led指示灯
+  //数码管
+  assign segs[0] = 8'b11111101;
+  assign segs[1] = 8'b01100000;
+  assign segs[2] = 8'b11011010;
+  assign segs[3] = 8'b11110010;
+  assign segs[4] = 8'b01100110;
+  assign segs[5] = 8'b10110110;
+  assign segs[6] = 8'b10111110;
+  assign segs[7] = 8'b11100000;
+  assign segs[8] = 8'b11111111;
+  always@(mc or cnt) begin
+         case(mc)
+         8'b0001_0101:begin  seg0 = ~segs[5];  seg1 = ~segs[1]; end//q ,15h
+         8'b0010_0011:begin  seg0 = ~segs[3];  seg1 = ~segs[2]; end//d, 23h
+ /*      8'b0100_0000:begin  seg0 = ~segs[0];  seg1 = ~segs[4]; end
+         8'b0010_0000:begin  seg0 = ~segs[0];  seg1 = ~segs[2]; end
+         8'b0001_0000:begin  seg0 = ~segs[0];  seg1 = ~segs[1]; end
+         8'b1000_1000:begin  seg0 = ~segs[8];  seg1 = ~segs[8]; end*/
+         default:begin  seg0 = ~segs[8]; seg1 = ~segs[8];end
+         endcase
+         case(cnt)
+         3'd0:begin   seg5 = ~segs[0];  seg4 = ~segs[0]; end
+         3'd1:begin   seg5 = ~segs[0];  seg4 = ~segs[1]; end
+         3'd2:begin   seg5 = ~segs[0];  seg4 = ~segs[2]; end
+         3'd3:begin   seg5 = ~segs[0];  seg4 = ~segs[3]; end
+         default:begin seg5 = ~segs[8];  seg4 = ~segs[8]; end
+         endcase
+  end
+
+
+//led指示灯
  assign ledr[15:0]  = {led_flag[6:0],1'b0, sampling, count[3:0], overflow, ready, nextdata_n};
  always@(posedge clk)begin
 	if(rst)begin
