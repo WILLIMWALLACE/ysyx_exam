@@ -55,7 +55,7 @@ output [7:0] 		VGA_B
 	case(mc)
 	8'b0001_0101:begin pix[0] <= 9'h0;pix[1] <= 9'h0; pix[2] <= 9'h0; pix[3] <= 9'h0; pix[4] <= 9'h0; pix[5] <= 9'h0;
 	pix[6] <= 9'h0fc; pix[7] <= 9'h0; pix[8] <= 9'h0; pix[9] <= 9'hfc; 
-	pix[10] <= 9'h0; pix[11] <= 9'h0; pix[12] <= 9'h0; pix[13] <= 9'h0; pix[14] <= 9'h0; pix[15] <= 9'h0;  
+	pix[10] <= 9'h0; pix[11] <= 9'h0; pix[12] <= 9'h0; pix[13] <= 9'h0; pix[14] <= 9'h0; pix[15] <= 9'h0;  end//q 23h
 //	{9'h0,9'h0,9'h0,9'h0,9'h0,9'h0,9'h0fc,9'h0,9'h0,9'h0fc,9'h0,9'h0,9'h0,9'h0,9'h0,9'h0};  end//q ,15h
 //	8'b0010_0011:begin pix <= {9'h060,9'h060,9'h060,9'h060,9'h078,9'h0,9'h0,9'h0,9'h0,9'h010,9'h038,9'h06c,9'h0c6,9'h0,9'h0,9'h0}; end//d, 23h
 	default:begin      pix <= pix;  end
