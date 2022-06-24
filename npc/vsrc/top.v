@@ -154,7 +154,7 @@ end
     .sampling		(sampling),
     .count		(count));
  //led指示灯
- assign ledr[15:0]  = {led_flag[6:0],v_addr[9], sampling, count[3:0], overflow, ready, nextdata_n};
+ assign ledr[15:0]  = {led_flag[6:0],1'b0, sampling, count[3:0], overflow, ready, nextdata_n};
  always@(posedge clk)begin
 	if(rst)begin
 	led_flag <= 7'd0;
