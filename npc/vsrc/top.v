@@ -13,17 +13,17 @@ output reg[7:0]                 seg5
   
  reg  [7:0]	led_flag;
  wire [7:0] 	segs [8:0];
- wire		nextdata_n;
+ reg		nextdata_n;
  wire [7:0]	data;
- wire  [7:0]	mc;
+ reg  [7:0]	mc;
  wire		ready, overflow;
- wire  [2:0]	cnt;
+ reg  [2:0]	cnt;
  //test
  wire [3:0]	count;	
  wire 		sampling;
  reg  [2:0]	c_state;
  reg  [2:0]     n_state;
- wire		flag;//切换 一个按键按下来并松开的三种情况
+ reg		flag;//切换 一个按键按下来并松开的三种情况
  assign ledr[15:0]  = {led_flag[7:0], sampling, count[3:0], overflow, ready, nextdata_n};
  
  //键盘控制器 
