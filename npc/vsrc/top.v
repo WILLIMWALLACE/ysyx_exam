@@ -29,16 +29,16 @@ output [7:0] 		VGA_B
  reg  [8:0]	pix_line;
  reg  [3:0]	x,y;
  //vga控制所需信号
-  wire [9:0] h_addr;
-  wire [9:0] v_addr;
+//  wire [9:0] h_addr;
+//  wire [9:0] v_addr;
   reg [23:0] vga_data;
   assign VGA_CLK = clk;
   vga vga_ctrl(
     .pclk(clk),
     .reset(rst),
     .vga_data(vga_data),
-    .h_addr(h_addr),
-    .v_addr(v_addr),
+  //  .h_addr(h_addr),
+  //  .v_addr(v_addr),
     .hsync(VGA_HSYNC),
     .vsync(VGA_VSYNC),
     .valid(VGA_BLANK_N),
