@@ -37,7 +37,7 @@ output reg[7:0]                 seg5
         end
   end
   always@(data or flag or rst) begin
-	if(rst)
+	if(rst)begin
  	c_state <= 3'd0;
 	end
 	else if((data!=8'hf0)&&flag && ready) begin
@@ -54,7 +54,7 @@ output reg[7:0]                 seg5
 	end
   end
   always@(c_state or rst)begin
-	if(rst)
+	if(rst)begin
 	flag = 1'b1;
 	cnt  = 1'b0;
 	mc   =8'd0;
