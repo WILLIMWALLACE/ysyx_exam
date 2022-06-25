@@ -60,8 +60,6 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                     & ((1U != (IData)(vlSelf->top__DOT__c_state)) 
                                        & ((2U != (IData)(vlSelf->top__DOT__c_state)) 
                                           & (4U != (IData)(vlSelf->top__DOT__c_state)))));
-    vlSelf->top__DOT__sampling = (IData)((4U == (6U 
-                                                 & (IData)(vlSelf->top__DOT__my_keyboard__DOT__ps2_clk_sync))));
     vlSelf->top__DOT__vga_ctrl__DOT__h_valid = ((0x90U 
                                                  < (IData)(vlSelf->top__DOT__vga_ctrl__DOT__x_cnt)) 
                                                 & (0x310U 
@@ -70,6 +68,8 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                  < (IData)(vlSelf->top__DOT__vga_ctrl__DOT__y_cnt)) 
                                                 & (0x203U 
                                                    >= (IData)(vlSelf->top__DOT__vga_ctrl__DOT__y_cnt)));
+    vlSelf->top__DOT__sampling = (IData)((4U == (6U 
+                                                 & (IData)(vlSelf->top__DOT__my_keyboard__DOT__ps2_clk_sync))));
     if (vlSelf->rst) {
         vlSelf->top__DOT__cnt = 0U;
     } else if ((1U != (IData)(vlSelf->top__DOT__c_state))) {
@@ -80,16 +80,6 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     }
     vlSelf->top__DOT__data = vlSelf->top__DOT__my_keyboard__DOT__fifo
         [vlSelf->top__DOT__my_keyboard__DOT__r_ptr];
-    vlSelf->ledr = (((IData)(vlSelf->top__DOT__led_flag) 
-                     << 9U) | (((IData)(vlSelf->top__DOT__sampling) 
-                                << 7U) | (((IData)(vlSelf->top__DOT__count) 
-                                           << 3U) | 
-                                          (((IData)(vlSelf->top__DOT__overflow) 
-                                            << 2U) 
-                                           | (((IData)(vlSelf->top__DOT__ready) 
-                                               << 1U) 
-                                              | (1U 
-                                                 & (IData)(vlSelf->top__DOT__y)))))));
     if (vlSelf->top__DOT__vga_ctrl__DOT__h_valid) {
         vlSelf->top__DOT__h_addr = (0x3ffU & ((IData)(vlSelf->top__DOT__vga_ctrl__DOT__x_cnt) 
                                               - (IData)(0x91U)));
@@ -103,6 +93,18 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                  ? (0x3ffU & ((IData)(vlSelf->top__DOT__vga_ctrl__DOT__y_cnt) 
                                               - (IData)(0x24U)))
                                  : 0U);
+    vlSelf->ledr = (((IData)(vlSelf->top__DOT__led_flag) 
+                     << 9U) | (((IData)(vlSelf->top__DOT__sampling) 
+                                << 7U) | (((IData)(vlSelf->top__DOT__count) 
+                                           << 3U) | 
+                                          (((IData)(vlSelf->top__DOT__overflow) 
+                                            << 2U) 
+                                           | (((IData)(vlSelf->top__DOT__ready) 
+                                               << 1U) 
+                                              | ((8U 
+                                                  >= (IData)(vlSelf->top__DOT__y)) 
+                                                 & ((IData)(vlSelf->top__DOT__pix_line) 
+                                                    >> (IData)(vlSelf->top__DOT__y))))))));
     if ((4U & (IData)(vlSelf->top__DOT__cnt))) {
         vlSelf->seg5 = (0xffU & (~ vlSelf->top__DOT__segs
                                  [8U]));
