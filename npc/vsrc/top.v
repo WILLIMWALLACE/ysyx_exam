@@ -46,7 +46,7 @@ output reg[7:0]                 seg5
 	cnt_clk <= 0;
 	VGA_CLK <= 0;
 	end
-	else if(cnt_clk==16'd300)begin
+	else if(cnt_clk==16'd3000)begin
 	cnt_clk<=0;
 	VGA_CLK <= ~VGA_CLK;
 	end
