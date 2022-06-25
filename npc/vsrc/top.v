@@ -83,7 +83,7 @@ output reg[7:0]                 seg5
 	end
   end
   //根据消隐后的有效信号，定位到某一行，扫描本行9bit像素,根据
-  always@(posedge clk) begin
+/*  always@(posedge clk) begin
 	if(rst)begin
       	y <= 0;
       	end
@@ -98,15 +98,15 @@ output reg[7:0]                 seg5
 	else begin
 	y <= 0;
 	end
-  end
+  end*/
 always@(posedge clk) begin
       	if(rst)begin
-	vga_data <= 24'h0;
-	end
-      	else if(pix_line[y] && h_addr<10) begin
 	vga_data <= 24'hffffff;
 	end
-	vga_data <= 24'h0;
+      	else if(pix_line[y] && h_addr<10) begin
+	vga_data <= 24'h000000;
+	end
+	vga_data <= 24'hffffff;
 end
 
  //键盘控制器 ,二段式状态机控制+键盘输入缓冲模块
