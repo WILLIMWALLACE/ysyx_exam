@@ -89,18 +89,10 @@ output reg[7:0]                 seg5
   //产生vgadata数据显示,循环显示pix的16行9bit数值！当其为0时显示f黑，为1时显示0白
   always@(posedge clk) begin
 	if(rst)begin
-	vga_data <= 24'h000000;
 	pix_line <= 0;
 	end
 	else if(v_addr<16)begin
 		pix_line <= pix[v_addr[3:0]];
-		if(h_addr>0 && h_addr<576) begin
-        		if(pix_line[y])begin
-        		vga_data <= 24'hffffff;
-        		end
-        	else begin
-        	vga_data <= 24'h000000;
-        	end
 	end
 	else begin
 	pix_line <= pix_line;
@@ -123,7 +115,6 @@ output reg[7:0]                 seg5
 	y <= 0;
 	end
   end
-/*
 always@(posedge clk) begin
       	if(rst)begin
 	vga_data <= 24'h000000;
@@ -138,7 +129,7 @@ always@(posedge clk) begin
 	end
 	vga_data <= 24'h000000;
 end
-*/
+
 
  //键盘控制器 ,二段式状态机控制+键盘输入缓冲模块
   always@(posedge clk)   begin

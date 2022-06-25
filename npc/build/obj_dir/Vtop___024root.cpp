@@ -83,15 +83,15 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                        : (IData)(vlSelf->top__DOT__pix_line));
     }
     if (vlSelf->rst) {
-        vlSelf->top__DOT__vga_data = 0xffffffU;
+        vlSelf->top__DOT__vga_data = 0U;
     } else if (((0U < (IData)(vlSelf->top__DOT__h_addr)) 
                 & (0x240U > (IData)(vlSelf->top__DOT__h_addr)))) {
         vlSelf->top__DOT__vga_data = (((8U >= (IData)(vlSelf->top__DOT__y)) 
                                        & ((IData)(vlSelf->top__DOT__pix_line) 
                                           >> (IData)(vlSelf->top__DOT__y)))
-                                       ? 0U : 0xffffffU);
+                                       ? 0xffffffU : 0U);
     }
-    vlSelf->top__DOT__vga_data = 0xffffffU;
+    vlSelf->top__DOT__vga_data = 0U;
     vlSelf->top__DOT__my_keyboard__DOT__ps2_clk_sync 
         = ((6U & ((IData)(vlSelf->top__DOT__my_keyboard__DOT__ps2_clk_sync) 
                   << 1U)) | (IData)(vlSelf->ps2_clk));
