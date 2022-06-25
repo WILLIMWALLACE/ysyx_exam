@@ -34,17 +34,17 @@ output reg[7:0]                 seg5
  reg  [8:0]	pix[15:0];
  reg  [8:0]	pix_line;
  reg  [3:0]	x,y;
- //vga控制所需信号
+//vga控制所需信号
 //  wire [9:0] h_addr;
-//  wire [9:0] v_addr;
+  wire [9:0] v_addr;
   reg [23:0] vga_data;
   assign VGA_CLK = clk;
   vga vga_ctrl(
     .pclk(clk),
     .reset(rst),
     .vga_data(vga_data),
-  //  .h_addr(h_addr),
-  //  .v_addr(v_addr),
+   // .h_addr(h_addr),
+    .v_addr(v_addr),
     .hsync(VGA_HSYNC),
     .vsync(VGA_VSYNC),
     .valid(VGA_BLANK_N),
@@ -61,22 +61,22 @@ output reg[7:0]                 seg5
 	end
 	else begin
 	case(mc)
-	8'b0001_0101:begin pix[0] <= 9'h0;pix[1] <= 9'h0; pix[2] <= 9'h0; pix[3] <= 9'h0; pix[4] <= 9'h0; pix[5] <= 9'h0;
-	pix[6] <= 9'h0fc; pix[7] <= 9'h0; pix[8] <= 9'h0; pix[9] <= 9'hfc; 
-	pix[10] <= 9'h0; pix[11] <= 9'h0; pix[12] <= 9'h0; pix[13] <= 9'h0; pix[14] <= 9'h0; pix[15] <= 9'h0;  end//q 23h
-//	{9'h0,9'h0,9'h0,9'h0,9'h0,9'h0,9'h0fc,9'h0,9'h0,9'h0fc,9'h0,9'h0,9'h0,9'h0,9'h0,9'h0};  end//q ,15h
+	8'b0001_0101:begin pix[0] <= 9'h0;pix[1] <= 9'h0; pix[2] <= 9'h07c; 
+	pix[3] <= 9'h0c6; pix[4] <= 9'hc6; pix[5] <= 9'h0c6;pix[6] <= 9'h0c6; pix[7] <= 9'h0c6; pix[8] <= 9'h0c6; 
+	pix[9] <= 9'h0d6; pix[10] <= 9'h0f6; pix[11] <= 9'h07c; pix[12] <= 9'h060; pix[13] <= 9'h0e0; 
+	pix[14] <= 9'h000; pix[15] <= 9'h000;  end//q 23h
 //	8'b0010_0011:begin pix <= {9'h060,9'h060,9'h060,9'h060,9'h078,9'h0,9'h0,9'h0,9'h0,9'h010,9'h038,9'h06c,9'h0c6,9'h0,9'h0,9'h0}; end//d, 23h
 	default:begin      pix <= pix;  end
 	endcase
 	end
   end
-  //产生vgadata数据显示,循环显示pix的16行9bit数值！当其为1时显示f黑，为0时显示0白
+  //产生vgadata数据显示,循环显示pix的16行9bit数值！当其为0时显示f黑，为1时显示0白
   always@(posedge clk) begin
 	if(rst)begin
 	x <= 0;
 	pix_line <= 0;
 	end
-	else begin
+	else if(v_addr<16)begin
 		pix_line <= pix[x];
 		if(x==4'd15)begin//x<=16 hang
 		x <= 0;
@@ -86,15 +86,21 @@ output reg[7:0]                 seg5
 		end
 	end
   end
+  //根据消隐后的有效信号，定位到某一行，扫描本行9bit像素,根据
   always@(posedge clk) begin
 	if(rst)begin
       	y <= 0;
       	end
-	else if(y==8)begin
-	y <= 0;
+	else if(VGA_BLANK_N)begin
+		if(y==8)begin
+		y <= 0;
+		end
+		else begin
+		y <= y +1;
+		end
 	end
 	else begin
-	y <= y+1;
+	y <= 0;
 	end
   end
 always@(posedge clk) begin

@@ -2,8 +2,8 @@ module vga(
     input pclk,
     input reset,
     input [23:0] vga_data,
-//    output [9:0] h_addr,
-//    output [9:0] v_addr,
+  //  output [9:0] h_addr,
+    output [9:0] v_addr,
     output hsync,
     output vsync,
     output valid,
@@ -51,7 +51,7 @@ assign v_valid = (y_cnt > v_active) & (y_cnt <= v_backporch);
 assign valid = h_valid & v_valid;
 //计算当前有效像素坐标
 //assign h_addr = h_valid ? (x_cnt - 10'd145) : 10'd0;
-//assign v_addr = v_valid ? (y_cnt - 10'd36) : 10'd0;
+assign v_addr = v_valid ? (y_cnt - 10'd36) : 10'd0;
 //设置输出的颜色值
 assign {vga_r, vga_g, vga_b} = vga_data;
 
