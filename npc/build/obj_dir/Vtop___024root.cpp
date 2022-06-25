@@ -63,12 +63,16 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     __Vdlyvset__top__DOT__pix__v0 = 0U;
     __Vdlyvset__top__DOT__pix__v16 = 0U;
     __Vdlyvset__top__DOT__pix__v32 = 0U;
-    vlSelf->top__DOT__led_flag = 0U;
-    __Vdly__top__DOT__pix_line = ((IData)(vlSelf->rst)
-                                   ? 0U : ((0x10U > (IData)(vlSelf->top__DOT__v_addr))
-                                            ? vlSelf->top__DOT__pix
-                                           [(0xfU & (IData)(vlSelf->top__DOT__v_addr))]
-                                            : (IData)(vlSelf->top__DOT__pix_line)));
+    if (vlSelf->rst) {
+        __Vdly__top__DOT__pix_line = 0U;
+        vlSelf->top__DOT__led_flag = 0U;
+    } else {
+        __Vdly__top__DOT__pix_line = ((0x10U > (IData)(vlSelf->top__DOT__v_addr))
+                                       ? vlSelf->top__DOT__pix
+                                      [(0xfU & (IData)(vlSelf->top__DOT__v_addr))]
+                                       : (IData)(vlSelf->top__DOT__pix_line));
+        vlSelf->top__DOT__led_flag = (0x7fU & (IData)(vlSelf->top__DOT__pix_line));
+    }
     if (vlSelf->rst) {
         vlSelf->top__DOT__vga_data = 0xffffffU;
     } else if ((0xaU > (IData)(vlSelf->top__DOT__h_addr))) {
