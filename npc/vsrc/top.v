@@ -4,7 +4,7 @@ input 			clk,
 input 			ps2_clk,
 input 			ps2_data,
 output [15:0]		ledr,
-output 			VGA_CLK,
+output 	reg		VGA_CLK,
 output 			VGA_HSYNC,
 output 			VGA_VSYNC,
 output 			VGA_BLANK_N,
@@ -33,12 +33,28 @@ output reg[7:0]                 seg5
  reg		flag;//切换 一个按键按下来并松开的三种情况
  reg  [8:0]	pix[15:0];
  reg  [8:0]	pix_line;
+ reg  [15:0]	cnt_clk;
 // reg  [3:0]	y;
 //vga控制所需信号
   wire [9:0] h_addr;
   wire [9:0] v_addr;
   reg [23:0] vga_data;
-  assign VGA_CLK = clk;
+ // assign VGA_CLK = clk;
+ //clock
+  always@(posedge clk)begin
+	if(rst)begin
+	cnt_clk <= 0;
+	VGA_CLK <= 0;
+	end
+	else if(cnt_clk==10'd30000)begin
+	cnt_clk<=0;
+	VGA_CLK <= ~VGA_CLK;
+	end
+	else begin
+	cnt_clk <= cnt_clk+1;
+	end
+  end
+
   vga vga_ctrl(
     .pclk(clk),
     .reset(rst),
@@ -71,7 +87,7 @@ output reg[7:0]                 seg5
 	end
   end
   //产生vgadata数据显示,循环显示pix的16行9bit数值！当其为0时显示f黑，为1时显示0白
-  always@(posedge clk) begin
+  always@(posedge VGA_CLK) begin
 	if(rst)begin
 	pix_line <= 0;
 	end
