@@ -75,6 +75,22 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+19,"top vga_data", false,-1, 23,0);
         {int i; for (i=0; i<9; i++) {
                 tracep->declBus(c+1+i*1,"top segs", true,(i+0), 7,0);}}
+        tracep->declBit(c+58,"top my_keyboard clk", false,-1);
+        tracep->declBit(c+75,"top my_keyboard resetn", false,-1);
+        tracep->declBit(c+59,"top my_keyboard ps2_clk", false,-1);
+        tracep->declBit(c+60,"top my_keyboard ps2_data", false,-1);
+        tracep->declBit(c+36,"top my_keyboard nextdata_n", false,-1);
+        tracep->declBus(c+11,"top my_keyboard data", false,-1, 7,0);
+        tracep->declBit(c+12,"top my_keyboard ready", false,-1);
+        tracep->declBit(c+13,"top my_keyboard overflow", false,-1);
+        tracep->declBit(c+15,"top my_keyboard sampling", false,-1);
+        tracep->declBus(c+14,"top my_keyboard count", false,-1, 3,0);
+        tracep->declBus(c+20,"top my_keyboard buffer", false,-1, 9,0);
+        tracep->declBus(c+21,"top my_keyboard ps2_clk_sync", false,-1, 2,0);
+        {int i; for (i=0; i<8; i++) {
+                tracep->declBus(c+22+i*1,"top my_keyboard fifo", true,(i+0), 7,0);}}
+        tracep->declBus(c+30,"top my_keyboard w_ptr", false,-1, 2,0);
+        tracep->declBus(c+31,"top my_keyboard r_ptr", false,-1, 2,0);
         tracep->declBit(c+58,"top vga_ctrl pclk", false,-1);
         tracep->declBit(c+57,"top vga_ctrl reset", false,-1);
         tracep->declBus(c+19,"top vga_ctrl vga_data", false,-1, 23,0);
@@ -94,26 +110,10 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+81,"top vga_ctrl v_active", false,-1, 31,0);
         tracep->declBus(c+82,"top vga_ctrl v_backporch", false,-1, 31,0);
         tracep->declBus(c+83,"top vga_ctrl v_total", false,-1, 31,0);
-        tracep->declBus(c+20,"top vga_ctrl x_cnt", false,-1, 9,0);
-        tracep->declBus(c+21,"top vga_ctrl y_cnt", false,-1, 9,0);
-        tracep->declBit(c+22,"top vga_ctrl h_valid", false,-1);
-        tracep->declBit(c+23,"top vga_ctrl v_valid", false,-1);
-        tracep->declBit(c+58,"top my_keyboard clk", false,-1);
-        tracep->declBit(c+75,"top my_keyboard resetn", false,-1);
-        tracep->declBit(c+59,"top my_keyboard ps2_clk", false,-1);
-        tracep->declBit(c+60,"top my_keyboard ps2_data", false,-1);
-        tracep->declBit(c+36,"top my_keyboard nextdata_n", false,-1);
-        tracep->declBus(c+11,"top my_keyboard data", false,-1, 7,0);
-        tracep->declBit(c+12,"top my_keyboard ready", false,-1);
-        tracep->declBit(c+13,"top my_keyboard overflow", false,-1);
-        tracep->declBit(c+15,"top my_keyboard sampling", false,-1);
-        tracep->declBus(c+14,"top my_keyboard count", false,-1, 3,0);
-        tracep->declBus(c+24,"top my_keyboard buffer", false,-1, 9,0);
-        tracep->declBus(c+25,"top my_keyboard ps2_clk_sync", false,-1, 2,0);
-        {int i; for (i=0; i<8; i++) {
-                tracep->declBus(c+26+i*1,"top my_keyboard fifo", true,(i+0), 7,0);}}
-        tracep->declBus(c+34,"top my_keyboard w_ptr", false,-1, 2,0);
-        tracep->declBus(c+35,"top my_keyboard r_ptr", false,-1, 2,0);
+        tracep->declBus(c+32,"top vga_ctrl x_cnt", false,-1, 9,0);
+        tracep->declBus(c+33,"top vga_ctrl y_cnt", false,-1, 9,0);
+        tracep->declBit(c+34,"top vga_ctrl h_valid", false,-1);
+        tracep->declBit(c+35,"top vga_ctrl v_valid", false,-1);
     }
 }
 
@@ -169,22 +169,22 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullCData(oldp+17,(vlSelf->top__DOT__y),4);
         tracep->fullSData(oldp+18,(vlSelf->top__DOT__h_addr),10);
         tracep->fullIData(oldp+19,(vlSelf->top__DOT__vga_data),24);
-        tracep->fullSData(oldp+20,(vlSelf->top__DOT__vga_ctrl__DOT__x_cnt),10);
-        tracep->fullSData(oldp+21,(vlSelf->top__DOT__vga_ctrl__DOT__y_cnt),10);
-        tracep->fullBit(oldp+22,(vlSelf->top__DOT__vga_ctrl__DOT__h_valid));
-        tracep->fullBit(oldp+23,(vlSelf->top__DOT__vga_ctrl__DOT__v_valid));
-        tracep->fullSData(oldp+24,(vlSelf->top__DOT__my_keyboard__DOT__buffer),10);
-        tracep->fullCData(oldp+25,(vlSelf->top__DOT__my_keyboard__DOT__ps2_clk_sync),3);
-        tracep->fullCData(oldp+26,(vlSelf->top__DOT__my_keyboard__DOT__fifo[0]),8);
-        tracep->fullCData(oldp+27,(vlSelf->top__DOT__my_keyboard__DOT__fifo[1]),8);
-        tracep->fullCData(oldp+28,(vlSelf->top__DOT__my_keyboard__DOT__fifo[2]),8);
-        tracep->fullCData(oldp+29,(vlSelf->top__DOT__my_keyboard__DOT__fifo[3]),8);
-        tracep->fullCData(oldp+30,(vlSelf->top__DOT__my_keyboard__DOT__fifo[4]),8);
-        tracep->fullCData(oldp+31,(vlSelf->top__DOT__my_keyboard__DOT__fifo[5]),8);
-        tracep->fullCData(oldp+32,(vlSelf->top__DOT__my_keyboard__DOT__fifo[6]),8);
-        tracep->fullCData(oldp+33,(vlSelf->top__DOT__my_keyboard__DOT__fifo[7]),8);
-        tracep->fullCData(oldp+34,(vlSelf->top__DOT__my_keyboard__DOT__w_ptr),3);
-        tracep->fullCData(oldp+35,(vlSelf->top__DOT__my_keyboard__DOT__r_ptr),3);
+        tracep->fullSData(oldp+20,(vlSelf->top__DOT__my_keyboard__DOT__buffer),10);
+        tracep->fullCData(oldp+21,(vlSelf->top__DOT__my_keyboard__DOT__ps2_clk_sync),3);
+        tracep->fullCData(oldp+22,(vlSelf->top__DOT__my_keyboard__DOT__fifo[0]),8);
+        tracep->fullCData(oldp+23,(vlSelf->top__DOT__my_keyboard__DOT__fifo[1]),8);
+        tracep->fullCData(oldp+24,(vlSelf->top__DOT__my_keyboard__DOT__fifo[2]),8);
+        tracep->fullCData(oldp+25,(vlSelf->top__DOT__my_keyboard__DOT__fifo[3]),8);
+        tracep->fullCData(oldp+26,(vlSelf->top__DOT__my_keyboard__DOT__fifo[4]),8);
+        tracep->fullCData(oldp+27,(vlSelf->top__DOT__my_keyboard__DOT__fifo[5]),8);
+        tracep->fullCData(oldp+28,(vlSelf->top__DOT__my_keyboard__DOT__fifo[6]),8);
+        tracep->fullCData(oldp+29,(vlSelf->top__DOT__my_keyboard__DOT__fifo[7]),8);
+        tracep->fullCData(oldp+30,(vlSelf->top__DOT__my_keyboard__DOT__w_ptr),3);
+        tracep->fullCData(oldp+31,(vlSelf->top__DOT__my_keyboard__DOT__r_ptr),3);
+        tracep->fullSData(oldp+32,(vlSelf->top__DOT__vga_ctrl__DOT__x_cnt),10);
+        tracep->fullSData(oldp+33,(vlSelf->top__DOT__vga_ctrl__DOT__y_cnt),10);
+        tracep->fullBit(oldp+34,(vlSelf->top__DOT__vga_ctrl__DOT__h_valid));
+        tracep->fullBit(oldp+35,(vlSelf->top__DOT__vga_ctrl__DOT__v_valid));
         tracep->fullBit(oldp+36,(vlSelf->top__DOT__nextdata_n));
         tracep->fullCData(oldp+37,(vlSelf->top__DOT__mc),8);
         tracep->fullCData(oldp+38,(vlSelf->top__DOT__cnt),3);

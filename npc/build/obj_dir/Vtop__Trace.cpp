@@ -45,22 +45,22 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgCData(oldp+16,(vlSelf->top__DOT__y),4);
             tracep->chgSData(oldp+17,(vlSelf->top__DOT__h_addr),10);
             tracep->chgIData(oldp+18,(vlSelf->top__DOT__vga_data),24);
-            tracep->chgSData(oldp+19,(vlSelf->top__DOT__vga_ctrl__DOT__x_cnt),10);
-            tracep->chgSData(oldp+20,(vlSelf->top__DOT__vga_ctrl__DOT__y_cnt),10);
-            tracep->chgBit(oldp+21,(vlSelf->top__DOT__vga_ctrl__DOT__h_valid));
-            tracep->chgBit(oldp+22,(vlSelf->top__DOT__vga_ctrl__DOT__v_valid));
-            tracep->chgSData(oldp+23,(vlSelf->top__DOT__my_keyboard__DOT__buffer),10);
-            tracep->chgCData(oldp+24,(vlSelf->top__DOT__my_keyboard__DOT__ps2_clk_sync),3);
-            tracep->chgCData(oldp+25,(vlSelf->top__DOT__my_keyboard__DOT__fifo[0]),8);
-            tracep->chgCData(oldp+26,(vlSelf->top__DOT__my_keyboard__DOT__fifo[1]),8);
-            tracep->chgCData(oldp+27,(vlSelf->top__DOT__my_keyboard__DOT__fifo[2]),8);
-            tracep->chgCData(oldp+28,(vlSelf->top__DOT__my_keyboard__DOT__fifo[3]),8);
-            tracep->chgCData(oldp+29,(vlSelf->top__DOT__my_keyboard__DOT__fifo[4]),8);
-            tracep->chgCData(oldp+30,(vlSelf->top__DOT__my_keyboard__DOT__fifo[5]),8);
-            tracep->chgCData(oldp+31,(vlSelf->top__DOT__my_keyboard__DOT__fifo[6]),8);
-            tracep->chgCData(oldp+32,(vlSelf->top__DOT__my_keyboard__DOT__fifo[7]),8);
-            tracep->chgCData(oldp+33,(vlSelf->top__DOT__my_keyboard__DOT__w_ptr),3);
-            tracep->chgCData(oldp+34,(vlSelf->top__DOT__my_keyboard__DOT__r_ptr),3);
+            tracep->chgSData(oldp+19,(vlSelf->top__DOT__my_keyboard__DOT__buffer),10);
+            tracep->chgCData(oldp+20,(vlSelf->top__DOT__my_keyboard__DOT__ps2_clk_sync),3);
+            tracep->chgCData(oldp+21,(vlSelf->top__DOT__my_keyboard__DOT__fifo[0]),8);
+            tracep->chgCData(oldp+22,(vlSelf->top__DOT__my_keyboard__DOT__fifo[1]),8);
+            tracep->chgCData(oldp+23,(vlSelf->top__DOT__my_keyboard__DOT__fifo[2]),8);
+            tracep->chgCData(oldp+24,(vlSelf->top__DOT__my_keyboard__DOT__fifo[3]),8);
+            tracep->chgCData(oldp+25,(vlSelf->top__DOT__my_keyboard__DOT__fifo[4]),8);
+            tracep->chgCData(oldp+26,(vlSelf->top__DOT__my_keyboard__DOT__fifo[5]),8);
+            tracep->chgCData(oldp+27,(vlSelf->top__DOT__my_keyboard__DOT__fifo[6]),8);
+            tracep->chgCData(oldp+28,(vlSelf->top__DOT__my_keyboard__DOT__fifo[7]),8);
+            tracep->chgCData(oldp+29,(vlSelf->top__DOT__my_keyboard__DOT__w_ptr),3);
+            tracep->chgCData(oldp+30,(vlSelf->top__DOT__my_keyboard__DOT__r_ptr),3);
+            tracep->chgSData(oldp+31,(vlSelf->top__DOT__vga_ctrl__DOT__x_cnt),10);
+            tracep->chgSData(oldp+32,(vlSelf->top__DOT__vga_ctrl__DOT__y_cnt),10);
+            tracep->chgBit(oldp+33,(vlSelf->top__DOT__vga_ctrl__DOT__h_valid));
+            tracep->chgBit(oldp+34,(vlSelf->top__DOT__vga_ctrl__DOT__v_valid));
         }
         if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[2U])) {
             tracep->chgBit(oldp+35,(vlSelf->top__DOT__nextdata_n));
