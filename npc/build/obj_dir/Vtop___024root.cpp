@@ -92,7 +92,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     if (vlSelf->rst) {
         __Vdly__top__DOT__cnt_clk = 0U;
         __Vdly__VGA_CLK = 0U;
-    } else if ((0x12cU == (IData)(vlSelf->top__DOT__cnt_clk))) {
+    } else if ((0xbb8U == (IData)(vlSelf->top__DOT__cnt_clk))) {
         __Vdly__VGA_CLK = (1U & (~ (IData)(vlSelf->VGA_CLK)));
         __Vdly__top__DOT__cnt_clk = 0U;
     } else {

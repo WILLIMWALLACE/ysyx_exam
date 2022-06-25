@@ -4,7 +4,7 @@ input 			clk,
 input 			ps2_clk,
 input 			ps2_data,
 output [15:0]		ledr,
-output 	reg		VGA_CLK,
+output 			VGA_CLK,
 output 			VGA_HSYNC,
 output 			VGA_VSYNC,
 output 			VGA_BLANK_N,
@@ -39,9 +39,9 @@ output reg[7:0]                 seg5
   wire [9:0] h_addr;
   wire [9:0] v_addr;
   reg [23:0] vga_data;
- // assign VGA_CLK = clk;
+  assign VGA_CLK = clk;
  //clock
-  always@(posedge clk)begin
+ /* always@(posedge clk)begin
 	if(rst)begin
 	cnt_clk <= 0;
 	VGA_CLK <= 0;
@@ -54,7 +54,7 @@ output reg[7:0]                 seg5
 	cnt_clk <= cnt_clk+1;
 	end
   end
-
+*/
   vga vga_ctrl(
     .pclk(clk),
     .reset(rst),
