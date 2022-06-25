@@ -39,6 +39,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__segs[6U] = 0xbeU;
     vlSelf->top__DOT__segs[7U] = 0xe0U;
     vlSelf->top__DOT__segs[8U] = 0xffU;
+    vlSelf->VGA_CLK = vlSelf->clk;
     vlSelf->VGA_HSYNC = (0x60U < (IData)(vlSelf->top__DOT__vga_ctrl__DOT__x_cnt));
     vlSelf->VGA_VSYNC = (2U < (IData)(vlSelf->top__DOT__vga_ctrl__DOT__y_cnt));
     vlSelf->VGA_R = (0xffU & (vlSelf->top__DOT__vga_data 
@@ -162,8 +163,7 @@ void Vtop___024root___eval_initial(Vtop___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval_initial\n"); );
     // Body
     vlSelf->__Vclklast__TOP__clk = vlSelf->clk;
-    vlSelf->__Vclklast__TOP____VinpClk__TOP__VGA_CLK 
-        = vlSelf->__VinpClk__TOP__VGA_CLK;
+    vlSelf->__Vclklast__TOP__VGA_CLK = vlSelf->VGA_CLK;
 }
 
 void Vtop___024root___eval_settle(Vtop___024root* vlSelf) {
@@ -258,8 +258,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->__Vdlyvval__top__DOT__pix__v45 = VL_RAND_RESET_I(9);
     vlSelf->__Vdlyvval__top__DOT__pix__v46 = VL_RAND_RESET_I(9);
     vlSelf->__Vdlyvval__top__DOT__pix__v47 = VL_RAND_RESET_I(9);
-    vlSelf->__VinpClk__TOP__VGA_CLK = VL_RAND_RESET_I(1);
-    vlSelf->__Vchglast__TOP__VGA_CLK = VL_RAND_RESET_I(1);
     for (int __Vi0=0; __Vi0<4; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = VL_RAND_RESET_I(1);
     }

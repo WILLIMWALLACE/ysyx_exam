@@ -70,10 +70,8 @@ VL_MODULE(Vtop___024root) {
     CData/*0:0*/ __Vdlyvset__top__DOT__pix__v0;
     CData/*0:0*/ __Vdlyvset__top__DOT__pix__v16;
     CData/*0:0*/ __Vdlyvset__top__DOT__pix__v32;
-    CData/*0:0*/ __VinpClk__TOP__VGA_CLK;
     CData/*0:0*/ __Vclklast__TOP__clk;
-    CData/*0:0*/ __Vclklast__TOP____VinpClk__TOP__VGA_CLK;
-    CData/*0:0*/ __Vchglast__TOP__VGA_CLK;
+    CData/*0:0*/ __Vclklast__TOP__VGA_CLK;
     SData/*8:0*/ __Vdlyvval__top__DOT__pix__v32;
     SData/*8:0*/ __Vdlyvval__top__DOT__pix__v33;
     SData/*8:0*/ __Vdlyvval__top__DOT__pix__v34;
