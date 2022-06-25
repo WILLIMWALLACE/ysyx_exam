@@ -33,7 +33,7 @@ output reg[7:0]                 seg5
  reg		flag;//切换 一个按键按下来并松开的三种情况
  reg  [8:0]	pix[15:0];
  reg  [8:0]	pix_line;
- reg  [3:0]	y;
+// reg  [3:0]	y;
 //vga控制所需信号
   wire [9:0] h_addr;
   wire [9:0] v_addr;
@@ -104,7 +104,7 @@ always@(posedge clk) begin
 	vga_data <= 24'hffffff;
 	end
       	else if(h_addr<10) begin
-		if(pix_line[h_addr])begin
+		if(pix_line[h_addr[3:0]])begin
 		vga_data <= 24'h000000;
 		end
 		else begin

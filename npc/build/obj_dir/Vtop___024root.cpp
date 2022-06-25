@@ -23,7 +23,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     CData/*0:0*/ __Vdlyvset__top__DOT__pix__v0;
     CData/*0:0*/ __Vdlyvset__top__DOT__pix__v16;
     CData/*0:0*/ __Vdlyvset__top__DOT__pix__v32;
-    CData/*3:0*/ __Vdly__top__DOT__y;
     CData/*3:0*/ __Vdly__top__DOT__count;
     CData/*2:0*/ __Vdly__top__DOT__my_keyboard__DOT__w_ptr;
     CData/*2:0*/ __Vdly__top__DOT__my_keyboard__DOT__r_ptr;
@@ -48,12 +47,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     SData/*8:0*/ __Vdlyvval__top__DOT__pix__v45;
     SData/*8:0*/ __Vdlyvval__top__DOT__pix__v46;
     SData/*8:0*/ __Vdlyvval__top__DOT__pix__v47;
-    SData/*8:0*/ __Vdly__top__DOT__pix_line;
     SData/*9:0*/ __Vdly__top__DOT__vga_ctrl__DOT__x_cnt;
     SData/*9:0*/ __Vdly__top__DOT__vga_ctrl__DOT__y_cnt;
     // Body
-    __Vdly__top__DOT__y = vlSelf->top__DOT__y;
-    __Vdly__top__DOT__pix_line = vlSelf->top__DOT__pix_line;
     __Vdly__top__DOT__vga_ctrl__DOT__x_cnt = vlSelf->top__DOT__vga_ctrl__DOT__x_cnt;
     __Vdly__top__DOT__vga_ctrl__DOT__y_cnt = vlSelf->top__DOT__vga_ctrl__DOT__y_cnt;
     __Vdly__top__DOT__my_keyboard__DOT__w_ptr = vlSelf->top__DOT__my_keyboard__DOT__w_ptr;
@@ -65,28 +61,18 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     __Vdlyvset__top__DOT__pix__v0 = 0U;
     __Vdlyvset__top__DOT__pix__v16 = 0U;
     __Vdlyvset__top__DOT__pix__v32 = 0U;
-    __Vdly__top__DOT__y = ((IData)(vlSelf->rst) ? 0U
-                            : ((IData)(vlSelf->VGA_BLANK_N)
-                                ? ((8U == (IData)(vlSelf->top__DOT__y))
-                                    ? 0U : (0xfU & 
-                                            ((IData)(1U) 
-                                             + (IData)(vlSelf->top__DOT__y))))
-                                : 0U));
     vlSelf->top__DOT__led_flag = 0U;
-    __Vdly__top__DOT__pix_line = ((IData)(vlSelf->rst)
+    vlSelf->top__DOT__pix_line = ((IData)(vlSelf->rst)
                                    ? 0U : ((0x10U > (IData)(vlSelf->top__DOT__v_addr))
                                             ? vlSelf->top__DOT__pix
                                            [(0xfU & (IData)(vlSelf->top__DOT__v_addr))]
                                             : (IData)(vlSelf->top__DOT__pix_line)));
     if (vlSelf->rst) {
         vlSelf->top__DOT__vga_data = 0xffffffU;
-    } else if ((((8U >= (IData)(vlSelf->top__DOT__y)) 
-                 & ((IData)(vlSelf->top__DOT__pix_line) 
-                    >> (IData)(vlSelf->top__DOT__y))) 
-                & (0xaU > ((IData)(vlSelf->top__DOT__vga_ctrl__DOT__h_valid)
-                            ? (0x3ffU & ((IData)(vlSelf->top__DOT__vga_ctrl__DOT__x_cnt) 
-                                         - (IData)(0x91U)))
-                            : 0U)))) {
+    } else if ((0xaU > ((IData)(vlSelf->top__DOT__vga_ctrl__DOT__h_valid)
+                         ? (0x3ffU & ((IData)(vlSelf->top__DOT__vga_ctrl__DOT__x_cnt) 
+                                      - (IData)(0x91U)))
+                         : 0U))) {
         vlSelf->top__DOT__vga_data = 0U;
     }
     vlSelf->top__DOT__vga_data = 0xffffffU;
@@ -222,8 +208,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         __Vdlyvval__top__DOT__pix__v47 = vlSelf->top__DOT__pix
             [0U];
     }
-    vlSelf->top__DOT__y = __Vdly__top__DOT__y;
-    vlSelf->top__DOT__pix_line = __Vdly__top__DOT__pix_line;
     vlSelf->top__DOT__vga_ctrl__DOT__x_cnt = __Vdly__top__DOT__vga_ctrl__DOT__x_cnt;
     vlSelf->top__DOT__vga_ctrl__DOT__y_cnt = __Vdly__top__DOT__vga_ctrl__DOT__y_cnt;
     vlSelf->top__DOT__my_keyboard__DOT__w_ptr = __Vdly__top__DOT__my_keyboard__DOT__w_ptr;
