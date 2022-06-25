@@ -48,7 +48,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     }
     if (vlSelf->rst) {
         vlSelf->top__DOT__vga_data = 0xffffffU;
-    } else if ((0x240U > (IData)(vlSelf->top__DOT__h_addr))) {
+    } else if (((0U < (IData)(vlSelf->top__DOT__h_addr)) 
+                & (0x240U > (IData)(vlSelf->top__DOT__h_addr)))) {
         vlSelf->top__DOT__vga_data = (((8U >= (0xfU 
                                                & (IData)(vlSelf->top__DOT__h_addr))) 
                                        & ((IData)(vlSelf->top__DOT__pix_line) 
