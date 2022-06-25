@@ -35,7 +35,7 @@ output reg[7:0]                 seg5
  reg  [8:0]	pix_line;
  reg  [3:0]	x,y;
 //vga控制所需信号
-//  wire [9:0] h_addr;
+  wire [9:0] h_addr;
   wire [9:0] v_addr;
   reg [23:0] vga_data;
   assign VGA_CLK = clk;
@@ -43,7 +43,7 @@ output reg[7:0]                 seg5
     .pclk(clk),
     .reset(rst),
     .vga_data(vga_data),
-   // .h_addr(h_addr),
+    .h_addr(h_addr),
     .v_addr(v_addr),
     .hsync(VGA_HSYNC),
     .vsync(VGA_VSYNC),
@@ -77,13 +77,10 @@ output reg[7:0]                 seg5
 	pix_line <= 0;
 	end
 	else if(v_addr<16)begin
-		pix_line <= pix[x];
-		if(x==4'd15)begin//x<=16 hang
-		x <= 0;
-		end
-		else begin
-		x <= x+1;
-		end
+		pix_line <= pix[v_addr];
+	end
+	else begin
+	pix_line <= pix_line;
 	end
   end
   //根据消隐后的有效信号，定位到某一行，扫描本行9bit像素,根据
@@ -107,7 +104,7 @@ always@(posedge clk) begin
       	if(rst)begin
 	vga_data <= 24'h0;
 	end
-      	else if(pix_line[y]) begin
+      	else if(pix_line[y] && h_addr<10) begin
 	vga_data <= 24'hffffff;
 	end
 	vga_data <= 24'h0;
