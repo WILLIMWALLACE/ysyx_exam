@@ -34,7 +34,7 @@ output reg[7:0]                 seg5
  reg  [8:0]	pix[15:0];
  reg  [8:0]	pix_line;
 // reg  [15:0]	cnt_clk;
-// reg  [3:0]	y;
+ reg  [3:0]	y;
 //vga控制所需信号
   wire [9:0] h_addr;
   wire [9:0] v_addr;
