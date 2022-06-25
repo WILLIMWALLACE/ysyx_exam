@@ -119,7 +119,7 @@ always@(posedge clk) begin
       	if(rst)begin
 	vga_data <= 24'hffffff;
 	end
-      	else if(h_addr>=0 && h_addr<576) begin
+      	else if(h_addr>0 && h_addr<576) begin
 		if(pix_line[h_addr[3:0]])begin
 		vga_data <= 24'h000000;
 		end
