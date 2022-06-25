@@ -73,7 +73,6 @@ output reg[7:0]                 seg5
   //产生vgadata数据显示,循环显示pix的16行9bit数值！当其为0时显示f黑，为1时显示0白
   always@(posedge clk) begin
 	if(rst)begin
-	x <= 0;
 	pix_line <= 0;
 	end
 	else if(v_addr<16)begin
