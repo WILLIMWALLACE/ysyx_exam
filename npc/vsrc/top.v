@@ -216,7 +216,7 @@ end
   end
 
 //led指示灯
- assign ledr[15:0]  = {led_flag[6:0],1'b0, sampling, count[3:0], overflow, ready, y};
+ assign ledr[15:0]  = {led_flag[6:0],1'b0,  count[3:0],  y[3:0]};
  always@(posedge clk)begin
 	if(rst)begin
 	led_flag <= 7'd0;

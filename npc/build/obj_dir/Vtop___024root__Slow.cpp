@@ -56,12 +56,12 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     } else if ((4U == (IData)(vlSelf->top__DOT__c_state))) {
         vlSelf->top__DOT__flag = 1U;
     }
-    vlSelf->top__DOT__sampling = (IData)((4U == (6U 
-                                                 & (IData)(vlSelf->top__DOT__my_keyboard__DOT__ps2_clk_sync))));
     vlSelf->top__DOT__nextdata_n = ((~ (IData)(vlSelf->rst)) 
                                     & ((1U != (IData)(vlSelf->top__DOT__c_state)) 
                                        & ((2U != (IData)(vlSelf->top__DOT__c_state)) 
                                           & (4U != (IData)(vlSelf->top__DOT__c_state)))));
+    vlSelf->top__DOT__sampling = (IData)((4U == (6U 
+                                                 & (IData)(vlSelf->top__DOT__my_keyboard__DOT__ps2_clk_sync))));
     vlSelf->top__DOT__vga_ctrl__DOT__h_valid = ((0x90U 
                                                  < (IData)(vlSelf->top__DOT__vga_ctrl__DOT__x_cnt)) 
                                                 & (0x310U 
@@ -80,15 +80,16 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     }
     vlSelf->top__DOT__data = vlSelf->top__DOT__my_keyboard__DOT__fifo
         [vlSelf->top__DOT__my_keyboard__DOT__r_ptr];
-    vlSelf->ledr = (((IData)(vlSelf->top__DOT__led_flag) 
-                     << 9U) | (((IData)(vlSelf->top__DOT__sampling) 
-                                << 7U) | (((IData)(vlSelf->top__DOT__count) 
-                                           << 3U) | 
-                                          (((IData)(vlSelf->top__DOT__overflow) 
-                                            << 2U) 
-                                           | (((IData)(vlSelf->top__DOT__ready) 
-                                               << 1U) 
-                                              | (IData)(vlSelf->top__DOT__nextdata_n))))));
+    vlSelf->ledr = ((0xf000U & ((IData)(vlSelf->top__DOT__led_flag) 
+                                << 0xcU)) | (((IData)(vlSelf->top__DOT__sampling) 
+                                              << 0xaU) 
+                                             | (((IData)(vlSelf->top__DOT__count) 
+                                                 << 6U) 
+                                                | (((IData)(vlSelf->top__DOT__overflow) 
+                                                    << 5U) 
+                                                   | (((IData)(vlSelf->top__DOT__ready) 
+                                                       << 4U) 
+                                                      | (IData)(vlSelf->top__DOT__y))))));
     if (vlSelf->top__DOT__vga_ctrl__DOT__h_valid) {
         vlSelf->top__DOT__h_addr = (0x3ffU & ((IData)(vlSelf->top__DOT__vga_ctrl__DOT__x_cnt) 
                                               - (IData)(0x91U)));
@@ -163,7 +164,6 @@ void Vtop___024root___eval_initial(Vtop___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval_initial\n"); );
     // Body
     vlSelf->__Vclklast__TOP__clk = vlSelf->clk;
-    vlSelf->__Vclklast__TOP__VGA_CLK = vlSelf->VGA_CLK;
 }
 
 void Vtop___024root___eval_settle(Vtop___024root* vlSelf) {
@@ -172,7 +172,6 @@ void Vtop___024root___eval_settle(Vtop___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval_settle\n"); );
     // Body
     Vtop___024root___settle__TOP__1(vlSelf);
-    vlSelf->__Vm_traceActivity[3U] = 1U;
     vlSelf->__Vm_traceActivity[2U] = 1U;
     vlSelf->__Vm_traceActivity[1U] = 1U;
     vlSelf->__Vm_traceActivity[0U] = 1U;
@@ -227,6 +226,10 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     for (int __Vi0=0; __Vi0<9; ++__Vi0) {
         vlSelf->top__DOT__segs[__Vi0] = VL_RAND_RESET_I(8);
     }
+    vlSelf->top__DOT__vga_ctrl__DOT__x_cnt = VL_RAND_RESET_I(10);
+    vlSelf->top__DOT__vga_ctrl__DOT__y_cnt = VL_RAND_RESET_I(10);
+    vlSelf->top__DOT__vga_ctrl__DOT__h_valid = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__vga_ctrl__DOT__v_valid = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__my_keyboard__DOT__buffer = VL_RAND_RESET_I(10);
     vlSelf->top__DOT__my_keyboard__DOT__ps2_clk_sync = VL_RAND_RESET_I(3);
     for (int __Vi0=0; __Vi0<8; ++__Vi0) {
@@ -235,30 +238,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__my_keyboard__DOT__w_ptr = VL_RAND_RESET_I(3);
     vlSelf->top__DOT__my_keyboard__DOT__r_ptr = VL_RAND_RESET_I(3);
     vlSelf->top__DOT__my_keyboard__DOT____Vlvbound1 = VL_RAND_RESET_I(1);
-    vlSelf->top__DOT__vga_ctrl__DOT__x_cnt = VL_RAND_RESET_I(10);
-    vlSelf->top__DOT__vga_ctrl__DOT__y_cnt = VL_RAND_RESET_I(10);
-    vlSelf->top__DOT__vga_ctrl__DOT__h_valid = VL_RAND_RESET_I(1);
-    vlSelf->top__DOT__vga_ctrl__DOT__v_valid = VL_RAND_RESET_I(1);
-    vlSelf->__Vdlyvset__top__DOT__pix__v0 = 0;
-    vlSelf->__Vdlyvset__top__DOT__pix__v16 = 0;
-    vlSelf->__Vdlyvval__top__DOT__pix__v32 = VL_RAND_RESET_I(9);
-    vlSelf->__Vdlyvset__top__DOT__pix__v32 = 0;
-    vlSelf->__Vdlyvval__top__DOT__pix__v33 = VL_RAND_RESET_I(9);
-    vlSelf->__Vdlyvval__top__DOT__pix__v34 = VL_RAND_RESET_I(9);
-    vlSelf->__Vdlyvval__top__DOT__pix__v35 = VL_RAND_RESET_I(9);
-    vlSelf->__Vdlyvval__top__DOT__pix__v36 = VL_RAND_RESET_I(9);
-    vlSelf->__Vdlyvval__top__DOT__pix__v37 = VL_RAND_RESET_I(9);
-    vlSelf->__Vdlyvval__top__DOT__pix__v38 = VL_RAND_RESET_I(9);
-    vlSelf->__Vdlyvval__top__DOT__pix__v39 = VL_RAND_RESET_I(9);
-    vlSelf->__Vdlyvval__top__DOT__pix__v40 = VL_RAND_RESET_I(9);
-    vlSelf->__Vdlyvval__top__DOT__pix__v41 = VL_RAND_RESET_I(9);
-    vlSelf->__Vdlyvval__top__DOT__pix__v42 = VL_RAND_RESET_I(9);
-    vlSelf->__Vdlyvval__top__DOT__pix__v43 = VL_RAND_RESET_I(9);
-    vlSelf->__Vdlyvval__top__DOT__pix__v44 = VL_RAND_RESET_I(9);
-    vlSelf->__Vdlyvval__top__DOT__pix__v45 = VL_RAND_RESET_I(9);
-    vlSelf->__Vdlyvval__top__DOT__pix__v46 = VL_RAND_RESET_I(9);
-    vlSelf->__Vdlyvval__top__DOT__pix__v47 = VL_RAND_RESET_I(9);
-    for (int __Vi0=0; __Vi0<4; ++__Vi0) {
+    for (int __Vi0=0; __Vi0<3; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = VL_RAND_RESET_I(1);
     }
 }
