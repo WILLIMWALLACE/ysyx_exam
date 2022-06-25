@@ -45,7 +45,6 @@ VL_MODULE(Vtop___024root) {
     CData/*0:0*/ top__DOT__overflow;
     CData/*2:0*/ top__DOT__cnt;
     CData/*3:0*/ top__DOT__count;
-    CData/*0:0*/ top__DOT__sampling;
     CData/*2:0*/ top__DOT__c_state;
     CData/*0:0*/ top__DOT__flag;
     CData/*3:0*/ top__DOT__y;

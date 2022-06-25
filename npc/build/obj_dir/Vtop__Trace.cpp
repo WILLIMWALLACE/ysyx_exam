@@ -46,7 +46,8 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgBit(oldp+15,(vlSelf->top__DOT__ready));
             tracep->chgBit(oldp+16,(vlSelf->top__DOT__overflow));
             tracep->chgCData(oldp+17,(vlSelf->top__DOT__count),4);
-            tracep->chgBit(oldp+18,(vlSelf->top__DOT__sampling));
+            tracep->chgBit(oldp+18,((IData)((4U == 
+                                             (6U & (IData)(vlSelf->top__DOT__my_keyboard__DOT__ps2_clk_sync))))));
             tracep->chgCData(oldp+19,(vlSelf->top__DOT__c_state),3);
             tracep->chgSData(oldp+20,(vlSelf->top__DOT__pix[0]),9);
             tracep->chgSData(oldp+21,(vlSelf->top__DOT__pix[1]),9);

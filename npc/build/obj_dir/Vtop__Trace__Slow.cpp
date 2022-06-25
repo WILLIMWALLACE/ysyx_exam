@@ -168,7 +168,8 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+16,(vlSelf->top__DOT__ready));
         tracep->fullBit(oldp+17,(vlSelf->top__DOT__overflow));
         tracep->fullCData(oldp+18,(vlSelf->top__DOT__count),4);
-        tracep->fullBit(oldp+19,(vlSelf->top__DOT__sampling));
+        tracep->fullBit(oldp+19,((IData)((4U == (6U 
+                                                 & (IData)(vlSelf->top__DOT__my_keyboard__DOT__ps2_clk_sync))))));
         tracep->fullCData(oldp+20,(vlSelf->top__DOT__c_state),3);
         tracep->fullSData(oldp+21,(vlSelf->top__DOT__pix[0]),9);
         tracep->fullSData(oldp+22,(vlSelf->top__DOT__pix[1]),9);
