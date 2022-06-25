@@ -99,7 +99,7 @@ output reg[7:0]                 seg5
 	end
   end
   //根据消隐后的有效信号，定位到某一行，扫描本行9bit像素,根据
- /* always@(posedge clk) begin
+  always@(posedge clk) begin
 	if(rst)begin
       	y <= 0;
       	end
@@ -114,12 +114,12 @@ output reg[7:0]                 seg5
 	else begin
 	y <= 0;
 	end
-  end*/
+  end
 always@(posedge clk) begin
       	if(rst)begin
 	vga_data <= 24'hffffff;
 	end
-      	else if(h_addr<10) begin
+      	else if(h_addr>=0 && h_addr<576) begin
 		if(pix_line[h_addr[3:0]])begin
 		vga_data <= 24'h000000;
 		end
