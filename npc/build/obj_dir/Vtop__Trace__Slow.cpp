@@ -186,10 +186,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullSData(oldp+35,(vlSelf->top__DOT__pix[14]),9);
         tracep->fullSData(oldp+36,(vlSelf->top__DOT__pix[15]),9);
         tracep->fullSData(oldp+37,(vlSelf->top__DOT__pix_line),9);
-        tracep->fullSData(oldp+38,(((IData)(vlSelf->top__DOT__vga_ctrl__DOT__h_valid)
-                                     ? (0x3ffU & ((IData)(vlSelf->top__DOT__vga_ctrl__DOT__x_cnt) 
-                                                  - (IData)(0x91U)))
-                                     : 0U)),10);
+        tracep->fullSData(oldp+38,(vlSelf->top__DOT__h_addr),10);
         tracep->fullSData(oldp+39,(vlSelf->top__DOT__v_addr),10);
         tracep->fullIData(oldp+40,(vlSelf->top__DOT__vga_data),24);
         tracep->fullSData(oldp+41,(vlSelf->top__DOT__vga_ctrl__DOT__x_cnt),10);

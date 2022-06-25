@@ -56,16 +56,16 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     } else if ((4U == (IData)(vlSelf->top__DOT__c_state))) {
         vlSelf->top__DOT__flag = 1U;
     }
-    vlSelf->top__DOT__vga_ctrl__DOT__h_valid = ((0x90U 
-                                                 < (IData)(vlSelf->top__DOT__vga_ctrl__DOT__x_cnt)) 
-                                                & (0x310U 
-                                                   >= (IData)(vlSelf->top__DOT__vga_ctrl__DOT__x_cnt)));
     vlSelf->top__DOT__sampling = (IData)((4U == (6U 
                                                  & (IData)(vlSelf->top__DOT__my_keyboard__DOT__ps2_clk_sync))));
     vlSelf->top__DOT__nextdata_n = ((~ (IData)(vlSelf->rst)) 
                                     & ((1U != (IData)(vlSelf->top__DOT__c_state)) 
                                        & ((2U != (IData)(vlSelf->top__DOT__c_state)) 
                                           & (4U != (IData)(vlSelf->top__DOT__c_state)))));
+    vlSelf->top__DOT__vga_ctrl__DOT__h_valid = ((0x90U 
+                                                 < (IData)(vlSelf->top__DOT__vga_ctrl__DOT__x_cnt)) 
+                                                & (0x310U 
+                                                   >= (IData)(vlSelf->top__DOT__vga_ctrl__DOT__x_cnt)));
     vlSelf->top__DOT__vga_ctrl__DOT__v_valid = ((0x23U 
                                                  < (IData)(vlSelf->top__DOT__vga_ctrl__DOT__y_cnt)) 
                                                 & (0x203U 
@@ -89,8 +89,15 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                            | (((IData)(vlSelf->top__DOT__ready) 
                                                << 1U) 
                                               | (IData)(vlSelf->top__DOT__nextdata_n))))));
-    vlSelf->VGA_BLANK_N = ((IData)(vlSelf->top__DOT__vga_ctrl__DOT__h_valid) 
-                           & (IData)(vlSelf->top__DOT__vga_ctrl__DOT__v_valid));
+    if (vlSelf->top__DOT__vga_ctrl__DOT__h_valid) {
+        vlSelf->top__DOT__h_addr = (0x3ffU & ((IData)(vlSelf->top__DOT__vga_ctrl__DOT__x_cnt) 
+                                              - (IData)(0x91U)));
+        vlSelf->VGA_BLANK_N = ((IData)(vlSelf->top__DOT__vga_ctrl__DOT__v_valid) 
+                               & 1U);
+    } else {
+        vlSelf->top__DOT__h_addr = 0U;
+        vlSelf->VGA_BLANK_N = 0U;
+    }
     vlSelf->top__DOT__v_addr = ((IData)(vlSelf->top__DOT__vga_ctrl__DOT__v_valid)
                                  ? (0x3ffU & ((IData)(vlSelf->top__DOT__vga_ctrl__DOT__y_cnt) 
                                               - (IData)(0x24U)))
@@ -211,6 +218,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__pix[__Vi0] = VL_RAND_RESET_I(9);
     }
     vlSelf->top__DOT__pix_line = VL_RAND_RESET_I(9);
+    vlSelf->top__DOT__h_addr = VL_RAND_RESET_I(10);
     vlSelf->top__DOT__v_addr = VL_RAND_RESET_I(10);
     vlSelf->top__DOT__vga_data = VL_RAND_RESET_I(24);
     for (int __Vi0=0; __Vi0<9; ++__Vi0) {

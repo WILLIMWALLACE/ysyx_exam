@@ -206,7 +206,7 @@ end
 	led_flag <= 7'd0;
 	end
 	else begin
-	led_flag <= 7'd0;
+	led_flag <= pix_line[6:0];
 	end
  end
 endmodule

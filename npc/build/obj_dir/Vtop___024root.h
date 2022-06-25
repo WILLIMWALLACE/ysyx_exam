@@ -54,6 +54,7 @@ VL_MODULE(Vtop___024root) {
     CData/*2:0*/ top__DOT__my_keyboard__DOT__w_ptr;
     CData/*2:0*/ top__DOT__my_keyboard__DOT__r_ptr;
     SData/*8:0*/ top__DOT__pix_line;
+    SData/*9:0*/ top__DOT__h_addr;
     SData/*9:0*/ top__DOT__v_addr;
     SData/*9:0*/ top__DOT__vga_ctrl__DOT__x_cnt;
     SData/*9:0*/ top__DOT__vga_ctrl__DOT__y_cnt;
