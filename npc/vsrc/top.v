@@ -98,12 +98,17 @@ output reg[7:0]                 seg5
         		if(pix_line[y])begin
         		vga_data <= 24'hffffff;
         		end
-        	else begin
-        	vga_data <= 24'h000000;
-        	end
+        		else begin
+        		vga_data <= 24'h000000;
+        		end
+		end
+		else begin
+		vga_data <= 24'h000000;
+		end
 	end
 	else begin
 	pix_line <= pix_line;
+	vga_data <= 24'h000000;
 	end
   end
   //根据消隐后的有效信号，定位到某一行，扫描本行9bit像素,根据
