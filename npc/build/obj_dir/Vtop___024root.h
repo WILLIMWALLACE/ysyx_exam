@@ -20,10 +20,10 @@ VL_MODULE(Vtop___024root) {
 
     // PORTS
     VL_IN8(clk,0,0);
+    VL_OUT8(VGA_CLK,0,0);
     VL_IN8(rst,0,0);
     VL_IN8(ps2_clk,0,0);
     VL_IN8(ps2_data,0,0);
-    VL_OUT8(VGA_CLK,0,0);
     VL_OUT8(VGA_HSYNC,0,0);
     VL_OUT8(VGA_VSYNC,0,0);
     VL_OUT8(VGA_BLANK_N,0,0);
@@ -54,6 +54,7 @@ VL_MODULE(Vtop___024root) {
     CData/*2:0*/ top__DOT__my_keyboard__DOT__w_ptr;
     CData/*2:0*/ top__DOT__my_keyboard__DOT__r_ptr;
     SData/*8:0*/ top__DOT__pix_line;
+    SData/*15:0*/ top__DOT__cnt_clk;
     SData/*9:0*/ top__DOT__h_addr;
     SData/*9:0*/ top__DOT__v_addr;
     SData/*9:0*/ top__DOT__vga_ctrl__DOT__x_cnt;
@@ -66,8 +67,30 @@ VL_MODULE(Vtop___024root) {
 
     // LOCAL VARIABLES
     CData/*0:0*/ top__DOT__my_keyboard__DOT____Vlvbound1;
+    CData/*0:0*/ __Vdlyvset__top__DOT__pix__v0;
+    CData/*0:0*/ __Vdlyvset__top__DOT__pix__v16;
+    CData/*0:0*/ __Vdlyvset__top__DOT__pix__v32;
+    CData/*0:0*/ __VinpClk__TOP__VGA_CLK;
     CData/*0:0*/ __Vclklast__TOP__clk;
-    VlUnpacked<CData/*0:0*/, 3> __Vm_traceActivity;
+    CData/*0:0*/ __Vclklast__TOP____VinpClk__TOP__VGA_CLK;
+    CData/*0:0*/ __Vchglast__TOP__VGA_CLK;
+    SData/*8:0*/ __Vdlyvval__top__DOT__pix__v32;
+    SData/*8:0*/ __Vdlyvval__top__DOT__pix__v33;
+    SData/*8:0*/ __Vdlyvval__top__DOT__pix__v34;
+    SData/*8:0*/ __Vdlyvval__top__DOT__pix__v35;
+    SData/*8:0*/ __Vdlyvval__top__DOT__pix__v36;
+    SData/*8:0*/ __Vdlyvval__top__DOT__pix__v37;
+    SData/*8:0*/ __Vdlyvval__top__DOT__pix__v38;
+    SData/*8:0*/ __Vdlyvval__top__DOT__pix__v39;
+    SData/*8:0*/ __Vdlyvval__top__DOT__pix__v40;
+    SData/*8:0*/ __Vdlyvval__top__DOT__pix__v41;
+    SData/*8:0*/ __Vdlyvval__top__DOT__pix__v42;
+    SData/*8:0*/ __Vdlyvval__top__DOT__pix__v43;
+    SData/*8:0*/ __Vdlyvval__top__DOT__pix__v44;
+    SData/*8:0*/ __Vdlyvval__top__DOT__pix__v45;
+    SData/*8:0*/ __Vdlyvval__top__DOT__pix__v46;
+    SData/*8:0*/ __Vdlyvval__top__DOT__pix__v47;
+    VlUnpacked<CData/*0:0*/, 4> __Vm_traceActivity;
 
     // INTERNAL VARIABLES
     Vtop__Syms* vlSymsp;  // Symbol table
