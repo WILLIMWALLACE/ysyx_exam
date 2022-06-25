@@ -33,7 +33,7 @@ output reg[7:0]                 seg5
  reg		flag;//切换 一个按键按下来并松开的三种情况
  reg  [8:0]	pix[15:0];
  reg  [8:0]	pix_line;
- reg  [3:0]	x,y;
+ reg  [3:0]	y;
 //vga控制所需信号
   wire [9:0] h_addr;
   wire [9:0] v_addr;
