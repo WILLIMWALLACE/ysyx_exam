@@ -77,7 +77,7 @@ output reg[7:0]                 seg5
 	pix_line <= 0;
 	end
 	else if(v_addr<16)begin
-		pix_line <= pix[v_addr];
+		pix_line <= pix[v_addr[3:0]];
 	end
 	else begin
 	pix_line <= pix_line;
