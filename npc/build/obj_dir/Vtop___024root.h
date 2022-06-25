@@ -48,7 +48,6 @@ VL_MODULE(Vtop___024root) {
     CData/*0:0*/ top__DOT__sampling;
     CData/*2:0*/ top__DOT__c_state;
     CData/*0:0*/ top__DOT__flag;
-    CData/*3:0*/ top__DOT__y;
     CData/*0:0*/ top__DOT__vga_ctrl__DOT__h_valid;
     CData/*0:0*/ top__DOT__vga_ctrl__DOT__v_valid;
     CData/*2:0*/ top__DOT__my_keyboard__DOT__ps2_clk_sync;

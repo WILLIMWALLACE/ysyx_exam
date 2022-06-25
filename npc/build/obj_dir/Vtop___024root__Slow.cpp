@@ -211,7 +211,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__pix[__Vi0] = VL_RAND_RESET_I(9);
     }
     vlSelf->top__DOT__pix_line = VL_RAND_RESET_I(9);
-    vlSelf->top__DOT__y = VL_RAND_RESET_I(4);
     vlSelf->top__DOT__v_addr = VL_RAND_RESET_I(10);
     vlSelf->top__DOT__vga_data = VL_RAND_RESET_I(24);
     for (int __Vi0=0; __Vi0<9; ++__Vi0) {

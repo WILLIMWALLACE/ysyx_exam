@@ -69,7 +69,6 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         {int i; for (i=0; i<16; i++) {
                 tracep->declBus(c+21+i*1,"top pix", true,(i+0), 8,0);}}
         tracep->declBus(c+37,"top pix_line", false,-1, 8,0);
-        tracep->declBus(c+75,"top y", false,-1, 3,0);
         tracep->declBus(c+38,"top h_addr", false,-1, 9,0);
         tracep->declBus(c+39,"top v_addr", false,-1, 9,0);
         tracep->declBus(c+40,"top vga_data", false,-1, 23,0);
@@ -86,14 +85,14 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+66,"top vga_ctrl vga_r", false,-1, 7,0);
         tracep->declBus(c+67,"top vga_ctrl vga_g", false,-1, 7,0);
         tracep->declBus(c+68,"top vga_ctrl vga_b", false,-1, 7,0);
-        tracep->declBus(c+76,"top vga_ctrl h_frontporch", false,-1, 31,0);
-        tracep->declBus(c+77,"top vga_ctrl h_active", false,-1, 31,0);
-        tracep->declBus(c+78,"top vga_ctrl h_backporch", false,-1, 31,0);
-        tracep->declBus(c+79,"top vga_ctrl h_total", false,-1, 31,0);
-        tracep->declBus(c+80,"top vga_ctrl v_frontporch", false,-1, 31,0);
-        tracep->declBus(c+81,"top vga_ctrl v_active", false,-1, 31,0);
-        tracep->declBus(c+82,"top vga_ctrl v_backporch", false,-1, 31,0);
-        tracep->declBus(c+83,"top vga_ctrl v_total", false,-1, 31,0);
+        tracep->declBus(c+75,"top vga_ctrl h_frontporch", false,-1, 31,0);
+        tracep->declBus(c+76,"top vga_ctrl h_active", false,-1, 31,0);
+        tracep->declBus(c+77,"top vga_ctrl h_backporch", false,-1, 31,0);
+        tracep->declBus(c+78,"top vga_ctrl h_total", false,-1, 31,0);
+        tracep->declBus(c+79,"top vga_ctrl v_frontporch", false,-1, 31,0);
+        tracep->declBus(c+80,"top vga_ctrl v_active", false,-1, 31,0);
+        tracep->declBus(c+81,"top vga_ctrl v_backporch", false,-1, 31,0);
+        tracep->declBus(c+82,"top vga_ctrl v_total", false,-1, 31,0);
         tracep->declBus(c+41,"top vga_ctrl x_cnt", false,-1, 9,0);
         tracep->declBus(c+42,"top vga_ctrl y_cnt", false,-1, 9,0);
         tracep->declBit(c+43,"top vga_ctrl h_valid", false,-1);
@@ -241,14 +240,13 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                    ? 4U
                                                    : 0U))))),3);
         tracep->fullBit(oldp+74,((1U & (~ (IData)(vlSelf->rst)))));
-        tracep->fullCData(oldp+75,(vlSelf->top__DOT__y),4);
-        tracep->fullIData(oldp+76,(0x60U),32);
-        tracep->fullIData(oldp+77,(0x90U),32);
-        tracep->fullIData(oldp+78,(0x310U),32);
-        tracep->fullIData(oldp+79,(0x320U),32);
-        tracep->fullIData(oldp+80,(2U),32);
-        tracep->fullIData(oldp+81,(0x23U),32);
-        tracep->fullIData(oldp+82,(0x203U),32);
-        tracep->fullIData(oldp+83,(0x20dU),32);
+        tracep->fullIData(oldp+75,(0x60U),32);
+        tracep->fullIData(oldp+76,(0x90U),32);
+        tracep->fullIData(oldp+77,(0x310U),32);
+        tracep->fullIData(oldp+78,(0x320U),32);
+        tracep->fullIData(oldp+79,(2U),32);
+        tracep->fullIData(oldp+80,(0x23U),32);
+        tracep->fullIData(oldp+81,(0x203U),32);
+        tracep->fullIData(oldp+82,(0x20dU),32);
     }
 }

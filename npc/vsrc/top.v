@@ -108,7 +108,7 @@ always@(posedge clk) begin
 		vga_data <= 24'h000000;
 		end
 		else begin
-		vga_data <= 24'h000000;
+		vga_data <= 24'hffffff;
 		end
 	end
 	vga_data <= 24'hffffff;
