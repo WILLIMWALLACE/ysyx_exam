@@ -9,12 +9,8 @@ const char *regs[] = {
 };
 
 void isa_reg_display() {
-  int i=0;
-    for(i=0;i<32;)
-    printf("%s=0x%016lx",regs[i],cpu.gpr[i]);
-    i++;
-    if(i==3||i==7||i==11||i==15||i==19||i==23||i==27||i==31)
-    {printf("\n");}
+    for(int i=0;i<32;i++)
+    printf("%s=0x%016lx\n",regs[i],cpu.gpr[i]);
     printf("pc=%ld",cpu.pc);
 }
 
