@@ -10,9 +10,14 @@ const char *regs[] = {
 
 void isa_reg_display() {
     for(int i=0;i<4;i++)
-    printf("%s = 0x%016lx\n",regs[i],cpu.gpr[i]);
-    for(int i=5;i<9;i++)
-    printf("%s = 0x%016lx\n",regs[i],cpu.gpr[i]);
+    printf("%s = 0x%016lx",regs[i],cpu.gpr[i]);
+    printf("\n");
+    for(int i=4;i<8;i++)
+    printf("%s = 0x%016lx",regs[i],cpu.gpr[i]);
+    printf("\n");
+    for(int i=8;i<12;i++)
+    printf("%s = 0x%016lx",regs[i],cpu.gpr[i]);
+    printf("\n");
     printf("pc = %ld",cpu.pc);
 }
 
