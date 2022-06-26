@@ -61,8 +61,9 @@ static int cmd_x(char *args) {
   else {
     int num, addr, i, expr;
     sscanf(args,"%d0x%x",&num,&expr);
-    addr = expr;
+    
     for (i = 0; i < num; i++) {
+      addr = expr + i*32;
       printf("0x%lx\n", paddr_read(addr, 4));
       addr += 4;
     }
