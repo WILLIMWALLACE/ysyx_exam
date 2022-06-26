@@ -4,6 +4,8 @@
 #include <readline/history.h>
 #include "sdb.h"
 #include <isa-def.h>
+#include <memory/paddr.h>
+#include <memory/host.h>
 
 static int is_batch_mode = false;
 
@@ -52,6 +54,21 @@ static int cmd_info(char *args) {
   else{printf("info need a specific command, like 'r' or '?'");}
   return 0;
 }
+static int cmd_x(char *args) {
+  if (args == NULL) {
+    printf("please input true command!\n");
+  }
+  else {
+    int num, addr, i, expr;
+    sscanf(args,"%d0x%x",&num,&expr);
+    addr = expr;
+    for (i = 0; i < num; i++) {
+      printf("0x%lx\n", paddr_read(addr, 4));
+      addr += 4;
+    }
+  }
+  return 0;
+}
 /***************************************/
 static int cmd_help(char *args);
 
@@ -64,7 +81,8 @@ static struct {
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   { "si", "Step the execution of the program", cmd_si },
-  { "info", "Step the execution of the program", cmd_info },
+  { "info", "information for regsister", cmd_info },
+  { "x", "scan the memory", cmd_x },
 };
 
 #define NR_CMD ARRLEN(cmd_table)
