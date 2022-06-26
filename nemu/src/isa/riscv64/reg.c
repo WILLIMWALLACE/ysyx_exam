@@ -10,28 +10,28 @@ const char *regs[] = {
 
 void isa_reg_display() {
     for(int i=0;i<4;i++)
-    printf("  %s = 0x%016lx",regs[i],cpu.gpr[i]);
+    printf("   %s   = 0x%016lx",regs[i],cpu.gpr[i]);
     printf("\n");
     for(int i=4;i<8;i++)
-    printf("  %s = 0x%016lx",regs[i],cpu.gpr[i]);
+    printf("   %s   = 0x%016lx",regs[i],cpu.gpr[i]);
     printf("\n");
     for(int i=8;i<12;i++)
-    printf("  %s = 0x%016lx",regs[i],cpu.gpr[i]);
+    printf("   %s   = 0x%016lx",regs[i],cpu.gpr[i]);
     printf("\n");
     for(int i=12;i<16;i++)
-    printf("  %s = 0x%016lx",regs[i],cpu.gpr[i]);
+    printf("   %s   = 0x%016lx",regs[i],cpu.gpr[i]);
     printf("\n");
     for(int i=16;i<20;i++)
-    printf("  %s = 0x%016lx",regs[i],cpu.gpr[i]);
+    printf("   %s   = 0x%016lx",regs[i],cpu.gpr[i]);
     printf("\n");
     for(int i=20;i<24;i++)
-    printf("  %s = 0x%016lx",regs[i],cpu.gpr[i]);
+    printf("   %s   = 0x%016lx",regs[i],cpu.gpr[i]);
     printf("\n");
     for(int i=24;i<28;i++)
-    printf("  %s = 0x%016lx",regs[i],cpu.gpr[i]);
+    printf("   %s   = 0x%016lx",regs[i],cpu.gpr[i]);
     printf("\n");
     for(int i=28;i<32;i++)
-    printf("  %s = 0x%016lx",regs[i],cpu.gpr[i]);
+    printf("   %s   = 0x%016lx",regs[i],cpu.gpr[i]);
     printf("\n");
     printf("pc = %ld",cpu.pc);
 }
