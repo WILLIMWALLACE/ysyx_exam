@@ -59,14 +59,15 @@ static int cmd_x(char *args) {
     printf("please input true command!\n");
   }
   else {
-    int num, addr, i, expr;
+    int num;
+    uint32_t expr;
     sscanf(args,"%d0x%x",&num,&expr);
-    
-    for (i = 0; i < num; i++) {
+    printf("%x",expr);
+   /* for (i = 0; i < num; i++) {
       addr = expr + i*32;
       printf("0x%lx\n", paddr_read(addr, 4));
       addr += 4;
-    }
+    }*/
   }
   return 0;
 }
