@@ -3,6 +3,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "sdb.h"
+#include <isa-def.h>
 
 static int is_batch_mode = false;
 
@@ -26,17 +27,15 @@ static char* rl_gets() {
 
   return line_read;
 }
+/*********  ming  ling  *******************/
 /* zi fu chuan->args*/
 static int cmd_c(char *args) {
   cpu_exec(-1);
   return 0;
 }
-
 static int cmd_q(char *args) {
-  return -1;    /* -1 -> 0    */
+  return -1;    //pan duan cmd_q<0 ze fan hui ;;;xia mian  han  shu
 }
-
-
 static int cmd_si(char *args) {
   int step; // dan bu <=10
   if(args == NULL) 
@@ -46,8 +45,11 @@ static int cmd_si(char *args) {
   cpu_exec(step);
   return 0;     
 } 
-
-
+static int cmd_infor(char *args) {
+  void isa_reg_display();
+  return 0;
+}
+/***************************************/
 static int cmd_help(char *args);
 
 static struct {
@@ -59,8 +61,7 @@ static struct {
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   { "si", "Step the execution of the program", cmd_si },
-  
-
+  { "infor", "Step the execution of the program", cmd_infor },
 };
 
 #define NR_CMD ARRLEN(cmd_table)
