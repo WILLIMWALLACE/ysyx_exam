@@ -45,8 +45,11 @@ static int cmd_si(char *args) {
   cpu_exec(step);
   return 0;     
 } 
-static int cmd_infor(char *args) {
-  void isa_reg_display();
+// info  pan  duan  wei  'r',ze shu chu  regsister
+static int cmd_info(char *args) {
+  if(strcmp(args,"r") == 0)         // compare args[0] ,r!!! shuang yin hao biao shi char
+  {isa_reg_display();}
+  else{printf("info need a specific command, like 'r' or '?'");}
   return 0;
 }
 /***************************************/
@@ -61,7 +64,7 @@ static struct {
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   { "si", "Step the execution of the program", cmd_si },
-  { "infor", "Step the execution of the program", cmd_infor },
+  { "info", "Step the execution of the program", cmd_info },
 };
 
 #define NR_CMD ARRLEN(cmd_table)
