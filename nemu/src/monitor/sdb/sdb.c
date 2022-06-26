@@ -61,7 +61,7 @@ static int cmd_x(char *args) {
   else {
     int num;
     uint32_t expr;
-    sscanf(args,"%d[0-9]0x%x[0-9]",&num,&expr);
+    sscanf(args,"%d[0-9]0x%d[0-9]",&num,&expr);
     printf("%d\n%d\n",num,expr);
    /* for (i = 0; i < num; i++) {
       addr = expr + i*32;
