@@ -8,5 +8,6 @@ int is_exit_status_bad() {
     (nemu_state.state == NEMU_QUIT);
   if(!good){flag = !good;}
   if(good) {flag = good;}
+  printf("flag = %d\n",flag);
   return flag;
 }
