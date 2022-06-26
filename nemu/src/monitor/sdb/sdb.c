@@ -54,23 +54,43 @@ static int cmd_info(char *args) {
   else{printf("info need a specific command, like 'r' or '?'");}
   return 0;
 }
+static int delchar(char* str, char* c)
+{
+	int i=0;//str[i]表示原来的字符串
+	int j=0;//str[j]表示删除指定字符后的字符串
+	while (str[i] != '\0')  //'\0' zi fu chuan de mo wei(tong yong)
+	{
+		if (str[i] != *c)
+		{
+			str[j++] = str[i];
+		}
+		i++;
+	}
+	//将'\0'赋上
+	str[j] = str[i];
+  return 0;
+}
 static int cmd_x(char *args) {
   if (args == NULL) {
     printf("please input true command!\n");
   }
   else {
-    int num;
-    int expr;
-    sscanf(args,"%d[0-9]0x%d[0-9]",&num,&expr);
-    printf("%d\n%d\n",num,expr);
-   /* for (i = 0; i < num; i++) {
-      addr = expr + i*32;
+    int num, addr, i;
+    char *exp;
+    num = atoi(strtok(NULL, " "));//"1234"->1234 ; char(shu zi) -> int
+    exp = strtok(NULL, " ");//strtok(char,"fen ge biao zhi")shou ci yong char s,zhi hou yong NULL
+    delchar(exp,0);
+    delchar(exp,"x");
+    addr = atoi(exp);
+    printf("%d\n%d\n",num,addr);
+    for (i = 0; i < num; i++) {
       printf("0x%lx\n", paddr_read(addr, 4));
       addr += 4;
-    }*/
+    }
   }
   return 0;
 }
+
 /***************************************/
 static int cmd_help(char *args);
 
