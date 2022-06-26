@@ -29,7 +29,7 @@ static char *log_file = NULL;
 static char *diff_so_file = NULL;
 static char *img_file = NULL;
 static int difftest_port = 1234;
-
+/*      jing  xiang  cheng  xu  (guest program)   */
 static long load_img() {
   if (img_file == NULL) {
     Log("No image is given. Use the default build-in image.");
