@@ -67,7 +67,7 @@ static int cmd_x(char *args) {
     num = atoi(strtok(NULL, " "));//"1234"->1234 ; char(shu zi) -> int
     exp = strtok(NULL, " ");//strtok(char,"fen ge biao zhi")shou ci yong char s,zhi hou yong NULL
     addr = strtol(exp,NULL,16);
-    printf("%d\n%s\n%x\n",num,exp,addr);
+    //printf("%d\n%s\n%x\n",num,exp,addr);
     //paddr = addr;
     for (i = 0; i < num; i++) {
       printf("0x%lx\n", paddr_read(addr, 4));
