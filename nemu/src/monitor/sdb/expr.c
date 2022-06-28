@@ -6,7 +6,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ,
+  TK_NOTYPE = 256, TK_OR = 257, TK_EQ=258, TK_NUMD=259,
 
   /* TODO: Add more token types */
 
@@ -22,8 +22,15 @@ static struct rule {
    */
 
   {" +", TK_NOTYPE},    // spaces
+  {"\\(", '('},         //  (
+  {"\\)", ')'},         //  )
   {"\\+", '+'},         // plus
+  {"\\-", '-'},         //sub
+  {"\\*", '*'},         //multi
+  {"/", '/'},         //divide  
+  {"\\|\\|", TK_OR},  //   || or
   {"==", TK_EQ},        // equal
+  {"[0-9]+", TK_NUMD},
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -73,16 +80,37 @@ static bool make_token(char *e) {
             i, rules[i].regex, position, substr_len, substr_len, substr_start);
 
         position += substr_len;
-
         /* TODO: Now a new token is recognized with rules[i]. Add codes
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
-
+        int j;
         switch (rules[i].token_type) {
+          case TK_NOTYPE:{tokens->type=rules[i].token_type; break;}  
+          case '(':      {tokens->type=rules[i].token_type; 
+            for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
+              tokens->str[j] = '\0';                        break;} 
+          case ')':      {tokens->type=rules[i].token_type; 
+            for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
+              tokens->str[j] = '\0';                        break;}  
+          case '-':      {tokens->type=rules[i].token_type; 
+          for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
+              tokens->str[j] = '\0';                        break;}  
+          case '*':      {tokens->type=rules[i].token_type; 
+           for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
+              tokens->str[j] = '\0';                        break;}  
+          case '+':      {tokens->type=rules[i].token_type; 
+          for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
+              tokens->str[j] = '\0';                        break;}  
+          case '/':      {tokens->type=rules[i].token_type; 
+           for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
+              tokens->str[j] = '\0';                        break;}  
+          case TK_NUMD:  {tokens->type=rules[i].token_type; 
+           for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
+              tokens->str[j] = '\0';                        break;}  
           default: TODO();
         }
-
+        printf("%d\n%d\n",tokens->type,tokens->str[32]);
         break;
       }
     }
@@ -104,7 +132,8 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  TODO();
+  int result = 6;
+  //TODO();
 
-  return 0;
+  return result;
 }
