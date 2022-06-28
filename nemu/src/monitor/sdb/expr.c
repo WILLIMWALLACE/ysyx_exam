@@ -106,7 +106,7 @@ static bool make_token(char *e) {
            for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
               tokens->str[j] = '\0';                        break;}  
           case TK_NUMD:  {tokens->type=rules[i].token_type; 
-           for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
+           for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start);}
               tokens->str[j] = '\0';                        break;}  
           default: TODO();
         }
@@ -114,13 +114,11 @@ static bool make_token(char *e) {
         break;
       }
     }
-
     if (i == NR_REGEX) {
       printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
       return false;
     }
   }
-
   return true;
 }
 
