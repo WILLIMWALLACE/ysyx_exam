@@ -56,7 +56,7 @@ void init_regex() {
 
 typedef struct token {
   int type;
-  char str[32];
+  char* str[32];
 } Token;
 
 static Token tokens[32] __attribute__((used)) = {};
@@ -88,30 +88,30 @@ static bool make_token(char *e) {
         switch (rules[i].token_type) {
           case TK_NOTYPE:{tokens->type=rules[i].token_type; break;}  
           case '(':      {tokens->type=rules[i].token_type; 
-            for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
+            for(j=0;j<substr_len;j++){tokens->str[j] = (substr_start+j);}
               tokens->str[j] = '\0';                        break;} 
           case ')':      {tokens->type=rules[i].token_type; 
-            for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
+            for(j=0;j<substr_len;j++){tokens->str[j] = (substr_start+j);}
               tokens->str[j] = '\0';                        break;}  
           case '-':      {tokens->type=rules[i].token_type; 
-          for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
+          for(j=0;j<substr_len;j++){tokens->str[j] = (substr_start+j);}
               tokens->str[j] = '\0';                        break;}  
           case '*':      {tokens->type=rules[i].token_type; 
-           for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
+           for(j=0;j<substr_len;j++){tokens->str[j] = (substr_start+j);}
               tokens->str[j] = '\0';                        break;}  
           case '+':      {tokens->type=rules[i].token_type; 
-          for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
+          for(j=0;j<substr_len;j++){tokens->str[j] = (substr_start+j);}
               tokens->str[j] = '\0';                        break;}  
           case '/':      {tokens->type=rules[i].token_type; 
-           for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
+           for(j=0;j<substr_len;j++){tokens->str[j] = (substr_start+j);}
               tokens->str[j] = '\0';                        break;}  
           case TK_NUMD:  {tokens->type=rules[i].token_type; 
-           for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
+           for(j=0;j<substr_len;j++){tokens->str[j] = (substr_start+j);}
               //tokens->str[j] = '\0';          
                             break;}  
           default: TODO();
         }
-        printf("%d\n%.*d\n",tokens->type,substr_len,tokens->str[3]);
+        printf("%d\n%.*s\n",tokens->type,substr_len,tokens->str[3]);
         break;
       }
     }
