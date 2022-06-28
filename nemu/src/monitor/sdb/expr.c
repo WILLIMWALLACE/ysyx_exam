@@ -106,8 +106,8 @@ static bool make_token(char *e) {
            for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
               tokens->str[j] = '\0';                        break;}  
           case TK_NUMD:  {tokens->type=rules[i].token_type; 
-              tokens->str[32] = *substr_start;
-              //tokens->str[j] = '\0';          
+              for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
+              tokens->str[j] = '\0';   
                             break;}  
           default: TODO();
         }
