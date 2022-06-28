@@ -54,6 +54,7 @@ static int cmd_info(char *args) {
   else{printf("info need a specific command, like 'r' or '?'");}
   return 0;
 }
+
 static int cmd_x(char *args) {
   if (args == NULL) {
     printf("please input true command!\n");
@@ -61,10 +62,12 @@ static int cmd_x(char *args) {
   else {
     int num, addr, i;
     char *exp;
+    //uint32_t paddr;
     num = atoi(strtok(NULL, " "));//"1234"->1234 ; char(shu zi) -> int
     exp = strtok(NULL, " ");//strtok(char,"fen ge biao zhi")shou ci yong char s,zhi hou yong NULL
     addr = atoi(exp);
-    printf("%d\n%d\n",num,addr);
+    printf("%d\n%s\n",num,exp);
+    //paddr = addr;
     for (i = 0; i < num; i++) {
       printf("0x%lx\n", paddr_read(addr, 4));
       addr += 4;
