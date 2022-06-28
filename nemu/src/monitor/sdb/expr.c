@@ -111,7 +111,7 @@ static bool make_token(char *e) {
                             break;}  
           default: TODO();
         }
-        printf("%d\n%d\n",tokens->type,tokens->str[32]);
+        printf("%d\n%.*d\n",tokens->type,substr_len,tokens->str[32]);
         break;
       }
     }
