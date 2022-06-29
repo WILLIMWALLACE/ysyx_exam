@@ -246,6 +246,7 @@ static uint32_t eval(int p,int q, bool *valid){
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
+    printf("make_toke cuo wu\n");
     return 0;
   }
   u_int32_t result=0;
