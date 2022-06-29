@@ -182,6 +182,7 @@ static uint32_t eval(int p,int q, bool *valid){
   {
     *valid = false;
     return 0;
+    printf("chu fa cuo wu\n");
   }
   else if(p==q){
     uint32_t result=0;
