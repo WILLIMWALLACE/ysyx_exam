@@ -209,7 +209,7 @@ static uint32_t eval(int p,int q, bool *valid){
     for(i=p;i<=q;i++){
       //kuo hao nei bu shi zhu yun suan fu,xun huan tiao guo kuo hao
       // printf("jin ru cuo wu zhuang tai\n");
-     /*
+     
       if(tokens[i].type=='('){
         int k = 1;
        // printf("jin ru cuo wu zhuang tai\n");
@@ -221,8 +221,8 @@ static uint32_t eval(int p,int q, bool *valid){
          
         }
         printf("jin ru cuo wu zhuang tai\n");
-      }*/
-       if(op_flag(i)){      //que ren shi yun suan fu > operator
+      }
+      else if(op_flag(i)){      //que ren shi yun suan fu > operator
        printf("jin ru cuo wu zhuang tai\n");
       int j;
       for(j=0;j<NR_PRIORITY;j++){
