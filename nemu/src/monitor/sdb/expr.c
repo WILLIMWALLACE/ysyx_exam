@@ -151,7 +151,7 @@ static bool check_parentheses(int p, int q){
 	return (j==0)&&(tokens[p].type=='(')&&(tokens[q].type==')');
 }
 //pan daun express shifou youxiao
-static bool valid_epxr(int p,int q){
+/*static bool valid_epxr(int p,int q){
   int i,j=0;
   for(i=p;i<q;i++)
 	{
@@ -170,7 +170,7 @@ static bool valid_epxr(int p,int q){
   else{
     return false;    //zuo kuo hao  duo,feifa
   }
-}
+}*/
 static  bool  op_flag(int i){
   if(tokens[i].type=='+'||tokens[i].type=='-'||tokens[i].type=='*'||tokens[i].type=='/')
   return true;
@@ -179,7 +179,8 @@ static  bool  op_flag(int i){
 }
 static uint32_t eval(int p,int q, bool *valid){
    printf("jin ru eval han shu\n");
-  if (p>q || (!valid_epxr(p,q)))  //fei fa expr
+  //if (p>q || (!valid_epxr(p,q)))  //fei fa expr
+  if (p>q)
   {
     *valid = false;
     printf("jin ru cuo wu zhuang tai\n");
