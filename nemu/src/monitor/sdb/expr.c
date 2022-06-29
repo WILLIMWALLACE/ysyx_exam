@@ -208,10 +208,10 @@ static uint32_t eval(int p,int q, bool *valid){
  
     for(i=p;i<=q;i++){
       //kuo hao nei bu shi zhu yun suan fu,xun huan tiao guo kuo hao
-       printf("jin ru cuo wu zhuang tai\n");
+      // printf("jin ru cuo wu zhuang tai\n");
       if(tokens[i].type=='('){
         int k = 1;
-        printf("jin ru cuo wu zhuang tai\n");
+       // printf("jin ru cuo wu zhuang tai\n");
         while(k!=0){        //valid_expr,ze zui hou yi ding hui tiao chu xun huan
           i=i+1;
           if(tokens[i].type=='(')         k++;
