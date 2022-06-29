@@ -239,8 +239,9 @@ static uint32_t eval(int p,int q, bool *valid){
   int op_type = tokens[ch_op].type;
   u_int32_t val_op1=0;
   u_int32_t val_op2=0;
-  val_op1 = eval(p,op_type-1,valid);
-  val_op2 = eval(op_type+1,q,valid);
+  bool      valid = true;
+  val_op1 = eval(p,op_type-1,&valid);
+  val_op2 = eval(op_type+1,q,&valid);
   printf("val_op1=%d\nval_op2=%d\n",val_op1,val_op2);
   switch (op_type)
   {
