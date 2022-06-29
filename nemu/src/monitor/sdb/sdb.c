@@ -81,7 +81,7 @@ static int cmd_p(char *args) {
   else {
     init_regex();
     bool success=true;
-    int result = expr(args,&success);
+    u_int32_t result = expr(args,&success);
     if(success){
       printf("result = %d",result);
     } 
