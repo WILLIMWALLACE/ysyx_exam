@@ -214,6 +214,7 @@ static uint32_t eval(int p,int q, bool *valid){
           if(tokens[i].type=='(')         k++;
           else if(tokens[i].type==')')    k--;
         }
+        printf("jin ru cuo wu zhuang tai\n");
       }
       else if(op_flag(i)){      //que ren shi yun suan fu > operator
        printf("jin ru cuo wu zhuang tai\n");
