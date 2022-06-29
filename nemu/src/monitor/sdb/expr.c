@@ -200,6 +200,7 @@ static uint32_t eval(int p,int q, bool *valid){
     return eval(p+1,q-1,&flag);//throw away the parentheses
   }
   else{                        //oprator_priority_most > save() and caculate(switch)
+   printf("chu fa ji suan\n");
   int i;
   int priority=0; 
   int ch_op=0;
