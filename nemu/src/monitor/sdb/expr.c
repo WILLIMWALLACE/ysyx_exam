@@ -182,6 +182,7 @@ static uint32_t eval(int p,int q, bool *valid){
   if (p>q || (!valid_epxr(p,q)))  //fei fa expr
   {
     *valid = false;
+    printf("jin ru cuo wu zhuang tai\n");
     return 0;
   }
   else if(p==q){
