@@ -261,13 +261,14 @@ word_t expr(char *e, bool *success) {
     return 0;
   }
   u_int32_t result=0;
-  bool valid=1;
-  result = eval(0,nr_token-1,&valid);
-  printf("%d\n",valid);
-  if(valid)
+  //bool valid=1;
+  result = eval(0,nr_token-1,success);
+  //printf("%d\n",valid);
+  if(success)
   {*success = true;
   return result;}
   else
   {*success = false;
-  return valid;}
+  printf("success cuo wu \n");
+  return 0;}
 }
