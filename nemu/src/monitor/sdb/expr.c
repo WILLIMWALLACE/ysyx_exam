@@ -178,6 +178,7 @@ static  bool  op_flag(int i){
   return false;
 }
 static uint32_t eval(int p,int q, bool *valid){
+   printf("jin ru eval han shu\n");
   if (p>q || (!valid_epxr(p,q)))  //fei fa expr
   {
     *valid = false;
