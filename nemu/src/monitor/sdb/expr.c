@@ -250,7 +250,7 @@ word_t expr(char *e, bool *success) {
     return 0;
   }
   u_int32_t result=0;
-  bool valid=true;
+  bool valid=1;
   result = eval(0,nr_token-1,&valid);
   printf("%d\n",valid);
   if(valid)
