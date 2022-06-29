@@ -214,9 +214,10 @@ static uint32_t eval(int p,int q, bool *valid){
        // printf("jin ru cuo wu zhuang tai\n");
         while(k!=0){        //valid_expr,ze zui hou yi ding hui tiao chu xun huan
           i=i+1;
+           printf("%d\n",k);
           if(tokens[i].type=='(')         k++;
           else if(tokens[i].type==')')    k--;
-          printf("%d\n",k);
+         
         }
         printf("jin ru cuo wu zhuang tai\n");
       }
