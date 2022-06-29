@@ -216,6 +216,7 @@ static uint32_t eval(int p,int q, bool *valid){
           i=i+1;
           if(tokens[i].type=='(')         k++;
           else if(tokens[i].type==')')    k--;
+          printf("%d\n",k);
         }
         printf("jin ru cuo wu zhuang tai\n");
       }
