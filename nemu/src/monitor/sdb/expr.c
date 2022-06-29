@@ -216,6 +216,7 @@ static uint32_t eval(int p,int q, bool *valid){
         }
       }
       else if(op_flag(i)){      //que ren shi yun suan fu > operator
+       printf("jin ru cuo wu zhuang tai\n");
       int j;
       for(j=0;j<NR_PRIORITY;j++){
         if(priorities[j].op_type == tokens[i].type)
