@@ -205,9 +205,10 @@ static uint32_t eval(int p,int q, bool *valid){
   int i;
   int priority=0; 
   int ch_op=0;
-  printf("jin ru cuo wu zhuang tai\n");
+ 
     for(i=p;i<=q;i++){
       //kuo hao nei bu shi zhu yun suan fu,xun huan tiao guo kuo hao
+       printf("jin ru cuo wu zhuang tai\n");
       if(tokens[i].type=='('){
         int k = 1;
         printf("jin ru cuo wu zhuang tai\n");
