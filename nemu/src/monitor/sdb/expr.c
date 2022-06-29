@@ -248,6 +248,7 @@ word_t expr(char *e, bool *success) {
   u_int32_t result=0;
   bool valid;
   result = eval(0,nr_token-1,&valid);
+  printf("%d\n",valid);
   if(valid)
   {*success = true;
   return result;}
