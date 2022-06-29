@@ -148,7 +148,7 @@ static bool check_parentheses(int p, int q){
 	return (j==0)&&(tokens[p].type=='(')&&(tokens[q].type==')');
 }
 //pan daun express shifou youxiao
-static bool valid_epxr(int p,int q){
+/*static bool valid_epxr(int p,int q){
   int i,j=0;
   for(i=p;i<q;i++)
 	{
@@ -167,38 +167,38 @@ static bool valid_epxr(int p,int q){
   else{
     return false;    //zuo kuo hao  duo,feifa
   }
-}
+}*/
 static  bool  op_flag(int i){
   if(tokens[i].type=='+'||tokens[i].type=='-'||tokens[i].type=='*'||tokens[i].type=='/')
   return true;
   else
   return false;
 }
-static uint32_t eval(int p,int q, bool *valid){
+static uint32_t eval(int p,int q){
    //printf("jin ru eval han shu\n");
-  if (p>q || (!valid_epxr(p,q)))  //fei fa expr
-  //if (p>q)
+  //if (p>q || (!valid_epxr(p,q)))  //fei fa expr
+  if (p>q)
   {
-    *valid = false;
+   // *valid = false;
     //printf("jin ru cuo wu zhuang tai\n");
     //printf("q=%d\n,nr_token=%d\n",q,nr_token);
     return 0;
   }
   else if(p==q){
     uint32_t result=0;
-    *valid = true;
+   // *valid = true;
     if(tokens[p].type == TK_NUMD){      //shi jin  zhi   shu
 			sscanf(tokens[p].str,"%d",&result);
-      printf("%d\n",result);
+      //printf("%d\n",result);
 			return result;}
     else{                              //hou xu tian jia qi ta lei  xing
       sscanf(tokens[p].str,"%d",&result);
 			return result;}
   }
   else if(check_parentheses(p,q)){
-    bool  flag=true;
+   // bool  flag=true;
     //printf("chu fa kuo hao\n");
-    return eval(p+1,q-1,&flag);//throw away the parentheses
+    return eval(p+1,q-1);//throw away the parentheses
   }
   else{                        //oprator_priority_most > save() and caculate(switch)
    //printf("chu fa ji suan\n");
@@ -218,12 +218,9 @@ static uint32_t eval(int p,int q, bool *valid){
            printf("%d\n",k);
           if(tokens[i].type=='(')         k++;
           else if(tokens[i].type==')')    k--;
-         
-        }
-        printf("jin ru cuo wu zhuang tai\n");
+        }  
       }
       else if(op_flag(i)){      //que ren shi yun suan fu > operator
-       printf("jin ru cuo wu zhuang tai\n");
       int j;
       for(j=0;j<NR_PRIORITY;j++){
         if(priorities[j].op_type == tokens[i].type)
@@ -231,7 +228,7 @@ static uint32_t eval(int p,int q, bool *valid){
       }
       if(priorities[j].level>=priority){
           priority = priorities[j].level;
-          printf("jin ru cuo wu zhuang tai\n");
+          //printf("jin ru cuo wu zhuang tai\n");
           ch_op = i;
       }
       }
@@ -239,9 +236,9 @@ static uint32_t eval(int p,int q, bool *valid){
   int op_type = tokens[ch_op].type;
   u_int32_t val_op1=0;
   u_int32_t val_op2=0;
-  bool      valid = true;
-  val_op1 = eval(p,op_type-1,&valid);
-  val_op2 = eval(op_type+1,q,&valid);
+  //bool      valid = true;
+  val_op1 = eval(p,op_type-1);
+  val_op2 = eval(op_type+1,q);
   printf("val_op1=%d\nval_op2=%d\n",val_op1,val_op2);
   switch (op_type)
   {
@@ -262,13 +259,14 @@ word_t expr(char *e, bool *success) {
   }
   u_int32_t result=0;
   //bool valid=1;
-  result = eval(0,nr_token-1,success);
+  result = eval(0,nr_token-1);
   //printf("%d\n",valid);
-  if(success)
+  /*if(success)
   {*success = true;
   return result;}
   else
   {*success = false;
   printf("success cuo wu \n");
-  return 0;}
+  return 0;}*/
+  return result;
 }
