@@ -201,7 +201,7 @@ static uint32_t eval(int p,int q, bool *valid){
     return eval(p+1,q-1,&flag);//throw away the parentheses
   }
   else{                        //oprator_priority_most > save() and caculate(switch)
-   printf("chu fa ji suan\n");
+   //printf("chu fa ji suan\n");
   int i;
   int priority=0; 
   int ch_op=0;
@@ -223,6 +223,7 @@ static uint32_t eval(int p,int q, bool *valid){
       }
       if(priorities[j].level>=priority){
           priority = priorities[j].level;
+          printf("jin ru cuo wu zhuang tai\n");
           ch_op = i;
       }
       }
