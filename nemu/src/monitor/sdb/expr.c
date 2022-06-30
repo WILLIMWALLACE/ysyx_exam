@@ -228,8 +228,8 @@ static uint32_t eval(int p,int q){
         if(priorities[j].level>=priority){
           priority = priorities[j].level;
           ch_op = i;
-          printf("zhu cao zuo fu = %d\n",priorities[j].op_type);
-          printf("%d\n",ch_op);
+          //printf("zhu cao zuo fu = %d\n",priorities[j].op_type);
+          //printf("%d\n",ch_op);
       }
       }
     }   //for sao miao wan cheng,zhu yun suan fu wei zhi  shi ch_op
