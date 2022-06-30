@@ -15,6 +15,7 @@ static struct rule {
   int token_type;
 } rules[] = {
   {" +", TK_NOTYPE},    // spaces
+  {"0[xX][0-9A-Fa-f]+", TK_HEX}, // ^(kaitou)xxx*(ling ci huo duo ci)$(mowei)
   {"\\(", '('},         //  (
   {"\\)", ')'},         //  )
   {"\\+", '+'},         // plus
@@ -26,7 +27,7 @@ static struct rule {
   {"[0-9]+", TK_NUMD}, // shi jin zhi num
   {"!=", TK_UNEQ}, // 
   {"&&", TK_AND}, // 
-  {"0[xX][0-9A-Fa-f]+", TK_HEX}, // ^(kaitou)xxx*(ling ci huo duo ci)$(mowei)
+ 
 };
 ///operator priority; the larger num,the lower priority
 /*static struct priority{
