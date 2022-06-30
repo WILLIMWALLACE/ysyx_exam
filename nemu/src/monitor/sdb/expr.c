@@ -231,6 +231,7 @@ static uint32_t eval(int p,int q){
           priority = priorities[j].level;
           //printf("jin ru cuo wu zhuang tai\n");
           ch_op = i;
+          printf("zhu cao zuo fu = %d\n",priorities[j].level);
           printf("%d\n",i);
       }
       }
