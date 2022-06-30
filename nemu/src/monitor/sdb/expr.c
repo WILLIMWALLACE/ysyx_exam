@@ -177,7 +177,7 @@ static  bool  op_flag(int i){
   {return false;}
 }
 static uint32_t eval(int p,int q){
-   //printf("jin ru eval han shu\n");
+   printf("jin ru eval han shu\n");
   //if (p>q || (!valid_epxr(p,q)))  //fei fa expr
   if (p>q)
   {
@@ -204,7 +204,7 @@ static uint32_t eval(int p,int q){
   }
   else{                        //oprator_priority_most > save() and caculate(switch)
    //printf("chu fa ji suan\n");
-  int i;
+  int i=0;
   int priority=0; 
   int ch_op=0;
  
