@@ -187,6 +187,7 @@ static uint32_t eval(int p,int q){
     return 0;
   }
   else if(p==q){
+    printf("jian ce dao num");
     uint32_t result=0;
    // *valid = true;
     if(tokens[p].type == TK_NUMD){      //shi jin  zhi   shu
@@ -203,7 +204,7 @@ static uint32_t eval(int p,int q){
     return eval(p+1,q-1);//throw away the parentheses
   }
   else{                        //oprator_priority_most > save() and caculate(switch)
-   printf("chu fa ji suan\n");
+   //printf("chu fa ji suan\n");
   int i=0;
   int priority=0; 
   int ch_op=0;
