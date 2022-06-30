@@ -194,8 +194,8 @@ static uint32_t eval(int p,int q){
       //printf("%d\n",result);
 			return result;}
     else{                              //hou xu tian jia qi ta lei  xing
-      sscanf(tokens[p].str,"%d",&result);
-			return result;}
+     // sscanf(tokens[p].str,"%d",&result);
+			return 0;}
   }
   else if(check_parentheses(p,q)){
    // bool  flag=true;
