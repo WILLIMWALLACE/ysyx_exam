@@ -223,6 +223,7 @@ static uint32_t eval(int p,int q){
       }
       if(op_flag(i)){      //que ren shi yun suan fu > operator
       int j;
+      printf("jian cha dao cao zuo fu\n");
       for(j=0;j<NR_PRIORITY;j++)
       
         if(priorities[j].op_type == tokens[i].type)
