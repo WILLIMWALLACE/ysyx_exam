@@ -269,7 +269,7 @@ word_t expr(char *e, bool *success) {
   //bool valid=1;
   printf("nr_token=%d\n",nr_token);
   for(int i=0;i<32;i++){
-    printf("tokens[%d].type=%d",i,tokens[i].type);
+    printf("tokens[%d].type=%d\n",i,tokens[i].type);
   }
   //result = eval(0,nr_token-1);
   //printf("%d\n",valid);
