@@ -266,7 +266,7 @@ word_t expr(char *e, bool *success) {
   }
   u_int32_t result=0;
   //bool valid=1;
-  result = eval(0,NR_TOKENS);
+  result = eval(0,NR_TOKENS-1);
   //printf("%d\n",valid);
   /*if(success)
   {*success = true;
