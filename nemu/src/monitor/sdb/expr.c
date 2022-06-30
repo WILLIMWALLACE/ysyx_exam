@@ -7,7 +7,7 @@
 
 enum {
   TK_NOTYPE = 256, TK_OR = 257, TK_EQ=258, TK_NUMD=259,TK_UNEQ=260,
-  TK_AND=261,TK_HEX=262,
+  TK_AND=261,TK_HEX=262,REG=263,
 };
 
 static struct rule {
@@ -27,7 +27,12 @@ static struct rule {
   {"[0-9]+", TK_NUMD}, // shi jin zhi num
   {"!=", TK_UNEQ}, // 
   {"&&", TK_AND}, // 
- 
+  {"$0",REG},
+  {"$ra",REG},
+  {"$[sgt]p",REG},
+  {"$t[0-6]",REG},
+  {"$a[0-7]",REG},
+  {"$s[0-11]",REG},
 };
 ///operator priority; the larger num,the lower priority
 /*static struct priority{
@@ -121,14 +126,16 @@ static bool make_token(char *e) {
               tokens[nr_token].str[j] = '\0';   nr_token++ ;                break;}  
           case TK_AND:  {tokens[nr_token].type=rules[i].token_type; 
               for(j=0;j<substr_len;j++){tokens[nr_token].str[j] = *(substr_start+j);}
-              tokens[nr_token].str[j] = '\0';   nr_token++ ;                break;}  
-          
+              tokens[nr_token].str[j] = '\0';   nr_token++ ;                break;}    
           case TK_UNEQ:  {tokens[nr_token].type=rules[i].token_type; 
               for(j=0;j<substr_len;j++){tokens[nr_token].str[j] = *(substr_start+j);}
               tokens[nr_token].str[j] = '\0';   nr_token++ ;                break;}    
           case TK_EQ:  {tokens[nr_token].type=rules[i].token_type; 
               for(j=0;j<substr_len;j++){tokens[nr_token].str[j] = *(substr_start+j);}
-              tokens[nr_token].str[j] = '\0';   nr_token++ ;                break;}         
+              tokens[nr_token].str[j] = '\0';   nr_token++ ;                break;}   
+          case REG:  {tokens[nr_token].type=rules[i].token_type; 
+              for(j=0;j<substr_len;j++){tokens[nr_token].str[j] = *(substr_start+j);}
+              tokens[nr_token].str[j] = '\0';   nr_token++ ;                break;}          
           default: TODO();
         }
         //printf("type=%d  str=%.*s\n",tokens->type,substr_len,tokens->str);
