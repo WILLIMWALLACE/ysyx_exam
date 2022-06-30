@@ -170,11 +170,11 @@ static bool check_parentheses(int p, int q){
     return false;    //zuo kuo hao  duo,feifa
   }
 }*/
-static  bool  op_flag(int i){
+static  int  op_flag(int i){
   if(tokens[i].type=='+'||tokens[i].type=='-'||tokens[i].type=='*'||tokens[i].type=='/')
-  {return true;}
+  {return 1;}
   else
-  {return false;}
+  {return 0;}
 }
 static uint32_t eval(int p,int q){
    //printf("jin ru eval han shu\n");
@@ -223,7 +223,7 @@ static uint32_t eval(int p,int q){
         }  
       }
       //printf("jie shu xun huan\n");
-      if(op_flag(i)){      //que ren shi yun suan fu > operator
+      if(op_flag(i)==1){      //que ren shi yun suan fu > operator
       int j;
 
       printf("jian cha dao cao zuo fu\n");
