@@ -234,15 +234,15 @@ static uint32_t eval(int p,int q){
       }
     }   //for sao miao wan cheng,zhu yun suan fu wei zhi  shi ch_op
   int op_type = tokens[ch_op].type;
-  printf("**************");
-  printf("%d\n",op_type);
+  //printf("**************");
+  //printf("%d\n",op_type);
   u_int32_t val_op1=0;
   u_int32_t val_op2=0;
   //bool      valid = true;
   val_op1 = eval(p,ch_op-1);
   val_op2 = eval(ch_op+1,q);
-  printf("val_op1=%d\nval_op2=%d\n",val_op1,val_op2);
-  printf("**************\n");
+  //printf("val_op1=%d\nval_op2=%d\n",val_op1,val_op2);
+  //printf("**************\n");
   switch (op_type)
   {
   case '+': return val_op1+val_op2;   break;
@@ -261,13 +261,15 @@ word_t expr(char *e, bool *success) {
     return 0;
   }
   u_int32_t result=0;
+  *success  = true;
+  result = eval(0,nr_token-1);
   //bool valid=1;
   /*printf("nr_token=%d\n",nr_token);
   for(int i=0;i<32;i++){
     printf("tokens[%d].type=%d\n",i,tokens[i].type);
     printf("tokens[%d].str=%s\n",i,tokens[i].str);
   } */
-  result = eval(0,nr_token-1);
+  
   //printf("%d\n",valid);
   /*if(success)
   {*success = true;
