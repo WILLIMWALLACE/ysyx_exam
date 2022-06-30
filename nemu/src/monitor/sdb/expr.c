@@ -215,6 +215,13 @@ static uint32_t eval(int p,int q){
 			sscanf(tokens[p].str,"%d",&result);
       //printf("%d\n",result);
 			return result;}
+    else if(tokens[p].type==REG){  
+      //word_t reg_value=0;
+      bool reg_success;
+      return isa_reg_str2val(tokens[p].str, &reg_success);
+      
+      //else{printf("reg_success=0\n"); return 0;}
+      } 
     else{                              //hou xu tian jia qi ta lei  xing
      // sscanf(tokens[p].str,"%d",&result);
 			return 0;}

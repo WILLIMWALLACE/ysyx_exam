@@ -1,5 +1,6 @@
 #include <isa.h>
 #include "local-include/reg.h"
+//#include <string.h>
 
 const char *regs[] = {
   "$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
@@ -37,13 +38,15 @@ void isa_reg_display() {
     printf("   pc   = %lx",cpu.pc);
 }
 
-/*word_t isa_reg_str2val(const char *s, bool *success) {
-    if(*s=='$s11'){
+word_t isa_reg_str2val(const char *s, bool *success) {
+    //char *a=&s;  
+    if(strcmp(s,"$t0")==0){
+      printf("jinru");
       *success = true;
-      return cpu.gpr[23];
+      return cpu.gpr[5];
     }
     else{
     printf("jie xi shi bai\n");
     return 0;
     }
-}*/
+}
