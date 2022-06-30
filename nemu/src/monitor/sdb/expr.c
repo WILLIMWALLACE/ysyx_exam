@@ -207,7 +207,7 @@ static uint32_t eval(int p,int q){
    //printf("chu fa ji suan\n");
   int i=0;
   int priority=0; 
-  int ch_op=0;
+  int ch_op=-1;
  
     for(i=p;i<=q;i++){
       //kuo hao nei bu shi zhu yun suan fu,xun huan tiao guo kuo hao
@@ -225,11 +225,11 @@ static uint32_t eval(int p,int q){
       //printf("jie shu xun huan\n");
       if(op_flag(i)){      //que ren shi yun suan fu > operator
       int j;
+
       printf("jian cha dao cao zuo fu\n");
       for(j=0;j<NR_PRIORITY;j++)
-      
-        if(priorities[j].op_type == tokens[i].type)
-    
+        {if(priorities[j].op_type == tokens[i].type)
+              break; }
         if(priorities[j].level>=priority){
           priority = priorities[j].level;
           //printf("jin ru cuo wu zhuang tai\n");
