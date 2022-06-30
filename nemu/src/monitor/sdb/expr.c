@@ -214,7 +214,7 @@ static uint32_t eval(int p,int q){
        // printf("jin ru cuo wu zhuang tai\n");
         while(k!=0){        //valid_expr,ze zui hou yi ding hui tiao chu xun huan
           i=i+1;
-           printf("%d\n",k);
+           //printf("%d\n",k);
           if(tokens[i].type=='(')         k++;
           else if(tokens[i].type==')')    k--;
         }  
@@ -229,6 +229,7 @@ static uint32_t eval(int p,int q){
           priority = priorities[j].level;
           ch_op = i;
           printf("zhu cao zuo fu = %d\n",priorities[j].level);
+          printf("%d\n",ch_op);
       }
       }
     }   //for sao miao wan cheng,zhu yun suan fu wei zhi  shi ch_op
