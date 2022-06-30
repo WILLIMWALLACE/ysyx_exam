@@ -222,7 +222,7 @@ static uint32_t eval(int p,int q){
           else if(tokens[i].type==')')    k--;
         }  
       }
-      printf("jie shu xun huan\n");
+      //printf("jie shu xun huan\n");
       if(op_flag(i)){      //que ren shi yun suan fu > operator
       int j;
       printf("jian cha dao cao zuo fu\n");
