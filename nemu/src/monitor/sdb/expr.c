@@ -228,7 +228,7 @@ static uint32_t eval(int p,int q){
         if(priorities[j].level>=priority){
           priority = priorities[j].level;
           ch_op = i;
-          printf("zhu cao zuo fu = %d\n",priorities[j].level);
+          printf("zhu cao zuo fu = %d\n",priorities[j].op_type);
           printf("%d\n",ch_op);
       }
       }
