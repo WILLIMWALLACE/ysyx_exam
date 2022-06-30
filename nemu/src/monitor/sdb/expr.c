@@ -170,9 +170,9 @@ static bool check_parentheses(int p, int q){
 }*/
 static  bool  op_flag(int i){
   if(tokens[i].type=='+'||tokens[i].type=='-'||tokens[i].type=='*'||tokens[i].type=='/')
-  return true;
+  {return true;}
   else
-  return false;
+  {return false;}
 }
 static uint32_t eval(int p,int q){
    //printf("jin ru eval han shu\n");
@@ -210,7 +210,7 @@ static uint32_t eval(int p,int q){
       //kuo hao nei bu shi zhu yun suan fu,xun huan tiao guo kuo hao
       // printf("jin ru cuo wu zhuang tai\n");
      
-      if(tokens[i].type=='('){
+      /*if(tokens[i].type=='('){
         int k = 1;
        // printf("jin ru cuo wu zhuang tai\n");
         while(k!=0){        //valid_expr,ze zui hou yi ding hui tiao chu xun huan
@@ -219,13 +219,14 @@ static uint32_t eval(int p,int q){
           if(tokens[i].type=='(')         k++;
           else if(tokens[i].type==')')    k--;
         }  
-      }
-      else if(op_flag(i)){      //que ren shi yun suan fu > operator
+      }*/
+      if(op_flag(i)){      //que ren shi yun suan fu > operator
       int j;
-      for(j=0;j<NR_PRIORITY;j++){
+      for(j=0;j<NR_PRIORITY;j++)
+      /*{
         if(priorities[j].op_type == tokens[i].type)
           break;
-      }
+      }*/
       if(priorities[j].level>=priority){
           priority = priorities[j].level;
           //printf("jin ru cuo wu zhuang tai\n");
@@ -241,7 +242,7 @@ static uint32_t eval(int p,int q){
   //bool      valid = true;
   val_op1 = eval(p,op_type-1);
   val_op2 = eval(op_type+1,q);
-  printf("val_op1=%d\nval_op2=%d\n",val_op1,val_op2);
+  //printf("val_op1=%d\nval_op2=%d\n",val_op1,val_op2);
   switch (op_type)
   {
   case '+': return val_op1+val_op2;   break;
