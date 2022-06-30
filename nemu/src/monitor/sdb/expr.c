@@ -185,6 +185,7 @@ static uint32_t eval(int p,int q){
    // *valid = false;q
     //printf("jin ru cuo wu zhuang tai\n");
     //printf("q=%d\n,nr_token=%d\n",q,nr_token);
+    assert(0);
     return 0;
   }
   else if(p==q){
