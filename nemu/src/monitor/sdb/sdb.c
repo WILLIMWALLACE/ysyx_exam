@@ -87,7 +87,8 @@ static int cmd_p(char *args) {
     } 
     else{
       printf("expression cannot be identified!\n");
-      printf("result = %d",result);
+
+      printf("result = %x",result);
     }
   }
   return 0;
