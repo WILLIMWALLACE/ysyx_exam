@@ -237,7 +237,7 @@ static uint32_t eval(int p,int q){
          
       }
       }
-       printf("%d\n",i);
+       //printf("%d\n",i);
     }   //for sao miao wan cheng,zhu yun suan fu wei zhi  shi ch_op
   int op_type = tokens[ch_op].type;
   //printf("%d\n",op_type);
