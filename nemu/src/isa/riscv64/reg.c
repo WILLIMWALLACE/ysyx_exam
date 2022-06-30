@@ -33,7 +33,7 @@ void isa_reg_display() {
     for(int i=28;i<32;i++)
     printf("   %s   = 0x%016lx",regs[i],cpu.gpr[i]);
     printf("\n");
-    printf("   pc = %lx",cpu.pc);
+    printf("   pc   = %lx",cpu.pc);
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
