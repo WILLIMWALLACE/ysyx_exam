@@ -7,7 +7,7 @@
 
 enum {
   TK_NOTYPE = 256, TK_OR = 257, TK_EQ=258, TK_NUMD=259,TK_UNEQ=260,
-  TK_AND=261,TK_HEX=262,REG=263,
+  TK_AND=261,TK_HEX=262,REG=263,DEREF=264,
 };
 
 static struct rule {
@@ -36,17 +36,21 @@ static struct rule {
  
 };
 ///operator priority; the larger num,the lower priority
-/*static struct priority{
+static struct priority{
   int   op_type;
   int   level;
 }priorities[]={
 
+  {TK_AND, 5},
+  {TK_UNEQ, 4},
+  {TK_EQ, 4},
   {'+', 3},
   {'-', 3},
   {'*', 2},
   {'/', 2},
+  {DEREF,1},  //{zhi zhen deference}
 
-};*/
+};
 
 #define NR_REGEX ARRLEN(rules)
 #define NR_PRIORITY ARRLEN(priorities)
@@ -152,7 +156,7 @@ static bool make_token(char *e) {
 }
 
 /************************qiu  zhi    ;    evaluate express**************************/
-/*static bool check_parentheses(int p, int q){
+static bool check_parentheses(int p, int q){
 	int i,j=0;
 	for(i=p;i<q;i++)
 	{
@@ -166,7 +170,7 @@ static bool make_token(char *e) {
 	if(tokens[q].type==')')
 		j--;
 	return (j==0)&&(tokens[p].type=='(')&&(tokens[q].type==')');
-}*/
+}
 //pan daun express shifou youxiao
 /*static bool valid_epxr(int p,int q){
   int i,j=0;
@@ -188,7 +192,7 @@ static bool make_token(char *e) {
     return false;    //zuo kuo hao  duo,feifa
   }
 }*/
-/*static  int  op_flag(int i){
+static  int  op_flag(int i){
   if(tokens[i].type=='+'||tokens[i].type=='-'||tokens[i].type=='*'||tokens[i].type=='/')
   {return 1;}
   else
@@ -273,7 +277,7 @@ static uint32_t eval(int p,int q){
   }
   }  //zhu ti else de  kuo hao
 }    //han shu  de  kuo hao
-*/
+
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
@@ -282,13 +286,13 @@ word_t expr(char *e, bool *success) {
   }
   u_int32_t result=0;
   *success  = true;
-  //result = eval(0,nr_token-1);
+  result = eval(0,nr_token-1);
   //bool valid=1;
-  printf("nr_token=%d\n",nr_token);
+  /*printf("nr_token=%d\n",nr_token);
   for(int i=0;i<32;i++){
     printf("tokens[%d].type=%d\n",i,tokens[i].type);
     printf("tokens[%d].str=%s\n",i,tokens[i].str);
-  }   
+  } */  
   //printf("%d\n",valid);
   /*if(success)
   {*success = true;

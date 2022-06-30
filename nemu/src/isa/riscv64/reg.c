@@ -9,6 +9,7 @@ const char *regs[] = {
 };
 
 void isa_reg_display() {
+  //16wei shu chu,bu zu bu 0;long leixing 16 jinzhi
     for(int i=0;i<4;i++)
     printf("   %s   = 0x%016lx",regs[i],cpu.gpr[i]);
     printf("\n");
@@ -36,6 +37,13 @@ void isa_reg_display() {
     printf("   pc   = %lx",cpu.pc);
 }
 
-word_t isa_reg_str2val(const char *s, bool *success) {
-  return 0;
-}
+/*word_t isa_reg_str2val(const char *s, bool *success) {
+    if(*s=='$s11'){
+      *success = true;
+      return cpu.gpr[23];
+    }
+    else{
+    printf("jie xi shi bai\n");
+    return 0;
+    }
+}*/
