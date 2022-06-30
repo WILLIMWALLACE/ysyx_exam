@@ -24,10 +24,10 @@ static struct rule {
   {"/", '/'},         //divide  
   {"\\|\\|", TK_OR},  //   || or
   {"==", TK_EQ},        // equal
-  {"[0-9]+", TK_NUMD}, // shi jin zhi num
+  {"^[0-9]*$", TK_NUMD}, // shi jin zhi num
   {"!=", TK_UNEQ}, // 
   {"&&", TK_AND}, // 
-  {"0[x,X][0-9a-fA-F]+", TK_HEX}, // 
+  {"^0[xX][0-9a-fA-F]*$", TK_HEX}, // 
 
 };
 ///operator priority; the larger num,the lower priority
