@@ -175,9 +175,6 @@ static  int  op_flag(int i){
   {return 0;}
 }
 static uint32_t eval(int p,int q){
-   //printf("jin ru eval han shu\n");
-   //printf("p=%d,q=%d",p,q);
-  //if (p>q || (!valid_epxr(p,q)))  //fei fa expr
   if (p>q)
   {
    // *valid = false;q
@@ -222,21 +219,18 @@ static uint32_t eval(int p,int q){
           else if(tokens[i].type==')')    k--;
         }  
       }
-      //printf("jie shu xun huan\n");
+     
       if(op_flag(i)==1){      //que ren shi yun suan fu > operator
       int j;
-      printf("jian cha dao cao zuo fu\n");
       for(j=0;j<NR_PRIORITY;j++)
        // {if(priorities[j].op_type == tokens[i].type)
          //     break; }
         if(priorities[j].level>=priority){
           priority = priorities[j].level;
-          //printf("jin ru cuo wu zhuang tai\n");
           ch_op = i;
           printf("zhu cao zuo fu = %d\n",priorities[j].level);
       }
       }
-       //printf("%d\n",i);
     }   //for sao miao wan cheng,zhu yun suan fu wei zhi  shi ch_op
   int op_type = tokens[ch_op].type;
   //printf("%d\n",op_type);
