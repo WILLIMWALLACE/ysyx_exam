@@ -45,6 +45,7 @@ static struct priority{
 
 #define NR_REGEX ARRLEN(rules)
 #define NR_PRIORITY ARRLEN(priorities)
+#define NR_TOKENS ARRLEN(tokens)
 
 static regex_t re[NR_REGEX] = {};
 
@@ -71,8 +72,8 @@ typedef struct token {
 } Token;
 
 static Token tokens[32] __attribute__((used)) = {};
-//static int nr_token __attribute__((used))  = 0;
-static int nr_token;
+static int nr_token __attribute__((used))  = 0;
+//static int nr_token;
 
 static bool make_token(char *e) {
   int position = 0;
@@ -210,8 +211,7 @@ static uint32_t eval(int p,int q){
     for(i=p;i<=q;i++){
       //kuo hao nei bu shi zhu yun suan fu,xun huan tiao guo kuo hao
       // printf("jin ru cuo wu zhuang tai\n");
-     
-      /*if(tokens[i].type=='('){
+      if(tokens[i].type=='('){
         int k = 1;
        // printf("jin ru cuo wu zhuang tai\n");
         while(k!=0){        //valid_expr,ze zui hou yi ding hui tiao chu xun huan
@@ -220,15 +220,14 @@ static uint32_t eval(int p,int q){
           if(tokens[i].type=='(')         k++;
           else if(tokens[i].type==')')    k--;
         }  
-      }*/
+      }
       if(op_flag(i)){      //que ren shi yun suan fu > operator
       int j;
       for(j=0;j<NR_PRIORITY;j++)
-      /*{
+      
         if(priorities[j].op_type == tokens[i].type)
-          break;
-      }*/
-      if(priorities[j].level>=priority){
+    
+        if(priorities[j].level>=priority){
           priority = priorities[j].level;
           //printf("jin ru cuo wu zhuang tai\n");
           ch_op = i;
@@ -241,8 +240,8 @@ static uint32_t eval(int p,int q){
   u_int32_t val_op1=0;
   u_int32_t val_op2=0;
   //bool      valid = true;
-  val_op1 = eval(p,op_type-1);
-  val_op2 = eval(op_type+1,q);
+  val_op1 = eval(p,ch_op-1);
+  val_op2 = eval(ch_op+1,q);
   //printf("val_op1=%d\nval_op2=%d\n",val_op1,val_op2);
   switch (op_type)
   {
@@ -263,7 +262,7 @@ word_t expr(char *e, bool *success) {
   }
   u_int32_t result=0;
   //bool valid=1;
-  result = eval(0,nr_token-1);
+  result = eval(0,NR_TOKENS-1);
   //printf("%d\n",valid);
   /*if(success)
   {*success = true;
