@@ -29,10 +29,11 @@ static struct rule {
   {"&&", TK_AND}, // 
   {"\\$0",REG},
   {"\\$ra",REG},
-  {"\\$[sgt]p",REG},
-  {"\\$t[0-6]",REG},
-  {"\\$a[0-7]",REG},
   {"\\$s[0-11]",REG},
+  {"\\$t[0-6]",REG},
+  {"\\$[sgt]p",REG},
+  {"\\$a[0-7]",REG},
+ 
 };
 ///operator priority; the larger num,the lower priority
 /*static struct priority{
