@@ -201,7 +201,7 @@ static uint32_t eval(int p,int q){
   }
   else if(check_parentheses(p,q)){
    // bool  flag=true;
-    //printf("chu fa kuo hao\n");
+    printf("chu fa kuo hao\n");
     return eval(p+1,q-1);//throw away the parentheses
   }
   else{                        //oprator_priority_most > save() and caculate(switch)
