@@ -224,7 +224,7 @@ static uint32_t eval(int p,int q){
       int j;
       for(j=0;j<NR_PRIORITY;j++)
         {if(priorities[j].op_type == tokens[i].type)
-              break; }
+              break; }        //shi yong dang qian i dui ying de type de  you xian ji qu bi jiao
         if(priorities[j].level>=priority){
           priority = priorities[j].level;
           ch_op = i;
