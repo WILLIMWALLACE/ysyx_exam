@@ -187,12 +187,12 @@ static uint32_t eval(int p,int q){
     return 0;
   }
   else if(p==q){
-    printf("jian ce dao num");
+    //printf("jian ce dao num");
     uint32_t result=0;
    // *valid = true;
     if(tokens[p].type == TK_NUMD){      //shi jin  zhi   shu
 			sscanf(tokens[p].str,"%d",&result);
-      printf("%d\n",result);
+      //printf("%d\n",result);
 			return result;}
     else{                              //hou xu tian jia qi ta lei  xing
      // sscanf(tokens[p].str,"%d",&result);
@@ -222,6 +222,7 @@ static uint32_t eval(int p,int q){
           else if(tokens[i].type==')')    k--;
         }  
       }
+      printf("jie shu xun huan\n");
       if(op_flag(i)){      //que ren shi yun suan fu > operator
       int j;
       printf("jian cha dao cao zuo fu\n");
