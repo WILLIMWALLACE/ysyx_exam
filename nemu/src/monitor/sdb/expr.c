@@ -178,7 +178,7 @@ static  int  op_flag(int i){
 }
 static uint32_t eval(int p,int q){
    //printf("jin ru eval han shu\n");
-   printf("p=%d,q=%d\n",p,q);
+   printf("p=%d,q=%d",p,q);
   //if (p>q || (!valid_epxr(p,q)))  //fei fa expr
   if (p>q)
   {
@@ -266,6 +266,7 @@ word_t expr(char *e, bool *success) {
   }
   u_int32_t result=0;
   //bool valid=1;
+  printf("nr_token=%d\n",nr_token);
   result = eval(0,nr_token-1);
   //printf("%d\n",valid);
   /*if(success)
