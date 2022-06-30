@@ -121,7 +121,7 @@ static bool make_token(char *e) {
               tokens->str[j] = '\0';   nr_token++ ;                break;}  
           default: TODO();
         }
-        printf("%d\n%.*s\n",tokens->type,substr_len,tokens->str);
+        printf("type=%d  str=%.*s\n",tokens->type,substr_len,tokens->str);
         break;
       }
     }
@@ -207,7 +207,7 @@ static uint32_t eval(int p,int q){
    //printf("chu fa ji suan\n");
   int i=0;
   int priority=0; 
-  int ch_op=-1;
+  int ch_op=0;
  
     for(i=p;i<=q;i++){
       //kuo hao nei bu shi zhu yun suan fu,xun huan tiao guo kuo hao
@@ -225,7 +225,6 @@ static uint32_t eval(int p,int q){
       //printf("jie shu xun huan\n");
       if(op_flag(i)==1){      //que ren shi yun suan fu > operator
       int j;
-
       printf("jian cha dao cao zuo fu\n");
       for(j=0;j<NR_PRIORITY;j++)
         {if(priorities[j].op_type == tokens[i].type)
