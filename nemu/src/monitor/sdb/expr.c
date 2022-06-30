@@ -223,8 +223,8 @@ static uint32_t eval(int p,int q){
       if(op_flag(i)==1){      //que ren shi yun suan fu > operator
       int j;
       for(j=0;j<NR_PRIORITY;j++)
-       // {if(priorities[j].op_type == tokens[i].type)
-         //     break; }
+        {if(priorities[j].op_type == tokens[i].type)
+              break; }
         if(priorities[j].level>=priority){
           priority = priorities[j].level;
           ch_op = i;
