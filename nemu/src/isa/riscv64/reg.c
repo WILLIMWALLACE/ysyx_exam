@@ -49,10 +49,6 @@ word_t isa_reg_str2val(const char *s, bool *success) {
       *success = true;
       return cpu.gpr[i];
       }
-     else{
-      printf("jie xi shi bai\n");
-      return 0;
-      }
     }  
     return 0;
 }
