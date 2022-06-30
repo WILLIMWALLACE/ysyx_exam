@@ -235,9 +235,10 @@ static uint32_t eval(int p,int q){
           //printf("jin ru cuo wu zhuang tai\n");
           ch_op = i;
           printf("zhu cao zuo fu = %d\n",priorities[j].level);
-          printf("%d\n",i);
+         
       }
       }
+       printf("%d\n",i);
     }   //for sao miao wan cheng,zhu yun suan fu wei zhi  shi ch_op
   int op_type = tokens[ch_op].type;
   //printf("%d\n",op_type);
