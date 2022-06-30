@@ -26,7 +26,7 @@ static struct rule {
   {"[0-9]+", TK_NUMD}, // shi jin zhi num
   {"!=", TK_UNEQ}, // 
   {"&&", TK_AND}, // 
-  {"^0[xX][0-9a-fA-F]*$", TK_HEX}, // ^(kaitou)xxx*(ling ci huo duo ci)$(mowei)
+  {"0x[0-9A-Fa-f]*", TK_HEX}, // ^(kaitou)xxx*(ling ci huo duo ci)$(mowei)
 };
 ///operator priority; the larger num,the lower priority
 /*static struct priority{
