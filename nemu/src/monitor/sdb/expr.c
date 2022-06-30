@@ -178,6 +178,7 @@ static  int  op_flag(int i){
 }
 static uint32_t eval(int p,int q){
    //printf("jin ru eval han shu\n");
+   printf("p=%d,q=%d\n",p,q);
   //if (p>q || (!valid_epxr(p,q)))  //fei fa expr
   if (p>q)
   {
@@ -192,7 +193,7 @@ static uint32_t eval(int p,int q){
    // *valid = true;
     if(tokens[p].type == TK_NUMD){      //shi jin  zhi   shu
 			sscanf(tokens[p].str,"%d",&result);
-      printf("%d\n",result);
+      //printf("%d\n",result);
 			return result;}
     else{                              //hou xu tian jia qi ta lei  xing
      // sscanf(tokens[p].str,"%d",&result);
