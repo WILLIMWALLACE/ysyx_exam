@@ -27,12 +27,12 @@ static struct rule {
   {"[0-9]+", TK_NUMD}, // shi jin zhi num
   {"!=", TK_UNEQ}, // 
   {"&&", TK_AND}, // 
-  {"$0",REG},
-  {"$ra",REG},
-  {"$[sgt]p",REG},
-  {"$t[0-6]",REG},
-  {"$a[0-7]",REG},
-  {"$s[0-11]",REG},
+  {"\\$0",REG},
+  {"\\$ra",REG},
+  {"\\$[sgt]p",REG},
+  {"\\$t[0-6]",REG},
+  {"\\$a[0-7]",REG},
+  {"\\$s[0-11]",REG},
 };
 ///operator priority; the larger num,the lower priority
 /*static struct priority{
