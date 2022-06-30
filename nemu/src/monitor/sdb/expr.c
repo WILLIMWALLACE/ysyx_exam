@@ -32,7 +32,7 @@ static struct rule {
   {"==", TK_EQ},        // equal
   {"[0-9]+", TK_NUMD},
 };
-///operator priority; the larger num,the lower priority
+/*///operator priority; the larger num,the lower priority
 static struct priority{
   int   op_type;
   int   level;
@@ -41,7 +41,7 @@ static struct priority{
   {'-', 3},
   {'*', 2},
   {'/', 2},
-};
+};*/
 
 #define NR_REGEX ARRLEN(rules)
 #define NR_PRIORITY ARRLEN(priorities)
@@ -134,7 +134,7 @@ static bool make_token(char *e) {
 }
 
 /************************qiu  zhi    ;    evaluate express**************************/
-static bool check_parentheses(int p, int q){
+/*static bool check_parentheses(int p, int q){
 	int i,j=0;
 	for(i=p;i<q;i++)
 	{
@@ -148,7 +148,7 @@ static bool check_parentheses(int p, int q){
 	if(tokens[q].type==')')
 		j--;
 	return (j==0)&&(tokens[p].type=='(')&&(tokens[q].type==')');
-}
+}*/
 //pan daun express shifou youxiao
 /*static bool valid_epxr(int p,int q){
   int i,j=0;
@@ -170,7 +170,7 @@ static bool check_parentheses(int p, int q){
     return false;    //zuo kuo hao  duo,feifa
   }
 }*/
-static  int  op_flag(int i){
+/*static  int  op_flag(int i){
   if(tokens[i].type=='+'||tokens[i].type=='-'||tokens[i].type=='*'||tokens[i].type=='/')
   {return 1;}
   else
@@ -258,7 +258,7 @@ static uint32_t eval(int p,int q){
   }
   }  //zhu ti else de  kuo hao
 }    //han shu  de  kuo hao
-
+*/
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
@@ -268,7 +268,10 @@ word_t expr(char *e, bool *success) {
   u_int32_t result=0;
   //bool valid=1;
   printf("nr_token=%d\n",nr_token);
-  result = eval(0,nr_token-1);
+  for(int i=0;i<32;i++){
+    printf("tokens[%d].type=%d",i,tokens[i].type);
+  }
+  //result = eval(0,nr_token-1);
   //printf("%d\n",valid);
   /*if(success)
   {*success = true;
