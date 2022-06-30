@@ -178,7 +178,7 @@ static  int  op_flag(int i){
 }
 static uint32_t eval(int p,int q){
    //printf("jin ru eval han shu\n");
-   printf("p=%d,q=%d",p,q);
+   //printf("p=%d,q=%d",p,q);
   //if (p>q || (!valid_epxr(p,q)))  //fei fa expr
   if (p>q)
   {
