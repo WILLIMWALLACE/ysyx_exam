@@ -227,14 +227,13 @@ static uint32_t eval(int p,int q){
       int j;
       printf("jian cha dao cao zuo fu\n");
       for(j=0;j<NR_PRIORITY;j++)
-        {if(priorities[j].op_type == tokens[i].type)
-              break; }
+       // {if(priorities[j].op_type == tokens[i].type)
+         //     break; }
         if(priorities[j].level>=priority){
           priority = priorities[j].level;
           //printf("jin ru cuo wu zhuang tai\n");
           ch_op = i;
           printf("zhu cao zuo fu = %d\n",priorities[j].level);
-         
       }
       }
        //printf("%d\n",i);
