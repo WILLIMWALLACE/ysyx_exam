@@ -83,7 +83,7 @@ static int cmd_p(char *args) {
     bool success;
     u_int32_t result = expr(args,&success);
     if(success){
-      printf("result = %d",result);
+      printf("result = %x",result);
     } 
     else{
       printf("expression cannot be identified!\n");
