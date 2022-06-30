@@ -6,20 +6,14 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_OR = 257, TK_EQ=258, TK_NUMD=259,
-
-  /* TODO: Add more token types */
-
+  TK_NOTYPE = 256, TK_OR = 257, TK_EQ=258, TK_NUMD=259,TK_UNEQ=260,
+  TK_AND=261,TK_HEX=262,
 };
 
 static struct rule {
   const char *regex;
   int token_type;
 } rules[] = {
-
-  /* TODO: Add more rules.
-   * Pay attention to the precedence level of different rules.
-   */
 
   {" +", TK_NOTYPE},    // spaces
   {"\\(", '('},         //  (
@@ -30,18 +24,24 @@ static struct rule {
   {"/", '/'},         //divide  
   {"\\|\\|", TK_OR},  //   || or
   {"==", TK_EQ},        // equal
-  {"[0-9]+", TK_NUMD},
+  {"[0-9]+", TK_NUMD}, // shi jin zhi num
+  {"!=", TK_UNEQ}, // 
+  {"&&", TK_AND}, // 
+  {"0[xX][[0-9a-fA-F]]+", TK_HEX}, // 
+
 };
 ///operator priority; the larger num,the lower priority
-static struct priority{
+/*static struct priority{
   int   op_type;
   int   level;
 }priorities[]={
+
   {'+', 3},
   {'-', 3},
   {'*', 2},
   {'/', 2},
-};
+
+};*/
 
 #define NR_REGEX ARRLEN(rules)
 #define NR_PRIORITY ARRLEN(priorities)
@@ -117,6 +117,18 @@ static bool make_token(char *e) {
           case TK_NUMD:  {tokens[nr_token].type=rules[i].token_type; 
               for(j=0;j<substr_len;j++){tokens[nr_token].str[j] = *(substr_start+j);}
               tokens[nr_token].str[j] = '\0';   nr_token++ ;                break;}  
+          case TK_AND:  {tokens[nr_token].type=rules[i].token_type; 
+              for(j=0;j<substr_len;j++){tokens[nr_token].str[j] = *(substr_start+j);}
+              tokens[nr_token].str[j] = '\0';   nr_token++ ;                break;}  
+          case TK_HEX:  {tokens[nr_token].type=rules[i].token_type; 
+              for(j=0;j<substr_len;j++){tokens[nr_token].str[j] = *(substr_start+j);}
+              tokens[nr_token].str[j] = '\0';   nr_token++ ;                break;}     
+          case TK_UNEQ:  {tokens[nr_token].type=rules[i].token_type; 
+              for(j=0;j<substr_len;j++){tokens[nr_token].str[j] = *(substr_start+j);}
+              tokens[nr_token].str[j] = '\0';   nr_token++ ;                break;}    
+          case TK_EQ:  {tokens[nr_token].type=rules[i].token_type; 
+              for(j=0;j<substr_len;j++){tokens[nr_token].str[j] = *(substr_start+j);}
+              tokens[nr_token].str[j] = '\0';   nr_token++ ;                break;}         
           default: TODO();
         }
         //printf("type=%d  str=%.*s\n",tokens->type,substr_len,tokens->str);
@@ -132,7 +144,7 @@ static bool make_token(char *e) {
 }
 
 /************************qiu  zhi    ;    evaluate express**************************/
-static bool check_parentheses(int p, int q){
+/*static bool check_parentheses(int p, int q){
 	int i,j=0;
 	for(i=p;i<q;i++)
 	{
@@ -146,7 +158,7 @@ static bool check_parentheses(int p, int q){
 	if(tokens[q].type==')')
 		j--;
 	return (j==0)&&(tokens[p].type=='(')&&(tokens[q].type==')');
-}
+}*/
 //pan daun express shifou youxiao
 /*static bool valid_epxr(int p,int q){
   int i,j=0;
@@ -168,7 +180,7 @@ static bool check_parentheses(int p, int q){
     return false;    //zuo kuo hao  duo,feifa
   }
 }*/
-static  int  op_flag(int i){
+/*static  int  op_flag(int i){
   if(tokens[i].type=='+'||tokens[i].type=='-'||tokens[i].type=='*'||tokens[i].type=='/')
   {return 1;}
   else
@@ -253,7 +265,7 @@ static uint32_t eval(int p,int q){
   }
   }  //zhu ti else de  kuo hao
 }    //han shu  de  kuo hao
-
+*/
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
@@ -262,14 +274,13 @@ word_t expr(char *e, bool *success) {
   }
   u_int32_t result=0;
   *success  = true;
-  result = eval(0,nr_token-1);
+  //result = eval(0,nr_token-1);
   //bool valid=1;
-  /*printf("nr_token=%d\n",nr_token);
+  printf("nr_token=%d\n",nr_token);
   for(int i=0;i<32;i++){
     printf("tokens[%d].type=%d\n",i,tokens[i].type);
     printf("tokens[%d].str=%s\n",i,tokens[i].str);
-  } */
-  
+  }   
   //printf("%d\n",valid);
   /*if(success)
   {*success = true;
