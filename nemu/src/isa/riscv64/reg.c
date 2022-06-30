@@ -41,7 +41,7 @@ void isa_reg_display() {
 word_t isa_reg_str2val(const char *s, bool *success) {
     //char *a=&s;  
     if(strcmp(s,"$t0")==0){
-      printf("jinru");
+     // printf("jinru");
       *success = true;
       return cpu.gpr[5];
     }
