@@ -32,7 +32,7 @@ static struct rule {
   {"==", TK_EQ},        // equal
   {"[0-9]+", TK_NUMD},
 };
-/*///operator priority; the larger num,the lower priority
+///operator priority; the larger num,the lower priority
 static struct priority{
   int   op_type;
   int   level;
@@ -41,11 +41,10 @@ static struct priority{
   {'-', 3},
   {'*', 2},
   {'/', 2},
-};*/
+};
 
 #define NR_REGEX ARRLEN(rules)
 #define NR_PRIORITY ARRLEN(priorities)
-//#define NR_TOKENS ARRLEN(tokens)
 
 static regex_t re[NR_REGEX] = {};
 
@@ -92,9 +91,7 @@ static bool make_token(char *e) {
             i, rules[i].regex, position, substr_len, substr_len, substr_start);
 
         position += substr_len;
-        /* TODO: Now a new token is recognized with rules[i]. Add codes
-         * to record the token in the array `tokens'. For certain types
-         * of tokens, some extra actions should be performed.*/
+        
         int j;
         switch (rules[i].token_type) {
           case TK_NOTYPE:
@@ -135,7 +132,7 @@ static bool make_token(char *e) {
 }
 
 /************************qiu  zhi    ;    evaluate express**************************/
-/*static bool check_parentheses(int p, int q){
+static bool check_parentheses(int p, int q){
 	int i,j=0;
 	for(i=p;i<q;i++)
 	{
@@ -149,7 +146,7 @@ static bool make_token(char *e) {
 	if(tokens[q].type==')')
 		j--;
 	return (j==0)&&(tokens[p].type=='(')&&(tokens[q].type==')');
-}*/
+}
 //pan daun express shifou youxiao
 /*static bool valid_epxr(int p,int q){
   int i,j=0;
@@ -171,7 +168,7 @@ static bool make_token(char *e) {
     return false;    //zuo kuo hao  duo,feifa
   }
 }*/
-/*static  int  op_flag(int i){
+static  int  op_flag(int i){
   if(tokens[i].type=='+'||tokens[i].type=='-'||tokens[i].type=='*'||tokens[i].type=='/')
   {return 1;}
   else
@@ -259,7 +256,7 @@ static uint32_t eval(int p,int q){
   }
   }  //zhu ti else de  kuo hao
 }    //han shu  de  kuo hao
-*/
+
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
@@ -268,12 +265,12 @@ word_t expr(char *e, bool *success) {
   }
   u_int32_t result=0;
   //bool valid=1;
-  printf("nr_token=%d\n",nr_token);
+  /*printf("nr_token=%d\n",nr_token);
   for(int i=0;i<32;i++){
     printf("tokens[%d].type=%d\n",i,tokens[i].type);
     printf("tokens[%d].str=%s\n",i,tokens[i].str);
-  } 
-  //result = eval(0,nr_token-1);
+  } */
+  result = eval(0,nr_token-1);
   //printf("%d\n",valid);
   /*if(success)
   {*success = true;
