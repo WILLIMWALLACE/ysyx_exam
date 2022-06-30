@@ -177,7 +177,7 @@ static  bool  op_flag(int i){
   {return false;}
 }
 static uint32_t eval(int p,int q){
-   printf("jin ru eval han shu\n");
+   //printf("jin ru eval han shu\n");
   //if (p>q || (!valid_epxr(p,q)))  //fei fa expr
   if (p>q)
   {
@@ -191,7 +191,7 @@ static uint32_t eval(int p,int q){
    // *valid = true;
     if(tokens[p].type == TK_NUMD){      //shi jin  zhi   shu
 			sscanf(tokens[p].str,"%d",&result);
-      //printf("%d\n",result);
+      printf("%d\n",result);
 			return result;}
     else{                              //hou xu tian jia qi ta lei  xing
      // sscanf(tokens[p].str,"%d",&result);
@@ -203,7 +203,7 @@ static uint32_t eval(int p,int q){
     return eval(p+1,q-1);//throw away the parentheses
   }
   else{                        //oprator_priority_most > save() and caculate(switch)
-   //printf("chu fa ji suan\n");
+   printf("chu fa ji suan\n");
   int i=0;
   int priority=0; 
   int ch_op=0;
