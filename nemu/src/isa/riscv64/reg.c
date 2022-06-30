@@ -40,11 +40,8 @@ void isa_reg_display() {
 
 word_t isa_reg_str2val(const char *s, bool *success) {
     int i=0;
-    char *a = "$\0";
-    printf("%s\n",a);
     for(i=0;i<32;i++){
-      regs[i] = strcat(a,regs[i]);
-      if(strcmp(s,regs[i])==0){
+      if(strcmp(++s,regs[i])==0){
       *success = true;
       return cpu.gpr[i];
       }
