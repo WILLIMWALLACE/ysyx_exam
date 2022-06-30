@@ -45,7 +45,7 @@ static struct priority{
 
 #define NR_REGEX ARRLEN(rules)
 #define NR_PRIORITY ARRLEN(priorities)
-#define NR_TOKENS ARRLEN(tokens)
+//#define NR_TOKENS ARRLEN(tokens)
 
 static regex_t re[NR_REGEX] = {};
 
@@ -97,7 +97,7 @@ static bool make_token(char *e) {
          * of tokens, some extra actions should be performed.*/
         int j;
         switch (rules[i].token_type) {
-          case TK_NOTYPE:{tokens->type=rules[i].token_type; nr_token++ ;break;}  
+          case TK_NOTYPE:{tokens->type=rules[i].token_type;        break;}  
           case '(':      {tokens->type=rules[i].token_type; 
             for(j=0;j<substr_len;j++){tokens->str[j] = *(substr_start+j);}
               tokens->str[j] = '\0';   nr_token++ ;                break;} 
@@ -266,7 +266,7 @@ word_t expr(char *e, bool *success) {
   }
   u_int32_t result=0;
   //bool valid=1;
-  result = eval(0,NR_TOKENS-1);
+  result = eval(0,nr_token-1);
   //printf("%d\n",valid);
   /*if(success)
   {*success = true;
