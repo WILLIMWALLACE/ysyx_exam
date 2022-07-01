@@ -52,7 +52,7 @@ WP* new_wp(char *e,u_int32_t val){
   return new;
 }
 //shi fang 'head' zhong de 'jian shi dian',huan gei free_ 
-/*void free_wp(WP *wp){
+void free_wp(WP *wp){
   if(wp<wp_pool||wp>(wp_pool+NR_WP)){
     printf("beyond the wp_pool\n");
     assert(0);
@@ -73,6 +73,6 @@ WP* new_wp(char *e,u_int32_t val){
     }
   }
  
-}*/
+}
 ////////////////////////////////////////////////////////////
 
