@@ -272,6 +272,7 @@ static uint32_t eval(int p,int q){
   //printf("%d\n",op_type);
   u_int32_t val_op1=0;
   u_int32_t val_op2=0;
+  long *defref=NULL;
   //bool      valid = true;
   if(op_type!=DEREF){
     val_op1 = eval(p,ch_op-1);
@@ -287,12 +288,12 @@ static uint32_t eval(int p,int q){
     case TK_AND:  return (val_op1&&val_op2);  break;
     case TK_EQ :  return (val_op1==val_op2);  break;
     case TK_UNEQ: return (val_op1!=val_op2);  break;
-    case DEREF  : return *(CONFIG_MBASE+tokens[ch_op+1].str);
+    case DEREF  : *defref=(CONFIG_MBASE+val_op2); return *defref;
     default :assert(0);  break;
     }
   }  //zhu ti else de  kuo hao
 }    //han shu  de  kuo hao
-
+//strtol(tokens[ch_op+1].str,NULL,16)
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
