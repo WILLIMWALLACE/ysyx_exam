@@ -18,7 +18,7 @@ void init_wp_pool() {
     wp_pool[i].expr   = NULL;     //raw expr
     wp_pool[i].value  = 0;        //resutl
   }
-  head = NULL;
+  head  = NULL;
   free_ = wp_pool;
 }
 ///////////watchpoint pool manager//////////////////////////
