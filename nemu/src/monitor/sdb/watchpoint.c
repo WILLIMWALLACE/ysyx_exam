@@ -45,7 +45,7 @@ WP* new_wp(char *e,u_int32_t val){
     else
     {new->next = head;  head = new;  }
   }
-  printf("occupy=%d,%s=%d",new->occupy,new->expr,new->value);
+  printf("occupy=%d,%s=%d\n",new->occupy,new->expr,new->value);
   return new;
 }
 //shi fang 'head' zhong de 'jian shi dian',huan gei free_ 
