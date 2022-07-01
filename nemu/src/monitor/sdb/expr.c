@@ -193,7 +193,10 @@ static bool check_parentheses(int p, int q){
   }
 }*/
 static  int  op_flag(int i){
-  if(tokens[i].type=='+'||tokens[i].type=='-'||tokens[i].type=='*'||tokens[i].type=='/')
+  if(tokens[i].type=='+'||tokens[i].type=='-'
+    ||tokens[i].type=='*'||tokens[i].type=='/'
+    ||tokens[i].type==TK_EQ||tokens[i].type==TK_UNEQ
+    ||tokens[i].type==TK_AND)
   {return 1;}
   else
   {return 0;}
@@ -218,6 +221,7 @@ static uint32_t eval(int p,int q){
     else if(tokens[p].type==REG){  
       //word_t reg_value=0;
       bool reg_success;
+
       return isa_reg_str2val(tokens[p].str, &reg_success);
       //else{printf("reg_success=0\n"); return 0;}
       } 
@@ -269,18 +273,23 @@ static uint32_t eval(int p,int q){
   u_int32_t val_op1=0;
   u_int32_t val_op2=0;
   //bool      valid = true;
-  val_op1 = eval(p,ch_op-1);
-  val_op2 = eval(ch_op+1,q);
-  //printf("val_op1=%d\nval_op2=%d\n",val_op1,val_op2);
-  //printf("**************\n");
-  switch (op_type)
-  {
-  case '+': return val_op1+val_op2;   break;
-  case '-': return val_op1-val_op2;   break;
-  case '*': return val_op1*val_op2;   break;
-  case '/': return val_op1/val_op2;   break;
-  default :assert(0);  break;
-  }
+  if(op_type!=DEREF){
+    val_op1 = eval(p,ch_op-1);
+    val_op2 = eval(ch_op+1,q);}
+    //printf("val_op1=%d\nval_op2=%d\n",val_op1,val_op2);
+    //printf("**************\n");
+    switch (op_type)
+    {
+    case '+': return val_op1+val_op2;   break;
+    case '-': return val_op1-val_op2;   break;
+    case '*': return val_op1*val_op2;   break;
+    case '/': return val_op1/val_op2;   break;
+    case TK_AND:  return (val_op1&&val_op2);  break;
+    case TK_EQ :  return (val_op1==val_op2);  break;
+    case TK_UNEQ: return (val_op1!=val_op2);  break;
+    case DEREF  : return *(CONFIG_MBASE+tokens[ch_op+1].str);
+    default :assert(0);  break;
+    }
   }  //zhu ti else de  kuo hao
 }    //han shu  de  kuo hao
 
@@ -290,9 +299,14 @@ word_t expr(char *e, bool *success) {
     printf("make_toke cuo wu\n");
     return 0;
   }
-  u_int32_t result=0;
+  //u_int32_t result=0;
   *success  = true;
-  result = eval(0,nr_token-1);
+  int i=0;
+  for(i=0;i<nr_token;i++){
+    if(tokens[i].type=='*'&&(i==0||op_flag(i-1)))
+    tokens[i].type = DEREF;
+  }
+  //result = eval(0,nr_token-1);
   //bool valid=1;
   /*printf("nr_token=%d\n",nr_token);
   for(int i=0;i<32;i++){
@@ -307,5 +321,5 @@ word_t expr(char *e, bool *success) {
   {*success = false;
   printf("success cuo wu \n");
   return 0;}*/
-  return result;
+  return eval(0,nr_token-1);
 }
