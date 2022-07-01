@@ -1,13 +1,16 @@
 #include "sdb.h"
 
-#define NR_WP 32
+//#define NR_WP 32
 
 //typedef zai tou wen jian <sdb.h>
 
 //WP* new_wp();
 //void free_wp(WP *wp);
-static WP wp_pool[NR_WP] = {};
-static WP *head = NULL, *free_ = NULL;
+/////////////qu  diao static////////////////////
+
+ ////////////////////////////////////////
+ //WP wp_pool[NR_WP] = {};
+ //WP *head = NULL, *free_ = NULL;
 
 void init_wp_pool() {
   int i;
@@ -49,7 +52,7 @@ WP* new_wp(char *e,u_int32_t val){
   return new;
 }
 //shi fang 'head' zhong de 'jian shi dian',huan gei free_ 
-void free_wp(WP *wp){
+/*void free_wp(WP *wp){
   if(wp<wp_pool||wp>(wp_pool+NR_WP)){
     printf("beyond the wp_pool\n");
     assert(0);
@@ -70,7 +73,6 @@ void free_wp(WP *wp){
     }
   }
  
-}
+}*/
 ////////////////////////////////////////////////////////////
-
 

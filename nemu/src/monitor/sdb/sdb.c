@@ -108,10 +108,12 @@ static int cmd_w(char *args){
     if(success){
       new_wp(args,result);
       //printf("%d = %x",express,result);
+       cpu_exec(-1);
     }
     else{
       printf("expression cannot be identified!\n");
       printf("result = %x",result);
+      //free_wp(args);
     }
   }
   return 0;
