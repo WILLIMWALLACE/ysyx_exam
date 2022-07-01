@@ -311,11 +311,12 @@ word_t expr(char *e, bool *success,char *express) {
   }*/
   //result = eval(0,nr_token-1);
   //bool valid=1;
-  /*printf("nr_token=%d\n",nr_token);
-  for(int i=0;i<32;i++){
-    printf("tokens[%d].type=%d\n",i,tokens[i].type);
-    printf("tokens[%d].str=%s\n",i,tokens[i].str);
-  } */  
+  //printf("nr_token=%d\n",nr_token);
+  //for(int i=0;i<32;i++){
+    //express[i] = tokens[i].str;
+   // printf("tokens[%d].type=%d\n",i,tokens[i].type);
+   // printf("tokens[%d].str=%s\n",i,tokens[i].str);
+  //}   
   //printf("%d\n",valid);
   /*if(success)
   {*success = true;
