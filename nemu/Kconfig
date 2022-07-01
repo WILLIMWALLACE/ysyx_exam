@@ -210,3 +210,12 @@ config RT_CHECK
   default y
 
 endmenu
+
+choice
+  prompt "WATCH_POINT"
+  default OFF
+config ON
+  bool "ON"
+config OFF
+  bool "OFF"
+endchoice
