@@ -302,7 +302,7 @@ word_t expr(char *e, bool *success,char *express) {
   }
   //u_int32_t result=0;
   *success  = true;
-   express  = tokens->str;
+  express  = tokens->str;
   //int i=0;
   /*for(i=0;i<nr_token;i++){
     if(tokens[i].type=='*'&&(i==0||op_flag(i-1)))
