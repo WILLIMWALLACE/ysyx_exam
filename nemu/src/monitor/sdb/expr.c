@@ -294,7 +294,7 @@ static uint32_t eval(int p,int q){
   }  //zhu ti else de  kuo hao
 }    //han shu  de  kuo hao
 //strtol(tokens[ch_op+1].str,NULL,16)
-word_t expr(char *e, bool *success) {
+word_t expr(char *e, bool *success,char *express) {
   if (!make_token(e)) {
     *success = false;
     printf("make_toke cuo wu\n");
@@ -302,6 +302,7 @@ word_t expr(char *e, bool *success) {
   }
   //u_int32_t result=0;
   *success  = true;
+  express  = tokens->str;
   //int i=0;
   /*for(i=0;i<nr_token;i++){
     if(tokens[i].type=='*'&&(i==0||op_flag(i-1)))

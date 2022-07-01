@@ -51,7 +51,7 @@ static int cmd_si(char *args) {
 static int cmd_info(char *args) {
   if(strcmp(args,"r") == 0)         // compare args[0] ,r!!! shuang yin hao biao shi char
   {isa_reg_display();}
-  else{printf("info need a specific command, like 'r' or '?'");}
+  else{printf("info need a specific command, like 'r' or 'w'");}
   return 0;
 }
 
@@ -81,13 +81,34 @@ static int cmd_p(char *args) {
   else {
     init_regex();
     bool success;
-    u_int32_t result = expr(args,&success);
+    char express;
+    u_int32_t result = expr(args,&success,&express);
     if(success){
-      printf("result = %x",result);
+      printf("%d = %x",express,result);
     } 
     else{
       printf("expression cannot be identified!\n");
-
+      printf("result = %x",result);
+    }
+  }
+  return 0;
+}
+static int cmd_w(char *args){
+  if(args == NULL){
+     printf("please input true command!\n");
+  }
+  else{
+    init_wp_pool();
+    init_regex();
+    bool success;
+    char express;
+    u_int32_t result = expr(args,&success,&express);
+    if(success){
+      new_wp(&express,result);
+      printf("%d = %x",express,result);
+    }
+    else{
+      printf("expression cannot be identified!\n");
       printf("result = %x",result);
     }
   }
@@ -108,6 +129,8 @@ static struct {
   { "info", "information for regsister", cmd_info },
   { "x", "scan the memory", cmd_x },
   { "p", "evaluate expression", cmd_p },
+  { "w", "set watchpoint", cmd_w },
+  //{ "d", "delete watchpoint", cmd_d}
 };
 
 #define NR_CMD ARRLEN(cmd_table)
