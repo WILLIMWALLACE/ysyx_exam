@@ -18,7 +18,7 @@ void init_wp_pool() {
     wp_pool[i].expr   = NULL;     //raw expr
     wp_pool[i].value  = 0;        //resutl
   }
-  head  = NULL;
+  head = NULL;
   free_ = wp_pool;
 }
 ///////////watchpoint pool manager//////////////////////////
@@ -45,7 +45,7 @@ WP* new_wp(char *e,u_int32_t val){
     else
     {new->next = head;  head = new;  }
   }
-  printf("occupy=%d,%s=%d\n",new->occupy,new->expr,new->value);
+  printf("occupy=%d,%s=%d",new->occupy,new->expr,new->value);
   return new;
 }
 //shi fang 'head' zhong de 'jian shi dian',huan gei free_ 
@@ -69,7 +69,7 @@ void free_wp(WP *wp){
       assert(0);
     }
   }
-  //return 0;
+ 
 }
 ////////////////////////////////////////////////////////////
 
