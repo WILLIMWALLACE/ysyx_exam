@@ -1,5 +1,5 @@
 #define NR_WP 32
-
+#include <common.h>
 typedef struct watchpoint {
   int                NO;
   struct watchpoint *next;
