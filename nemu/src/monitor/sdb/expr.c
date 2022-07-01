@@ -272,11 +272,11 @@ static uint32_t eval(int p,int q){
   //printf("%d\n",op_type);
   u_int32_t val_op1=0;
   u_int32_t val_op2=0;
-  long *defref=NULL;
+  //long *defref=NULL;
   //bool      valid = true;
-  if(op_type!=DEREF){
+  //if(op_type!=DEREF){
     val_op1 = eval(p,ch_op-1);
-    val_op2 = eval(ch_op+1,q);}
+    val_op2 = eval(ch_op+1,q);//}
     //printf("val_op1=%d\nval_op2=%d\n",val_op1,val_op2);
     //printf("**************\n");
     switch (op_type)
@@ -288,7 +288,7 @@ static uint32_t eval(int p,int q){
     case TK_AND:  return (val_op1&&val_op2);  break;
     case TK_EQ :  return (val_op1==val_op2);  break;
     case TK_UNEQ: return (val_op1!=val_op2);  break;
-    case DEREF  : *defref=(CONFIG_MBASE+val_op2); return *defref;
+    //case DEREF  : *defref=(CONFIG_MBASE+val_op2); return *defref;
     default :assert(0);  break;
     }
   }  //zhu ti else de  kuo hao
@@ -302,12 +302,12 @@ word_t expr(char *e, bool *success) {
   }
   //u_int32_t result=0;
   *success  = true;
-  int i=0;
-  for(i=0;i<nr_token;i++){
+  //int i=0;
+  /*for(i=0;i<nr_token;i++){
     if(tokens[i].type=='*'&&(i==0||op_flag(i-1)))
     tokens[i].type = DEREF;
     printf("type=%d",tokens[i].type);
-  }
+  }*/
   //result = eval(0,nr_token-1);
   //bool valid=1;
   /*printf("nr_token=%d\n",nr_token);
