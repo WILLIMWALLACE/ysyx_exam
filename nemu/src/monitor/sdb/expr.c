@@ -34,7 +34,6 @@ static struct rule {
   {"\\$t[0-6]",REG},
   {"\\$[sgt]p",REG},
   {"\\$a[0-7]",REG},
- 
 };
 ///operator priority; the larger num,the lower priority
 static struct priority{
