@@ -101,11 +101,10 @@ static int cmd_w(char *args){
     init_wp_pool();
     init_regex();
     bool success;
-    char express;
     u_int32_t result = expr(args,&success);
     if(success){
-      new_wp(&express,result);
-      printf("%d = %x",express,result);
+      new_wp(args,result);
+      //printf("%d = %x",express,result);
     }
     else{
       printf("expression cannot be identified!\n");
