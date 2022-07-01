@@ -4,6 +4,7 @@
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <regex.h>
+#include "sdb.h"
 
 enum {
   TK_NOTYPE = 256, TK_OR = 257, TK_EQ=258, TK_NUMD=259,TK_UNEQ=260,
@@ -74,12 +75,7 @@ void init_regex() {
   }
 }
 
-typedef struct token {
-  int type;
-  char str[32];
-} Token;
 
-static Token tokens[32] __attribute__((used)) = {};
 static int nr_token __attribute__((used))  = 0;
 //static int nr_token;
 
@@ -294,7 +290,7 @@ static uint32_t eval(int p,int q){
   }  //zhu ti else de  kuo hao
 }    //han shu  de  kuo hao
 //strtol(tokens[ch_op+1].str,NULL,16)
-word_t expr(char *e, bool *success,char *express) {
+word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
     printf("make_toke cuo wu\n");
@@ -302,7 +298,6 @@ word_t expr(char *e, bool *success,char *express) {
   }
   //u_int32_t result=0;
   *success  = true;
-  express  = tokens->str;
   //int i=0;
   /*for(i=0;i<nr_token;i++){
     if(tokens[i].type=='*'&&(i==0||op_flag(i-1)))
@@ -312,7 +307,7 @@ word_t expr(char *e, bool *success,char *express) {
   //result = eval(0,nr_token-1);
   //bool valid=1;
   //printf("nr_token=%d\n",nr_token);
-  //for(int i=0;i<32;i++){
+ // for(int i=0;i<32;i++){
     //express[i] = tokens[i].str;
    // printf("tokens[%d].type=%d\n",i,tokens[i].type);
    // printf("tokens[%d].str=%s\n",i,tokens[i].str);
@@ -325,6 +320,5 @@ word_t expr(char *e, bool *success,char *express) {
   {*success = false;
   printf("success cuo wu \n");
   return 0;}*/
-  printf("express=%s\n",express);
   return eval(0,nr_token-1);
 }

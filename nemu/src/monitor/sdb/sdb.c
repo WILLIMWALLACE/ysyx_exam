@@ -81,10 +81,10 @@ static int cmd_p(char *args) {
   else {
     init_regex();
     bool success;
-    char express;
-    u_int32_t result = expr(args,&success,&express);
+    //char express;
+    u_int32_t result = expr(args,&success);
     if(success){
-      printf("%d = %x",express,result);
+      printf("result = %x",result);
     } 
     else{
       printf("expression cannot be identified!\n");
@@ -102,7 +102,7 @@ static int cmd_w(char *args){
     init_regex();
     bool success;
     char express;
-    u_int32_t result = expr(args,&success,&express);
+    u_int32_t result = expr(args,&success);
     if(success){
       new_wp(&express,result);
       printf("%d = %x",express,result);
