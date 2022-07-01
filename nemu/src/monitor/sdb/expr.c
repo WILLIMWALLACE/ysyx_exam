@@ -305,6 +305,7 @@ word_t expr(char *e, bool *success) {
   for(i=0;i<nr_token;i++){
     if(tokens[i].type=='*'&&(i==0||op_flag(i-1)))
     tokens[i].type = DEREF;
+    printf("type=%d",tokens[i].type);
   }
   //result = eval(0,nr_token-1);
   //bool valid=1;
