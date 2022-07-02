@@ -60,9 +60,7 @@ WP* new_wp(char *e,u_int32_t val){
   return new;
 }
 //shi fang 'head' zhong de 'jian shi dian',huan gei free_ 
-void free_wp(int no){
-  WP *wp = head;
-  wp->NO = no ;
+void free_wp(WP *wp){
   if(wp<wp_pool||wp>(wp_pool+NR_WP)){
     printf("beyond the wp_pool\n");
     assert(0);
@@ -86,6 +84,15 @@ void free_wp(int no){
       assert(0);
     }
   }
+}
+
+void delete_watchpoint(int NO){
+  WP *dele=NULL;
+  for(dele=head;dele!=NULL;dele=dele->next){
+    if(dele->NO==NO)
+    {break;}
+  }
+  free_wp(dele);
 }
 
 void watch_display(){

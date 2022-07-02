@@ -18,5 +18,6 @@ void watch_display();
 //void init_wp_pool();
 word_t expr(char *e, bool *success);
 WP* new_wp(char *e,u_int32_t val);
-void free_wp(int no);
+void free_wp(WP *wp);
+void delete_watchpoint(int NO);
 #endif
