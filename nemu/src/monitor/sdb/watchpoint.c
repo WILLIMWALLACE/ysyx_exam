@@ -81,11 +81,8 @@ int scan_wp(){
     if(p->value==1){
       return 1;
     }
-  else{
-    printf("wei jian ce dao jian shi dian gia bian\n");
-    return 0;
   }
-  }
+   printf("wei jian ce dao jian shi dian gia bian\n");
   return 0;
 }
 ////////////////////////////////////////////////////////////
