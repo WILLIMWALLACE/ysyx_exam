@@ -9,8 +9,8 @@ typedef struct watchpoint {
   struct watchpoint *next;
   bool              occupy;
   char              *expr;
-  u_int32_t         value;
-
+  u_int32_t         value_new;
+  u_int32_t         value_old;
   /* TODO: Add more members if necessary */
 } WP;
 

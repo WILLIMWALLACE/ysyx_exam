@@ -111,10 +111,10 @@ static int cmd_w(char *args){
       while(!flag){
       new_wp(args,result);
       printf("express = %x",result);
-      flag = scan_wp();
       result = expr(args,&success);
+      flag = scan_wp();
       printf("flag=%d\n",flag);
-      cpu_exec(1);
+      cpu_exec(-1);
       }
       printf("tui chu sao miao\n");
     }
