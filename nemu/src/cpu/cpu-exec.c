@@ -11,7 +11,7 @@
 #define MAX_INST_TO_PRINT 10
 /////////////////////////////////////////
 /***********mo fang menuconfig***********/
-#define CONFIG_WATCHPOINT 0
+//#define CONFIG_WATCHPOINT 0
 int scan_wp();
 void sdb_mainloop();
 ////////////shou dong kai guan//////////////
