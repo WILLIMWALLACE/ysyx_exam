@@ -52,7 +52,7 @@ WP* new_wp(char *e,u_int32_t val){
     else
     {new->next = head;  head = new;  }
   }
-  printf("occupy=%d,%s=%d,head.no=%d",head->occupy,head->expr,head->value_new,head->NO);
+  printf("occupy=%d,%p=%d,head.no=%d",head->occupy,head->expr,head->value_new,head->NO);
   return new;
 }
 //shi fang 'head' zhong de 'jian shi dian',huan gei free_ 
@@ -87,7 +87,7 @@ int scan_wp(){
   //for(p=head;p!=NULL;p=p->next){
    // printf("value=%d\n",p->value);
    p->value_old = p->value_new;
-   printf("\nexpress==%s,value_new=%d,value_old=%d,NO=%d\n",
+   printf("\nexpress==%p,value_new=%d,value_old=%d,NO=%d\n",
    head->expr,head->value_new,head->value_old,head->NO);
    bool success = true;
    p->value_new = expr(p->expr,&success);
