@@ -109,7 +109,7 @@ static int cmd_w(char *args){
     if(success){
       new_wp(args,result);
       printf("express = %x",result);
-       cpu_exec(-1);
+       cpu_exec(1);
     }
     else{
       printf("expression cannot be identified!\n");
