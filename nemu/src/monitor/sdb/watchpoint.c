@@ -19,7 +19,7 @@ void init_wp_pool() {
     wp_pool[i].NO     = i;
     wp_pool[i].next   = (i == NR_WP - 1 ? NULL : &wp_pool[i + 1]);
     wp_pool[i].occupy = false;    //flag
-    wp_pool[i].expr   = NULL;     //raw expr
+    //wp_pool[i].expr   = NULL;     //raw expr
     wp_pool[i].value_new  = 0;        //resutl
     wp_pool[i].value_old  = 0;
   }
@@ -44,15 +44,19 @@ WP* new_wp(char *e,u_int32_t val){
     //new       = free_;
     free_       = free_->next;//lian biao shun xu yi dong,free_ jian shao yi ge
     new->value_old  = new->value_new;
-    new->value_new  = val;        //bao cun expr & result
-    new->expr   = e; 
+    new->value_new  = val;
+    int i =0;
+    while(e[i]!='\0'){        //bao cun expr & result
+    new->expr[i]=e[i]; 
+      i++;
+    }
     new->occupy = true;       //zhan yong
     if(head == NULL)// head_pool cha ru new(lian biao tou bu cha ru)
     {head = new;}
     else
     {new->next = head;  head = new;  }
   }
-  printf("occupy=%d,%p=%d,head.no=%d",head->occupy,head->expr,head->value_new,head->NO);
+  printf("occupy=%d,%s=%d,head.no=%d",head->occupy,new->expr,head->value_new,head->NO);
   return new;
 }
 //shi fang 'head' zhong de 'jian shi dian',huan gei free_ 
@@ -87,7 +91,7 @@ int scan_wp(){
   //for(p=head;p!=NULL;p=p->next){
    // printf("value=%d\n",p->value);
    p->value_old = p->value_new;
-   printf("\nexpress==%p,value_new=%d,value_old=%d,NO=%d\n",
+   printf("\nexpress==%s,value_new=%d,value_old=%d,NO=%d\n",
    head->expr,head->value_new,head->value_old,head->NO);
    bool success = true;
    p->value_new = expr(p->expr,&success);
