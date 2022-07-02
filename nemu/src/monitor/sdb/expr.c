@@ -299,6 +299,7 @@ word_t expr(char *e, bool *success) {
     printf("make_toke cuo wu\n");
     return 0;
   }
+  make_token(e);
   //u_int32_t result=0;
   *success  = true;
   //int i=0;
