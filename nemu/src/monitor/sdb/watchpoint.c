@@ -92,6 +92,8 @@ void delete_watchpoint(int NO){
     if(dele->NO==NO)
     {break;}
   }
+  head = dele->next;
+  printf("shanchu de NO wei:%d\n",NO);
   free_wp(dele);
 }
 
