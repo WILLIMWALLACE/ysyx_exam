@@ -83,11 +83,11 @@ void free_wp(WP *wp){
 int scan_wp(char *e){
   WP *p;
   for(p=head;p!=NULL;p=p->next){
-   // printf("head.NO=%d,head.value=%d,head.expr=%s\n",head->NO,head->value,head->expr);
    // printf("value=%d\n",p->value);
    p->value_old = p->value_new;
    bool success;
    p->value_new = expr(e,&success);
+   printf("head.value_new=%d,head.value_old=%d\n",head->value_new,head->value_old);
     if(p->value_new!=p->value_old){
       return 1;
     }
