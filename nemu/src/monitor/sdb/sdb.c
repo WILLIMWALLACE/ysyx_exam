@@ -107,7 +107,7 @@ static int cmd_w(char *args){
     u_int32_t result = expr(args,&success);
     if(success){
       new_wp(args,result);
-      //printf("%d = %x",express,result);
+      printf("express = %x",result);
        cpu_exec(-1);
     }
     else{
