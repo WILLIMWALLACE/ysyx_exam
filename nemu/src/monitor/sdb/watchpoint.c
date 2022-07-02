@@ -7,7 +7,8 @@
 //WP* new_wp();
 //void free_wp(WP *wp);
 /////////////qu  diao static////////////////////
-
+ static WP wp_pool[NR_WP] = {};
+ static WP *head = NULL, *free_ = NULL;
  ////////////////////////////////////////
  //WP wp_pool[NR_WP] = {};
  //WP *head = NULL, *free_ = NULL;
