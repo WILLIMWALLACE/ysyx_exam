@@ -80,13 +80,13 @@ void free_wp(WP *wp){
   }
 }
 
-int scan_wp(char *e){
+int scan_wp(){
   WP *p;
   for(p=head;p!=NULL;p=p->next){
    // printf("value=%d\n",p->value);
    p->value_old = p->value_new;
    bool success;
-   p->value_new = expr(e,&success);
+   p->value_new = expr(p->expr,&success);
    printf("head.value_new=%d,head.value_old=%d\n",head->value_new,head->value_old);
     if(p->value_new!=p->value_old){
       return 1;

@@ -108,7 +108,7 @@ static int cmd_w(char *args){
     //printf("success=%d\n",success);
     if(success){
       new_wp(args,result);
-      scan_wp(args);
+     // scan_wp(args);
     }
     else{
       printf("expression cannot be identified!\n");
