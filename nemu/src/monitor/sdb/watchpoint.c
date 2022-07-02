@@ -25,6 +25,7 @@ void init_wp_pool() {
   }
   head = NULL;
   free_ = wp_pool;
+  printf("zhixingchushihua\n");
 }
 ///////////watchpoint pool manager//////////////////////////
 //chuang jian yi ge xin de 'jian shi dian'
