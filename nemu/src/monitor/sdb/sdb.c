@@ -120,6 +120,16 @@ static int cmd_w(char *args){
   }
   return 0;
 }
+static int cmd_d(char *args){
+  if(args == NULL){
+    printf("please input true command!\n");
+  }
+  else{
+    free_wp();
+    printf("delete the watchpoint\n");
+  }
+  return 0;
+}
 /***************************************/
 static int cmd_help(char *args);
 
@@ -136,7 +146,7 @@ static struct {
   { "x", "scan the memory", cmd_x },
   { "p", "evaluate expression", cmd_p },
   { "w", "set watchpoint", cmd_w },
-  //{ "d", "delete watchpoint", cmd_d}
+  { "d", "delete watchpoint", cmd_d}
 };
 
 #define NR_CMD ARRLEN(cmd_table)

@@ -60,7 +60,8 @@ WP* new_wp(char *e,u_int32_t val){
   return new;
 }
 //shi fang 'head' zhong de 'jian shi dian',huan gei free_ 
-/*void free_wp(WP *wp){
+void free_wp(){
+  WP *wp = head;
   if(wp<wp_pool||wp>(wp_pool+NR_WP)){
     printf("beyond the wp_pool\n");
     assert(0);
@@ -71,7 +72,7 @@ WP* new_wp(char *e,u_int32_t val){
   }
   else{
     if(wp->occupy==true && wp->NO==head->NO){
-      free(wp);          wp->expr=NULL;//bi mian 'ye zhi zhen'
+      free(wp);          //wp->expr=NULL;//bi mian 'ye zhi zhen'
       wp->value_new = 0;
       wp->value_old = 0;     
       wp->occupy = false; 
@@ -83,7 +84,8 @@ WP* new_wp(char *e,u_int32_t val){
       assert(0);
     }
   }
-}*/
+}
+
 void watch_display(){
     printf("watch.no=%d,express=%s,\nnew=%d,old=%d\n",
     head->NO,head->expr,head->value_new,head->value_old);
