@@ -34,7 +34,8 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
    //printf("jin ru cpu_exe\n");
    //printf("head[i].value=%d",head[i].value);
   //}
-  int flag = scan_wp();
+  //int flag = scan_wp();
+  int flag=1;
   if(flag==1){
     printf("chu fa jian shi dian\n");
     nemu_state.state=NEMU_STOP;
