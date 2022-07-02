@@ -125,7 +125,9 @@ static int cmd_d(char *args){
     printf("please input true command!\n");
   }
   else{
-    free_wp();
+    int no;
+    sscanf(args,"%d",&no);
+    free_wp(no);
     printf("delete the watchpoint\n");
   }
   return 0;
