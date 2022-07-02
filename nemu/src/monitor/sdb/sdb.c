@@ -11,7 +11,7 @@ static int is_batch_mode = false;
 
 void init_regex();
 void init_wp_pool();
-
+int scan_wp();
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 static char* rl_gets() {
   static char *line_read = NULL;
@@ -104,12 +104,18 @@ static int cmd_w(char *args){
     init_wp_pool();
     init_regex();
     bool success;
+    int flag=0;
     u_int32_t result = expr(args,&success);
     //printf("success=%d\n",success);
     if(success){
+      while(!flag){
       new_wp(args,result);
       printf("express = %x",result);
-      cpu_exec(-1);
+      flag = scan_wp();
+      result = expr(args,&success);
+      cpu_exec(1);
+      }
+      printf("tui chu sao miao\n");
     }
     else{
       printf("expression cannot be identified!\n");
