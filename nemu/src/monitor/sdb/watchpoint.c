@@ -60,8 +60,9 @@ WP* new_wp(char *e,u_int32_t val){
   return new;
 }
 //shi fang 'head' zhong de 'jian shi dian',huan gei free_ 
-void free_wp(){
+void free_wp(int no){
   WP *wp = head;
+  wp->NO = no ;
   if(wp<wp_pool||wp>(wp_pool+NR_WP)){
     printf("beyond the wp_pool\n");
     assert(0);
@@ -78,6 +79,7 @@ void free_wp(){
       wp->occupy = false; 
       wp->next = free_;  
       free_ = wp;   //huan gei free_  pool(tou bu cha ru)
+      printf("shan chu cheng gong\n");
       }
     else{
       printf("wp.occupy=%d,wp.NO=%d,head.NO=%d\n",wp->occupy,wp->NO,head->NO);
