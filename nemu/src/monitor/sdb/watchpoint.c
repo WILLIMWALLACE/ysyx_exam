@@ -71,7 +71,13 @@ void free_wp(WP *wp){
   }
   else{
     if(wp->occupy==true){
-      free(wp);          //wp->expr=NULL;//bi mian 'ye zhi zhen'
+      //free(wp);          //wp->expr=NULL;//bi mian 'ye zhi zhen'
+      int i =0;
+      while(wp->expr[i]!='\0'){        //bao cun expr & result
+      wp->expr[i]=0; 
+      i++;
+      }
+      wp->NO        = 0;
       wp->value_new = 0;
       wp->value_old = 0;     
       wp->occupy = false; 
