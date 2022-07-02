@@ -105,6 +105,7 @@ static int cmd_w(char *args){
     init_regex();
     bool success;
     u_int32_t result = expr(args,&success);
+    printf("success=%d\n",success);
     if(success){
       new_wp(args,result);
       printf("express = %x",result);
