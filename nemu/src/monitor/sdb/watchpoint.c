@@ -87,7 +87,8 @@ int scan_wp(){
   //for(p=head;p!=NULL;p=p->next){
    // printf("value=%d\n",p->value);
    p->value_old = p->value_new;
-    printf("\nexpress==%s\n",head->expr);
+   printf("\nexpress==%s,value_new=%d,value_old=%d,NO=%d\n",
+   head->expr,head->value_new,head->value_old,head->NO);
    bool success = true;
    p->value_new = expr(p->expr,&success);
   
