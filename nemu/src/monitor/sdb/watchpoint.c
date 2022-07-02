@@ -87,7 +87,7 @@ void free_wp(WP *wp){
 }
 
 void delete_watchpoint(int NO){
-  WP *dele=NULL;
+  WP *dele=head;
   for(dele=head;dele!=NULL;dele=dele->next){
     if(dele->NO==NO)
     {break;}
