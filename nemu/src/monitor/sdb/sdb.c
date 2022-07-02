@@ -104,14 +104,15 @@ static int cmd_w(char *args){
     init_wp_pool();
     init_regex();
     bool success;
-    args +=strspn(args," ");
+   // u_int32_t result = 0;
+    //args +=strspn(args," ");
     u_int32_t result = expr(args,&success);
     //printf("success=%d\n",success);
     if(success){
       new_wp(args,result);
      // scan_wp(args);
     }
-    else{
+   else{
       printf("expression cannot be identified!\n");
       printf("result = %x",result);
       //free_wp(args);
