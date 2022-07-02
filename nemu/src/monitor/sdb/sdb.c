@@ -104,6 +104,7 @@ static int cmd_w(char *args){
     init_wp_pool();
     init_regex();
     bool success;
+    args +=strspn(args," ");
     u_int32_t result = expr(args,&success);
     //printf("success=%d\n",success);
     if(success){
