@@ -84,6 +84,10 @@ WP* new_wp(char *e,u_int32_t val){
     }
   }
 }*/
+void watch_display(){
+    printf("watch.no=%d,express=%s,\nnew=%d,old=%d\n",
+    head->NO,head->expr,head->value_new,head->value_old);
+}
 
 int scan_wp(){
   WP *p=head;

@@ -52,7 +52,7 @@ static int cmd_info(char *args) {
   if(strcmp(args,"r") == 0)         // compare args[0] ,r!!! shuang yin hao biao shi char
   {isa_reg_display();}
   else if(strcmp(args,"w") == 0){
-    /////////////
+  {watch_display();}
   }
   else{printf("info need a specific command, like 'r' or 'w'");}
   return 0;
