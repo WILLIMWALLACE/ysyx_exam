@@ -52,10 +52,10 @@ static int decode_exec(Decode *s) {
 }
 
   INSTPAT_START();
-  INSTPAT("0000000 00000 00001 001 00010 00101 11", auipc  , U, R(dest) = src1 + s->pc);
-  INSTPAT("0000000 00000 00000 000 01000 00100 11", li     , I, R(dest) = src2        );  
-  INSTPAT("1111111 11100 00010 000 00010 00100 11", addi   , I, R(dest) = src1 + src2);
-  INSTPAT("0000000 01100 00000 000 00001 11011 11", jal    , J, R(dest) = 4    + s->pc ;
+  INSTPAT("??????? ????? ????? ??? ????? 00101 11", auipc  , U, R(dest) = src1 + s->pc);
+  //INSTPAT("0000000 00000 00000 000 01000 00100 11", li     , I, R(dest) = src2        );  
+  INSTPAT("??????? ????? ????? 000 ????? 00100 11", addi   , I, R(dest) = src1 + src2);
+  INSTPAT("??????? ????? ????? ??? ????? 11011 11", jal    , J, R(dest) = 4    + s->pc ;
                                                                 s->dnpc = s->pc+ src1   );
 
 
