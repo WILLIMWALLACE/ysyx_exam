@@ -84,7 +84,7 @@ int scan_wp(){
       return 1;
     }
   }
-   printf("wei jian ce dao jian shi dian gia bian\n");
+   //printf("wei jian ce dao jian shi dian gia bian\n");
   return 0;
 }
 ////////////////////////////////////////////////////////////

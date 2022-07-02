@@ -113,7 +113,7 @@ static int cmd_w(char *args){
       printf("express = %x",result);
       flag = scan_wp();
       result = expr(args,&success);
-      cpu_exec(1);
+      cpu_exec(2);
       }
       printf("tui chu sao miao\n");
     }
