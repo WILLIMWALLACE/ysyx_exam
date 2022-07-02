@@ -12,6 +12,8 @@
 /////////////////////////////////////////
 /***********mo fang menuconfig***********/
 #define CONFIG_WATCHPOINT 1
+int scan_wp();
+void sdb_mainloop();
 ////////////shou dong kai guan//////////////
 ////////////////////////////////////////////
 CPU_state cpu = {};
@@ -28,11 +30,16 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
 #ifdef CONFIG_WATCHPOINT  
-  for(int i =0;i<32;i++){
-   printf("jin ru cpu_exe\n");
+  //for(int i =0;i<32;i++){
+   //printf("jin ru cpu_exe\n");
    //printf("head[i].value=%d",head[i].value);
+  //}
+  int flag = scan_wp();
+  if(flag==1){
+    printf("chu fa jian shi dian\n");
+    nemu_state.state=NEMU_STOP;
+    sdb_mainloop();
   }
-  //nemu_state.state=
 #endif
 }
 

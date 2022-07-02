@@ -73,7 +73,20 @@ void free_wp(WP *wp){
       assert(0);
     }
   }
- 
+}
+
+int scan_wp(){
+  WP *p;
+  for(p=head;p!=NULL;p=p->next){
+    if(p->value==1){
+      return 1;
+    }
+  else{
+    printf("wei jian ce dao jian shi dian gia bian\n");
+    return 0;
+  }
+  }
+  return 0;
 }
 ////////////////////////////////////////////////////////////
 
