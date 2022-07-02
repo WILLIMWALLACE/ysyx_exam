@@ -25,7 +25,7 @@ void init_wp_pool() {
   }
   head = NULL;
   free_ = wp_pool;
-  printf("zhixingchushihua\n");
+  //printf("zhixingchushihua\n");
 }
 ///////////watchpoint pool manager//////////////////////////
 //chuang jian yi ge xin de 'jian shi dian'
@@ -83,6 +83,7 @@ void free_wp(WP *wp){
 
 int scan_wp(){
   WP *p=head;
+  printf("zhixingsaomiao\n");
   //for(p=head;p!=NULL;p=p->next){
    // printf("value=%d\n",p->value);
    p->value_old = p->value_new;
@@ -93,6 +94,7 @@ int scan_wp(){
    printf("head.value_new=%d,head.value_old=%d\n",head->value_new,head->value_old);
     if(p->value_new!=p->value_old){
       return 1;
+      printf("tui chu sao miao\n");
     }
  // }
    //printf("wei jian ce dao jian shi dian gia bian\n");
