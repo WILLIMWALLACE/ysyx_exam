@@ -81,7 +81,7 @@ void free_wp(WP *wp){
       }
     else{
       printf("wp.occupy=%d,wp.NO=%d,head.NO=%d\n",wp->occupy,wp->NO,head->NO);
-      assert(0);
+     // assert(0);
     }
   }
 }
