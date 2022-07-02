@@ -81,8 +81,8 @@ void free_wp(WP *wp){
 }
 
 int scan_wp(){
-  WP *p;
-  for(p=head;p!=NULL;p=p->next){
+  WP *p=head;
+  //for(p=head;p!=NULL;p=p->next){
    // printf("value=%d\n",p->value);
    p->value_old = p->value_new;
    bool success = true;
@@ -92,7 +92,7 @@ int scan_wp(){
     if(p->value_new!=p->value_old){
       return 1;
     }
-  }
+ // }
    //printf("wei jian ce dao jian shi dian gia bian\n");
   return 0;
 }
