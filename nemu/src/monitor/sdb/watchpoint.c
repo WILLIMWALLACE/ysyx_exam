@@ -85,7 +85,7 @@ int scan_wp(){
   for(p=head;p!=NULL;p=p->next){
    // printf("value=%d\n",p->value);
    p->value_old = p->value_new;
-   bool success;
+   bool success = true;
    p->value_new = expr(p->expr,&success);
    printf("head.value_new=%d,head.value_old=%d\n",head->value_new,head->value_old);
     if(p->value_new!=p->value_old){
