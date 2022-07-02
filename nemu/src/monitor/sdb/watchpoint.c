@@ -70,7 +70,7 @@ void free_wp(WP *wp){
     assert(0);
   }
   else{
-    if(wp->occupy==true && wp->NO==head->NO){
+    if(wp->occupy==true){
       free(wp);          //wp->expr=NULL;//bi mian 'ye zhi zhen'
       wp->value_new = 0;
       wp->value_old = 0;     
