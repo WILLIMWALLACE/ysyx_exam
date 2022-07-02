@@ -104,19 +104,11 @@ static int cmd_w(char *args){
     init_wp_pool();
     init_regex();
     bool success;
-    int flag=0;
     u_int32_t result = expr(args,&success);
     //printf("success=%d\n",success);
     if(success){
-      while(!flag){
       new_wp(args,result);
-      printf("express = %x",result);
-      result = expr(args,&success);
-      flag = scan_wp();
-      printf("flag=%d\n",flag);
-      cpu_exec(-1);
-      }
-      printf("tui chu sao miao\n");
+      scan_wp(args);
     }
     else{
       printf("expression cannot be identified!\n");
