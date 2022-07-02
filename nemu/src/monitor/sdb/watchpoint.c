@@ -78,6 +78,7 @@ void free_wp(WP *wp){
 int scan_wp(){
   WP *p;
   for(p=head;p!=NULL;p=p->next){
+    printf("\nvalue=%d\n",p->value);
     if(p->value==1){
       return 1;
     }
