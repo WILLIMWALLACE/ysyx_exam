@@ -76,7 +76,7 @@ static int decode_exec(Decode *s) {
   
   //jump instruction
   INSTPAT("??????? ????? ????? ??? ????? 11011 11", jal    , J,  
-  s->dnpc = s->pc + src1;                  R(dest) = s->snpc                 );//yi jing +4)
+  s->dnpc = s->pc + src1;                  R(dest) =    s->pc +4            );//s->snpcyi jing +4)
   INSTPAT("??????? ????? ????? 000 ????? 11001 11", jalr   , I, 
   s->dnpc = (src2 + src1)&0xfffffffe;      R(dest) = (dest==0) ? 0 : s->snpc);
   //memory instruction
