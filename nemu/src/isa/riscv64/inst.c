@@ -89,7 +89,7 @@ static int decode_exec(Decode *s) {
   INSTPAT_END();
 
  printf("pc:%lx       snpc:%lx          dnpc:%lx\n",s->pc,s->snpc,s->dnpc);
- printf("rs1=%lx             imm=%lx\n", src1,src2);
+ printf("rs1=%16lx             imm=%lx\n", src1,src2);
  // printf("");
   R(0) = 0; // reset $zero to 0
 
