@@ -9,5 +9,5 @@ int is_exit_status_bad() {
  // if(!good){flag = !good;}
  // if(good) {flag = good;}
  // printf("flag = %d\n",flag);
-  return good;
+  return !good;
 }
