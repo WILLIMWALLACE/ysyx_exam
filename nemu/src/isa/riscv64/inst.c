@@ -26,7 +26,7 @@ static word_t immJ(uint32_t i) { return (SEXT(BITS(i,31,31),1)<<20) |
                                               (BITS(i,19,12)<<12)   |
                                               (BITS(i,20,20)<<11)   |
                                               (BITS(i,30,21)<<1)    ;}
-static word_t immB(uint32_t i) { return (SEXT((BITS(i,31,31)<<12),1))  |
+static word_t immB(uint32_t i) { return (SEXT(BITS(i,31,31),1)<<12)  |
                                               (BITS(i,7,7)<<11)     |
                                               (BITS(i,30,25)<<5)    |
                                               (BITS(i,11,8)<<1)     ; }                                              
