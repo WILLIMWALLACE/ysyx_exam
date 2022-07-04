@@ -106,7 +106,7 @@ INSTPAT_END();
 
  printf("pc:%lx       snpc:%lx          dnpc:%lx\n",s->pc,s->snpc,s->dnpc);
  //printf("rs1=0x%016lx             imm=%lx\n", src1,src2);
-  printf("%lx\n",R(10));
+  printf("a0=%lx,a4=%lx\n",R(10),R(14));
   R(0) = 0; // reset $zero to 0
 
   return 0;
