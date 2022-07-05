@@ -11,7 +11,7 @@ bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
     for(i=0;i<32;i++){
       if(ref_r->gpr[i] != cpu.gpr[i]){
         flag = false;  
-        printf("*************ref_r.gpr[%d]=%lx,cpu.gpr[%d]=%lx****************\n",
+        printf("*************ref_r.gpr[%d]=0x%016lx,cpu.gpr[%d]=0x%016lx****************\n",
         i,ref_r->gpr[i],i,cpu.gpr[i]);
         break;
       }
