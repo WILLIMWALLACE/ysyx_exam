@@ -5,13 +5,13 @@
 bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
   int i;
   bool flag = true;
-  printf("ref_r->pc=%lx,cpu.pc=%lx\n",ref_r->pc,cpu.pc);
+  //printf("ref_r->pc=%lx,cpu.pc=%lx\n",ref_r->pc,cpu.pc);
   if(ref_r->pc==cpu.pc){
-    printf("pc is true\n");
+   // printf("pc is true\n");
     for(i=0;i<32;i++){
       if(ref_r->gpr[i] != cpu.gpr[i]){
         flag = false;  
-        printf("ref_r.gpr[%d]=%ld,cpu.gpr[%d]=%ld\n",
+        printf("*************ref_r.gpr[%d]=%ld,cpu.gpr[%d]=%ld****************\n",
         i,ref_r->gpr[i],i,cpu.gpr[i]);
         break;
       }
@@ -20,7 +20,7 @@ bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
   else { 
     flag  =  false;
   }
-  printf("flag=%d\n",flag);
+  //printf("flag=%d\n",flag);
   return flag;
 }
 
