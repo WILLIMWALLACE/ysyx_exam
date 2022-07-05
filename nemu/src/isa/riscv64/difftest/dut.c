@@ -20,6 +20,7 @@ bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
   else { 
     flag  =  false;
   }
+  printf("flag=%d\n",flag);
   return flag;
 }
 
