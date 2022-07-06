@@ -11,12 +11,13 @@ module ysyx_22040365_top(
 import "DPI-C" context function void quit();
 always@(inst_type) begin
 	if(inst_type==2'b10)begin
-	dpi_quit(out);
+	//dpi_quit(out);
+	quit();
 	end
 end
-task dpi_quit(input[63:0] din);
-	quit();
-endtask
+//task dpi_quit(input[63:0] din);
+//	quit();
+//endtask
 //common
 //wire[7:0]	inst_type;
 wire[1:0] 	inst_type;
