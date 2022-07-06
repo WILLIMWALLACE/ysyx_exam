@@ -14,6 +14,7 @@ always@(*) begin
   case (op_type)
   `INST_ADDI	 : begin ex_result = op1+op2;  wen_rd = 1'b1; end
   default: begin  ex_result = 0;  wen_rd = 1'b0;   end 
+  endcase
 end
 
 endmodule
