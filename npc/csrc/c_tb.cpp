@@ -2,7 +2,7 @@
    #include <stdio.h>
    #include <stdlib.h>
    #include <assert.h>
-   #include <Vtop.h>
+   #include <Vysyx_22040365_top.h>
    #include <verilated.h>
    #include <memory>
    #include <verilated_vcd_c.h>
