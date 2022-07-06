@@ -14,12 +14,12 @@
   #define PC_BASE 0x80000000
 
    static struct itcm {
-  	int pc;
-  	int inst;
+  	u_int32_t   pc;
+  	u_int32_t inst;
 	} ITCM[] ={
 	{PC_BASE     , 0xffc10113},//sp=sp-4
 	{PC_BASE+0x4 , 0xff010113},//sp=sp-16
-  {PC_BASE+0x8 , 0Xfb010113},//sp=sp-80
+  {PC_BASE+0x8 , 0xfb010113},//sp=sp-80
 	};
 
    vluint64_t   main_time = 0; //仿真时间
@@ -54,7 +54,7 @@
          {
           addr ++;      //clk
          }
-         printf("pc=0x016%x,inst=0x016%x\n",ITCM[clki].pc,ITCM[clki].inst);
+         printf("pc=0x016%x,inst=0x016%x\n",ITCM[clk].pc,ITCM[clk].inst);
       } 
          //退出nvboard 和 verilator 若不用 第一个while=1,则不会走到这
       ysyx_22040365_top->final();
