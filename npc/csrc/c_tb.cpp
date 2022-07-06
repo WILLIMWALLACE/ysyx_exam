@@ -8,7 +8,7 @@
    #include <verilated_vcd_c.h>
    ////////////dpi///////////
    #include "svdpi.h"
-   #include "Vysyx_22040365_top__Dpi.h"
+   #include "Vysyx_22040365_top_Dpi.h"
   ///////////from nemu/////////
    #include <stdint.h>        
    #include <stdbool.h>
@@ -50,6 +50,7 @@
      //int   rst=0;
      while (sc_time_stamp() <= 20 && !Verilated::gotFinish() && !quit()){  
          ////////////////////////步进执行并产生波形；更新电路状态////////////////////////
+         
          clk = ~clk;
         // if(main_time<3) {rst=0;} else{rst=1;}
          ysyx_22040365_top->clk  = clk;
@@ -59,7 +60,7 @@
 	       tfp->dump(main_time);
          main_time++;
          //quit = quit(int a);        //DPI-C
-         if(main_time==6||main_time==12||main_time==18)
+         if(main_time==5||main_time==9||main_time==13||main_time==18)
          {
           addr ++;      
           printf("out=%lx\n",ysyx_22040365_top->out);
