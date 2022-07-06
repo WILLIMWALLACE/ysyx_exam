@@ -25,7 +25,7 @@
    vluint64_t   main_time = 0; //仿真时间
    //int  reset(n) { if(n!=0) {n--;} else {return 0;}}
    double sc_time_stamp() { return  main_time  ; }     
-   void mem_read(int addr);    //memory-element
+   int mem_read(int addr);    //memory-element
 
   int main(int argc, char** argv, char** env) {
      ///////////////////////////固定内容   verilator init/////////////////////////////
@@ -63,7 +63,7 @@
       return 0;
   }   
   
-void  mem_read(int addr) {
+int  mem_read(int addr) {
   switch(ITCM[addr].pc){
     case PC_BASE    :  return ITCM[addr].inst; 
     case PC_BASE+0X4:  return ITCM[addr].inst;
