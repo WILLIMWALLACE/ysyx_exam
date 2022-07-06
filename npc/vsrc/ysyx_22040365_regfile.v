@@ -12,7 +12,7 @@ module ysyx_22040365_regfile #(ADDR_WIDTH = 1, DATA_WIDTH = 1) (
     if(wen) rf[waddr] <= wdata;
   end
  always @(*) begin
-    if(ren_rs1) rdata     <= rf[raddr]; 
+    if(ren_rs1) rdata     = rf[raddr]; 
  end
 endmodule
 
