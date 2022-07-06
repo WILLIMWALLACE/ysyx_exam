@@ -27,7 +27,7 @@
 	};
   ///////////////////DPI-C//////////
    //long flag;
-   void quit(){ exit(0); }
+   void quit(){  printf("正常退出\n"); exit(0); }
   //////////////////DPI-C//////////
    vluint64_t   main_time = 0; //仿真时间
    //int  reset(n) { if(n!=0) {n--;} else {return 0;}}
@@ -68,7 +68,7 @@
         printf("pc=0x%x,inst=0x%x\n",ITCM[addr].pc,ITCM[addr].inst);
       } 
          //退出nvboard 和 verilator 若不用 第一个while=1,则不会走到这
-         printf("\n");
+        
       ysyx_22040365_top->final();
       tfp->close();
       delete ysyx_22040365_top;
