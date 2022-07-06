@@ -28,36 +28,39 @@ void Vysyx_22040365_top___024root__traceInitSub0(Vysyx_22040365_top___024root* v
         tracep->declBit(c+7,"ysyx_22040365_top clk", false,-1);
         tracep->declBus(c+8,"ysyx_22040365_top inst", false,-1, 31,0);
         tracep->declQuad(c+9,"ysyx_22040365_top out", false,-1, 63,0);
-        tracep->declBus(c+11,"ysyx_22040365_top rs1_addr", false,-1, 4,0);
-        tracep->declBus(c+12,"ysyx_22040365_top rd_addr", false,-1, 4,0);
-        tracep->declQuad(c+13,"ysyx_22040365_top imm_I", false,-1, 63,0);
+        tracep->declBit(c+11,"ysyx_22040365_top inst_type", false,-1);
+        tracep->declBus(c+12,"ysyx_22040365_top rs1_addr", false,-1, 4,0);
+        tracep->declBus(c+13,"ysyx_22040365_top rd_addr", false,-1, 4,0);
+        tracep->declQuad(c+14,"ysyx_22040365_top imm_I", false,-1, 63,0);
         tracep->declBit(c+24,"ysyx_22040365_top ren_rs1", false,-1);
-        tracep->declQuad(c+15,"ysyx_22040365_top rs1_data", false,-1, 63,0);
-        tracep->declQuad(c+17,"ysyx_22040365_top rd_data", false,-1, 63,0);
+        tracep->declQuad(c+16,"ysyx_22040365_top rs1_data", false,-1, 63,0);
+        tracep->declQuad(c+18,"ysyx_22040365_top rd_data", false,-1, 63,0);
         tracep->declBit(c+24,"ysyx_22040365_top wen_rd", false,-1);
         tracep->declBus(c+8,"ysyx_22040365_top u_ysyx_22040365_id inst", false,-1, 31,0);
-        tracep->declBus(c+11,"ysyx_22040365_top u_ysyx_22040365_id rs1", false,-1, 4,0);
-        tracep->declBus(c+12,"ysyx_22040365_top u_ysyx_22040365_id rd", false,-1, 4,0);
-        tracep->declQuad(c+13,"ysyx_22040365_top u_ysyx_22040365_id imm_I", false,-1, 63,0);
+        tracep->declBit(c+11,"ysyx_22040365_top u_ysyx_22040365_id inst_type", false,-1);
+        tracep->declBus(c+12,"ysyx_22040365_top u_ysyx_22040365_id rs1", false,-1, 4,0);
+        tracep->declBus(c+13,"ysyx_22040365_top u_ysyx_22040365_id rd", false,-1, 4,0);
+        tracep->declQuad(c+14,"ysyx_22040365_top u_ysyx_22040365_id imm_I", false,-1, 63,0);
         tracep->declBit(c+24,"ysyx_22040365_top u_ysyx_22040365_id ren_rs1", false,-1);
-        tracep->declBus(c+19,"ysyx_22040365_top u_ysyx_22040365_id opcode", false,-1, 6,0);
-        tracep->declBus(c+20,"ysyx_22040365_top u_ysyx_22040365_id func3", false,-1, 2,0);
-        tracep->declBit(c+21,"ysyx_22040365_top u_ysyx_22040365_id addi", false,-1);
+        tracep->declBus(c+20,"ysyx_22040365_top u_ysyx_22040365_id opcode", false,-1, 6,0);
+        tracep->declBus(c+21,"ysyx_22040365_top u_ysyx_22040365_id func3", false,-1, 2,0);
+        tracep->declBit(c+11,"ysyx_22040365_top u_ysyx_22040365_id addi", false,-1);
         tracep->declBus(c+25,"ysyx_22040365_top u_ysyx_22040365_regfile ADDR_WIDTH", false,-1, 31,0);
         tracep->declBus(c+26,"ysyx_22040365_top u_ysyx_22040365_regfile DATA_WIDTH", false,-1, 31,0);
         tracep->declBit(c+7,"ysyx_22040365_top u_ysyx_22040365_regfile clk", false,-1);
-        tracep->declQuad(c+17,"ysyx_22040365_top u_ysyx_22040365_regfile wdata", false,-1, 63,0);
+        tracep->declQuad(c+18,"ysyx_22040365_top u_ysyx_22040365_regfile wdata", false,-1, 63,0);
         tracep->declBus(c+22,"ysyx_22040365_top u_ysyx_22040365_regfile waddr", false,-1, 2,0);
         tracep->declBit(c+24,"ysyx_22040365_top u_ysyx_22040365_regfile wen", false,-1);
         tracep->declBit(c+24,"ysyx_22040365_top u_ysyx_22040365_regfile ren_rs1", false,-1);
         tracep->declBus(c+23,"ysyx_22040365_top u_ysyx_22040365_regfile raddr", false,-1, 2,0);
-        tracep->declQuad(c+15,"ysyx_22040365_top u_ysyx_22040365_regfile rdata", false,-1, 63,0);
+        tracep->declQuad(c+16,"ysyx_22040365_top u_ysyx_22040365_regfile rdata", false,-1, 63,0);
         {int i; for (i=0; i<3; i++) {
                 tracep->declQuad(c+1+i*2,"ysyx_22040365_top u_ysyx_22040365_regfile rf", true,(i+0), 63,0);}}
-        tracep->declQuad(c+15,"ysyx_22040365_top u_ysyx_22040365_ex op1", false,-1, 63,0);
-        tracep->declQuad(c+13,"ysyx_22040365_top u_ysyx_22040365_ex op2", false,-1, 63,0);
+        tracep->declQuad(c+16,"ysyx_22040365_top u_ysyx_22040365_ex op1", false,-1, 63,0);
+        tracep->declQuad(c+14,"ysyx_22040365_top u_ysyx_22040365_ex op2", false,-1, 63,0);
+        tracep->declBit(c+11,"ysyx_22040365_top u_ysyx_22040365_ex op_type", false,-1);
         tracep->declBit(c+24,"ysyx_22040365_top u_ysyx_22040365_ex wen_rd", false,-1);
-        tracep->declQuad(c+17,"ysyx_22040365_top u_ysyx_22040365_ex ex_result", false,-1, 63,0);
+        tracep->declQuad(c+18,"ysyx_22040365_top u_ysyx_22040365_ex ex_result", false,-1, 63,0);
     }
 }
 
@@ -100,29 +103,29 @@ void Vysyx_22040365_top___024root__traceFullSub0(Vysyx_22040365_top___024root* v
         tracep->fullBit(oldp+7,(vlSelf->clk));
         tracep->fullIData(oldp+8,(vlSelf->inst),32);
         tracep->fullQData(oldp+9,(vlSelf->out),64);
-        tracep->fullCData(oldp+11,((0x1fU & (vlSelf->inst 
-                                             >> 0xfU))),5);
+        tracep->fullBit(oldp+11,((IData)((0x10U == 
+                                          (0x707cU 
+                                           & vlSelf->inst)))));
         tracep->fullCData(oldp+12,((0x1fU & (vlSelf->inst 
+                                             >> 0xfU))),5);
+        tracep->fullCData(oldp+13,((0x1fU & (vlSelf->inst 
                                              >> 7U))),5);
-        tracep->fullQData(oldp+13,((((- (QData)((IData)(
+        tracep->fullQData(oldp+14,((((- (QData)((IData)(
                                                         (vlSelf->inst 
                                                          >> 0x1fU)))) 
                                      << 0xcU) | (QData)((IData)(
                                                                 (vlSelf->inst 
                                                                  >> 0x14U))))),64);
-        tracep->fullQData(oldp+15,(((2U >= (3U & (vlSelf->inst 
+        tracep->fullQData(oldp+16,(((2U >= (3U & (vlSelf->inst 
                                                   >> 0xfU)))
                                      ? vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__rf
                                     [(3U & (vlSelf->inst 
                                             >> 0xfU))]
                                      : 0ULL)),64);
-        tracep->fullQData(oldp+17,(vlSelf->ysyx_22040365_top__DOT__rd_data),64);
-        tracep->fullCData(oldp+19,((0x7fU & vlSelf->inst)),7);
-        tracep->fullCData(oldp+20,((7U & (vlSelf->inst 
+        tracep->fullQData(oldp+18,(vlSelf->ysyx_22040365_top__DOT__rd_data),64);
+        tracep->fullCData(oldp+20,((0x7fU & vlSelf->inst)),7);
+        tracep->fullCData(oldp+21,((7U & (vlSelf->inst 
                                           >> 0xcU))),3);
-        tracep->fullBit(oldp+21,((IData)((0x10U == 
-                                          (0x707cU 
-                                           & vlSelf->inst)))));
         tracep->fullCData(oldp+22,((7U & (vlSelf->inst 
                                           >> 7U))),3);
         tracep->fullCData(oldp+23,((7U & (vlSelf->inst 

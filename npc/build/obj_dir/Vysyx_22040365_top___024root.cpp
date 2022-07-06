@@ -38,25 +38,33 @@ VL_INLINE_OPT void Vysyx_22040365_top___024root___settle__TOP__2(Vysyx_22040365_
     Vysyx_22040365_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_22040365_top___024root___settle__TOP__2\n"); );
     // Body
-    vlSelf->ysyx_22040365_top__DOT__rd_data = (((2U 
-                                                 >= 
-                                                 (3U 
-                                                  & (vlSelf->inst 
-                                                     >> 0xfU)))
-                                                 ? 
-                                                vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__rf
-                                                [(3U 
-                                                  & (vlSelf->inst 
-                                                     >> 0xfU))]
-                                                 : 0ULL) 
-                                               + ((
-                                                   (- (QData)((IData)(
+    vlSelf->ysyx_22040365_top__DOT__rd_data = ((IData)(
+                                                       (0x10U 
+                                                        == 
+                                                        (0x707cU 
+                                                         & vlSelf->inst)))
+                                                ? (
+                                                   ((2U 
+                                                     >= 
+                                                     (3U 
+                                                      & (vlSelf->inst 
+                                                         >> 0xfU)))
+                                                     ? 
+                                                    vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__rf
+                                                    [
+                                                    (3U 
+                                                     & (vlSelf->inst 
+                                                        >> 0xfU))]
+                                                     : 0ULL) 
+                                                   + 
+                                                   (((- (QData)((IData)(
+                                                                        (vlSelf->inst 
+                                                                         >> 0x1fU)))) 
+                                                     << 0xcU) 
+                                                    | (QData)((IData)(
                                                                       (vlSelf->inst 
-                                                                       >> 0x1fU)))) 
-                                                   << 0xcU) 
-                                                  | (QData)((IData)(
-                                                                    (vlSelf->inst 
-                                                                     >> 0x14U)))));
+                                                                       >> 0x14U)))))
+                                                : 0ULL);
     vlSelf->out = vlSelf->ysyx_22040365_top__DOT__rd_data;
 }
 
