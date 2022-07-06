@@ -4,7 +4,7 @@ module ysyx_22040365_ex(
  // input			clk,
   input[63:0]		op1,
   input[63:0]		op2,
-  input[1:0]		op_type,
+  input[7:0]		op_type,
   output reg		wen_rd,
   output reg[63:0]	ex_result		
 );

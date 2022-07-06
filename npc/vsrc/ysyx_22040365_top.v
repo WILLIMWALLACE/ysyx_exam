@@ -8,7 +8,7 @@ module ysyx_22040365_top(
 );
 
 //common
-wire[1:0]	inst_type;
+wire[7:0]	inst_type;
 
 //id to regfile
 wire[4:0]	rs1_addr;

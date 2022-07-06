@@ -1,13 +1,13 @@
 `include "ysyx_22040365_defines.v"
 module ysyx_22040365_id(
   input	[31:0]	inst,
-  output[1:0]	inst_type,
+  output[7:0]	inst_type,
   output[4:0]	rs1,
  // output[4:0]	rs2,
   output[4:0]	rd,
   output[63:0]	imm_I,
 //  output	wen_rd,
-  output	ren_rs1
+  output reg	ren_rs1
 );
 
 
@@ -26,11 +26,11 @@ wire	addi     = ~opcode[2] & ~opcode[3] & opcode[4] & ~opcode[5] & ~opcode[6]
 
 assign	inst_type[0] =  addi ;
 assign  inst_type[1] =  0   ;               
-//assign  inst_type[0] =  
-//assign  inst_type[0] =  
-//assign  inst_type[0] =  
-//assign  inst_type[0] =  
-//assign  inst_type[0] =  
+assign  inst_type[2] =  0;
+assign  inst_type[3] =  0;
+assign  inst_type[4] =  0;
+assign  inst_type[5] =  0;
+assign  inst_type[6] =  0;
 always@(*)begin
   case (inst_type)
   	`INST_ADDI: 	 begin  ren_rs1=1'b1;  end
