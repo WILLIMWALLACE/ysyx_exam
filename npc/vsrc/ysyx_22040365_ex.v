@@ -14,6 +14,7 @@ always@(*) begin
   case(op_type)
   2'b01: ex_result = op1 + op2;
   2'b10: ex_result = 0;
+  default :ex_result = 64'hffffffffffffffff;
   endcase
 end
 assign wen_rd = 1'b1;
