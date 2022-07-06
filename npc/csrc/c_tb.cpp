@@ -2,7 +2,7 @@
    #include <stdio.h>
    #include <stdlib.h>
    #include <assert.h>
-   #include <Vtop.h>
+   #include <Vysyx_22040365_top.h>
    #include <verilated.h>
    #include <memory>
    #include <verilated_vcd_c.h>
@@ -32,8 +32,8 @@
      Verilated::commandArgs(argc, argv);          // Remember args
      Verilated::traceEverOn(true);                // 导出波形必备  命令行里还需--trace
      VerilatedVcdC*  tfp = new  VerilatedVcdC;    //导出波形需用，且可根据tfp设置trace追踪的层次
-     Vtop *ysyx_22040365_top = new Vtop("ysyx_22040365_top"); 		  //指向Vtop类的 top地址的指针，new分配内存空间并且调用Vtop的构造函数，新建了一个对象（类）top
-     top->trace(tfp, 99);  			  // Trace 99 levels of hierarchy (or see below)
+     Vysyx_22040365_top *ysyx_22040365_top = new Vysyx_22040365_top("ysyx_22040365_top"); 		  //指向Vtop类的 top地址的指针，new分配内存空间并且调用Vtop的构造函数，新建了一个对象（类）top
+     ysyx_22040365_top->trace(tfp, 99);  			  // Trace 99 levels of hierarchy (or see below)
    //  tfp->dumpvars(1, "t");  			  // trace 1 level under "t"
      tfp->open("npc_onecycle.vcd"); 
      ///////////////////////////固定内容 verilator init////////////////////////////////
@@ -44,10 +44,10 @@
          ////////////////////////步进执行并产生波形；更新电路状态////////////////////////
          clk = ~clk;
         // if(main_time<3) {rst=0;} else{rst=1;}
-         top->clk  = clk;
+         ysyx_22040365_top->clk  = clk;
         // top->rst  = rst;
-         top->inst = mem_read(addr); // 取指令，从pmem_read函数中读出 
-         top->eval();    //执行一次erilog代码 更新值
+         ysyx_22040365_top->inst = mem_read(addr); // 取指令，从pmem_read函数中读出 
+         ysyx_22040365_top->eval();    //执行一次erilog代码 更新值
 	       tfp->dump(main_time);
          main_time++;
          if(main_time==6||main_time==12||main_time==18)
@@ -57,9 +57,9 @@
          printf("pc=0x016%x,inst=0x016%x\n",ITCM[clki].pc,ITCM[clki].inst);
       } 
          //退出nvboard 和 verilator 若不用 第一个while=1,则不会走到这
-      top->final();
+      ysyx_22040365_top->final();
       tfp->close();
-      delete top;
+      delete ysyx_22040365_top;
       return 0;
   }   
   
