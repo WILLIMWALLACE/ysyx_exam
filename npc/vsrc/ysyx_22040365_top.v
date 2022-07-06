@@ -1,4 +1,4 @@
-`include "ysyx_22040365_defines.v"
+//`include "ysyx_22040365_defines.v"
 
 module ysyx_22040365_top(
   input		clk,
@@ -8,7 +8,7 @@ module ysyx_22040365_top(
 );
 
 //common
-wire[7:0]	inst_type;
+//wire[7:0]	inst_type;
 
 //id to regfile
 wire[4:0]	rs1_addr;
@@ -21,15 +21,17 @@ wire[63:0]	rs1_data;
 wire[63:0]	rd_data;
 wire		wen_rd;
 
+assign out =rd_data;
+
 ysyx_22040365_id u_ysyx_22040365_id(
   .inst		(inst),
-  .inst_type	(inst_type),
+//  .inst_type	(inst_type),
   .rs1		(rs1_addr),
   .rd		(rd_addr),
   .imm_I	(imm_I),
   .ren_rs1	(ren_rs1));
 
-ysyx_22040365_regfile#(5,64)
+ysyx_22040365_regfile#(3,64)
  u_ysyx_22040365_regfile(
   .clk		(clk),
   .wdata	(rd_data),
@@ -43,7 +45,7 @@ ysyx_22040365_ex u_ysyx_22040365_ex(
 //  .clk		(),
   .op1		(rs1_data),
   .op2		(imm_I),
-  .op_type	(inst_type),
+  //.op_type	(inst_type),
   .wen_rd	(wen_rd),
   .ex_result	(rd_data));
 
