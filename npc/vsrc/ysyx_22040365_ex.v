@@ -1,4 +1,4 @@
-`include "defines.v"
+`include "ysyx_22040365_defines.v"
 
 module ysyx_22040365_ex(
  // input			clk,

@@ -1,4 +1,4 @@
-`include "defines.v"
+`include "ysyx_22040365_defines.v"
 module ysyx_22040365_id(
   input	[31:0]	inst,
   output[1:0]	inst_type,
