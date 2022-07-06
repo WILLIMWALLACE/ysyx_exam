@@ -20,9 +20,10 @@ assign func3  	= inst[14 : 12];
 assign	rd      = inst[11:7];
 assign	rs1     = inst[19:15];
 assign	imm_I 	= {{52{inst[31]}},inst[31:20]};
-assign opcode 	= inst[6  :  0];
+assign opcode 	= inst[6:0];
 //inst type
-wire	addi     = ~opcode[2] & ~opcode[3] & opcode[4] & ~opcode[5] & ~opcode[6]
+wire	addi     = opcode[0] & opcode[1] & ~opcode[2] & ~opcode[3] & opcode[4] 
+		   & ~opcode[5] & ~opcode[6]
  		   & ~func3[0] & ~func3[1] & ~func3[2];
 
 assign	inst_type =  addi ;
