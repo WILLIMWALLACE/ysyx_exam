@@ -7,9 +7,12 @@ module ysyx_22040365_top(
   output[63:0]	out
 );
 
+//////DPI-C///////////////
+import "DPI-C" function int quit(int a);
+	quit(out);
 //common
 //wire[7:0]	inst_type;
-wire inst_type;
+wire[1:0] 	inst_type;
 //id to regfile
 wire[4:0]	rs1_addr;
 wire[4:0]	rd_addr;
@@ -47,5 +50,10 @@ ysyx_22040365_ex u_ysyx_22040365_ex(
   .op_type	(inst_type),
   .wen_rd	(wen_rd),
   .ex_result	(rd_data));
+
+
+//initial begin
+//	 $display("%x", quit(1));
+//end
 
 endmodule

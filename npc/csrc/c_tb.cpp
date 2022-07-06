@@ -6,7 +6,10 @@
    #include <verilated.h>
    #include <memory>
    #include <verilated_vcd_c.h>
-   //////////////////////////////
+   ////////////dpi///////////
+   #include "svdpi.h"
+   #include "Vysyx_22040365_top__Dpi.h"
+  ///////////from nemu/////////
    #include <stdint.h>        
    #include <stdbool.h>
    #include <string.h>
@@ -20,8 +23,12 @@
 	{PC_BASE     , 0xffc10113},//sp=sp-4
 	{PC_BASE+0x4 , 0xff010113},//sp=sp-16
   {PC_BASE+0x8 , 0xfb010113},//sp=sp-80
+  {PC_BASE+0xc , 0x00100073},//ebreak
 	};
-
+  ///////////////////DPI-C//////////
+   int flag;
+   int quit(int a){ return flag = a; }
+  //////////////////DPI-C//////////
    vluint64_t   main_time = 0; //仿真时间
    //int  reset(n) { if(n!=0) {n--;} else {return 0;}}
    double sc_time_stamp() { return  main_time  ; }     
@@ -39,8 +46,9 @@
      ///////////////////////////固定内容 verilator init////////////////////////////////
      int   addr=0;
      int   clk=0;
+     //int   quit=0;       //DPI-C
      //int   rst=0;
-     while (sc_time_stamp() <= 20 && !Verilated::gotFinish()){  
+     while (sc_time_stamp() <= 20 && !Verilated::gotFinish() && !quit()){  
          ////////////////////////步进执行并产生波形；更新电路状态////////////////////////
          clk = ~clk;
         // if(main_time<3) {rst=0;} else{rst=1;}
@@ -50,6 +58,7 @@
          ysyx_22040365_top->eval();    //执行一次erilog代码 更新值
 	       tfp->dump(main_time);
          main_time++;
+         //quit = quit(int a);        //DPI-C
          if(main_time==6||main_time==12||main_time==18)
          {
           addr ++;      
@@ -58,6 +67,7 @@
         printf("pc=0x%x,inst=0x%x\n",ITCM[addr].pc,ITCM[addr].inst);
       } 
          //退出nvboard 和 verilator 若不用 第一个while=1,则不会走到这
+         printf("\n");
       ysyx_22040365_top->final();
       tfp->close();
       delete ysyx_22040365_top;
@@ -66,9 +76,10 @@
   
 int  mem_read(int addr) {
   switch(ITCM[addr].pc){
-    case PC_BASE    :  return ITCM[addr].inst; 
-    case PC_BASE+0X4:  return ITCM[addr].inst;
-    case PC_BASE+0X8:  return ITCM[addr].inst;
+    case PC_BASE     :  return ITCM[addr].inst; 
+    case PC_BASE+0X4 :  return ITCM[addr].inst;
+    case PC_BASE+0X8 :  return ITCM[addr].inst;
+    case PC_BASE+0Xc :  return ITCM[addr].inst;
     default         :  printf("wu pi pei pc\n");  assert(0);
   }
 }
