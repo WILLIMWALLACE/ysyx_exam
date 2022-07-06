@@ -5,14 +5,17 @@ module ysyx_22040365_regfile #(ADDR_WIDTH = 1, DATA_WIDTH = 1) (
   input wen,
   input ren_rs1,
   input [ADDR_WIDTH-1:0] raddr,
-  output reg[DATA_WIDTH-1:0] rdata
+  output[DATA_WIDTH-1:0] rdata
 );
   reg [DATA_WIDTH-1:0] rf [ADDR_WIDTH-1:0];
   always @(posedge clk) begin
     if(wen) rf[waddr] <= wdata;
   end
- always @(*) begin
-    if(ren_rs1) rdata     = rf[raddr]; 
- end
+// always @(*) begin
+//    if(ren_rs1) rdata     = rf[raddr]; 
+// end
+assign rdata = (ren_rs1==1'b1) ? rf[raddr] : 0;
+
+
 endmodule
 
