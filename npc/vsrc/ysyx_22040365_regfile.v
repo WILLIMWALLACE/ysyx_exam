@@ -7,7 +7,7 @@ module ysyx_22040365_regfile  (
   input [4:0] raddr,
   output[63:0] rdata
 );
-  reg [63:0] rf [4:0];
+  reg [63:0] rf [2:0];
   always @(posedge clk) begin
     if(wen) rf[waddr] <= wdata;
   end
