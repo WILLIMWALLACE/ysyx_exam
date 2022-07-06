@@ -6,7 +6,7 @@ module ysyx_22040365_ex(
   input[63:0]		op2,
   input[1:0]		op_type,
   output 		wen_rd,
-  output[63:0]		ex_result		
+  output reg[63:0]	ex_result		
 );
 
 //assign ex_result = (op_type==1'b1) ? op1+op2 : 0 ;  

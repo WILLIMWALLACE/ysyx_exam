@@ -10,7 +10,9 @@ module ysyx_22040365_top(
 //////DPI-C///////////////
 import "DPI-C" context function void quit();
 always@(inst_type) begin
+	if(inst_type==2'b10)begin
 	dpi_quit(out);
+	end
 end
 task dpi_quit(input[63:0] din);
 	quit();
