@@ -20,6 +20,7 @@ wire[63:0]	rs1_data;
 //ex to regfile
 wire[63:0]	rd_data;
 wire		wen_rd;
+
 ysyx_22040365_id(
   .inst		(inst),
   .inst_type	(inst_type),
@@ -28,7 +29,8 @@ ysyx_22040365_id(
   .immI		(imm_I)
   .ren_rs1	(ren_rs1));
 
-ysyx_22040365_regfile#(2,64)(
+ysyx_22040365_regfile#(2,64)
+(
   .clk		(clk),
   .wdata	(rd_data),
   .waddr	(rd_addr_ex),
