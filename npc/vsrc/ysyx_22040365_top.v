@@ -10,7 +10,7 @@ module ysyx_22040365_top(
 //////DPI-C///////////////
 import "DPI-C" function long quit(input long a);
 	//$display("%x",quit(out));
-	quit(out);
+//	quit(out);
 //common
 //wire[7:0]	inst_type;
 wire[1:0] 	inst_type;
