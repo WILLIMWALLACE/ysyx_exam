@@ -10,5 +10,7 @@
 `define RISCV_PRIV_MODE_M   3
 
 
-`define INST_ADDI   8'b00000001
+//`define INST_ADDI   8'b00000001
+`define INST_ADDI   	    1'b0
+`define INST_EBREAK 	    1'b1
 
