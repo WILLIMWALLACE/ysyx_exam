@@ -9,7 +9,12 @@ module ysyx_22040365_regfile  (
 );
   reg [63:0] regs[4:0];
   always @(posedge clk) begin
-    if(wen) regs[waddr] <= wdata;
+    if(wen) begin
+	regs[waddr] <= wdata;
+    end
+    else begin
+	regs[waddr] <=regs[waddr];
+    end
   end
 // always @(*) begin
 //    if(ren_rs1) rdata     = rf[raddr]; 
