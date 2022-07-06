@@ -8,11 +8,13 @@ module ysyx_22040365_top(
 );
 
 //////DPI-C///////////////
-import "DPI-C" function long quit(input long a);
-	initial begin
-	$display("%x",quit(out));
-	end
-//	quit(out);
+import "DPI-C" context function void quit();
+always@(inst_type) begin
+	dpi_quit(out);
+end
+task dpi_quit(input din);
+	quit();
+endtask
 //common
 //wire[7:0]	inst_type;
 wire[1:0] 	inst_type;
