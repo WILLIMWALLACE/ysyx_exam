@@ -26,8 +26,8 @@
   {PC_BASE+0xc , 0x00100073},//ebreak
 	};
   ///////////////////DPI-C//////////
-   int flag;
-   int quit(int a){ return flag = a; }
+   int64_t flag;
+   int64_t quit(int64_t a){ return flag = a; }
   //////////////////DPI-C//////////
    vluint64_t   main_time = 0; //仿真时间
    //int  reset(n) { if(n!=0) {n--;} else {return 0;}}

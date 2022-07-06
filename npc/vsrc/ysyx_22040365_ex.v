@@ -9,11 +9,11 @@ module ysyx_22040365_ex(
   output[63:0]		ex_result		
 );
 
-assign ex_result = (op_type==1'b1) ? op1+op2 : 0 ;  
+//assign ex_result = (op_type==1'b1) ? op1+op2 : 0 ;  
 always@(*) begin
   case(op_type)
   2'b01: ex_result = op1 + op2;
-  2'b10: ex_result = 1'b1;
+  2'b10: ex_result = 0;
   endcase
 end
 assign wen_rd = 1'b1;
