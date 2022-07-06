@@ -53,9 +53,9 @@
          if(main_time==6||main_time==12||main_time==18)
          {
           addr ++;      
-          printf("pc=0x%x,inst=0x%x\n",ITCM[addr].pc,ITCM[addr].inst);
+        
          }
-         
+        printf("pc=0x%x,inst=0x%x\n",ITCM[addr].pc,ITCM[addr].inst);
       } 
          //退出nvboard 和 verilator 若不用 第一个while=1,则不会走到这
       ysyx_22040365_top->final();
