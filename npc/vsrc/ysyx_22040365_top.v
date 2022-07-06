@@ -25,15 +25,15 @@ ysyx_22040365_id u_ysyx_22040365_id(
   .inst		(inst),
   .inst_type	(inst_type),
   .rs1		(rs1_addr),
-  .rd		(rd_addr_id),
-  .imm_I		(imm_I),
+  .rd		(rd_addr),
+  .imm_I	(imm_I),
   .ren_rs1	(ren_rs1));
 
 ysyx_22040365_regfile#(2,64)
  u_ysyx_22040365_regfile(
   .clk		(clk),
   .wdata	(rd_data),
-  .waddr	(rd_addr_ex),
+  .waddr	(rd_addr),
   .wen		(wen_rd),
   .ren_rs1	(ren_rs1),
   .raddr	(rs1_addr),
