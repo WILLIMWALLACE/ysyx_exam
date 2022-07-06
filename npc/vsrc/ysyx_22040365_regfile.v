@@ -1,13 +1,13 @@
-module ysyx_22040365_regfile #(ADDR_WIDTH = 1, DATA_WIDTH = 1) (
+module ysyx_22040365_regfile  (
   input clk,
-  input [DATA_WIDTH-1:0] wdata,
-  input [ADDR_WIDTH-1:0] waddr,
+  input [63:0] wdata,
+  input [4:0] waddr,
   input wen,
   input ren_rs1,
-  input [ADDR_WIDTH-1:0] raddr,
-  output[DATA_WIDTH-1:0] rdata
+  input [4:0] raddr,
+  output[63:0] rdata
 );
-  reg [DATA_WIDTH-1:0] rf [ADDR_WIDTH-1:0];
+  reg [63:0] rf [4:0];
   always @(posedge clk) begin
     if(wen) rf[waddr] <= wdata;
   end
