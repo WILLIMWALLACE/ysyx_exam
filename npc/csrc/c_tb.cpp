@@ -53,7 +53,7 @@
          if(main_time==6||main_time==12||main_time==18)
          {
           addr ++;      
-        
+          printf("out=%x\n",ysyx_22040365_top->out);
          }
         printf("pc=0x%x,inst=0x%x\n",ITCM[addr].pc,ITCM[addr].inst);
       } 
