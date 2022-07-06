@@ -12,7 +12,7 @@ import "DPI-C" context function void quit();
 always@(inst_type) begin
 	dpi_quit(out);
 end
-task dpi_quit(input din);
+task dpi_quit(input[63:0] din);
 	quit();
 endtask
 //common

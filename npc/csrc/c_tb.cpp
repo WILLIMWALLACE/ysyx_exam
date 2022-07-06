@@ -26,8 +26,8 @@
   {PC_BASE+0xc , 0x00100073},//ebreak
 	};
   ///////////////////DPI-C//////////
-   long flag;
-   long quit(long a){ return flag = a; }
+   //long flag;
+   void quit(){ exit(0); }
   //////////////////DPI-C//////////
    vluint64_t   main_time = 0; //仿真时间
    //int  reset(n) { if(n!=0) {n--;} else {return 0;}}
@@ -48,7 +48,7 @@
      int   clk=0;
      //int   quit=0;       //DPI-C
      //int   rst=0;
-     while (sc_time_stamp() <= 20 && !Verilated::gotFinish() && !quit()){  
+     while (sc_time_stamp() <= 20 && !Verilated::gotFinish()){  
          ////////////////////////步进执行并产生波形；更新电路状态////////////////////////
          
          clk = ~clk;
