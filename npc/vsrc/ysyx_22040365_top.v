@@ -31,7 +31,7 @@ ysyx_22040365_id u_ysyx_22040365_id(
   .imm_I	(imm_I),
   .ren_rs1	(ren_rs1));
 
-ysyx_22040365_regfile#(2,64)
+ysyx_22040365_regfile#(5,64)
  u_ysyx_22040365_regfile(
   .clk		(clk),
   .wdata	(rd_data),
