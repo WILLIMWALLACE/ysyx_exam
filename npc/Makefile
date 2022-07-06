@@ -5,7 +5,7 @@ VSRC =$(NPC)/vsrc/
 #wildcard 获取该路径下 所有的  通配符对应 的  文件
 CPP = $(wildcard $(CSRC)*.cpp)
 VPP = $(wildcard $(VSRC)*.v)
-TOPNAME = top
+TOPNAME = ysyx_22040365_top
 #OBJ_PATH = $(NPC)/obj_dir/
 #OBJ_MK = $(wildcard $(OBJ_PATH)*.mk)
 ################ 接入nvboard #####################
