@@ -3,7 +3,7 @@
 module ysyx_22040365_top(
   input		clk,
 //  input		rst,
-  input		inst,
+  input[31:0]		inst,
   output[63:0]	out
 );
 
