@@ -13,7 +13,7 @@ module ysyx_22040365_id(
 
 
 wire[6:0]	opcode;
-wire[2:0]	fun3;
+wire[2:0]	func3;
 //common 
 assign func3  = inst[14 : 12];
 assign	rd       = inst[11:7];
