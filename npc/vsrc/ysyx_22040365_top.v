@@ -21,7 +21,7 @@ wire[63:0]	rs1_data;
 wire[63:0]	rd_data;
 wire		wen_rd;
 
-ysyx_22040365_id(
+ysyx_22040365_id u1(
   .inst		(inst),
   .inst_type	(inst_type),
   .rs1		(rs1_addr),
@@ -30,7 +30,7 @@ ysyx_22040365_id(
   .ren_rs1	(ren_rs1));
 
 ysyx_22040365_regfile#(2,64)
-(
+ u2(
   .clk		(clk),
   .wdata	(rd_data),
   .waddr	(rd_addr_ex),
@@ -39,7 +39,7 @@ ysyx_22040365_regfile#(2,64)
   .raddr	(rs1_addr),
   .rdata	(rs1_data));
 
-ysyx_22040365_ex(
+ysyx_22040365_ex u3(
 //  .clk		(),
   .op1		(rs1_data),
   .op2		(imm_I),
