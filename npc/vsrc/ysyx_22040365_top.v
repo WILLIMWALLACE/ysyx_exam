@@ -26,7 +26,7 @@ ysyx_22040365_id u_ysyx_22040365_id(
   .inst_type	(inst_type),
   .rs1		(rs1_addr),
   .rd		(rd_addr_id),
-  .immI		(imm_I),
+  .imm_I		(imm_I),
   .ren_rs1	(ren_rs1));
 
 ysyx_22040365_regfile#(2,64)
@@ -44,6 +44,7 @@ ysyx_22040365_ex u_ysyx_22040365_ex(
   .op1		(rs1_data),
   .op2		(imm_I),
   .op_type	(inst_type),
+  .wen_rd	(wen_rd),
   .ex_result	(rd_data));
 
 endmodule
