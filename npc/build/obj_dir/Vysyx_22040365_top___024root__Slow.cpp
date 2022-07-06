@@ -59,7 +59,7 @@ void Vysyx_22040365_top___024root___ctor_var_reset(Vysyx_22040365_top___024root*
     vlSelf->out = VL_RAND_RESET_Q(64);
     vlSelf->ysyx_22040365_top__DOT__rd_data = VL_RAND_RESET_Q(64);
     for (int __Vi0=0; __Vi0<3; ++__Vi0) {
-        vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__rf[__Vi0] = VL_RAND_RESET_Q(64);
+        vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__regs[__Vi0] = VL_RAND_RESET_Q(64);
     }
     for (int __Vi0=0; __Vi0<2; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = VL_RAND_RESET_I(1);

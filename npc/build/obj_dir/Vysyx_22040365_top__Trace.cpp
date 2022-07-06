@@ -24,9 +24,9 @@ void Vysyx_22040365_top___024root__traceChgSub0(Vysyx_22040365_top___024root* vl
     // Body
     {
         if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[1U])) {
-            tracep->chgQData(oldp+0,(vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__rf[0]),64);
-            tracep->chgQData(oldp+2,(vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__rf[1]),64);
-            tracep->chgQData(oldp+4,(vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__rf[2]),64);
+            tracep->chgQData(oldp+0,(vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__regs[0]),64);
+            tracep->chgQData(oldp+2,(vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__regs[1]),64);
+            tracep->chgQData(oldp+4,(vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__regs[2]),64);
         }
         tracep->chgBit(oldp+6,(vlSelf->clk));
         tracep->chgIData(oldp+7,(vlSelf->inst),32);
@@ -45,7 +45,7 @@ void Vysyx_22040365_top___024root__traceChgSub0(Vysyx_22040365_top___024root* vl
                                                                 >> 0x14U))))),64);
         tracep->chgQData(oldp+15,(((2U >= (3U & (vlSelf->inst 
                                                  >> 0xfU)))
-                                    ? vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__rf
+                                    ? vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__regs
                                    [(3U & (vlSelf->inst 
                                            >> 0xfU))]
                                     : 0ULL)),64);

@@ -53,7 +53,7 @@ void Vysyx_22040365_top___024root__traceInitSub0(Vysyx_22040365_top___024root* v
         tracep->declBus(c+12,"ysyx_22040365_top u_ysyx_22040365_regfile raddr", false,-1, 4,0);
         tracep->declQuad(c+16,"ysyx_22040365_top u_ysyx_22040365_regfile rdata", false,-1, 63,0);
         {int i; for (i=0; i<3; i++) {
-                tracep->declQuad(c+1+i*2,"ysyx_22040365_top u_ysyx_22040365_regfile rf", true,(i+0), 63,0);}}
+                tracep->declQuad(c+1+i*2,"ysyx_22040365_top u_ysyx_22040365_regfile regs", true,(i+0), 63,0);}}
         tracep->declQuad(c+16,"ysyx_22040365_top u_ysyx_22040365_ex op1", false,-1, 63,0);
         tracep->declQuad(c+14,"ysyx_22040365_top u_ysyx_22040365_ex op2", false,-1, 63,0);
         tracep->declBit(c+11,"ysyx_22040365_top u_ysyx_22040365_ex op_type", false,-1);
@@ -95,9 +95,9 @@ void Vysyx_22040365_top___024root__traceFullSub0(Vysyx_22040365_top___024root* v
     if (false && oldp) {}  // Prevent unused
     // Body
     {
-        tracep->fullQData(oldp+1,(vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__rf[0]),64);
-        tracep->fullQData(oldp+3,(vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__rf[1]),64);
-        tracep->fullQData(oldp+5,(vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__rf[2]),64);
+        tracep->fullQData(oldp+1,(vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__regs[0]),64);
+        tracep->fullQData(oldp+3,(vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__regs[1]),64);
+        tracep->fullQData(oldp+5,(vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__regs[2]),64);
         tracep->fullBit(oldp+7,(vlSelf->clk));
         tracep->fullIData(oldp+8,(vlSelf->inst),32);
         tracep->fullQData(oldp+9,(vlSelf->out),64);
@@ -116,7 +116,7 @@ void Vysyx_22040365_top___024root__traceFullSub0(Vysyx_22040365_top___024root* v
                                                                  >> 0x14U))))),64);
         tracep->fullQData(oldp+16,(((2U >= (3U & (vlSelf->inst 
                                                   >> 0xfU)))
-                                     ? vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__rf
+                                     ? vlSelf->ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__regs
                                     [(3U & (vlSelf->inst 
                                             >> 0xfU))]
                                      : 0ULL)),64);

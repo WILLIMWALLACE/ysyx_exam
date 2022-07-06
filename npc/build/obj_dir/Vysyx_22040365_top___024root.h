@@ -25,7 +25,7 @@ VL_MODULE(Vysyx_22040365_top___024root) {
 
     // LOCAL SIGNALS
     QData/*63:0*/ ysyx_22040365_top__DOT__rd_data;
-    VlUnpacked<QData/*63:0*/, 3> ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__rf;
+    VlUnpacked<QData/*63:0*/, 3> ysyx_22040365_top__DOT__u_ysyx_22040365_regfile__DOT__regs;
 
     // LOCAL VARIABLES
     CData/*0:0*/ __Vclklast__TOP__clk;
