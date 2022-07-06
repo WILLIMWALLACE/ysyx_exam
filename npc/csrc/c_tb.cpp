@@ -8,7 +8,7 @@
    #include <verilated_vcd_c.h>
    ////////////dpi///////////
    #include "svdpi.h"
-   #include "Vysyx_22040365_top_Dpi.h"
+   #include "Vysyx_22040365_top__Dpi.h"
   ///////////from nemu/////////
    #include <stdint.h>        
    #include <stdbool.h>
