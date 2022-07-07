@@ -52,7 +52,7 @@ char *strncpy(char *dst, const char *src, size_t n) {
     *dst++ = *src++;
      n--;
     }
-    *dst = '\0';
+    *dst++ = '\0';
   }
   if(add_zero==0){
     while (n--)
@@ -90,7 +90,6 @@ int strcmp(const char *s1, const char *s2) {
   {
     if(*s1=='\0'&&*s2=='\0')
     {   return 0; }  
-    
     s1++; s2++;
   }
   return *s1-*s2;
@@ -106,7 +105,6 @@ int strncmp(const char *s1, const char *s2, size_t n) {
   {
     if(*s1=='\0'&&*s2=='\0')
     {   return 0; }  
-    
     s1++; s2++;n--;
   }
   return *s1-*s2;
@@ -129,13 +127,33 @@ void *memset(void *s, int c, size_t n) {
 }
 //cpoy *src's[0-n] to *dst,this can defend the memory overlap
 void *memmove(void *dst, const void *src, size_t n) {
-
-  
-  panic("Not implemented");
+  if(src==NULL||dst==NULL||n==0){
+    printf("invalid input\n");
+    assert(0);
+  }
+  char *dst_temp = (char*) dst;
+  char *src_temp = (char*) src;
+  if((dst_temp>src_temp)&&(dst_temp<src_temp+n)){
+    //overlap/  cong hou xiang qian
+    while (n!=0)
+    {
+      *(dst_temp+n) = *(src_temp+n);
+      n--;
+    }
+  }  
+  else{
+    while (n!=0)
+    {
+       *dst_temp++ = *src_temp++;
+       n--;
+    }
+  }
+  return dst;
+  //panic("Not implemented");
 }
 //cpoy *src's[0-n] to *dst, just copy
 void *memcpy(void *out, const void *in, size_t n) {
-  if(n<0||in==NULL){
+  if(n==0||in==NULL){
     printf("invalid input\n");
     assert(0);
   }
@@ -150,7 +168,22 @@ void *memcpy(void *out, const void *in, size_t n) {
 }
 //
 int memcmp(const void *s1, const void *s2, size_t n) {
-  panic("Not implemented");
+  if(n==0||s1==NULL||s2==NULL){
+    printf("invalid input\n");
+    assert(0);
+  }
+  char *s1_temp = (char*) s1;
+  char *s2_temp = (char*) s2;
+  while(n--){
+    if(*s1_temp>*s2_temp)
+    { return 1;}
+    else if(*s1_temp<*s2_temp)
+    { return -1;}
+    else
+    { s1_temp++; s2_temp++; }
+  }
+  return 0;
+  //panic("Not implemented");
 }
 
 #endif
