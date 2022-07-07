@@ -128,20 +128,29 @@ void *memset(void *s, int c, size_t n) {
   //panic("Not implemented");
 }
 //cpoy *src's[0-n] to *dst,this can defend the memory overlap
-/*void *memmove(void *dst, const void *src, size_t n) {
+void *memmove(void *dst, const void *src, size_t n) {
 
   
-  //panic("Not implemented");
+  panic("Not implemented");
 }
 //cpoy *src's[0-n] to *dst, just copy
 void *memcpy(void *out, const void *in, size_t n) {
-  
-  
+  if(n<0||in==NULL){
+    printf("invalid input\n");
+    assert(0);
+  }
+  char *out_temp = out;
+  const char *in_temp  =in;  //improve ;donot change the source&dest 
+  while(n!=0){
+    *out_temp++ = *in_temp++;
+    n--;
+  }
+  return  out; 
   //panic("Not implemented");
 }
 //
 int memcmp(const void *s1, const void *s2, size_t n) {
   panic("Not implemented");
 }
-*/
+
 #endif
