@@ -1,47 +1,147 @@
 #include <klib.h>
 #include <klib-macros.h>
 #include <stdint.h>
+//#include <>
 
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
-
+//calculate length
 size_t strlen(const char *s) {
-  panic("Not implemented");
+  int cnt=0;
+  if(s==NULL){ 
+    printf("invalid string!\n");
+    assert(0);
+  }
+  while (*s != '\0')
+  {  s++; cnt++;  }
+  return cnt;
+  //panic("Not implemented");
 }
-
-char *strcpy(char *dst, const char *src) {
-  panic("Not implemented");
+//string copy
+char *strcpy(char *dst, const char *src) { 
+  if(src==NULL||dst==NULL){
+    printf("invalid string\n");
+    assert(0);    
+  }
+  char *dst_start=dst; //store start_address
+  while (*src != '\0')
+  {
+    *dst++ = *src++;
+  }    
+  *dst++ = '\0';
+  return dst_start;
+  //panic("Not implemented");
 }
-
+//set n bit for string copy
 char *strncpy(char *dst, const char *src, size_t n) {
-  panic("Not implemented");
+  if(src==NULL||dst==NULL){
+    printf("invalid string\n");
+    assert(0);    
+  }
+  int over_cnt = 0;
+  int add_zero = 0;
+  char *dst_start=dst; //store start_address
+  if(n>strlen(src)){
+    over_cnt = n-strlen(src);
+    n = strlen(src);
+  }
+  if(n<strlen(src)){
+    add_zero = 1;
+  }
+  if(add_zero==1){
+    while(n>1){
+    *dst++ = *src++;
+     n--;
+    }
+    *dst = '\0';
+  }
+  if(add_zero==0){
+    while (n--)
+    {
+      *dst++ = *src++;
+    }
+    while (over_cnt--)
+    {
+      *dst++ = '\0';
+    }
+  }
+  return dst_start;
+  //panic("Not implemented");
 }
-
+//combine string
 char *strcat(char *dst, const char *src) {
-  panic("Not implemented");
+  if(src==NULL||dst==NULL){
+    printf("invalid string\n");
+    assert(0);    
+  }
+  char *dst_start = dst;
+  while(*dst!='\0'){  dst++;}
+  while(*src!='\0'){ *dst++ = *src++;}
+   *dst++ = '\0';
+  return dst_start;
+  //panic("Not implemented");
 }
-
+//string compare 1 0 -1
 int strcmp(const char *s1, const char *s2) {
-  panic("Not implemented");
+  if(s1==NULL||s2==NULL){
+    printf("invalid string\n");
+    assert(0);    
+  }
+  while (*s1 == *s2)
+  {
+    if(*s1=='\0'&&*s2=='\0')
+    {   return 0; }  
+    
+    s1++; s2++;
+  }
+  return *s1-*s2;
+  //panic("Not implemented");
 }
 
 int strncmp(const char *s1, const char *s2, size_t n) {
-  panic("Not implemented");
-}
+  if(s1==NULL||s2==NULL||n==0){
+    printf("invalid input\n");
+    assert(0);    
+  }
+  while ((*s1 == *s2) && n!=0)
+  {
+    if(*s1=='\0'&&*s2=='\0')
+    {   return 0; }  
+    
+    s1++; s2++;n--;
+  }
+  return *s1-*s2;
 
+  //panic("Not implemented");
+}
+//set 'c' to s_addr ----- s_addr+n
 void *memset(void *s, int c, size_t n) {
-  panic("Not implemented");
+  if(n==0||s==NULL){
+    printf("invalid input\n");
+    assert(0);
+  }
+  char *s_temp = (char*) s;
+  while(n!=0){
+    *s_temp++ = c;
+    n--;
+  }
+  return s;
+  //panic("Not implemented");
 }
+//cpoy *src's[0-n] to *dst,this can defend the memory overlap
+/*void *memmove(void *dst, const void *src, size_t n) {
 
-void *memmove(void *dst, const void *src, size_t n) {
-  panic("Not implemented");
+  
+  //panic("Not implemented");
 }
-
+//cpoy *src's[0-n] to *dst, just copy
 void *memcpy(void *out, const void *in, size_t n) {
-  panic("Not implemented");
+  
+  
+  //panic("Not implemented");
 }
-
+//
 int memcmp(const void *s1, const void *s2, size_t n) {
   panic("Not implemented");
 }
-
+*/
 #endif
