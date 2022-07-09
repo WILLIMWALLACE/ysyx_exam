@@ -51,14 +51,14 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
     int   current_ptr;
 //int   r_ptr;
 }c_fifo*/
-char fifo_pc[40]; // 10*4,mei.ge.wei.zhi.cun.chu.8bit,mei.ge.shu.ju.32bit
-char fifo_inst[40];
+u_int64_t fifo_pc[40]; // 10*4,mei.ge.wei.zhi.cun.chu.8bit,mei.ge.shu.ju.32bit
+u_int64_t fifo_inst[40];
 int  itrace_index; //0-9,cun.shi.ge
 
 void fifo_itrace_tran(){
     printf("index = %d\n",itrace_index);
-    printf("     pc= 0x%08x                   ",fifo_pc[itrace_index*4]);
-    printf("      inst= 0x%08x\n",fifo_inst[itrace_index*4]);
+    printf("     pc= 0x%016lx                   ",fifo_pc[itrace_index*4]);
+    printf("      inst= 0x%016lx\n",fifo_inst[itrace_index*4]);
     //printf("dang qian pc = 0x%08x\n",)
 }
 
@@ -68,7 +68,7 @@ static void fifo_wr(Decode *s){
     fifo_pc[itrace_index*4]   = s->pc;
     fifo_inst[itrace_index*4] = s->isa.inst.val;
     itrace_index++;
-    printf("dang qian pc = 0x%08lx\n",s->pc);
+    //printf("dang qian pc = 0x%08lx\n",s->pc);
 }
 /**************for i trace*******************/
 static void exec_once(Decode *s, vaddr_t pc) {
