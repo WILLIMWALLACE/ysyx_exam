@@ -10,7 +10,7 @@ static uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
 #endif
 
 /***********mo fang menuconfig***********/
-#define CONFIG_MTRACE 1
+#define CONFIG_MTRACE 0
 ////////////shou dong kai guan//////////////
 
 
