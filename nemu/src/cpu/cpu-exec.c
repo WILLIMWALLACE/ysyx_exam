@@ -43,6 +43,15 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #endif
 }
 
+
+static void fifo_wr(Decode *s){
+    if(itrace_index >= 10)
+      {itrace_index = 0; } 
+    fifo_pc[itrace_index*4]   = s->pc;
+    fifo_inst[itrace_index*4] = s->isa.inst.val;
+    itrace_index++;
+}
+
 static void exec_once(Decode *s, vaddr_t pc) {
   s->pc = pc;
   s->snpc = pc;
@@ -54,6 +63,9 @@ static void exec_once(Decode *s, vaddr_t pc) {
   int ilen = s->snpc - s->pc;
   int i;
   uint8_t *inst = (uint8_t *)&s->isa.inst.val;
+
+  fifo_wr(s);  //cun.chu.pc & inst.
+
   for (i = 0; i < ilen; i ++) {
     p += snprintf(p, 4, " %02x", inst[i]);
   }
