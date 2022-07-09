@@ -65,7 +65,7 @@ void fifo_itrace_tran(){
 static void fifo_wr(Decode *s){
     if(itrace_index >= 10)
       {itrace_index = 0; } 
-    fifo_pc[itrace_index*4]   = s->pc;
+    fifo_pc[itrace_index*4]   = cpu.pc;
     fifo_inst[itrace_index*4] = s->isa.inst.val;
     itrace_index++;
     //printf("dang qian pc = 0x%08lx\n",s->pc);
