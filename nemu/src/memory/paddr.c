@@ -53,7 +53,7 @@ word_t paddr_read(paddr_t addr, int len) {
   if (likely(in_pmem(addr))) {
     mem_read = pmem_read(addr, len);
     #ifdef CONFIG_MTRACE
-    printf("read_addr=0x%08x,             read_result=0x%08lx\n",addr,mem_read);
+    printf("read_addr=0x%08x,              read_result=0x%08lx\n",addr,mem_read);
     #endif
     return mem_read;}
   IFDEF(CONFIG_DEVICE, return mmio_read(addr, len));
