@@ -56,7 +56,8 @@ char fifo_inst[40];
 int  itrace_index; //0-9,cun.shi.ge
 
 void fifo_itrace_tran(){
-    printf("pc= 0x%08x                   ",fifo_pc[itrace_index]);
+    printf("index = %d\n",itrace_index);
+    printf("     pc= 0x%08x                   ",fifo_pc[itrace_index]);
     printf("      inst= 0x%08x\n",fifo_inst[itrace_index]);
 }
 
