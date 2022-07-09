@@ -43,6 +43,22 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #endif
 }
 
+/**************for i trace*******************/
+/*typedef struct{
+    char *buffer;
+    int   length;
+    int   w_ptr;
+    int   current_ptr;
+//int   r_ptr;
+}c_fifo*/
+char fifo_pc[40]; // 10*4,mei.ge.wei.zhi.cun.chu.8bit,mei.ge.shu.ju.32bit
+char fifo_inst[40];
+int  itrace_index; //0-9,cun.shi.ge
+
+void fifo_itrace_tran(){
+    printf("pc= 0x%08x                   ",fifo_pc[itrace_index]);
+    printf("      inst= 0x%08x\n",fifo_inst[itrace_index]);
+}
 
 static void fifo_wr(Decode *s){
     if(itrace_index >= 10)
@@ -51,7 +67,7 @@ static void fifo_wr(Decode *s){
     fifo_inst[itrace_index*4] = s->isa.inst.val;
     itrace_index++;
 }
-
+/**************for i trace*******************/
 static void exec_once(Decode *s, vaddr_t pc) {
   s->pc = pc;
   s->snpc = pc;
