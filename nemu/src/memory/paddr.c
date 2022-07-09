@@ -46,15 +46,16 @@ void init_mem() {
   Log("physical memory area [" FMT_PADDR ", " FMT_PADDR "]",
       (paddr_t)CONFIG_MBASE, (paddr_t)CONFIG_MBASE + CONFIG_MSIZE);
 }
+/***************MTRACE display the result and addr*****************/
 
 word_t paddr_read(paddr_t addr, int len) {
    word_t mem_read = 0;
-  if (likely(in_pmem(addr))) 
+  if (likely(in_pmem(addr))) {
     mem_read = pmem_read(addr, len);
-  #ifdef CONFIG_MTRACE
-
-  #endif
-  return mem_read;
+    #ifdef CONFIG_MTRACE
+    printf("read_addr=%d,            read_result=%ld\n",addr,mem_read);
+    #endif
+    return mem_read;}
   IFDEF(CONFIG_DEVICE, return mmio_read(addr, len));
   out_of_bound(addr);
   return 0;
@@ -64,7 +65,7 @@ void paddr_write(paddr_t addr, int len, word_t data) {
   if (likely(in_pmem(addr))) { 
     pmem_write(addr, len, data);
   #ifdef CONFIG_MTRACE
-
+  printf("write_addr=%d,            write_result=%ld\n",addr,data);
   #endif  
      return; }
   IFDEF(CONFIG_DEVICE, mmio_write(addr, len, data); return);
