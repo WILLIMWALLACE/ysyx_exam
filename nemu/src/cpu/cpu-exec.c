@@ -56,10 +56,16 @@ u_int64_t fifo_inst[40];
 int  itrace_index; //0-9,cun.shi.ge
 
 void fifo_itrace_tran(){
-    printf("index = %d\n",itrace_index);
-    printf("     pc= 0x%08lx                   ",fifo_pc[itrace_index*4]);
-    printf("      inst= 0x%08lx\n",fifo_inst[itrace_index*4]);
+    //printf("index = %d\n",itrace_index);
+    for(int i=0;i<10;i++){
+      if(i == (itrace_index-2))
+      {
+      printf("     -->pc= 0x%08lx                   ",fifo_pc[i*4]);
+      }
+    printf("     pc= 0x%08lx                   ",fifo_pc[i*4]);
+    printf("      inst= 0x%08lx\n",fifo_inst[i*4]);
     //printf("dang qian pc = 0x%08x\n",)
+    }
 }
 
 static void fifo_wr(Decode *s){
