@@ -61,10 +61,13 @@ void fifo_itrace_tran(){
       if(i == (itrace_index-1))
       {
       printf("  -->pc= 0x%08lx                   ",fifo_pc[i*4]);
+      printf("      inst= 0x%08lx\n",fifo_inst[i*4]);
       }
-    printf("     pc= 0x%08lx                   ",fifo_pc[i*4]);
-    printf("      inst= 0x%08lx\n",fifo_inst[i*4]);
+      else{
+      printf("     pc= 0x%08lx                   ",fifo_pc[i*4]);
+      printf("      inst= 0x%08lx\n",fifo_inst[i*4]);
     //printf("dang qian pc = 0x%08x\n",)
+      }
     }
 }
 
