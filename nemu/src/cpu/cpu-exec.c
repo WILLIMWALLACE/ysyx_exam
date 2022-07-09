@@ -11,7 +11,7 @@
 #define MAX_INST_TO_PRINT 10
 /////////////////////////////////////////
 /***********mo fang menuconfig***********/
-//#define CONFIG_WATCHPOINT 0
+//#define CONFIG_WATCHPOINT 1
 int scan_wp();
 void sdb_mainloop();
 ////////////shou dong kai guan//////////////
@@ -56,7 +56,6 @@ u_int64_t fifo_inst[40];
 int  itrace_index; //0-9,cun.shi.ge
 
 void fifo_itrace_tran(){
-    //printf("index = %d\n",itrace_index);
     for(int i=0;i<10;i++){
       if(i == (itrace_index-1))
       {
@@ -66,11 +65,9 @@ void fifo_itrace_tran(){
       else{
       printf("     pc= 0x%08lx                   ",fifo_pc[i*4]);
       printf("      inst= 0x%08lx\n",fifo_inst[i*4]);
-    //printf("dang qian pc = 0x%08x\n",)
       }
     }
 }
-
 static void fifo_wr(Decode *s){
     if(itrace_index >= 10)
       {itrace_index = 0; } 
@@ -84,7 +81,9 @@ static void exec_once(Decode *s, vaddr_t pc) {
   s->pc = pc;
   s->snpc = pc;
   isa_exec_once(s);
+  
   fifo_wr(s);  //cun.chu.pc & inst.
+
   cpu.pc = s->dnpc;
 #ifdef CONFIG_ITRACE
   char *p = s->logbuf;
@@ -92,9 +91,6 @@ static void exec_once(Decode *s, vaddr_t pc) {
   int ilen = s->snpc - s->pc;
   int i;
   uint8_t *inst = (uint8_t *)&s->isa.inst.val;
-
-  
-
   for (i = 0; i < ilen; i ++) {
     p += snprintf(p, 4, " %02x", inst[i]);
   }
