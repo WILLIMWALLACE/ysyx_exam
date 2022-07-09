@@ -59,6 +59,7 @@ void fifo_itrace_tran(){
     printf("index = %d\n",itrace_index);
     printf("     pc= 0x%08d                   ",fifo_pc[itrace_index]);
     printf("      inst= 0x%08x\n",fifo_inst[itrace_index]);
+    //printf("dang qian pc = 0x%08x\n",)
 }
 
 static void fifo_wr(Decode *s){
@@ -67,6 +68,7 @@ static void fifo_wr(Decode *s){
     fifo_pc[itrace_index*4]   = s->pc;
     fifo_inst[itrace_index*4] = s->isa.inst.val;
     itrace_index++;
+    printf("dang qian pc = 0x%08lx\n",s->pc);
 }
 /**************for i trace*******************/
 static void exec_once(Decode *s, vaddr_t pc) {
