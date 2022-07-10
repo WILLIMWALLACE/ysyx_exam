@@ -5,7 +5,10 @@ void __am_timer_init() {
 }
 
 void __am_timer_uptime(AM_TIMER_UPTIME_T *uptime) {
-  uptime->us = 0;
+  int32_t time_h,time_l;
+  time_h = inl(0xa0000048);
+  time_l = inl(0xa000004c); //offset 4byte(4c-48),mei.ci.du.chu.32bit
+  uptime->us = (((int64_t) time_h << 32) + time_l);
 }
 
 void __am_timer_rtc(AM_TIMER_RTC_T *rtc) {
