@@ -11,7 +11,7 @@ void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
   if(flag == KEYDOWN_MASK){
     kbd->keycode = key_input & (~KEYDOWN_MASK);
     kbd->keydown = 1;
-    printf("key_input = %d\n",key_input);
+   // printf("key_input = %d\n",key_input);
   }
   else {
     kbd->keydown = 0;
