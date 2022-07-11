@@ -4,7 +4,7 @@
 #define KEYDOWN_MASK 0x8000
 
 void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
-  int flag;
+  int flag = 0;
   uint32_t key_input =  inl(KBD_ADDR);
   flag = key_input & KEYDOWN_MASK;
     //printf("key_down = %d\n",kbd->keydown);
@@ -14,7 +14,7 @@ void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
     printf("key_input = %d\n",key_input);
   }
   else {
-     printf("flag = %d\n",flag);
+     //printf("flag = %d\n",flag);
     kbd->keydown = 0;
     kbd->keycode = AM_KEY_NONE;
   }
