@@ -52,6 +52,9 @@ int printf(const char *fmt, ...) {
         }
         rnum_val = num_val; //chong.xin.huo.qu.'num'.de.shi.ji.zhi
         while(count){
+
+          if(my_pow(10,count-1)==0){printf("div 0 yi chu\n"); assert(0);}
+          
           single_h = rnum_val/my_pow(10,count-1);//mei.ci.qu.chu.gao.wei.
           rnum_val %= my_pow(10,count-1); //yu.shu.->sheng.xia.de.di.wei.shu.zhi
           putch(single_h+'0');
