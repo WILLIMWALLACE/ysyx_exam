@@ -44,7 +44,7 @@ word_t map_read(paddr_t addr, int len, IOMap *map) {
   invoke_callback(map->callback, offset, len, false); // prepare data to read
   word_t ret = host_read(map->space + offset, len);
   ///////////device_trace///////////////////
-  printf("read %s device\n",map->name);
+  //printf("read %s device\n",map->name);
   ///////////device_trace///////////////////
   return ret;
 }
@@ -56,6 +56,6 @@ void map_write(paddr_t addr, int len, word_t data, IOMap *map) {
   host_write(map->space + offset, len, data);
   invoke_callback(map->callback, offset, len, true);
   ///////////device_trace///////////////////
-  printf("write %s device\n",map->name);
+  //printf("write %s device\n",map->name);
   ///////////device_trace///////////////////
 }
