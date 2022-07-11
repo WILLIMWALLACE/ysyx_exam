@@ -9,10 +9,11 @@ void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
   kbd->keydown = key_input >> 31;
   if(kbd->keydown == 1){
     kbd->keycode = key_input << 1 ;
+    printf("key_input = %d\n",key_input);
   }
   else {
     kbd->keycode = AM_KEY_NONE;
   }
-  printf("key_input = %d\n",key_input);
+  //printf("key_input = %d\n",key_input);
   //kbd->keycode = AM_KEY_NONE;
 }
