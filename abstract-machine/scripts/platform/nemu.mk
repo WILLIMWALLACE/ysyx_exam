@@ -12,9 +12,9 @@ LDFLAGS   += -T $(AM_HOME)/scripts/linker.ld \
              --defsym=_pmem_start=0x80000000 --defsym=_entry_offset=0x0
 LDFLAGS   += --gc-sections -e _start
 ############原始命令，不用-b批处理模式#############
-#NEMUFLAGS += -l $(shell dirname $(IMAGE).elf)/nemu-log.txt
+NEMUFLAGS += -l $(shell dirname $(IMAGE).elf)/nemu-log.txt
 #添加的-b 选项开启批处理模式#############
-NEMUFLAGS += -b -l $(shell dirname $(IMAGE).elf)/nemu-log.txt
+#NEMUFLAGS += -b -l $(shell dirname $(IMAGE).elf)/nemu-log.txt
 ###################################################
 CFLAGS += -DMAINARGS=\"$(mainargs)\"
 CFLAGS += -I$(AM_HOME)/am/src/platform/nemu/include
