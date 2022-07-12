@@ -14,7 +14,7 @@
 void __am_gpu_init() {
   int i;
   int w = 800;
-  int h = 140;
+  int h = 150;
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
   for(i=0; i<w*h; i++) fb[i] = i;
   outl(SYNC_ADDR,1);
