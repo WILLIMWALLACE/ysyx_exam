@@ -13,8 +13,8 @@
 
 void __am_gpu_init() {
   int i;
-  int w = 600 ;
-  int h = 300 ;
+  int w = (inl(VGACTL_ADDR) & WMASK) /32;
+  int h = (inl(VGACTL_ADDR) & HMASK) /32;
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
   for(i=0; i<w*h; i++) fb[i] = i;
   outl(SYNC_ADDR,1);
