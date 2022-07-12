@@ -9,12 +9,12 @@ void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
   flag = key_input & KEYDOWN_MASK;
    // printf("key_down = %d\n",kbd->keydown);
   if(flag != 0){
-    kbd->keydown = true;
+    kbd->keydown = key_input & KEYDOWN_MASK;;
     kbd->keycode = key_input & (~KEYDOWN_MASK);
     //printf("key_input = %d\n",key_input);
   }
   else {
-    kbd->keydown = false;
+   // kbd->keydown = false;
     kbd->keycode = AM_KEY_NONE;
   }
   //printf("key_input = %d\n",key_input);
