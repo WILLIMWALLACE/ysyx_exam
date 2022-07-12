@@ -12,6 +12,7 @@ void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
     kbd->keydown = true;
     kbd->keycode = key_input & (~KEYDOWN_MASK);
     flag = 0;
+    kbd->keydown = false;
     //printf("key_input = %d\n",key_input);
   }
   else {
