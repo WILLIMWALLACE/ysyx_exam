@@ -18,7 +18,7 @@ void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
       else {
       //printf("jin ru\n");
       kbd->keydown = false;
-      kbd->keycode = key_input & (~KEYDOWN_MASK);
+      kbd->keycode = AM_KEY_NONE;
       }
     //printf("key_input = %d\n",key_input);
     //kbd->keycode = AM_KEY_NONE;
