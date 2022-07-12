@@ -50,9 +50,11 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
   //zhi.zhen.cun.ru, xiang.su
   uint32_t *pixels = ctl->pixels;
   //screen kuan.chang
-  int total_w =  inl(VGACTL_ADDR) & WMASK;
-  int total_h =  inl(VGACTL_ADDR) & HMASK;
-  printf("total_w=%d,   total_h=%d\n",total_w,total_h);
+  int total_w = 800;
+  int total_h = 150;
+  //int total_w =  inl(VGACTL_ADDR) & WMASK;
+  //int total_h =  inl(VGACTL_ADDR) & HMASK;
+  //printf("total_w=%d,   total_h=%d\n",total_w,total_h);
   //copy size
   int size_copy = sizeof(uint32_t) * my_min(total_w-x,w);
   //main logic
