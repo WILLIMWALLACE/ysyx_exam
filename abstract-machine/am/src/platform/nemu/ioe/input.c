@@ -8,7 +8,7 @@ void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
   uint32_t key_input =  inl(KBD_ADDR);
   flag = key_input & KEYDOWN_MASK;
    // printf("key_down = %d\n",kbd->keydown);
-  if(flag != 0){
+  if(flag == KEYDOWN_MASK){
     kbd->keydown = true;
     kbd->keycode = key_input & (~KEYDOWN_MASK);
     //printf("key_input = %d\n",key_input);
