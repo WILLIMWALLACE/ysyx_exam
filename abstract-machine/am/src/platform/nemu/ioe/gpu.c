@@ -3,14 +3,29 @@
 
 #define SYNC_ADDR (VGACTL_ADDR + 4)
 
+#define RMASK 0x00ff0000
+#define GMASK 0x0000ff00
+#define BMASK 0x000000ff
+#define AMASK 0x00000000
+
+#define WMASK 0xff00
+#define HMASK 0x00ff
+
 void __am_gpu_init() {
+  int i;
+  int w = 0 ;
+  int h = 0 ;
+  uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
+  for(i=0; i<w*h; i++) fb[i] = i;
+  outl(SYNC_ADDR,1);
 }
 
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
   *cfg = (AM_GPU_CONFIG_T) {
     .present = true, .has_accel = false,
-    .width = 0, .height = 0,
-    .vmemsz = 0
+    .width   = inl(VGACTL_ADDR) & WMASK,
+    .height  = inl(VGACTL_ADDR) & HMASK,
+    .vmemsz  = 0
   };
 }
 
