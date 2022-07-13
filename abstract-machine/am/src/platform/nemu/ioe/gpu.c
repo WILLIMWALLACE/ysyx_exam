@@ -70,8 +70,8 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
   }*/
   for(int i=0;i<h&&y+i<total_h;i++){
       memcpy(&fb[(y+i)*total_w +x], pixels,w);
-      pixels ++;
-      //pixels += w;    
+      //pixels ++;
+      pixels += w;    
   }
 
   if (ctl->sync) {
