@@ -19,13 +19,14 @@ Context* __am_irq_handle(Context *c) {
 }
 
 extern void __am_asm_trap(void);
-
+//外层指针函数，内层函数指针， 即函数指针handler 返回值是 由 Context定义的指针
+//发生事件，将 事件（原因等信息）、上下文信息 传回 操作系统 ，以供处理
 bool cte_init(Context*(*handler)(Event, Context*)) {
   // initialize exception entry
   asm volatile("csrw mtvec, %0" : : "r"(__am_asm_trap));
 
   // register event handler
-  user_handler = handler;
+  user_handler = handler;//调用*handler函数，user_handler也是函数指针。 函数的首地址 赋值
 
   return true;
 }
