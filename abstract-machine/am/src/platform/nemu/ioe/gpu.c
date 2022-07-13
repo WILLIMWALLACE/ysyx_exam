@@ -26,7 +26,7 @@ int my_min(int a, int b){
 void __am_gpu_init() {
   int i;
   uint32_t screen_size = inl(VGACTL_ADDR);
-  total_w = screen_size & WMASK;
+  total_w = (screen_size & WMASK) >> 16;
   total_h = screen_size & HMASK;
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
   for(i=0; i<total_w*total_h; i++) fb[i] = i;
