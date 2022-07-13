@@ -25,8 +25,8 @@ int my_min(int a, int b){
 
 void __am_gpu_init() {
   int i;
-  int total_w = inl(VGACTL_ADDR) & WMASK;
-  int total_h = inl(VGACTL_ADDR) & HMASK;
+  total_w = inl(VGACTL_ADDR) & WMASK;
+  total_h = inl(VGACTL_ADDR) & HMASK;
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
   for(i=0; i<total_w*total_h; i++) fb[i] = i;
   outl(SYNC_ADDR,1);
@@ -43,7 +43,7 @@ void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
 
 void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
   //pixel's  zuo.biao, kuan.chang
-  int x = ctl->x, y = ctl->y, w = ctl->w, h = ctl->h;
+  /*int x = ctl->x, y = ctl->y, w = ctl->w, h = ctl->h;
   printf("x=%d  ,y=%d,  w=%d,  h=%d\n",x,y,w,h);
   //store address  similar to _am_gpu_init
   uint32_t *fb = (uint32_t *)(uintptr_t) FB_ADDR; 
@@ -65,7 +65,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
       memcpy(&fb[(y+i)*total_w +x], pixels,size_copy);
       pixels += w;    
   }
-
+*/
   if (ctl->sync) {
     outl(SYNC_ADDR, 1);
   }
