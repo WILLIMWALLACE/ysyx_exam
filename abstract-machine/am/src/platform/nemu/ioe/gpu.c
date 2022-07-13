@@ -56,7 +56,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
   //screen kuan.chang 
   //int total_w =  inl(VGACTL_ADDR) & WMASK;
   //int total_h =  inl(VGACTL_ADDR) & HMASK;
-  printf("total_w=%d,   total_h=%d\n",total_w,total_h);
+  //printf("total_w=%d,   total_h=%d\n",total_w,total_h);
  
   //main logic
   /*uint32_t scan_addr;
@@ -69,7 +69,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
   int size_copy = sizeof(uint32_t) * my_min(total_w-x,w);
   for(int i=0;i<h&&y+i<total_h;i++){
       memcpy(&fb[(y+i)*total_w +x], pixels,size_copy);
-      //printf("address=%d\n",(y+i)*total_w+x);
+      printf("address=%d\n",(y+i)*total_w+x);
       //pixels ++;
       pixels += w;    
   }
