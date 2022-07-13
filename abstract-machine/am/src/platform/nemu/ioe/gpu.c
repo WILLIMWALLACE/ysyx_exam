@@ -66,10 +66,10 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
     pixels += w ;
   }*/
    //copy size
-  int size_copy = sizeof(uint32_t) * my_min(total_w-x,w);
+  int size_copy = sizeof(uint32_t) * my_min(total_w-x,w);//fang.zhi.zui.hou. yue.jie.
   for(int i=0;i<h&&y+i<total_h;i++){
       memcpy(&fb[(y+i)*total_w +x], pixels,size_copy);
-      printf("address=%d\n",(y+i)*total_w+x);
+      //printf("address=%d\n",(y+i)*total_w+x);
       //pixels ++;
       pixels += w;    
   }
