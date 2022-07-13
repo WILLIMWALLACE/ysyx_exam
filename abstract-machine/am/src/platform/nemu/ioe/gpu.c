@@ -11,7 +11,8 @@
 
 #define WMASK 0xff00
 #define HMASK 0x00ff
-
+static  uint32_t  total_w;
+static  uint32_t  total_h; 
 
 int my_min(int a, int b){
   if(a <= b){
@@ -24,10 +25,10 @@ int my_min(int a, int b){
 
 void __am_gpu_init() {
   int i;
-  int w = 800;
-  int h = 150;
+  int total_w = inl(VGACTL_ADDR) & WMASK;
+  int total_h = inl(VGACTL_ADDR) & HMASK;
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
-  for(i=0; i<w*h; i++) fb[i] = i;
+  for(i=0; i<total_w*total_h; i++) fb[i] = i;
   outl(SYNC_ADDR,1);
 }
 
@@ -52,8 +53,8 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
   //zhi.zhen.cun.ru, xiang.su
   uint32_t *pixels = ctl->pixels;
   //screen kuan.chang
-  int total_w = 800;
-  int total_h = 600;
+  //int total_w = 800;
+  //int total_h = 600;
   //int total_w =  inl(VGACTL_ADDR) & WMASK;
   //int total_h =  inl(VGACTL_ADDR) & HMASK;
   //printf("total_w=%d,   total_h=%d\n",total_w,total_h);
