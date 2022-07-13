@@ -45,7 +45,7 @@ void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
 void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
   //pixel's  zuo.biao, kuan.chang
   int x = ctl->x, y = ctl->y, w = ctl->w, h = ctl->h;
-  printf("x=%d  ,y=%d,  w=%d,  h=%d\n",x,y,w,h);
+  //printf("x=%d  ,y=%d,  w=%d,  h=%d\n",x,y,w,h);
   //store address  similar to _am_gpu_init
   uint32_t *fb = (uint32_t *)(uintptr_t) FB_ADDR; 
   //di.zhi.da.xiao..shi..'uintptr_r',zhi.zhen.bian.liang..shi..32.wei.
@@ -60,14 +60,21 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
   //int total_h =  inl(VGACTL_ADDR) & HMASK;
   //printf("total_w=%d,   total_h=%d\n",total_w,total_h);
   //copy size
-  int size_copy = sizeof(uint32_t) * my_min(total_w-x,w);
+  //int size_copy = sizeof(uint32_t) * my_min(total_w-x,w);
   //main logic
-  for(int i=0;i<h&&y+i<total_h;i++){
+  uint32_t scan_addr;
+  for(int i=0;i<h && y+i<total_h;i++){
+    scan_addr = (y+i)*total_w + x;
+    fb[scan_addr]  = *pixels;
+    pixels ++ ;
+
+  }
+  
+  /*for(int i=0;i<h&&y+i<total_h;i++){
       memcpy(&fb[(y+i)*total_w +x], pixels,size_copy);
       pixels ++;
       //pixels += w;    
-  }
-
+  }*/
   if (ctl->sync) {
     outl(SYNC_ADDR, 1);
   }
