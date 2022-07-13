@@ -60,21 +60,20 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
   //int total_h =  inl(VGACTL_ADDR) & HMASK;
   //printf("total_w=%d,   total_h=%d\n",total_w,total_h);
   //copy size
-  //int size_copy = sizeof(uint32_t) * my_min(total_w-x,w);
+  int size_copy = sizeof(uint32_t) * my_min(total_w-x,w);
   //main logic
-  uint32_t scan_addr;
+  /*uint32_t scan_addr;
   for(int i=0;i<h && y+i<total_h;i++){
     scan_addr = (y+i)*total_w + x;
     fb[scan_addr]  = *pixels;
     pixels += w ;
-
-  }
-  
-  /*for(int i=0;i<h&&y+i<total_h;i++){
+  }*/
+  for(int i=0;i<h&&y+i<total_h;i++){
       memcpy(&fb[(y+i)*total_w +x], pixels,size_copy);
       pixels ++;
       //pixels += w;    
-  }*/
+  }
+  
   if (ctl->sync) {
     outl(SYNC_ADDR, 1);
   }
