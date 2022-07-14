@@ -131,8 +131,9 @@ INSTPAT("??????? ????? ????? 010 ????? 11100 11", CSRRS  , I, R(dest)=(dest==0)?
 INSTPAT("??????? ????? ????? 011 ????? 11100 11", CSRRC  , I, R(dest)=(dest==0)?0:csr_read(src2); csr_write(src2,src1,2));
 INSTPAT("0000000 00000 00000 000 00000 11100 11", ECALL  , N, s->dnpc=isa_raise_intr(R(17), s->pc);
     if(cpu.mcause==0xffffffffffffffff)
-    printf("EVENT_YIELD\n");
-    printf("mepc=%lx,mcaus=%lx,mtvec=%lx\n",cpu.mepc,cpu.mcause,cpu.mtvec); );
+    printf("EVENT_YIELD\n");printf("mepc=%lx,mcaus=%lx,mtvec=%lx\n",cpu.mepc,cpu.mcause,cpu.mtvec)
+    
+     );
 INSTPAT("0011000 00010 00000 000 00000 11100 11", MRET   , N, s->dnpc=cpu.mepc + 4  );
 
 //quit instruction
