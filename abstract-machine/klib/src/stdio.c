@@ -6,14 +6,14 @@
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
 //zhi.shu 
-/*static uint64_t my_pow(int x, int y){
+static uint64_t my_pow(int x, int y){
   uint64_t sum = 1;
   while (y--)
   {
     sum *= x;
   }
   return sum;
-}*/
+}
 //jin.zhi.zhuan.huan
 static char *base_convert(uint64_t num,int base){
   static char num_lib[]="0123456789";  //ke.xuan.can.shu
@@ -29,7 +29,7 @@ static char *base_convert(uint64_t num,int base){
   return (str);
 }
 
-/*int printf(const char *fmt, ...) {
+int printf(const char *fmt, ...) {
   va_list exp_val;//printf yin hao hou mian shi ji zhi
   int num_val,rnum_val; //for %d
   char *ptr = NULL;      //for %s
@@ -77,9 +77,9 @@ static char *base_convert(uint64_t num,int base){
   va_end(exp_val);
   return 0;
   //panic("Not implemented");
-}*/
+}
 /////////////////////////////////
-char str[11];
+/*char str[11];
 char tab[16] = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
 
 char *out_num(long num,int base,char leader_m,int minwidth){
@@ -232,7 +232,7 @@ int printf(const char *fmt, ...) {
   va_end(ap);
   return 0;
 }
-
+*/
 
 
 
