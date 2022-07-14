@@ -14,14 +14,37 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
   return cpu.mtvec;
 }
 
-
-void csr_write(word_t csr_addr, word_t data){
-  switch(csr_addr){
-    case 0x300: cpu.mstatus = data;   break;
-    case 0x305: cpu.mtvec   = data;   break;
-    case 0x341: cpu.mepc  = data;   break;
-    case 0x342: cpu.mcause   = data;  break;
-    default:    printf("invalid csr address\n");  assert(0);
+void csr_write(word_t csr_addr, word_t data, int op){
+  if(op==0){//write
+    switch(csr_addr){
+      case 0x300: cpu.mstatus = data;   break;
+      case 0x305: cpu.mtvec   = data;   break;
+      case 0x341: cpu.mepc    = data;   break;
+      case 0x342: cpu.mcause  = data;  break;
+      default:    printf("invalid csr address\n");  assert(0);
+    }
+  }
+  else if(op==1){//set
+    switch(csr_addr){
+      case 0x300: cpu.mstatus = cpu.mstatus|data;   break;
+      case 0x305: cpu.mtvec   = cpu.mtvec  |data;   break;
+      case 0x341: cpu.mepc    = cpu.mepc   |data;   break;
+      case 0x342: cpu.mcause  = cpu.mcause |data;  break;
+      default:    printf("invalid csr address\n");  assert(0);
+    }
+  }
+  else if(op==2){//clear
+    switch(csr_addr){
+      case 0x300: cpu.mstatus = cpu.mstatus&(~data);   break;
+      case 0x305: cpu.mtvec   = cpu.mtvec  &(~data);   break;
+      case 0x341: cpu.mepc    = cpu.mepc   &(~data);   break;
+      case 0x342: cpu.mcause  = cpu.mcause &(~data);  break;
+      default:    printf("invalid csr address\n");  assert(0);
+    }
+  }
+  else{
+    printf("invalid op\n");
+    assert(0);
   }
 }
 
