@@ -15,7 +15,19 @@
 int scan_wp();
 void sdb_mainloop();
 ////////////shou dong kai guan//////////////
+///////////   etrace    ////////////////////////////
+//enum {
+ //   EVENT_NULL = 0,
+ //   EVENT_YIELD, EVENT_SYSCALL, EVENT_PAGEFAULT, EVENT_ERROR,
+ //   EVENT_IRQ_TIMER, EVENT_IRQ_IODEV,
+//};
+#define etrace
 ////////////////////////////////////////////
+////////////////////////////////////////////
+
+
+
+
 CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
@@ -85,6 +97,20 @@ static void exec_once(Decode *s, vaddr_t pc) {
   fifo_wr(s);  //cun.chu.pc & inst.
 
   cpu.pc = s->dnpc;
+
+  #ifdef etrace
+
+  switch(cpu.mcause){
+   case 0xffffffffffffffff: 
+    printf("EVENT_YIELD\n");
+    printf("mepc=%lx,mcaus=%lx,mtvec=%lx\n",cpu.mepc,cpu.mcause,cpu.mtvec); 
+    break;
+
+   default: printf("EVENT_NULL\n");
+  }
+  #endif
+
+
 #ifdef CONFIG_ITRACE
   char *p = s->logbuf;
   p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);
