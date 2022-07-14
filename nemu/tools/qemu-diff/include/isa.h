@@ -1,14 +1,6 @@
 #ifndef __ISA_H__
 #define __ISA_H__
 
-enum {
-    EVENT_NULL = 0,
-    EVENT_YIELD, EVENT_SYSCALL, EVENT_PAGEFAULT, EVENT_ERROR,
-    EVENT_IRQ_TIMER, EVENT_IRQ_IODEV,
-};
-
-#define etrace
-
 #if defined(CONFIG_ISA_mips32)
 #define ISA_QEMU_BIN "qemu-system-mipsel"
 #define ISA_QEMU_ARGS "-machine", "mipssim",\
