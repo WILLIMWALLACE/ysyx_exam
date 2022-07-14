@@ -4,7 +4,7 @@
 #include <common.h>
 
 typedef struct {
-  word_t gpr[32] , mepc, mcause, mtvec, mtatus;
+  word_t gpr[32] , mepc, mcause, mtvec, mstatus;
   vaddr_t pc;
 } riscv64_CPU_state;
 
