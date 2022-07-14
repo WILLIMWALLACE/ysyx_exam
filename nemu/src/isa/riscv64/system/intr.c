@@ -9,8 +9,16 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
   //return epc;  // &mtvec 
   cpu.mepc   = epc;
   cpu.mcause = NO;
-  //printf("mepc=%lx,mcaus=%lx,mtvec=%lx\n",
-  //cpu.mepc,cpu.mcause,cpu.mtvec);
+  
+  #ifdef etrace
+  printf("mepc=%lx,mcaus=%lx,mtvec=%lx\n",
+  cpu.mepc,cpu.mcause,cpu.mtvec);
+  switch(cpu.mcause){
+   case 0xffffffffffffffff: 
+      printf("EVENT_YIELD\n"); break;
+   default: printf("EVENT_NULL\n");
+  }
+  #endif
   return cpu.mtvec;
 }
 
