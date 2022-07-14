@@ -21,7 +21,7 @@ void sdb_mainloop();
  //   EVENT_YIELD, EVENT_SYSCALL, EVENT_PAGEFAULT, EVENT_ERROR,
  //   EVENT_IRQ_TIMER, EVENT_IRQ_IODEV,
 //};
-//#define etrace
+#define etrace
 ////////////////////////////////////////////
 ////////////////////////////////////////////
 
@@ -99,13 +99,9 @@ static void exec_once(Decode *s, vaddr_t pc) {
   cpu.pc = s->dnpc;
 
   #ifdef etrace
-
-  switch(cpu.mcause){
-   case 0xffffffffffffffff: 
+  if(cpu.mcause == 0xffffffffffffffff){
     printf("EVENT_YIELD\n");
     printf("mepc=%lx,mcaus=%lx,mtvec=%lx\n",cpu.mepc,cpu.mcause,cpu.mtvec); 
-    break;
-   //default: //printf("EVENT_NULL\n");
   }
   #endif
 
