@@ -105,8 +105,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
     printf("EVENT_YIELD\n");
     printf("mepc=%lx,mcaus=%lx,mtvec=%lx\n",cpu.mepc,cpu.mcause,cpu.mtvec); 
     break;
-
-   default: printf("EVENT_NULL\n");
+   //default: //printf("EVENT_NULL\n");
   }
   #endif
 
