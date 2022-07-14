@@ -7,10 +7,27 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
   //mepc = irq_pc;
   //mcause = NO;
   //return epc;  // &mtvec 
-  cpu.mepc   = cpu.pc;
+  cpu.mepc   = epc;
   cpu.mcause = NO;
   return cpu.mtvec;
-  
+}
+
+
+void csr_write(word_t csr_addr, word_t data){
+  switch(csr_addr){
+    //case 0x341: cpu.mepc  = data; break;
+    case 0x305: cpu.mtvec = data; break;
+    default:    printf("invalid csr address\n");  assert(0);
+  }
+}
+
+word_t csr_read(word_t csr_addr){
+  //word_t  data;
+  switch(csr_addr){
+    //case 0x341: return cpu.mepc; break;
+    case 0x305: return cpu.mtvec; break;
+    default:  printf("invalid csr address\n");  assert(0);
+  }
 }
 
 word_t isa_query_intr() {
