@@ -13,12 +13,16 @@ bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
         flag = false;  
         printf("*************ref_r.gpr[%d]=0x%016lx,cpu.gpr[%d]=0x%016lx****************\n",
         i,ref_r->gpr[i],i,cpu.gpr[i]);
+        printf("*************ref_r.pc=0x%016lx,cpu.pc=0x%016lx****************\n",
+        ref_r->pc,cpu.pc);
         break;
       }
     }
   }
   else { 
     flag  =  false;
+    printf("*************ref_r.pc=0x%016lx,cpu.pc=0x%016lx****************\n",
+        ref_r->pc,cpu.pc);
   }
   //printf("flag=%d\n",flag);
   return flag;
