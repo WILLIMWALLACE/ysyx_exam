@@ -15,18 +15,6 @@
 int scan_wp();
 void sdb_mainloop();
 ////////////shou dong kai guan//////////////
-///////////   etrace    ////////////////////////////
-//enum {
- //   EVENT_NULL = 0,
- //   EVENT_YIELD, EVENT_SYSCALL, EVENT_PAGEFAULT, EVENT_ERROR,
- //   EVENT_IRQ_TIMER, EVENT_IRQ_IODEV,
-//};
-#define etrace
-////////////////////////////////////////////
-////////////////////////////////////////////
-
-
-
 
 CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;

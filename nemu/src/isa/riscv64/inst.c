@@ -8,6 +8,20 @@ word_t csr_read(word_t csr_addr);
 #define R(i) gpr(i)
 #define Mr vaddr_read
 #define Mw vaddr_write
+////////////   etrace  ///////////////////////////////////////
+int event_type(word_t mcause){
+  switch (mcause)
+  {
+  case 0xffffffffffffffff: 
+  printf("EVENT_YIELD\n");
+  printf("mepc=%lx,mcaus=%lx,mtvec=%lx\n",cpu.mepc,cpu.mcause,cpu.mtvec);
+  break;
+  default: return 0;  break;
+  }
+  return 0;
+}
+////////////////////////////////////////////////
+////////////////////////////////////////////////
 
 enum {
   TYPE_I, TYPE_U, TYPE_S,
@@ -129,11 +143,8 @@ INSTPAT("??????? ????? ????? 001 ????? 01000 11", sh     , S, Mw(src1 + dest, 2,
 INSTPAT("??????? ????? ????? 001 ????? 11100 11", CSRRW  , I, R(dest)=(dest==0)?0:csr_read(src2); csr_write(src2,src1,0));
 INSTPAT("??????? ????? ????? 010 ????? 11100 11", CSRRS  , I, R(dest)=(dest==0)?0:csr_read(src2); csr_write(src2,src1,1));
 INSTPAT("??????? ????? ????? 011 ????? 11100 11", CSRRC  , I, R(dest)=(dest==0)?0:csr_read(src2); csr_write(src2,src1,2));
-INSTPAT("0000000 00000 00000 000 00000 11100 11", ECALL  , N, s->dnpc=isa_raise_intr(R(17), s->pc);
-    if(cpu.mcause==0xffffffffffffffff)
-    printf("EVENT_YIELD\n");printf("mepc=%lx,mcaus=%lx,mtvec=%lx\n",cpu.mepc,cpu.mcause,cpu.mtvec)
-    
-     );
+INSTPAT("0000000 00000 00000 000 00000 11100 11", ECALL  , N, 
+s->dnpc=isa_raise_intr(R(17), s->pc); event_type(cpu.mcause) );
 INSTPAT("0011000 00010 00000 000 00000 11100 11", MRET   , N, s->dnpc=cpu.mepc + 4  );
 
 //quit instruction
