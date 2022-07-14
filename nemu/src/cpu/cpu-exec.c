@@ -98,14 +98,6 @@ static void exec_once(Decode *s, vaddr_t pc) {
 
   cpu.pc = s->dnpc;
 
-  #ifdef etrace
-  if(cpu.mcause == 0xffffffffffffffff){
-    printf("EVENT_YIELD\n");
-    printf("mepc=%lx,mcaus=%lx,mtvec=%lx\n",cpu.mepc,cpu.mcause,cpu.mtvec); 
-  }
-  #endif
-
-
 #ifdef CONFIG_ITRACE
   char *p = s->logbuf;
   p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);
