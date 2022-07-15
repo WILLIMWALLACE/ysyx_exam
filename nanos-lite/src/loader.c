@@ -14,16 +14,16 @@ size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 static uintptr_t loader(PCB *pcb, const char *filename) {
   Elf_Ehdr ehdr;
   ramdisk_read(&ehdr, 0, sizeof(ehdr));
-  printf("pnum=%d\n",ehdr.e_phnum);
+  //printf("pnum=%d\n",ehdr.e_phnum);
   Elf_Phdr phdr[ehdr.e_phnum];
-  //ramdisk_read(phdr, ehdr.e_phoff, ehdr.e_phentsize*ehdr.e_phnum);
-  ramdisk_read(phdr, ehdr.e_phoff, sizeof(phdr)*ehdr.e_phnum);
+  ramdisk_read(phdr, ehdr.e_phoff, ehdr.e_phentsize*ehdr.e_phnum);
+  // ramdisk_read(phdr, ehdr.e_phoff, sizeof(phdr)*ehdr.e_phnum);
   printf("offset=%d,len=%d\n",ehdr.e_phoff,ehdr.e_phentsize*ehdr.e_phnum);
   for(int i=0; i<ehdr.e_phnum; i++){
     if(phdr[i].p_type == PT_LOAD){
       //printf("phdr[%d].offset=%s\n",i,phdr[i].p_offset);
       ramdisk_read((void*)phdr[i].p_vaddr,phdr[i].p_offset,phdr[i].p_memsz);
-      printf("vaddr=%d,filez=%d,memsize=%d\n",phdr[i].p_vaddr,phdr[i].p_filesz,phdr[i].p_memsz);
+      //printf("vaddr=%d,filez=%d,memsize=%d\n",phdr[i].p_vaddr,phdr[i].p_filesz,phdr[i].p_memsz);
       memset((void*)(phdr[i].p_vaddr + phdr[i].p_filesz),0,(phdr[i].p_memsz - phdr[i].p_filesz));
     }
   }
