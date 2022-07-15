@@ -113,7 +113,7 @@ int strncmp(const char *s1, const char *s2, size_t n) {
 }
 //set 'c' to s_addr ----- s_addr+n
 void *memset(void *s, int c, size_t n) {
-  if(n==0){
+  if(s==NULL){
     printf("invalid input.n=%d,s=%s\n",n,s);
     assert(0);
   }
