@@ -10,7 +10,9 @@
 # define Elf_Phdr Elf32_Phdr
 #endif
 
-#if defined(__ISA_X86__)
+#if defined(__ISA_AM_NATIVE__)
+# define EXPECT_TYPE EM_X86_64
+#elif defined(__ISA_X86__)
 # define EXPECT_TYPE EM_X86_64
 #elif defined(__ISA_MIPS32__)
 # define EXPECT_TYPE EM_MIPS
