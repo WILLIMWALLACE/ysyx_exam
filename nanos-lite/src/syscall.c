@@ -32,9 +32,10 @@ static int sys_yield(Context *c){
 }
 
 static int sys_exit(Context *c,uint64_t a){
+  printf("***********STRACE**************\nmcause=0,syscall_name=SYS_EXIT,ret_value=0\n");
   halt(a);
   c->GPRx = 0;
-  printf("***********STRACE**************\nmcause=0,syscall_name=SYS_EXIT,ret_value=0\n");
+  
   return 0;
 } 
 
