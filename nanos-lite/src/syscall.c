@@ -27,14 +27,14 @@ enum {
 static int sys_yield(Context *c){
   yield();
   c->GPRx = 0;
-  printf("mcause=1,syscall_name=SYS_YIELD,ret_value=0\n");
+  printf("***********STRACE**************\nmcause=1,syscall_name=SYS_YIELD,ret_value=0\n");
   return 0;
 }
 
 static int sys_exit(Context *c,uint64_t a){
   halt(a);
   c->GPRx = 0;
-  printf("mcause=0,syscall_name=SYS_EXIT,ret_value=0\n");
+  printf("***********STRACE**************\nmcause=0,syscall_name=SYS_EXIT,ret_value=0\n");
   return 0;
 } 
 
