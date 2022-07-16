@@ -11,11 +11,11 @@
 #endif
 
 #if defined(__ISA_X86__)
-# define EXPECT_TYPE 
+# define EXPECT_TYPE EM_X86_64
 #elif defined(__ISA_MIPS32__)
-# define EXPECT_TYPE
+# define EXPECT_TYPE EM_MIPS
 #elif defined(__ISA_RISCV32__) || defined(__ISA_RISCV64__)
-# define EXPECT_TYPE 
+# define EXPECT_TYPE EM_RISCV
 #elif
 # error unsupported ISA __ISA__
 #endif
@@ -27,6 +27,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   Elf_Ehdr ehdr;
   ramdisk_read(&ehdr, 0, sizeof(ehdr));
   assert(*(uint32_t *)ehdr.e_ident == 0x464c457f);
+  assert(ehdr.e_machine == EXPECT_TYPE);
   printf("machine=%d\n",ehdr.e_machine);
   //printf("pnum=%d\n",ehdr.e_phnum);
   Elf_Phdr phdr[ehdr.e_phnum];

@@ -11,7 +11,6 @@ else
 INC_PATH += include $(NAVY_HOME)/libs/libc/include
 endif
 
--D__ISA__=\"$(ISA)\" -D__ISA_$(shell echo $(ISA) | tr a-z A-Z)__ \
 
 ./src/resources.S: $(RAMDISK_FILE)
 	@touch $@
