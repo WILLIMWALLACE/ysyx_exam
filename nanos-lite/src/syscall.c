@@ -57,7 +57,8 @@ static int sys_write(int fd,  char *buf, size_t count,Context *c){
   c->GPRx = ret_cnt;
   //retrun c->GPRx;
   }
-  printf("***********STRACE**************\nmcause=4,syscall_name=SYS_WRITE,ret_value=0\n");    
+  printf("***********STRACE**************\nmcause=4,syscall_name=SYS_WRITE,ret_value=%d\n",
+  c->GPRx);    
   return c->GPRx;
 }
 
