@@ -38,7 +38,7 @@ static int sys_exit(Context *c,uint64_t a){
 } 
 
 static int sys_write(int fd,  char *buf, size_t count,Context *c){
-  if((fd!=1) || (fd!=2)){ //stdout==1(with buffer),stderr==2(no buffer)
+  if((fd!=1) && (fd!=2)){ //stdout==1(with buffer),stderr==2(no buffer)
     printf("fd is not valid!\n");
     c->GPRx = -1;
     assert(0);
