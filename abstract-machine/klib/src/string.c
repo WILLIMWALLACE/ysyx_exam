@@ -127,7 +127,7 @@ void *memset(void *s, int c, size_t n) {
 }
 //cpoy *src's[0-n] to *dst,this can defend the memory overlap
 void *memmove(void *dst, const void *src, size_t n) {
-  if(src==NULL||dst==NULL||n==0){
+  if(src==NULL||dst==NULL||n<0){
     printf("invalid input\n");
     assert(0);
   }
@@ -153,7 +153,7 @@ void *memmove(void *dst, const void *src, size_t n) {
 }
 //cpoy *src's[0-n] to *dst, just copy
 void *memcpy(void *out, const void *in, size_t n) {
-  if(n==0||in==NULL){
+  if(n<0||in==NULL){
     printf("invalid input\n");
     assert(0);
   }
