@@ -30,12 +30,12 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   ramdisk_read(&ehdr, 0, sizeof(ehdr));
   assert(*(uint32_t *)ehdr.e_ident == 0x464c457f);
   assert(ehdr.e_machine == EXPECT_TYPE);
-  printf("machine=%d\n",ehdr.e_machine);
+  //printf("machine=%d\n",ehdr.e_machine);
   //printf("pnum=%d\n",ehdr.e_phnum);
   Elf_Phdr phdr[ehdr.e_phnum];
   ramdisk_read(phdr, ehdr.e_phoff, ehdr.e_phentsize*ehdr.e_phnum);
   // ramdisk_read(phdr, ehdr.e_phoff, sizeof(phdr)*ehdr.e_phnum);
-  printf("offset=%d,len=%d\n",ehdr.e_phoff,ehdr.e_phentsize*ehdr.e_phnum);
+ // printf("offset=%d,len=%d\n",ehdr.e_phoff,ehdr.e_phentsize*ehdr.e_phnum);
   for(int i=0; i<ehdr.e_phnum; i++){
     if(phdr[i].p_type == PT_LOAD){
       //printf("phdr[%d].offset=%s\n",i,phdr[i].p_offset);
