@@ -62,6 +62,7 @@ static int sys_write(int fd,  char *buf, size_t count,Context *c){
   return c->GPRx;
 }
 
+
 void do_syscall(Context *c) {
   uintptr_t a[4];
   a[0] = c->GPR1;//a7,mcause
@@ -73,7 +74,8 @@ void do_syscall(Context *c) {
   switch (a[0]) {
     case SYS_exit :sys_exit(c,a[1]);   break;
     case SYS_yield:sys_yield(c);       break;
-    case SYS_write:sys_write(a[1],(char*)a[2],a[3],c);        break;
+    case SYS_write:sys_write(a[1],(char*)a[2],a[3],c); break;
+    case SYS_brk  :c->GPRx = 0;         break;
 
     default: panic("Unhandled syscall ID = %d", a[0]);
   }

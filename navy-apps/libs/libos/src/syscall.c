@@ -65,8 +65,18 @@ int _write(int fd, void *buf, size_t count) {
   return 0;
 }
 
+extern char _end;
 void *_sbrk(intptr_t increment) {
-  return (void *)-1;
+  static intptr_t probreak = &_end;
+   intptr_t old_probreak;
+  if(!_syscall_(SYS_brk, 0, 0, 0)){
+    old_probreak = probreak;
+    probreak    += increment;
+    return (void*) old_probreak;
+  }
+  else{
+    return (void *)-1;
+  }
 }
 
 int _read(int fd, void *buf, size_t count) {
