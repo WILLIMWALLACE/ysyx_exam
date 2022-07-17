@@ -55,16 +55,6 @@ void _exit(int status) {
   while (1);
 }
 
-int _open(const char *path, int flags, mode_t mode) {
-  _exit(SYS_open);
-  return 0;
-}
-
-int _write(int fd, void *buf, size_t count) {
-   _syscall_(SYS_write, fd, buf, count);
-  return 0;
-}
-
 extern char _end;
 void *_sbrk(intptr_t increment) {
   static intptr_t probreak = &_end;
@@ -78,6 +68,18 @@ void *_sbrk(intptr_t increment) {
     return (void *)-1;
   }
 }
+
+int _open(const char *path, int flags, mode_t mode) {
+  _exit(SYS_open);
+  return 0;
+}
+
+int _write(int fd, void *buf, size_t count) {
+   _syscall_(SYS_write, fd, buf, count);
+  return 0;
+}
+
+
 
 int _read(int fd, void *buf, size_t count) {
   _exit(SYS_read);
