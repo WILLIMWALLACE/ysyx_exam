@@ -50,6 +50,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   //sys_read(fd,(char *)phdr,ehdr.e_phentsize*ehdr.e_phnum,ehdr.e_phoff,0);
   size_t  diskoffset = ret_offset(fd);
   sys_close();
+  printf("off=%d\n",diskoffset+ehdr.e_phoff);
  // printf("offset=%d,len=%d\n",ehdr.e_phoff,ehdr.e_phentsize*ehdr.e_phnum);
   ramdisk_read(phdr, diskoffset+ehdr.e_phoff, ehdr.e_phentsize*ehdr.e_phnum);
   for(int i=0; i<ehdr.e_phnum; i++){
