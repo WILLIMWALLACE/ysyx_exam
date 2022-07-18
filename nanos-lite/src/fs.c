@@ -69,6 +69,12 @@ static Finfo file_table[] __attribute__((used)) = {
   //retrun c->GPRx;
   }
  else{
+  if(file_table[fd].lseek_off>file_table[fd].size){
+    assert(0);
+  }
+  if(file_table[fd].lseek_off+count>file_table[fd].size){
+    count = file_table[fd].size - file_table[fd].lseek_off;
+  }  
   ramdisk_write(buf,file_table[fd].lseek_off, count);
   printf("test fd = %d\n",fd);
   c->GPRx = strlen(buf);
@@ -92,6 +98,12 @@ static Finfo file_table[] __attribute__((used)) = {
       return 0;
     }
     else{
+       if(file_table[fd].lseek_off>file_table[fd].size){
+        assert(0);
+       }
+       if(file_table[fd].lseek_off+count>file_table[fd].size){
+        count = file_table[fd].size - file_table[fd].lseek_off;
+       }  
       ramdisk_read(buf,file_table[fd].lseek_off, count);//sizeof(ehdr)
       c->GPRx = strlen(buf);
       printf("***********STRACE**************\nmcause=3,syscall_name=SYS_read_file,ret_value=%d\n",c->GPRx);
