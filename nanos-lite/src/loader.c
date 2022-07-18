@@ -59,6 +59,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 }
 
 void naive_uload(PCB *pcb, const char *filename) {
+  printf("enter the loader\n");
   uintptr_t entry = loader(pcb, filename);
   Log("Jump to entry = %p", entry);
   ((void(*)())entry) ();
