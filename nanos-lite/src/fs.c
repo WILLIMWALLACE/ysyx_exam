@@ -102,9 +102,12 @@ static Finfo file_table[] __attribute__((used)) = {
 ///////////////  fs_lseek  ///////////////////
  long sys_lseek(int fd, long offset, int whence){
     switch(whence){
-      case SEEK_SET: file_table[fd].lseek_off = offset; break;
-      case SEEK_CUR: file_table[fd].lseek_off += offset;break;
-      case SEEK_END: file_table[fd].lseek_off = file_table[fd].size+offset;break;
+      case SEEK_SET: file_table[fd].lseek_off = offset;
+      printf("seek_set\n"); break;
+      case SEEK_CUR: file_table[fd].lseek_off += offset;
+      printf("seek_cur\n");break;
+      case SEEK_END: file_table[fd].lseek_off = file_table[fd].size+offset;
+      printf("seek_end\n");break;
       default : printf("invalid whence!\n");  assert(0);
     }
     if(file_table[fd].lseek_off<1||file_table[fd].lseek_off>file_table[fd].size){
