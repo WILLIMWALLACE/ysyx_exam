@@ -39,6 +39,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   //printf("pnum=%d\n",ehdr.e_phnum);
   int fd = sys_open(filename);
   sys_read(fd,&ehdr,0,0,0);
+  printf("fd=%d\n",fd);
   Elf_Phdr phdr[ehdr.e_phnum];
   assert(*(uint32_t *)ehdr.e_ident == 0x464c457f);
   assert(ehdr.e_machine == EXPECT_TYPE);
