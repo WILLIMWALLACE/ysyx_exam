@@ -106,8 +106,8 @@ static Finfo file_table[] __attribute__((used)) = {
        }  
        printf("\ncount=%d\n",count);
       ramdisk_read(buf,file_table[fd].lseek_off, count);//sizeof(ehdr)
-      //c->GPRx = strlen(buf);
-      c->GPRx = count;
+      c->GPRx = strlen(buf);
+      file_table[fd].lseek_off += count; 
       printf("***********STRACE**************\nmcause=3,syscall_name=SYS_read_file,ret_value=%d\n",c->GPRx);
        return c->GPRx;
       //assert(0);
