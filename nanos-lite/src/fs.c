@@ -37,7 +37,7 @@ static Finfo file_table[] __attribute__((used)) = {
 
 ////////////  fs_open    ////////////////////
  int sys_open(const char *path){
-  for(int i=0;i<23;i++){
+  for(int i=0;i<24;i++){
     if(strcmp(path,file_table[i].name)==0){
       printf("***********STRACE**************\nmcause=2,syscall_name=SYS_open,ret_value=%d\n",i);
       return i;
