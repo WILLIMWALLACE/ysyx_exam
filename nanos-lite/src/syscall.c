@@ -57,9 +57,9 @@ void do_syscall(Context *c) {
     case SYS_yield:sys_yield(c);       break;
     case SYS_write:sys_write(a[1],(char*)a[2],a[3],c); break;
     case SYS_brk  :c->GPRx = 0;        break;
-   // case SYS_open :c->GPRx = sys_open((char*) a[1]);   break;
-   // case SYS_read :sys_read(a[1],(void *)a[2],a[3],c) ; break;
-   // case SYS_close:sys_close();        break;
+    case SYS_open :c->GPRx = sys_open((char*) a[1]);   break;
+    case SYS_read :sys_read(a[1],(void *)a[2],a[3],c) ; break;
+    case SYS_close:sys_close();        break;
 
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
