@@ -100,12 +100,13 @@ static Finfo file_table[] __attribute__((used)) = {
       case SEEK_END: file_table[fd].lseek_off = file_table[fd].size+offset;break;
       default : printf("invalid whence!\n");  assert(0);
     }
-    if(file_table[fd].lseek_off<1||file_table[fd].lseek_off>file_table[fd].size){
+    /*if(file_table[fd].lseek_off<1||file_table[fd].lseek_off>file_table[fd].size){
       return -1;
-    }
-    else{
+    }*/
+    //else{
+      //printf()
       return file_table[fd].lseek_off;
-    }
+    //}
 }
 
 
