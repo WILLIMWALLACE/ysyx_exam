@@ -9,7 +9,6 @@ int main() {
   long size = ftell(fp);
   assert(size == 5000);
 
-	printf("5000 pass\n");
 
   fseek(fp, 500 * 5, SEEK_SET);
   int i, n;
@@ -17,21 +16,18 @@ int main() {
     fscanf(fp, "%d", &n);
     assert(n == i + 1);
   }
-	printf("2500 pass\n");	
 
   fseek(fp, 0, SEEK_SET);
   for (i = 0; i < 500; i ++) {
     fprintf(fp, "%4d\n", i + 1 + 1000);
   }
 
-  	printf("500 pass");
 
   for (i = 500; i < 1000; i ++) {
     fscanf(fp, "%d", &n);
     assert(n == i + 1);
   }
 
-  	printf("last 2 pass\n");
 
   fseek(fp, 0, SEEK_SET);
   for (i = 0; i < 500; i ++) {
@@ -39,7 +35,6 @@ int main() {
     assert(n == i + 1 + 1000);
   }
 
-  	printf("the last pass\n");
 
   fclose(fp);
 
