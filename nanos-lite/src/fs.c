@@ -68,6 +68,7 @@ static Finfo file_table[] __attribute__((used)) = {
   }
  else{
   ramdisk_write(buf,file_table[fd].lseek_off, count);
+  printf("test fd = %d\n",fd);
   c->GPRx = strlen(buf);
  }
   //printf("***********STRACE**************\nmcause=4,syscall_name=SYS_WRITE,ret_value=%d\n",
