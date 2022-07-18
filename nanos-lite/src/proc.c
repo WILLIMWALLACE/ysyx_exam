@@ -25,6 +25,7 @@ void init_proc() {
 
   Log("Initializing processes...");
   naive_uload(NULL,"/bin/hello");
+  printf("finish initial processes\n");
   // load program here
 
 }
