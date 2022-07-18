@@ -26,7 +26,7 @@
 
 int sys_open(const char *path);
 int sys_write(int fd,  char *buf, size_t count,Context *c);
-int sys_read(int fd,void *buf,size_t count,uint64_t p_offset,Context *c);
+int sys_read(int fd,void *buf,size_t count,Context *c);
 int sys_close();
 
 ////////////////  strace is immplemented here////////////////
@@ -58,7 +58,7 @@ void do_syscall(Context *c) {
     case SYS_write:sys_write(a[1],(char*)a[2],a[3],c); break;
     case SYS_brk  :c->GPRx = 0;        break;
     case SYS_open :c->GPRx = sys_open((char*) a[1]);   break;
-    case SYS_read :sys_read(a[1],(void *)a[2],a[3],0,c) ; break;
+    case SYS_read :sys_read(a[1],(void *)a[2],a[3],c) ; break;
     case SYS_close:sys_close();        break;
 
     default: panic("Unhandled syscall ID = %d", a[0]);

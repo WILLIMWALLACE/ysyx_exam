@@ -28,7 +28,7 @@ size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 
 int sys_open(const char *path);
 int sys_write(int fd,  char *buf, size_t count,Context *c);
-int sys_read(int fd,void *buf,size_t count,uint64_t p_offset,Context *c);
+int sys_read(int fd,void *buf,size_t count,Context *c);
 int sys_close();
 
 static uintptr_t loader(PCB *pcb, const char *filename) {
@@ -39,7 +39,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   //printf("pnum=%d\n",ehdr.e_phnum);
   int fd = sys_open(filename);
   //printf("fd=%d\n",fd);
-  sys_read(fd,&ehdr,0,0,0);
+  sys_read(fd,&ehdr,0,0);
   printf("readfinish\n");
   Elf_Phdr phdr[ehdr.e_phnum];
   assert(*(uint32_t *)ehdr.e_ident == 0x464c457f);
