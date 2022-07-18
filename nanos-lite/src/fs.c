@@ -39,6 +39,7 @@ static Finfo file_table[] __attribute__((used)) = {
  int sys_open(const char *path){
   for(int i=0;i<23;i++){
     if(strcmp(path,file_table[i].name)==0){
+      printf("***********STRACE**************\nmcause=2,syscall_name=SYS_open,ret_value=fd\n",i);
       return i;
     }     
   }
@@ -71,6 +72,7 @@ static Finfo file_table[] __attribute__((used)) = {
  }
   //printf("***********STRACE**************\nmcause=4,syscall_name=SYS_WRITE,ret_value=%d\n",
   //c->GPRx);    
+  printf("***********STRACE**************\nmcause=4,syscall_name=SYS_write,ret_value=%d\n",c->GPRx);
   return c->GPRx;
 }
 /////////////// fs_read  /////////////////////
@@ -83,11 +85,13 @@ static Finfo file_table[] __attribute__((used)) = {
       //printf("buf=%s\n",buf);
       //c->GPRx = strlen(buf);
       //printf("ret_read = %d\n",c->GPRx);
+      printf("***********STRACE**************\nmcause=3,syscall_name=SYS_read_disk,ret_value=0\n");
       return 0;
     }
     else{
       ramdisk_read(buf,file_table[fd].lseek_off, count);//sizeof(ehdr)
       c->GPRx = strlen(buf);
+      printf("***********STRACE**************\nmcause=3,syscall_name=SYS_read_file,ret_value=%d\n",c->GPRx);
        return c->GPRx;
       //assert(0);
     }
