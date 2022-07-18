@@ -53,6 +53,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   printf("off=%d\n",diskoffset+ehdr.e_phoff);
  // printf("offset=%d,len=%d\n",ehdr.e_phoff,ehdr.e_phentsize*ehdr.e_phnum);
   ramdisk_read(phdr, diskoffset+ehdr.e_phoff, ehdr.e_phentsize*ehdr.e_phnum);
+  printf("***********duchu*************8\n");
   for(int i=0; i<ehdr.e_phnum; i++){
     if(phdr[i].p_type == PT_LOAD){
       //printf("phdr[%d].offset=%s\n",i,phdr[i].p_offset);
