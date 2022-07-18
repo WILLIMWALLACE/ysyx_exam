@@ -104,7 +104,7 @@ static Finfo file_table[] __attribute__((used)) = {
       //printf("disk_size=%d\n",file_table[fd].size);
       ramdisk_read(buf,file_table[fd].disk_offset,64);//sizeof(ehdr)
       //printf("read finish\n");
-      //printf("buf=%s\n",buf);
+      printf("buf=%s\n",buf);
       c->GPRx = 0;
       return c->GPRx;
 }
