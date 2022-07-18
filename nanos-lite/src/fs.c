@@ -65,7 +65,7 @@ static Finfo file_table[] __attribute__((used)) = {
     }
   c->GPRx = ret_cnt;
   printf("*********fd=%d*************\n",fd);
-  printf("cuo wu xie ru,count=%d\n",count);
+  printf("cuo wu xie ru,ret_cnt=%d\n",ret_cnt);
   //retrun c->GPRx;
   }
  else{
