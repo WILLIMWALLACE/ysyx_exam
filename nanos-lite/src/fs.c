@@ -101,8 +101,8 @@ static Finfo file_table[] __attribute__((used)) = {
   return c->GPRx;
 }
 /////////////// fs_read  /////////////////////
- int sys_read(int fd,char *buf,size_t count,uint64_t p_offset,Context *c){
-      ramdisk_read(buf,(p_offset+file_table[fd].disk_offset),count);
+ int sys_read(int fd,void *buf,size_t count,uint64_t p_offset,Context *c){
+      ramdisk_read(buf,file_table[fd].disk_offset,file_table[fd].size);
       c->GPRx = 0;
       return c->GPRx;
 }
