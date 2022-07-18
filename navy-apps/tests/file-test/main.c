@@ -2,8 +2,7 @@
 #include <assert.h>
 
 int main() {
-  assert(0);
-/*  FILE *fp = fopen("/share/files/num", "r+");
+  FILE *fp = fopen("/share/files/num", "r+");
   assert(fp);
 
   fseek(fp, 0, SEEK_END);
@@ -14,7 +13,10 @@ int main() {
   fseek(fp, 500 * 5, SEEK_SET);
   int i, n;
   for (i = 500; i < 1000; i ++) {
+	  printf("fscanf zhi qian\n");
     fscanf(fp, "%d", &n);
+
+	  printf("fscanf zhi hou\n");
     assert(n == i + 1);
   }
 
@@ -40,6 +42,6 @@ int main() {
   fclose(fp);
 
   printf("PASS!!!\n");
-*/
+
   return 0;
 }
