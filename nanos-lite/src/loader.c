@@ -1,5 +1,6 @@
 #include <proc.h>
 #include <elf.h>
+//#include <fs.h>
 //#include ISA_H
 
 #ifdef __LP64__
@@ -25,6 +26,11 @@
 size_t ramdisk_read(void *buf, size_t offset, size_t len) ;
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 
+int sys_open(const char *path);
+int sys_write(int fd,  char *buf, size_t count,Context *c);
+int sys_read(int fd,char *buf,size_t count,uint64_t p_offset,Context *c);
+int sys_close();
+
 static uintptr_t loader(PCB *pcb, const char *filename) {
   Elf_Ehdr ehdr;
   ramdisk_read(&ehdr, 0, sizeof(ehdr));
@@ -33,8 +39,11 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   //printf("machine=%d\n",ehdr.e_machine);
   //printf("pnum=%d\n",ehdr.e_phnum);
   Elf_Phdr phdr[ehdr.e_phnum];
-  ramdisk_read(phdr, ehdr.e_phoff, ehdr.e_phentsize*ehdr.e_phnum);
-  // ramdisk_read(phdr, ehdr.e_phoff, sizeof(phdr)*ehdr.e_phnum);
+  int fd = sys_open(filename);
+  sys_read(fd,(char *)phdr,ehdr.e_phentsize*ehdr.e_phnum,ehdr.e_phoff,0);
+  sys_close();
+  //ramdisk_read(phdr, ehdr.e_phoff, ehdr.e_phentsize*ehdr.e_phnum);
+ 
  // printf("offset=%d,len=%d\n",ehdr.e_phoff,ehdr.e_phentsize*ehdr.e_phnum);
   for(int i=0; i<ehdr.e_phnum; i++){
     if(phdr[i].p_type == PT_LOAD){

@@ -1,6 +1,6 @@
 #include <common.h>
 #include "syscall.h"
-enum {
+/*enum {
   SYS_exit,
   SYS_yield,
   SYS_open,
@@ -21,7 +21,14 @@ enum {
   SYS_wait,
   SYS_times,
   SYS_gettimeofday
-};
+};*/
+
+
+int sys_open(const char *path);
+int sys_write(int fd,  char *buf, size_t count,Context *c);
+int sys_read(int fd,char *buf,size_t count,uint64_t p_offset,Context *c);
+int sys_close();
+
 ////////////////  strace is immplemented here////////////////
 static int sys_yield(Context *c){
   yield();
@@ -37,36 +44,10 @@ static int sys_exit(Context *c,uint64_t a){
   return 0;
 } 
 
-static int sys_write(int fd,  char *buf, size_t count,Context *c){
-  if((fd!=1) && (fd!=2)){ //stdout==1(with buffer),stderr==2(no buffer)
-    printf("fd is not valid!\n");
-    c->GPRx = -1;
-    assert(0);
-  }
-  else if(count == 0){
-    c->GPRx = 0;
-  }
-  else{
-    int ret_cnt=0;
-    while(count!=0){
-      //if(*buf != '\0'){
-        putch(*buf);
-      //}
-      buf++; count--; ret_cnt++;
-    }
-  c->GPRx = ret_cnt;
-  //retrun c->GPRx;
-  }
-  printf("***********STRACE**************\nmcause=4,syscall_name=SYS_WRITE,ret_value=%d\n",
-  c->GPRx);    
-  return c->GPRx;
-}
-
-
 void do_syscall(Context *c) {
   uintptr_t a[4];
   a[0] = c->GPR1;//a7,mcause
-  a[1] = c->GPR2;//a0,void _exit(int status)->status****a0=fd
+  a[1] = c->GPR2;//a0,void _exit(int status)->status****a0=fd***a0=path
   a[2] = c->GPR3;//****a1=buf_addr****
   a[3] = c->GPR4;//****a2=count****
   //char *temp = NULL;
@@ -75,7 +56,10 @@ void do_syscall(Context *c) {
     case SYS_exit :sys_exit(c,a[1]);   break;
     case SYS_yield:sys_yield(c);       break;
     case SYS_write:sys_write(a[1],(char*)a[2],a[3],c); break;
-    case SYS_brk  :c->GPRx = 0;         break;
+    case SYS_brk  :c->GPRx = 0;        break;
+    case SYS_open :c->GPRx = sys_open((char*) a[1]);   break;
+    case SYS_read :sys_read(a[1],(char*)a[2],a[3],0,c) ; break;
+    case SYS_close:sys_close();        break;
 
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
