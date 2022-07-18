@@ -108,7 +108,7 @@ static Finfo file_table[] __attribute__((used)) = {
       return -1;
     }
     else{
-      //printf("lseek_off = %d\n",file_table[fd].lseek_off);
+      printf("lseek_off = %d\n",file_table[fd].lseek_off);
       return file_table[fd].lseek_off;
     }
 }
