@@ -80,8 +80,8 @@ void *_sbrk(intptr_t increment) {
 }
 
 int _read(int fd, void *buf, size_t count) {
-  _syscall_(SYS_read, fd, buf, count);
-  return 0;
+  int ret = _syscall_(SYS_read, fd, buf, count);
+  return ret;
 }
 
 int _close(int fd) {
