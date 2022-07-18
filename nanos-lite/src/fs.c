@@ -40,13 +40,10 @@ static Finfo file_table[] __attribute__((used)) = {
   for(int i=0;i<23;i++){
     if(strcmp(path,file_table[i].name)==0){
       return i;
-    }
-    else{
-      printf("There is no matched file_name");
-      assert(0);
-    }
+    }     
   }
-
+  printf("There is no matched file_name");
+      assert(0);
  /* switch(*path){
     case "stdin"  :  return 0;  break;
     case "stdout" :  return 1;  break;
