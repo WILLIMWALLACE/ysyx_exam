@@ -102,6 +102,7 @@ static Finfo file_table[] __attribute__((used)) = {
       printf("disk_offset=%d\n",file_table[fd].disk_offset);
       printf("disk_size=%d\n",file_table[fd].size);
       ramdisk_read(buf,file_table[fd].disk_offset,file_table[fd].size);
+      printf("read finish\n");
       c->GPRx = 0;
       return c->GPRx;
 }
