@@ -3,7 +3,7 @@
 
 int main() {
   assert(0);
-  FILE *fp = fopen("/share/files/num", "r+");
+/*  FILE *fp = fopen("/share/files/num", "r+");
   assert(fp);
 
   fseek(fp, 0, SEEK_END);
@@ -40,6 +40,6 @@ int main() {
   fclose(fp);
 
   printf("PASS!!!\n");
-
+*/
   return 0;
 }
