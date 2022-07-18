@@ -108,6 +108,9 @@ static Finfo file_table[] __attribute__((used)) = {
       //c->GPRx = strlen(buf);
       //printf("ret_read = %d\n",c->GPRx);
       return 0;
+
+
+
 }
 ////////////////  fs_close  ////////////////////////
  int sys_close(){
