@@ -33,6 +33,7 @@ int sys_close();
 
 static uintptr_t loader(PCB *pcb, const char *filename) {
   Elf_Ehdr ehdr;
+  printf("sizeof(ehdr)=%d\n",sizeof(ehdr));
   //ramdisk_read(&ehdr, 0, sizeof(ehdr));
   //printf("e_ident = %d\n",ehdr.e_ident);
   //printf("machine=%d\n",ehdr.e_machine);

@@ -99,6 +99,7 @@ static Finfo file_table[] __attribute__((used)) = {
 }
 /////////////// fs_read  /////////////////////
  int sys_read(int fd,void *buf,size_t count,Context *c){
+
       //printf("disk_offset=%d\n",file_table[fd].disk_offset);
       //printf("disk_size=%d\n",file_table[fd].size);
       ramdisk_read(buf,file_table[fd].disk_offset,file_table[fd].size);
