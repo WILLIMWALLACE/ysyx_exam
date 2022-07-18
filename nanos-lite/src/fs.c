@@ -104,6 +104,7 @@ static Finfo file_table[] __attribute__((used)) = {
        if(file_table[fd].lseek_off+count>file_table[fd].size){
         count = file_table[fd].size - file_table[fd].lseek_off;
        }  
+       printf("\ncount=%d\n",count);
       ramdisk_read(buf,file_table[fd].lseek_off, count);//sizeof(ehdr)
       c->GPRx = strlen(buf);
       printf("***********STRACE**************\nmcause=3,syscall_name=SYS_read_file,ret_value=%d\n",c->GPRx);
