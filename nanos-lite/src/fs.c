@@ -102,7 +102,7 @@ static Finfo file_table[] __attribute__((used)) = {
 
       //printf("disk_offset=%d\n",file_table[fd].disk_offset);
       //printf("disk_size=%d\n",file_table[fd].size);
-      ramdisk_read(buf,file_table[fd].disk_offset,64);//sizeof(ehdr)
+      ramdisk_read(buf,file_table[fd].disk_offset,count);//sizeof(ehdr)
       //printf("read finish\n");
       //printf("buf=%s\n",buf);
       //c->GPRx = strlen(buf);
@@ -111,11 +111,16 @@ static Finfo file_table[] __attribute__((used)) = {
 }
 ////////////////  fs_close  ////////////////////////
  int sys_close(){
- 
   return 0;
 }
 
+ int file_size(int fd){
+  return file_table[fd].size;
+ }
 
+ int ret_offset(int fd){
+  return file_table[fd].disk_offset;
+ }
 void init_fs() {
   // TODO: initialize the size of /dev/fb
 }

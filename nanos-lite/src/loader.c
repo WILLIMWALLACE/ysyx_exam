@@ -29,6 +29,8 @@ size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 int sys_open(const char *path);
 int sys_write(int fd,  char *buf, size_t count,Context *c);
 int sys_read(int fd,void *buf,size_t count,Context *c);
+int file_size(int fd);
+int ret_offset(int fd);
 int sys_close();
 
 static uintptr_t loader(PCB *pcb, const char *filename) {
@@ -40,15 +42,16 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   //printf("pnum=%d\n",ehdr.e_phnum);
   int fd = sys_open(filename);
   //printf("fd=%d\n",fd);
-  sys_read(fd,&ehdr,0,0);
+  sys_read(fd,&ehdr,sizeof(ehdr),0);
   printf("readfinish\n");
   Elf_Phdr phdr[ehdr.e_phnum];
   assert(*(uint32_t *)ehdr.e_ident == 0x464c457f);
   assert(ehdr.e_machine == EXPECT_TYPE);
   //sys_read(fd,(char *)phdr,ehdr.e_phentsize*ehdr.e_phnum,ehdr.e_phoff,0);
+  size_t  diskoffset = ret_offset(fd);
   sys_close();
  // printf("offset=%d,len=%d\n",ehdr.e_phoff,ehdr.e_phentsize*ehdr.e_phnum);
-  ramdisk_read(phdr, ehdr.e_phoff, ehdr.e_phentsize*ehdr.e_phnum);
+  ramdisk_read(phdr, diskoffset+ehdr.e_phoff, ehdr.e_phentsize*ehdr.e_phnum);
   for(int i=0; i<ehdr.e_phnum; i++){
     if(phdr[i].p_type == PT_LOAD){
       //printf("phdr[%d].offset=%s\n",i,phdr[i].p_offset);
