@@ -72,7 +72,7 @@ void *_sbrk(intptr_t increment) {
   if(!_syscall_(SYS_brk, 0, 0, 0)){
     old_probreak = probreak;
     probreak    += increment;
-    printf("***********STRACE*************\nmcause=9,syscall_name=SBRK\n");
+    //printf("***********STRACE*************\nmcause=9,syscall_name=SBRK\n");
     return (void*) old_probreak;
   }
   else{
