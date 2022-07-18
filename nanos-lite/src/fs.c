@@ -81,6 +81,7 @@ static Finfo file_table[] __attribute__((used)) = {
  }
   //printf("***********STRACE**************\nmcause=4,syscall_name=SYS_WRITE,ret_value=%d\n",
   //c->GPRx);    
+  file_table[fd].lseek_off += count;
   printf("***********STRACE**************\nmcause=4,syscall_name=SYS_write,ret_value=%d\n",c->GPRx);
   return c->GPRx;
 }
