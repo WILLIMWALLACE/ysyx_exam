@@ -12,7 +12,7 @@ typedef struct {
   size_t disk_offset;
   ReadFn read;
   WriteFn write;
-  //lseek offset
+  size_t  lseek_off;
 } Finfo;
 
 enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB};
@@ -65,6 +65,10 @@ static Finfo file_table[] __attribute__((used)) = {
   c->GPRx = ret_cnt;
   //retrun c->GPRx;
   }
+ else{
+  ramdisk_write(buf,file_table[fd].lseek_off, count);
+  c->GPRx = strlen(buf);
+ }
   //printf("***********STRACE**************\nmcause=4,syscall_name=SYS_WRITE,ret_value=%d\n",
   //c->GPRx);    
   return c->GPRx;
@@ -82,10 +86,29 @@ static Finfo file_table[] __attribute__((used)) = {
       return 0;
     }
     else{
-      printf("hole for read");
-      assert(0);
+      ramdisk_read(buf,file_table[fd].lseek_off, count);//sizeof(ehdr)
+      c->GPRx = strlen(buf);
+       return c->GPRx;
+      //assert(0);
     }
 }
+///////////////  fs_lseek  ///////////////////
+ long sys_lseek(int fd, long offset, int whence){
+    switch(whence){
+      case SEEK_SET: file_table[fd].lseek_off = offset; break;
+      case SEEK_CUR: file_table[fd].lseek_off += offset;break;
+      case SEEK_END: file_table[fd].lseek_off = file_table[fd].size+offset;break;
+      default : printf("invalid whence!\n");  assert(0);
+    }
+    if(file_table[fd].lseek_off<1||file_table[fd].lseek_off>file_table[fd].size){
+      return -1;
+    }
+    else{
+      return file_table[fd].lseek_off;
+    }
+}
+
+
 ////////////////  fs_close  ////////////////////////
  int sys_close(){
   return 0;

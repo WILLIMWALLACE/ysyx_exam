@@ -27,6 +27,7 @@
 int sys_open(const char *path);
 int sys_write(int fd,  char *buf, size_t count,Context *c);
 int sys_read(int fd,void *buf,size_t count,Context *c);
+long sys_lseek(int fd, long offset, int whence);
 int sys_close();
 
 ////////////////  strace is immplemented here////////////////
@@ -47,9 +48,9 @@ static int sys_exit(Context *c,uint64_t a){
 void do_syscall(Context *c) {
   uintptr_t a[4];
   a[0] = c->GPR1;//a7,mcause
-  a[1] = c->GPR2;//a0,void _exit(int status)->status****a0=fd***a0=path
-  a[2] = c->GPR3;//****a1=buf_addr****
-  a[3] = c->GPR4;//****a2=count****
+  a[1] = c->GPR2;//a0->status(exit)****a0=fd***a0=path***a0=fd
+  a[2] = c->GPR3;//****a1=buf_addr****a1=offset
+  a[3] = c->GPR4;//****a2=count****a2=whence
   //char *temp = NULL;
   //temp = (char*)a[2];
   switch (a[0]) {
@@ -60,6 +61,7 @@ void do_syscall(Context *c) {
     case SYS_open :c->GPRx = sys_open((char*) a[1]);   break;
     case SYS_read :sys_read(a[1],(void *)a[2],a[3],c); break;
     case SYS_close:sys_close();        break;
+    case SYS_lseek:c->GPRx = sys_lseek(a[1],a[2],a[3]);break;
 
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
