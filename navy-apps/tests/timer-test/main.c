@@ -10,7 +10,6 @@ int main() {
 	if(us%500==0){
   	printf("The time of day is %ld s!\n",time.tv_sec);
 	}
-    
     }
   return 0;
 }
