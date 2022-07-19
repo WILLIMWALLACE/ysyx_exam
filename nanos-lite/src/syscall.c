@@ -45,11 +45,14 @@ static int sys_exit(Context *c,uint64_t a){
   return 0;
 } 
 
- /*static uint64_t sys_gettimeofday(struct timeval *tv,Context *c){
-   c->GPRx = tv->tv_sec;
-   printf("time = %d\n",c->GPRx);
-   return c->GPRx;
-}*/
+ static void sys_gettimeofday(Context *c){
+  AM_TIMER_UPTIME_T rtc;
+  rtc = io_read(AM_TIMER_UPTIME);
+   uint64_t time = rtc.us / 1000000;
+    c->GPRx = time;
+   //printf("time = %d\n",c->GPRx);
+ //  return 0;
+}
 
 void do_syscall(Context *c) {
   uintptr_t a[4];
@@ -68,7 +71,7 @@ void do_syscall(Context *c) {
     case SYS_read :sys_read(a[1],(void *)a[2],a[3],c); break;
     case SYS_close:sys_close();        break;
     case SYS_lseek:c->GPRx = sys_lseek(a[1],a[2],a[3]);break;
-    case SYS_gettimeofday: c->GPRx = a[1];             break;
+    case SYS_gettimeofday: sys_gettimeofday(c);               break;
     //printf("time=%d\n",c->GPRx);
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
