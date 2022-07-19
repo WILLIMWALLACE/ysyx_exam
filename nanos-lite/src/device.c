@@ -19,6 +19,7 @@ size_t serial_write(const char *buf, size_t offset, size_t len) {
     while(len!=0){
         putch(*buf);
       buf++; len--; ret_cnt++;
+      printf("da yin zi fu chuan\n");
     }
   //c->GPRx = ret_cnt;
   return ret_cnt;
