@@ -6,7 +6,7 @@ int main() {
     while(1){
     gettimeofday(&time,NULL);
     uint64_t us = time.tv_sec * 1000;
-	printf("time=%d\n",time.tv_sec);
+	printf("user_time=%d\n",time.tv_sec);
 	if(us%500==0){
   	printf("The time of day is %ld s!\n",time.tv_sec);
 	}
