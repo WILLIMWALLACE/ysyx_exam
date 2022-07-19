@@ -65,11 +65,10 @@ static Finfo file_table[] __attribute__((used)) = {
         putch(*buf);
       buf++; count--; ret_cnt++;
     }*/
-  
-
+  c->GPRx = file_table[fd].write(buf,0,count);
   //printf("*********fd=%d*************\n",fd);
   //printf("cuo wu xie ru,ret_cnt=%d\n",ret_cnt);
-  return file_table[fd].write(buf,0,count);
+  return c->GPRx;
   }
   
  else{
