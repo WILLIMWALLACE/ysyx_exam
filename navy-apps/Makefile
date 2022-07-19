@@ -169,6 +169,7 @@ $(CLEAN_ALL):
 APPS =
 TESTS = dummy hello
 TESTS += file-test
+TESTS += timer-test
 fsimg: $(addprefix apps/, $(APPS)) $(addprefix tests/, $(TESTS))
 	-for t in $^; do $(MAKE) -s -C $(NAVY_HOME)/$$t install; done
 
