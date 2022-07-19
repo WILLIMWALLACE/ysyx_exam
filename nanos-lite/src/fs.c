@@ -60,15 +60,16 @@ static Finfo file_table[] __attribute__((used)) = {
     c->GPRx = 0;
   }*/
  if((fd==1) || (fd==2)){
-    int ret_cnt=0;
+   /* int ret_cnt=0;
     while(count!=0){
         putch(*buf);
       buf++; count--; ret_cnt++;
-    }
-  c->GPRx = ret_cnt;
+    }*/
+  
+
   //printf("*********fd=%d*************\n",fd);
   //printf("cuo wu xie ru,ret_cnt=%d\n",ret_cnt);
-  //retrun c->GPRx;
+  return file_table[fd].write(buf,0,count);
   }
   
  else{
