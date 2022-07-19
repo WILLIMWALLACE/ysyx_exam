@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <sys/time.h>
+uint32_t NDL_GetTicks();
 int main() {
 //	printf("jinru timer\n");
   //  struct timeval time,start_time;
