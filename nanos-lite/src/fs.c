@@ -59,7 +59,7 @@ static Finfo file_table[] __attribute__((used)) = {
   else if(count == 0){
     c->GPRx = 0;
   }*/
-/* if((fd==1) || (fd==2)){
+ if((fd==1) || (fd==2)){
     int ret_cnt=0;
     while(count!=0){
         putch(*buf);
@@ -70,8 +70,8 @@ static Finfo file_table[] __attribute__((used)) = {
   //printf("cuo wu xie ru,ret_cnt=%d\n",ret_cnt);
   //retrun c->GPRx;
   }
-  */
- //else{
+  
+ else{
   if(file_table[fd].lseek_off>file_table[fd].size){
     assert(0);
   }
@@ -82,7 +82,7 @@ static Finfo file_table[] __attribute__((used)) = {
   //printf("test fd = %d\n",fd);
   file_table[fd].lseek_off += count;
   c->GPRx = strlen(buf);
- //}
+ }
   //printf("***********STRACE**************\nmcause=4,syscall_name=SYS_WRITE,ret_value=%d\n",
   //c->GPRx);    
   
