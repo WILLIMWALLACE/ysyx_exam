@@ -64,8 +64,8 @@ static Finfo file_table[] __attribute__((used)) = {
       buf++; count--; ret_cnt++;
     }
   c->GPRx = ret_cnt;
-  printf("*********fd=%d*************\n",fd);
-  printf("cuo wu xie ru,ret_cnt=%d\n",ret_cnt);
+  //printf("*********fd=%d*************\n",fd);
+  //printf("cuo wu xie ru,ret_cnt=%d\n",ret_cnt);
   //retrun c->GPRx;
   }
  else{
@@ -76,7 +76,7 @@ static Finfo file_table[] __attribute__((used)) = {
     count = file_table[fd].size - file_table[fd].lseek_off;
   }  
   ramdisk_write(buf,file_table[fd].lseek_off+file_table[fd].disk_offset, count);
-  printf("test fd = %d\n",fd);
+  //printf("test fd = %d\n",fd);
   file_table[fd].lseek_off += count;
   c->GPRx = strlen(buf);
  }
@@ -92,6 +92,7 @@ static Finfo file_table[] __attribute__((used)) = {
       //printf("disk_offset=%d\n",file_table[fd].disk_offset);
       //printf("disk_size=%d\n",file_table[fd].size);
       ramdisk_read(buf,file_table[fd].disk_offset,count);//sizeof(ehdr)
+      printf("打开文件=%s\n",file_table[fd].name);
       //printf("read finish\n");
       //printf("buf=%s\n",buf);
       //c->GPRx = strlen(buf);
@@ -106,7 +107,7 @@ static Finfo file_table[] __attribute__((used)) = {
        if(file_table[fd].lseek_off+count>file_table[fd].size){
         count = file_table[fd].size - file_table[fd].lseek_off;
        }  
-       printf("\ncount=%d\n",count);
+       //printf("\ncount=%d\n",count);
       ramdisk_read(buf,file_table[fd].lseek_off+file_table[fd].disk_offset, count);//sizeof(ehdr)
       //c->GPRx = strlen(buf);
       c->GPRx = count;
