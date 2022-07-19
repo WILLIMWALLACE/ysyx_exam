@@ -98,9 +98,8 @@ off_t _lseek(int fd, off_t offset, int whence) {
 }
 
 int _gettimeofday(struct timeval *tv, struct timezone *tz) {
-   uint64_t time = tv->tv_sec;
-   printf("time_tvsec=%d\n",time);
-  _syscall_(SYS_gettimeofday,time,0,0);
+  tv->tv_sec = io_read(AM_TIMER_UPTIME).us / 1000000;
+    _syscall_(SYS_gettimeofday,tv->tv_sec,0,0);
   return 0;
 }
 
