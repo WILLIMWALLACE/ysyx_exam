@@ -6,6 +6,8 @@ typedef size_t (*WriteFn) (const void *buf, size_t offset, size_t len);
 size_t ramdisk_read(void *buf, size_t offset, size_t len) ;
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 
+size_t serial_write(const void *buf, size_t offset, size_t len);
+
 typedef struct {
   char *name;
   size_t size;
@@ -30,8 +32,8 @@ size_t invalid_write(const void *buf, size_t offset, size_t len) {
 /* This is the information about all files in disk. */
 static Finfo file_table[] __attribute__((used)) = {
   [FD_STDIN]  = {"stdin", 0, 0, invalid_read, invalid_write},
-  [FD_STDOUT] = {"stdout", 0, 0, invalid_read, invalid_write},
-  [FD_STDERR] = {"stderr", 0, 0, invalid_read, invalid_write},
+  [FD_STDOUT] = {"stdout", 0, 0, invalid_read, serial_write},
+  [FD_STDERR] = {"stderr", 0, 0, invalid_read, serial_write},
 #include "files.h"
 };
 
@@ -57,7 +59,7 @@ static Finfo file_table[] __attribute__((used)) = {
   else if(count == 0){
     c->GPRx = 0;
   }*/
- if((fd==1) || (fd==2)){
+/* if((fd==1) || (fd==2)){
     int ret_cnt=0;
     while(count!=0){
         putch(*buf);
@@ -68,7 +70,8 @@ static Finfo file_table[] __attribute__((used)) = {
   //printf("cuo wu xie ru,ret_cnt=%d\n",ret_cnt);
   //retrun c->GPRx;
   }
- else{
+  */
+ //else{
   if(file_table[fd].lseek_off>file_table[fd].size){
     assert(0);
   }
@@ -79,7 +82,7 @@ static Finfo file_table[] __attribute__((used)) = {
   //printf("test fd = %d\n",fd);
   file_table[fd].lseek_off += count;
   c->GPRx = strlen(buf);
- }
+ //}
   //printf("***********STRACE**************\nmcause=4,syscall_name=SYS_WRITE,ret_value=%d\n",
   //c->GPRx);    
   

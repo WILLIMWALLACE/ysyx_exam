@@ -14,8 +14,14 @@ static const char *keyname[256] __attribute__((used)) = {
   AM_KEYS(NAME)
 };
 
-size_t serial_write(const void *buf, size_t offset, size_t len) {
-  return 0;
+size_t serial_write(const char *buf, size_t offset, size_t len) {
+   int ret_cnt=0;
+    while(len!=0){
+        putch(*buf);
+      buf++; len--; ret_cnt++;
+    }
+  //c->GPRx = ret_cnt;
+  return ret_cnt;
 }
 
 size_t events_read(void *buf, size_t offset, size_t len) {
