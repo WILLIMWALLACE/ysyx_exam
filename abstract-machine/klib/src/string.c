@@ -18,10 +18,10 @@ size_t strlen(const char *s) {
 }
 //string copy
 char *strcpy(char *dst, const char *src) { 
-/*  if(src==NULL||dst==NULL){
+  if(src==NULL||dst==NULL){
     printf("invalid string\n");
     assert(0);    
-  }*/
+  }
   char *dst_start=dst; //store start_address
   while (*src != '\0')
   {
