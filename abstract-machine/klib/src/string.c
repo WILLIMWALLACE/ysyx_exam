@@ -82,7 +82,7 @@ char *strcat(char *dst, const char *src) {
 }
 //string compare 1 0 -1
 int strcmp(const char *s1, const char *s2) {
-  if(s1==NULL){
+  if(s1==NULL||s2==NULL){
     printf("invalid string\n");
     assert(0);    
   }
