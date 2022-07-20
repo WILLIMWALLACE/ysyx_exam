@@ -27,13 +27,15 @@ size_t serial_write(const char *buf, size_t offset, size_t len) {
 
 size_t events_read(void *buf, size_t offset, size_t len) {
   AM_INPUT_KEYBRD_T ev = io_read(AM_INPUT_KEYBRD);
-  if (ev.keycode == AM_KEY_NONE) {memset(buf,0,1); return 0;}
+  if (ev.keycode == AM_KEY_NONE) { return 0;}
   else{ 
-    memset(buf,0,1);
+    //memset(buf,0,1);
     int ret_cnt=0;
     if(ev.keydown){ // down
-      char *temp_down="kd";
+      char *temp_down=NULL;
+      char *kd = "kd";
       //memset(temp_down,"kd",);
+      strcpy(temp_down,kd);
       strcat(temp_down," ");
       strcat(temp_down,keyname[ev.keycode]);
       strcat(temp_down,"\n");
