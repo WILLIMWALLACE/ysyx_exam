@@ -45,6 +45,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
       //printf("****buf=%s",buf);
       memset(buf+strlen(buf),0,60-strlen(buf));
       memset(temp_down,0,60);
+      free(buf);
       //printf("length of buf = %d\n",strlen(buf));
       //printf("+++++++++++buf=%s\n",buf);
       //memset(temp_down,'\n',1);
@@ -73,6 +74,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
       //printf("4 strlen_buf=%d\n",strlen(buf));
       //printf("5 **************buf = %s\n",buf);
       memset(temp_up,0,60);
+      free(buf);
      // memset(temp_up+2,(char)ev.keycode,32);
       /*ret_cnt = 0;
       while(*temp_up!='\n'){
