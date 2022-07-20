@@ -44,6 +44,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   //printf("fd=%d\n",fd);
   printf("du wan\n");
   sys_read(fd,&ehdr,sizeof(ehdr),0);
+  printf("du wan\n");
   //printf("readfinish\n");
   Elf_Phdr phdr[ehdr.e_phnum];
   assert(*(uint32_t *)ehdr.e_ident == 0x464c457f);
