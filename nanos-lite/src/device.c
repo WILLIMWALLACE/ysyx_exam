@@ -57,7 +57,6 @@ size_t events_read(void *buf, size_t offset, size_t len) {
       ret_cnt = 0;
       while(*temp_up!='\n'){
         *(char*)buf = *temp_up;
-        printf("[buf]%s\t[tmp]%s\n",buf,temp_up);
         buf++ ;temp_up++;
         ret_cnt++;
       }
