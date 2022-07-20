@@ -36,6 +36,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
       strcat(temp_down,keyname[ev.keycode]);
       strcat(temp_down,"\n");
       //memset(temp_down,'\n',1);
+      printf("keyname=%d\n",keyname[ev.keycode]);
       ret_cnt=0;
       while(*temp_down!='\n'){
         *(char*)buf = *temp_down; 
