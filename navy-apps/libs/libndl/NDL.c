@@ -22,7 +22,9 @@ int NDL_PollEvent(char *buf, int len) {
   fp = fopen("/dev/events","r");
   if(fp == NULL){printf("bu cun zai wen jian\n");assert(0);} 
   else{
-    fread(buf,len,1,fp);
+    //fread(buf,len,1,fp);
+    int fd = fileno(fp);
+    read(fd,0,0);
     fclose(fp);
     if(*buf==NULL){return 0;}
     else{return 1;}
