@@ -25,7 +25,7 @@ void init_proc() {
 
   Log("Initializing processes...");
   naive_uload(NULL,"/bin/event-test");
- // printf("************finish initial processes\n");
+  printf("************finish initial processes\n");
   // load program here
 
 }
