@@ -56,8 +56,8 @@ size_t events_read(void *buf, size_t offset, size_t len) {
      // memset(temp_up+2,(char)ev.keycode,32);
       ret_cnt = 0;
       while(*temp_up!='\n'){
-        printf("[buf]%s\t[tmp]%s\n",buf,temp_up);
         *(char*)buf = *temp_up;
+        printf("[buf]%s\t[tmp]%s\n",buf,temp_up);
         buf++ ;temp_up++;
         ret_cnt++;
       }
