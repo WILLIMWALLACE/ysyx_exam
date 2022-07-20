@@ -33,8 +33,8 @@ size_t events_read(void *buf, size_t offset, size_t len) {
     if(ev.keydown){ // down
       char *temp_down = "kd";
       //memset(temp_down,"kd",);
-      strcat(temp_down,keyname[ev.keycode]);
       strcat(temp_down," ");
+      strcat(temp_down,keyname[ev.keycode]);
       //memset(temp_down,'\n',1);
       //printf("keyname=%d\n",keyname[ev.keycode]);
       ret_cnt=0;
@@ -48,8 +48,8 @@ size_t events_read(void *buf, size_t offset, size_t len) {
     else if(!ev.keydown){ //up
       //char *temp_up = {"ku",ev.keycode};
       char *temp_up = "ku";
-      strcat(temp_up,keyname[ev.keycode]);
       strcat(temp_up," ");
+      strcat(temp_up,keyname[ev.keycode]);
      // memset(temp_up+2,(char)ev.keycode,32);
       ret_cnt = 0;
       while(*temp_up!='\n'){
