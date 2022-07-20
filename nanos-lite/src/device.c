@@ -33,10 +33,37 @@ size_t events_read(void *buf, size_t offset, size_t len) {
     //memset(buf,0,1);
     //int ret_cnt=0;
     if(ev.keydown){ // down
-      //char *temp_down="kd";
+      char *temp_down="kd";
+   
+      //ret_cnt=0;
+      while(*temp_down!='\n'){
+        *(char*)buf = *temp_down; 
+        buf++; temp_down++;
+        //ret_cnt++;
+      } 
+       memset(temp_down,0,strlen(temp_down));
+      //return 60;
+      return 1;
+    }
+    else if(!ev.keydown){ //up
+      char *temp_up = "ku";
+      //ret_cnt = 0;
+      while(*temp_up!='\n'){
+        *(char*)buf = *temp_up;
+        buf++ ;temp_up++;
+        //ret_cnt++;
+      }
+      memset(temp_up,0,strlen(temp_up));
+       return 1;
+    }
+    else{assert(0);}
+  //return ret_cnt;
+  }
+}
+
+/*  down
       char temp_down[60] = "kd";
       memset(buf,0,strlen(buf));
-      //memset(temp_down,"kd",);    
       strcat(temp_down," ");
       strcat(temp_down,keyname[ev.keycode]);
       strcat(temp_down,"\n");
@@ -46,50 +73,19 @@ size_t events_read(void *buf, size_t offset, size_t len) {
       memset(buf+strlen(buf),0,60-strlen(buf));
       memset(temp_down,0,60);
       free(buf);
-      //printf("length of buf = %d\n",strlen(buf));
-      //printf("+++++++++++buf=%s\n",buf);
-      //memset(temp_down,'\n',1);
-      //printf("keyname=%d\n",keyname[ev.keycode]);
-      /*ret_cnt=0;
-      while(*temp_down!='\n'){
-        *(char*)buf = *temp_down; 
-        buf++; temp_down++;
-        ret_cnt++;
-      } */ 
-      //return 60;
-      return 1;
-    }
-    else if(!ev.keydown){ //up
-      //char *temp_up = {"ku",ev.keycode};
-      //char *temp_up = "ku";
+    up
       char temp_up[60] = "ku";
       memset(buf,0,strlen(buf));
-      //printf("1 start_buf=%s,length_buf=%d\n",buf,strlen(buf));
       strcat(temp_up," ");
       strcat(temp_up,keyname[ev.keycode]);
       strcat(temp_up,"\n");
       memcpy(buf,temp_up,strlen(temp_up));
-      //printf("2 temp_up=%s\n",temp_up);
-      //printf("3 buf = %s\n",buf);
-      memset(buf+strlen(buf),0,60-strlen(buf));
+       memset(buf+strlen(buf),0,60-strlen(buf));
       //printf("4 strlen_buf=%d\n",strlen(buf));
       //printf("5 **************buf = %s\n",buf);
       memset(temp_up,0,60);
       free(buf);
-     // memset(temp_up+2,(char)ev.keycode,32);
-      /*ret_cnt = 0;
-      while(*temp_up!='\n'){
-        *(char*)buf = *temp_up;
-        buf++ ;temp_up++;
-        ret_cnt++;
-      }*/
-       return 1;
-    }
-    else{assert(0);}
-  //return ret_cnt;
-  }
-}
-
+*/
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {
   return 0;
 }
