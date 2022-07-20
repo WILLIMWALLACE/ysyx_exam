@@ -25,7 +25,7 @@ int NDL_PollEvent(char *buf, int len) {
   else{
     //fread(buf,len,1,fp);
     int fd = fileno(fp);
-    read(fd,0,0);
+    read(fd,buf,0);
     fclose(fp);
     if(buf==NULL){return 0;}
     else{printf("buf=%s\n",buf);return 1;}
