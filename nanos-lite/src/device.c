@@ -34,7 +34,6 @@ size_t events_read(void *buf, size_t offset, size_t len) {
     if(ev.keydown){ // down
       char *temp_down=NULL;
       //memset(temp_down,"kd",);
-      memset(temp_down,0,strlen(temp_down));
       strcat(temp_down,"kd");
       strcat(temp_down," ");
       strcat(temp_down,keyname[ev.keycode]);
