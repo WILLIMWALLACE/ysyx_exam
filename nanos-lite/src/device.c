@@ -46,6 +46,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
         ret_cnt++;
       }  
       free(temp_down);
+      memset(temp_down,0,strlen(temp_down));
       return ret_cnt;
     }
     else if(!ev.keydown){ //up
