@@ -79,7 +79,10 @@ size_t events_read(void *buf, size_t offset, size_t len) {
         //ret_cnt++;
       }
 */
+//将文件的len字节写到buf中(我们认为这个文件不支持lseek, 可忽略offset).
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {
+  
+  
   return 0;
 }
 

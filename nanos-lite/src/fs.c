@@ -8,6 +8,7 @@ size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 
 size_t serial_write(const void *buf, size_t offset, size_t len);
 size_t events_read(void *buf, size_t offset, size_t len);
+size_t dispinfo_read(void *buf, size_t offset, size_t len);
 
 typedef struct {
   char *name;
@@ -18,7 +19,7 @@ typedef struct {
   size_t  lseek_off;
 } Finfo;
 
-enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_KEY, FD_FB};
+enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_KEY, FD_DISPINFO, FD_FB};
 
 size_t invalid_read(void *buf, size_t offset, size_t len) {
   panic("should not reach here");
@@ -35,13 +36,14 @@ static Finfo file_table[] __attribute__((used)) = {
   [FD_STDIN]  = {"stdin", 0, 0, invalid_read, invalid_write},
   [FD_STDOUT] = {"stdout", 0, 0, invalid_read, serial_write},
   [FD_STDERR] = {"stderr", 0, 0, invalid_read, serial_write},
-  [FD_KEY]    = {"/dev/events", 0, 0, events_read, serial_write},
+  [FD_KEY]    = {"/dev/events", 0, 0, events_read, invalid_write},
+  [FD_DISPINFO] = {"/proc/dispinfo", 0, 0, dispinfo_read, invalid_write},
 #include "files.h"
 };
 
 ////////////  fs_open    ////////////////////
  int sys_open(const char *path){
-  for(int i=0;i<27;i++){
+  for(int i=0;i<28;i++){
     if(strcmp(path,file_table[i].name)==0){
     //  printf("***********STRACE**************\nmcause=2,syscall_name=SYS_open,ret_value=%d\n",i);
       return i;
@@ -77,7 +79,11 @@ static Finfo file_table[] __attribute__((used)) = {
      c->GPRx = file_table[fd].read(buf, 0, 0);   
      return 0;
     }
-    else if(c==0 && fd!=3){
+    /*else if(fd == 4){
+      c->GPRx = file_table[fd].read();
+      return 0;
+    }*/
+    else if(c==0 ){
       ramdisk_read(buf,file_table[fd].disk_offset,count);//sizeof(ehdr)
       printf("打开文件=%s\n",file_table[fd].name);
       printf("***********STRACE**************\nmcause=3,syscall_name=SYS_read_disk,ret_value=0\n");
