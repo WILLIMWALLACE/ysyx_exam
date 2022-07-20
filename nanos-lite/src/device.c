@@ -59,6 +59,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
         buf++ ;temp_up++;
         ret_cnt++;
       }
+      while(buf!=NULL){buf --;}
       return ret_cnt;
     }
     else{assert(0);}
