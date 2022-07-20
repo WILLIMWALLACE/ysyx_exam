@@ -7,6 +7,7 @@ size_t ramdisk_read(void *buf, size_t offset, size_t len) ;
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 
 size_t serial_write(const void *buf, size_t offset, size_t len);
+size_t events_read(void *buf, size_t offset, size_t len);
 
 typedef struct {
   char *name;
@@ -17,7 +18,7 @@ typedef struct {
   size_t  lseek_off;
 } Finfo;
 
-enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB};
+enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_KEY, FD_FB};
 
 size_t invalid_read(void *buf, size_t offset, size_t len) {
   panic("should not reach here");
@@ -34,6 +35,7 @@ static Finfo file_table[] __attribute__((used)) = {
   [FD_STDIN]  = {"stdin", 0, 0, invalid_read, invalid_write},
   [FD_STDOUT] = {"stdout", 0, 0, invalid_read, serial_write},
   [FD_STDERR] = {"stderr", 0, 0, invalid_read, serial_write},
+  [FD_KEY]    = {"/dev/events", 0, 0, events_read, serial_write},
 #include "files.h"
 };
 
@@ -70,7 +72,6 @@ static Finfo file_table[] __attribute__((used)) = {
   //printf("cuo wu xie ru,ret_cnt=%d\n",ret_cnt);
   return c->GPRx;
   }
-  
  else{
   if(file_table[fd].lseek_off>file_table[fd].size){
     assert(0);
@@ -85,13 +86,16 @@ static Finfo file_table[] __attribute__((used)) = {
  }
   //printf("***********STRACE**************\nmcause=4,syscall_name=SYS_WRITE,ret_value=%d\n",
   //c->GPRx);    
-  
   printf("***********STRACE**************\nmcause=4,syscall_name=SYS_write,ret_value=%d\n",c->GPRx);
   return c->GPRx;
 }
 /////////////// fs_read  /////////////////////
  int sys_read(int fd,void *buf,size_t count,Context *c){
-    if(c==0){
+    if(fd==3){ //for events read
+      file_table[fd].read(buf, 0, 0);   
+      return 0;
+    }
+    else if(c==0 && fd!=3){
       //printf("disk_offset=%d\n",file_table[fd].disk_offset);
       //printf("disk_size=%d\n",file_table[fd].size);
       ramdisk_read(buf,file_table[fd].disk_offset,count);//sizeof(ehdr)

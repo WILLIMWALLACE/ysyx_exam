@@ -15,9 +15,19 @@ uint32_t NDL_GetTicks() {
   uint64_t ms = tv.tv_sec / 1000;
   return ms;
 }
-
+// 读出一条事件信息, 将其写入`buf`中, 最长写入`len`字节
+// 若读出了有效的事件, 函数返回1, 否则返回0
 int NDL_PollEvent(char *buf, int len) {
-  return 0;
+  FILE *fp;
+  fp = fopen("/dev/events","r");
+  if(fp == NULL){printf("bu cun zai wen jian\n");assert(0);} 
+  else{
+    fread(buf,len,1,fp);
+    fclose(fp);
+    if(*buf==NULL){return 0;}
+    else{return 1;}
+  }
+  //return 0;
 }
 
 void NDL_OpenCanvas(int *w, int *h) {
