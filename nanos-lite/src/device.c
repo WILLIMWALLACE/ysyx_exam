@@ -44,7 +44,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
       printf("length=%d\n",strlen(temp_down));
       printf("****buf=%s,temp=%s\n",buf,temp_down);
       memset(buf+strlen(buf),0,60-strlen(temp_down));
-      printf("60-strlen(buf)=%d\n",60-strlen(buf));
+      printf("60-strlen(temp_down)=%d\n",60-strlen(temp_down));
        memset(temp_down,0,strlen(temp_down));
       //return 60;
       return 1;
