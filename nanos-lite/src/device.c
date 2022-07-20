@@ -39,6 +39,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
       strcat(temp_down,keyname[ev.keycode]);
       strcat(temp_down,"\n");
       //ret_cnt=0;
+      printf("buf_start=%s\n",buf);
       memcpy(buf,temp_down,strlen(temp_down));
       printf("****buf=%s,temp=%s\n",buf,temp_down);
       memset(buf+strlen(buf),0,60-strlen(buf));
