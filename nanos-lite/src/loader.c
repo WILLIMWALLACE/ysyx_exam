@@ -42,6 +42,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   //printf("pnum=%d\n",ehdr.e_phnum);
   int fd = sys_open(filename);
   //printf("fd=%d\n",fd);
+  printf("du wan\n");
   sys_read(fd,&ehdr,sizeof(ehdr),0);
   //printf("readfinish\n");
   Elf_Phdr phdr[ehdr.e_phnum];
