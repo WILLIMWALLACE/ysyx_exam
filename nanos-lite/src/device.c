@@ -59,8 +59,8 @@ size_t events_read(void *buf, size_t offset, size_t len) {
       //char *temp_up = {"ku",ev.keycode};
       //char *temp_up = "ku";
       char temp_up[60] = "ku";
-      memset(buf,0,strlen(buf));
-      printf("1 start_buf=%s,length_buf=%d\n",buf,strlen(buf));
+      memset(buf,0,3);
+      //printf("1 start_buf=%s,length_buf=%d\n",buf,strlen(buf));
       strcat(temp_up," ");
       strcat(temp_up,keyname[ev.keycode]);
       strcat(temp_up,"\n");
