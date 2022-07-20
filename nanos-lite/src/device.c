@@ -35,6 +35,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
       //char *temp_down="kd";
       char temp_down[60] = "kd";
       //memset(temp_down,"kd",);
+      memset(temp_down+2,0,58);
       strcat(temp_down," ");
       strcat(temp_down,keyname[ev.keycode]);
       strcat(temp_down,"\n");
@@ -58,6 +59,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
       //char *temp_up = {"ku",ev.keycode};
       //char *temp_up = "ku";
       char temp_up[60] = "ku";
+      memset(temp_up+2,0,58);
       strcat(temp_up," ");
       strcat(temp_up,keyname[ev.keycode]);
       strcat(temp_up,"\n");
