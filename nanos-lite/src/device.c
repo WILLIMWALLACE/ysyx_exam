@@ -56,7 +56,8 @@ size_t events_read(void *buf, size_t offset, size_t len) {
         buf++; temp_down++;
         ret_cnt++;
       } */ 
-      return 60;
+      //return 60;
+      return 0;
     }
     else if(!ev.keydown){ //up
       //char *temp_up = {"ku",ev.keycode};
@@ -82,7 +83,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
         buf++ ;temp_up++;
         ret_cnt++;
       }*/
-       return 60;
+       return 0;
     }
     else{assert(0);}
   //return ret_cnt;

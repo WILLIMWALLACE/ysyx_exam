@@ -53,23 +53,8 @@ static Finfo file_table[] __attribute__((used)) = {
 }
 ///////////////  fs_write  ////////////////
  int sys_write(int fd,  char *buf, size_t count,Context *c){
-/*  if((fd!=1) && (fd!=2)){ 
-    printf("fd is not valid!\n");
-    c->GPRx = -1;
-    assert(0);
-  }
-  else if(count == 0){
-    c->GPRx = 0;
-  }*/
  if((fd==1) || (fd==2)){
-   /* int ret_cnt=0;
-    while(count!=0){
-        putch(*buf);
-      buf++; count--; ret_cnt++;
-    }*/
   c->GPRx = file_table[fd].write(buf,0,count);
-  //printf("*********fd=%d*************\n",fd);
-  //printf("cuo wu xie ru,ret_cnt=%d\n",ret_cnt);
   return c->GPRx;
   }
  else{
@@ -80,12 +65,9 @@ static Finfo file_table[] __attribute__((used)) = {
     count = file_table[fd].size - file_table[fd].lseek_off;
   }  
   ramdisk_write(buf,file_table[fd].lseek_off+file_table[fd].disk_offset, count);
-  //printf("test fd = %d\n",fd);
   file_table[fd].lseek_off += count;
   c->GPRx = strlen(buf);
- }
-  //printf("***********STRACE**************\nmcause=4,syscall_name=SYS_WRITE,ret_value=%d\n",
-  //c->GPRx);    
+ }    
   printf("***********STRACE**************\nmcause=4,syscall_name=SYS_write,ret_value=%d\n",c->GPRx);
   return c->GPRx;
 }
@@ -93,17 +75,11 @@ static Finfo file_table[] __attribute__((used)) = {
  int sys_read(int fd,void *buf,size_t count,Context *c){
     if(fd==3){ //for events read
      c->GPRx = file_table[fd].read(buf, 0, 0);   
-      return 0;
+     return 0;
     }
     else if(c==0 && fd!=3){
-      //printf("disk_offset=%d\n",file_table[fd].disk_offset);
-      //printf("disk_size=%d\n",file_table[fd].size);
       ramdisk_read(buf,file_table[fd].disk_offset,count);//sizeof(ehdr)
       printf("打开文件=%s\n",file_table[fd].name);
-      //printf("read finish\n");
-      //printf("buf=%s\n",buf);
-      //c->GPRx = strlen(buf);
-      //printf("ret_read = %d\n",c->GPRx);
       printf("***********STRACE**************\nmcause=3,syscall_name=SYS_read_disk,ret_value=0\n");
       return 0;
     }
