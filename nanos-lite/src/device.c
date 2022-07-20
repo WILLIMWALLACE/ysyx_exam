@@ -50,6 +50,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
       memcpy(buf,temp_down,strlen(temp_down));
       printf("****buf=%s",buf);
       memset(buf,0,60-strlen(buf));
+      printf("length of buf = %d\n",strlen(buf));
       printf("+++++++++++buf=%s\n",buf);
       return 60;
     }
