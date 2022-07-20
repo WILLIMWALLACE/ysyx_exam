@@ -40,7 +40,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
       strcat(temp_down,"\n");
       //ret_cnt=0;
       memcpy(buf,temp_down,strlen(temp_down));
-      printf("****buf=%s",buf);
+      printf("****buf=%s,temp=%s\n",buf,temp_down);
       memset(buf+strlen(buf),0,60-strlen(buf));
        memset(temp_down,0,strlen(temp_down));
       //return 60;
