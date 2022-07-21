@@ -45,11 +45,12 @@ void NDL_OpenCanvas(int *w, int *h) {
     int fd = fileno(fp);
     char buffer[60]; 
     char key_info[60];
+    int read_w,read_h;
     memset(buffer,0,60); memset(key_info,0,60);
     read(fd, buffer, 0);
-    scanf(buffer,"%s: %d\n%s: %d\n",key_info,w,key_info,h);
+    scanf(buffer,"%s: %d\n%s: %d\n",key_info,&read_w,key_info,&read_h);
     printf("NDLh=%s\n",buffer);
-    printf("key_info=%s,w=%d,h=%d\n",key_info,*w,*h);
+    printf("key_info=%s,w=%d,h=%d\n",key_info,read_w,read_h);
     fclose(fp);
     //if(*w==0){printf("*w=0,invalid width\n");assert(0);}
     //*h = size / (*w);
