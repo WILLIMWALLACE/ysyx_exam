@@ -5,6 +5,7 @@
 #include <assert.h>
 #include <time.h>
 #include "syscall.h"
+#include <stdio.h>
 void io_read(reg);
 // helper macros
 #define _concat(x, y) x ## y
@@ -82,7 +83,7 @@ void *_sbrk(intptr_t increment) {
 
 int _read(int fd, void *buf, size_t count) {
   int ret = _syscall_(SYS_read, fd, buf, count);
-  printf("buf=\n%s\n",buf);
+  printf("************buf=\n%s\n",buf);
   return ret;
 }
 
