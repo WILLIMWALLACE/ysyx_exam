@@ -49,7 +49,7 @@ void NDL_OpenCanvas(int *w, int *h) {
     read(fd, buffer, 0);
     scanf(buffer,"%s: %d\n%s: %d\n",key_info,w,key_info,h);
     printf("NDLh=%s\n",buffer);
-    printf("key_info=%s,w=%d,h=%d\n",key_info,w,h);
+    printf("key_info=%s,w=%d,h=%d\n",key_info,*w,*h);
     fclose(fp);
     //if(*w==0){printf("*w=0,invalid width\n");assert(0);}
     //*h = size / (*w);
