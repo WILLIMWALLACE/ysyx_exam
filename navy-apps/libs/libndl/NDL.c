@@ -44,13 +44,14 @@ void NDL_OpenCanvas(int *w, int *h) {
     else{
     int fd = fileno(fp);
     int size;
-    //fscanf(%d%d,w,h);
-    read(fd, w, size);
-    //read(fd,w,h);
+    fscanf(fd,"%d %d",w,h);
+   // fscanf(fd,  ,w);
+    printf("NDLw=%d,NDLh=%d\n",*w,*h);
+    //read(fd, w, size);
     fclose(fp);
-    if(*w==0){printf("*w=0,invalid width\n");assert(0);}
-    *h = size / (*w);
-    printf("NDLw=%d,NDLh=%d,NDLsize=%d\n",*w,*h,size);
+    //if(*w==0){printf("*w=0,invalid width\n");assert(0);}
+    //*h = size / (*w);
+    
     }
     //////////////////  add  ////////////////////
   if (getenv("NWM_APP")) {

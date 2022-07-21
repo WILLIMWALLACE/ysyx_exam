@@ -80,8 +80,8 @@ static Finfo file_table[] __attribute__((used)) = {
      return 0;
     }
     else if(fd == 4){//// *buf=*w  count = size
-      c->GPRx = file_table[fd].read(buf,count,0);
-        printf("readw=%d,readh=%d\n",*(char*)buf,count);
+      c->GPRx = file_table[fd].read(buf,0,0);
+        printf("read_buf=%s\n",*(char*)buf);
       return 0;
     }
     else if(c == 0){

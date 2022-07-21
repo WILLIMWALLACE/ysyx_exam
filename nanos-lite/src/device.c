@@ -65,7 +65,6 @@ size_t events_read(void *buf, size_t offset, size_t len) {
   //return ret_cnt;
   }
 }
-
 /*down
       while(*temp_down!='\n'){
         *(char*)buf = *temp_down; 
@@ -81,12 +80,20 @@ size_t events_read(void *buf, size_t offset, size_t len) {
 */
 //将文件的len字节写到buf中(我们认为这个文件不支持lseek, 可忽略offset).
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {
-  int w = io_read(AM_GPU_CONFIG).width / 32;
-  int h = io_read(AM_GPU_CONFIG).height / 32;
-  //offset = count = size///
-   offset = w*h; /// size
-  *(char*)buf = w;
-  printf("start_w=%d,start_h=%d,start_size=%d\n",w,h,offset);
+  int w = io_read(AM_GPU_CONFIG).width ;
+  int h = io_read(AM_GPU_CONFIG).height ;
+  sprintf((char*)buf,"WIDTE: %d\nHEIGHT: %d\n",w,h);
+  /*memset(buf,0,strlen(buf));
+  char temp[60] = "WIDTH";
+  strcat(temp,": ");
+  strcat(temp,w);
+  strcat(temp,"\n");
+  strcat(temp,"HEIGHT: ");
+  strcat(temp,h);
+  memcpy(buf,temp,strlen(temp));
+  memset(buf+strlen(temp),0,60-strlen(temp));
+  memset(temp,0,strlen(temp));*/
+  //printf("start_w=%d,start_h=%d,start_size=%d\n",w,h,offset);
   return 0;
 }
 
