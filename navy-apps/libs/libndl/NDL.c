@@ -52,13 +52,12 @@ void NDL_OpenCanvas(int *w, int *h) {
    // printf("zhihou %d%d\n",*w,*h);
    // fscanf(fd,  ,w);
     //printf("NDLw=%d,NDLh=%d\n",*w,*h);
-    //read(fd, buf, 0);
+    read(fd, buf, 0);
     //sscanf(buf,"%d",h);
     //printf("NDLh=%s\n",buf);
     fclose(fp);
     //if(*w==0){printf("*w=0,invalid width\n");assert(0);}
     //*h = size / (*w);
-    
     }
     //////////////////  add  ////////////////////
   if (getenv("NWM_APP")) {
