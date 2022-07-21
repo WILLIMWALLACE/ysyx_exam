@@ -81,6 +81,7 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
    int fd = fileno(fp);
   for(int i=0;i<h;i++){
     printf("jin ru fu zhi\n");
+    printf("&buffer[y+i]=%d,pixels=%d,w=%d\n",&buffer[y+i], pixels, w);
     memcpy(&buffer[y+i], pixels, w);
     printf("fu zhi wan cheng\n");
     write(fd,buffer,w);
