@@ -117,7 +117,7 @@ static Finfo file_table[] __attribute__((used)) = {
       //c->GPRx = strlen(buf);
       c->GPRx = count;
       file_table[fd].lseek_off += count; 
-      printf("***********STRACE**************\nmcause=3,syscall_name=SYS_read_file,ret_value=%d\n",c->GPRx);
+      //printf("***********STRACE**************\nmcause=3,syscall_name=SYS_read_file,ret_value=%d\n",c->GPRx);
        return c->GPRx;
       //assert(0);
     }
