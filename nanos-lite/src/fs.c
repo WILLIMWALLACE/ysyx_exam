@@ -57,7 +57,6 @@ static Finfo file_table[] __attribute__((used)) = {
  int sys_write(int fd,  char *buf, size_t count,Context *c){
  if((fd==1) || (fd==2)){
   c->GPRx = file_table[fd].write(buf,0,count);
-  printf("readw=%d,readh=%d\n",*buf,count);
   return c->GPRx;
   }
  else{
@@ -82,6 +81,7 @@ static Finfo file_table[] __attribute__((used)) = {
     }
     else if(fd == 4){//// *buf=*w  count = size
       c->GPRx = file_table[fd].read(buf,count,0);
+        printf("readw=%d,readh=%d\n",buf,count);
       return 0;
     }
     else if(c == 0){
