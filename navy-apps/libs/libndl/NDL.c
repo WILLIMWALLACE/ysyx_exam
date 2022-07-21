@@ -50,7 +50,7 @@ void NDL_OpenCanvas(int *w, int *h) {
     fclose(fp);
     if(*w==0){printf("*w=0,invalid width\n");assert(0);}
     *h = size / (*w);
-    printf("w=%d,h=%d\n",w,h);
+    //printf("w=%d,h=%d\n",w,h);
     }
     //////////////////  add  ////////////////////
   if (getenv("NWM_APP")) {
