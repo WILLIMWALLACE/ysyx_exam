@@ -81,7 +81,7 @@ static Finfo file_table[] __attribute__((used)) = {
     }
     else if(fd == 4){//// *buf=*w  count = size
       c->GPRx = file_table[fd].read(buf,count,0);
-        printf("readw=%d,readh=%d\n",buf,count);
+        printf("readw=%d,readh=%d\n",*(char*)buf,count);
       return 0;
     }
     else if(c == 0){
