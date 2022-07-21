@@ -39,24 +39,22 @@ int NDL_PollEvent(char *buf, int len) {
 void NDL_OpenCanvas(int *w, int *h) {
   ///////////////// add /////////////////////
     FILE *fp;
-    fp = fopen("/proc/dispinfo","r+");
+    fp = fopen("/proc/dispinfo","r");
     if(fp == NULL){printf("bu cun zai wen jian\n");assert(0);} 
     else{
-    //int fd = fileno(fp);
-    //int size;
-    //char *name_w;
-    //char *name_h;
-    //char *buf;
+    int fd = fileno(fp);
+    char *buf;
     //rewind(fp);
-    printf("zhiqian %d%d\n",*w,*h);
-    fscanf(fp,"WIDTH: %dHEIGHT: %d",w,h);
+    //fscanf(fp,"WIDTH: %dHEIGHT: %d",w,h);
     //fscanf(fp,"%d%d",w,h);
     //fscanf(fp,"%d",buf);
     //printf("buf=%d\n",*buf);
-    printf("zhihou %d%d\n",*w,*h);
+   // printf("zhihou %d%d\n",*w,*h);
    // fscanf(fd,  ,w);
     //printf("NDLw=%d,NDLh=%d\n",*w,*h);
-    //read(fd, w, size);
+    read(fd, buf, 0);
+    sscanf(buf,"%d %d",w,h);
+    printf("NDLw=%d,NDLh=%d\n",*w,*h);
     fclose(fp);
     //if(*w==0){printf("*w=0,invalid width\n");assert(0);}
     //*h = size / (*w);
