@@ -43,11 +43,11 @@ void NDL_OpenCanvas(int *w, int *h) {
     if(fp == NULL){printf("bu cun zai wen jian\n");assert(0);} 
     else{
     int fd = fileno(fp);
-    char *buf;
+    void *buf=NULL;
     rewind(fp);
     //fscanf(fp,"WIDTH: %dHEIGHT: %d",w,h);
-    fscanf(fp,"%s",buf);
-    //fscanf(fp,"%d",buf);
+    //fscanf(fp,"%s",buf);
+    fscanf(fp,"%d",buf);
     //printf("buf=%d\n",*buf);
    // printf("zhihou %d%d\n",*w,*h);
    // fscanf(fd,  ,w);
