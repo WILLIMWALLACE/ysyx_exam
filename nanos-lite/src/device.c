@@ -81,8 +81,11 @@ size_t events_read(void *buf, size_t offset, size_t len) {
 */
 //将文件的len字节写到buf中(我们认为这个文件不支持lseek, 可忽略offset).
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {
-  
-  
+  int w = io_read(AM_GPU_CONFIG).width / 32;
+  int h = io_read(AM_GPU_CONFIG).height / 32;
+  //offset = count = size///
+   offset = w*h; /// size
+  *(char*)buf = w;
   return 0;
 }
 

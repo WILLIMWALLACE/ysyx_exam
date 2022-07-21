@@ -37,6 +37,22 @@ int NDL_PollEvent(char *buf, int len) {
 // 打开一张(*w) X (*h)的画布
 // 如果*w和*h均为0, 则将系统全屏幕作为画布, 并将*w和*h分别设为系统屏幕的大小
 void NDL_OpenCanvas(int *w, int *h) {
+  ///////////////// add /////////////////////
+    FILE *fp;
+    fp = fopen("/proc/dispinfo","r");
+    if(fp == NULL){printf("bu cun zai wen jian\n");assert(0);} 
+    else{
+    int fd = fileno(fp);
+    int size;
+    //fscanf(%d%d,w,h);
+    read(fd, w, size);
+    //read(fd,w,h);
+    fclose(fp);
+    if(*w==0){printf("*w=0,invalid width\n");assert(0);}
+    *h = size / (*w);
+    printf("w=%d,h=%d\n",w,h);
+    }
+    //////////////////  add  ////////////////////
   if (getenv("NWM_APP")) {
     int fbctl = 4;
     fbdev = 5;

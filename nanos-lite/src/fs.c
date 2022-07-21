@@ -79,11 +79,11 @@ static Finfo file_table[] __attribute__((used)) = {
      c->GPRx = file_table[fd].read(buf, 0, 0);   
      return 0;
     }
-    /*else if(fd == 4){
-      c->GPRx = file_table[fd].read();
+    else if(fd == 4){//// *buf=*w  count = size
+      c->GPRx = file_table[fd].read(buf,count,0);
       return 0;
-    }*/
-    else if(c==0 ){
+    }
+    else if(c == 0){
       ramdisk_read(buf,file_table[fd].disk_offset,count);//sizeof(ehdr)
       printf("打开文件=%s\n",file_table[fd].name);
       printf("***********STRACE**************\nmcause=3,syscall_name=SYS_read_disk,ret_value=0\n");
