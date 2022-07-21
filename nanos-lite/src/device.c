@@ -85,7 +85,7 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
   //printf("jin ru pin jie\n");
   sprintf((char*)buf,"WIDTE: %d\nHEIGHT: %d\n",w,h);
   //printf("du qu wan cehng\n");
-  printf("buf=\n%s\n",buf);
+  //printf("buf=\n%s\n",buf);
   /*memset(buf,0,strlen(buf));
   char temp[60] = "WIDTH";
   strcat(temp,": ");
