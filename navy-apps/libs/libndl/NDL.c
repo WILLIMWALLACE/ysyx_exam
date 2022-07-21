@@ -49,12 +49,8 @@ void NDL_OpenCanvas(int *w, int *h) {
     memset(buffer,0,60); memset(key_info,0,60);
     read(fd, buffer, 0);
     sscanf(buffer,"%s %d %s %d",key_info,&read_w,key_info,&read_h);
-    //printf("NDLh=%s\n",buffer);
-    //printf("key_info=%s,w=%d,h=%d\n",key_info,read_w,read_h);
     *w = read_w; *h = read_h;
     fclose(fp);
-    //if(*w==0){printf("*w=0,invalid width\n");assert(0);}
-    //*h = size / (*w);
     }
     //////////////////  add  ////////////////////
   if (getenv("NWM_APP")) {
@@ -78,8 +74,15 @@ void NDL_OpenCanvas(int *w, int *h) {
 // 向画布`(x, y)`坐标处绘制`w*h`的矩形图像, 并将该绘制区域同步到屏幕上
 // 像素按行优先方式存储在`pixels`中, 每个像素用32位整数以`00RRGGBB`的方式描述颜色
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
-
-
+  char *buffer;
+  for(int i=0;i<h;i++){
+    memcpy(&buffer[y+i], pixels, w);
+  }
+   FILE *fp;
+   fp = fopen("/dev/fb","r");
+   if(fp == NULL){printf("bu cun zai wen jian\n");assert(0);} 
+   int fd = fileno(fp);
+   write(fd,buffer,w);
 }
 
 void NDL_OpenAudio(int freq, int channels, int samples) {

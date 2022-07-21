@@ -9,6 +9,7 @@ size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 size_t serial_write(const void *buf, size_t offset, size_t len);
 size_t events_read(void *buf, size_t offset, size_t len);
 size_t dispinfo_read(void *buf, size_t offset, size_t len);
+size_t fb_write(const void *buf, size_t offset, size_t len);
 
 typedef struct {
   char *name;
@@ -38,12 +39,13 @@ static Finfo file_table[] __attribute__((used)) = {
   [FD_STDERR] = {"stderr", 0, 0, invalid_read, serial_write},
   [FD_KEY]    = {"/dev/events", 0, 0, events_read, invalid_write},
   [FD_DISPINFO] = {"/proc/dispinfo", 0, 0, dispinfo_read, invalid_write},
+  [FD_FB]     = {"/dev/fb", 0, 0, invalid_read, fb_write},
 #include "files.h"
 };
 
 ////////////  fs_open    ////////////////////
  int sys_open(const char *path){
-  for(int i=0;i<29;i++){
+  for(int i=0;i<30;i++){
     if(strcmp(path,file_table[i].name)==0){
     //  printf("***********STRACE**************\nmcause=2,syscall_name=SYS_open,ret_value=%d\n",i);
       return i;
@@ -59,6 +61,17 @@ static Finfo file_table[] __attribute__((used)) = {
   c->GPRx = file_table[fd].write(buf,0,count);
   return c->GPRx;
   }
+ else if(fd == 5){
+   if(file_table[fd].lseek_off>file_table[fd].size)
+     { assert(0);}
+   if(file_table[fd].lseek_off+count>file_table[fd].size)
+     { count = file_table[fd].size - file_table[fd].lseek_off;}  
+
+   c->GPRx = file_table[fd].write(buf,file_table[fd].lseek_off,count);
+   
+      file_table[fd].lseek_off += count;
+  return 0;
+ }
  else{
   if(file_table[fd].lseek_off>file_table[fd].size){
     assert(0);
@@ -144,5 +157,12 @@ static Finfo file_table[] __attribute__((used)) = {
  }
 
 void init_fs() {
-  // TODO: initialize the size of /dev/fb
+  int w = io_read(AM_GPU_CONFIG).width ;
+  int h = io_read(AM_GPU_CONFIG).height ;
+  for(int i=0;i<29;i++){
+    if(strcmp("/dev/fb",file_table[i].name)==0){
+      file_table[i].size = w*h*4; //byte num
+    }     
+  }
+
 }

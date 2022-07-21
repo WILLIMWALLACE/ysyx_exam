@@ -19,7 +19,6 @@ size_t serial_write(const char *buf, size_t offset, size_t len) {
     while(len!=0){
         putch(*buf);
       buf++; len--; ret_cnt++;
-      //printf("da yin zi fu chuan\n");
     }
   //c->GPRx = ret_cnt;
   return ret_cnt;
@@ -30,21 +29,18 @@ size_t events_read(void *buf, size_t offset, size_t len) {
   if (ev.keycode == AM_KEY_NONE) {
      memset(buf,0,strlen(buf)); free(buf);return 0;}
   else{ 
-    //memset(buf,0,1);
-    //int ret_cnt=0;
+    
     if(ev.keydown){ // down
       memset(buf,0,strlen(buf));
       char temp_down[60]="kd";
+
       strcat(temp_down," ");
       strcat(temp_down,keyname[ev.keycode]);
       strcat(temp_down,"\n");
-      //ret_cnt=0;
-      //printf("buf_start=%s\n",buf);
-      memcpy(buf,temp_down,strlen(temp_down));
-      //printf("length=%d\n",strlen(temp_down));
-      //printf("****buf=%s,temp=%s\n",buf,temp_down);
+
+      memcpy(buf,temp_down,strlen(temp_down));  
       memset(buf+strlen(temp_down),0,60-strlen(temp_down));
-      //printf("60-strlen(temp_down)=%d\n",60-strlen(temp_down));
+
       memset(temp_down,0,strlen(temp_down));
       //return 60;
       return 1;
@@ -65,42 +61,20 @@ size_t events_read(void *buf, size_t offset, size_t len) {
   //return ret_cnt;
   }
 }
-/*down
-      while(*temp_down!='\n'){
-        *(char*)buf = *temp_down; 
-        buf++; temp_down++;
-        //ret_cnt++;
-      }
-  up
-      while(*temp_up!='\n'){
-        *(char*)buf = *temp_up;
-        buf++ ;temp_up++;
-        //ret_cnt++;
-      }
-*/
+
 //将文件的len字节写到buf中(我们认为这个文件不支持lseek, 可忽略offset).
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {
   int w = io_read(AM_GPU_CONFIG).width ;
   int h = io_read(AM_GPU_CONFIG).height ;
-  //printf("jin ru pin jie\n");
   sprintf((char*)buf,"WIDTE: %d\nHEIGHT: %d\n",w,h);
-  //printf("du qu wan cehng\n");
-  //printf("buf=\n%s\n",buf);
-  /*memset(buf,0,strlen(buf));
-  char temp[60] = "WIDTH";
-  strcat(temp,": ");
-  strcat(temp,w);
-  strcat(temp,"\n");
-  strcat(temp,"HEIGHT: ");
-  strcat(temp,h);
-  memcpy(buf,temp,strlen(temp));
-  memset(buf+strlen(temp),0,60-strlen(temp));
-  memset(temp,0,strlen(temp));*/
-  //printf("start_w=%d,start_h=%d,start_size=%d\n",w,h,offset);
   return 1;
 }
 
 size_t fb_write(const void *buf, size_t offset, size_t len) {
+  int total_w = io_read(AM_GPU_CONFIG).width ;
+  int x = offset%total_w;
+  int y = offset/total_w;
+  io_write(AM_GPU_FBDRAW, x , y , (char*)buf, total_w, 1, false);
   return 0;
 }
 
