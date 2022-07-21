@@ -42,9 +42,11 @@ void NDL_OpenCanvas(int *w, int *h) {
     fp = fopen("/proc/dispinfo","r");
     if(fp == NULL){printf("bu cun zai wen jian\n");assert(0);} 
     else{
-    int fd = fileno(fp);
+    //int fd = fileno(fp);
     //int size;
-    fscanf(fd,"%d %d",w,h);
+    char *name_w;
+    char *name_h;
+    fscanf(fp,"%s %d %s %d",name_w,w,name_h,h);
    // fscanf(fd,  ,w);
     //printf("NDLw=%d,NDLh=%d\n",*w,*h);
     //read(fd, w, size);
