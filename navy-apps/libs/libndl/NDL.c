@@ -50,7 +50,7 @@ void NDL_OpenCanvas(int *w, int *h) {
     //fscanf(fp,"%s %d %s %d",name_w,w,name_h,h);
     //fscanf(fp,"%d%d",w,h);
     fscanf(fp,"%s",buf);
-    printf("buf=%s\n",*buf);
+    printf("buf=%d\n",*buf);
     //printf("%s %d %s %d\n",*name_w,*w,*name_h,*h);
    // fscanf(fd,  ,w);
     //printf("NDLw=%d,NDLh=%d\n",*w,*h);
