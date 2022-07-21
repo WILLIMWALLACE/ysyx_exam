@@ -86,6 +86,7 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
   //offset = count = size///
    offset = w*h; /// size
   *(char*)buf = w;
+  printf("start_w=%d,start_h=%d,start_size=%d\n",w,h,offset);
   return 0;
 }
 
