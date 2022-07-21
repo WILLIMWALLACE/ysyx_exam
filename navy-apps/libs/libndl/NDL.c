@@ -75,14 +75,17 @@ void NDL_OpenCanvas(int *w, int *h) {
 // 像素按行优先方式存储在`pixels`中, 每个像素用32位整数以`00RRGGBB`的方式描述颜色
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
   char *buffer;
-  for(int i=0;i<h;i++){
-    memcpy(&buffer[y+i], pixels, w);
-  }
    FILE *fp;
    fp = fopen("/dev/fb","r");
    if(fp == NULL){printf("bu cun zai wen jian\n");assert(0);} 
    int fd = fileno(fp);
-   write(fd,buffer,w);
+  for(int i=0;i<h;i++){
+    printf("jin ru fu zhi\n");
+    memcpy(&buffer[y+i], pixels, w);
+    printf("fu zhi wan cheng\n");
+    write(fd,buffer,w);
+    printf("system call write\n");
+  }  
 }
 
 void NDL_OpenAudio(int freq, int channels, int samples) {
