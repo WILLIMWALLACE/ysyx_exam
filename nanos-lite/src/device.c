@@ -95,7 +95,7 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
   memset(buf+strlen(temp),0,60-strlen(temp));
   memset(temp,0,strlen(temp));*/
   //printf("start_w=%d,start_h=%d,start_size=%d\n",w,h,offset);
-  return 0;
+  return 1;
 }
 
 size_t fb_write(const void *buf, size_t offset, size_t len) {
