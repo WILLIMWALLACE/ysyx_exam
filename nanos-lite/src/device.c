@@ -82,6 +82,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {
   int w = io_read(AM_GPU_CONFIG).width ;
   int h = io_read(AM_GPU_CONFIG).height ;
+  printf("jin ru pin jie\n");
   sprintf((char*)buf,"WIDTE: %d\nHEIGHT: %d\n",w,h);
   printf("buf=\n%s\n",buf);
   /*memset(buf,0,strlen(buf));
