@@ -48,7 +48,7 @@ void NDL_OpenCanvas(int *w, int *h) {
     int read_w,read_h;
     memset(buffer,0,60); memset(key_info,0,60);
     read(fd, buffer, 0);
-    sscanf(buffer,"%s %[0-9]",key_info,&read_w);
+    sscanf(buffer,"%s %d %s %d",key_info,&read_w,key_info,read_h);
     printf("NDLh=%s\n",buffer);
     printf("key_info=%s,w=%d,h=%d\n",key_info,read_w,read_h);
     fclose(fp);
