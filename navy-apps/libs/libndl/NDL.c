@@ -44,14 +44,14 @@ void NDL_OpenCanvas(int *w, int *h) {
     else{
     //int fd = fileno(fp);
     //int size;
-    //char *name_w;
-    //char *name_h;
-    char *buf;
-    //fscanf(fp,"%s %d %s %d",name_w,w,name_h,h);
+    char *name_w;
+    char *name_h;
+    //char *buf;
+    fscanf(fp,"%s%d\n%s%d\n",name_w,w,name_h,h);
     //fscanf(fp,"%d%d",w,h);
-    fscanf(fp,"%d",buf);
-    printf("buf=%d\n",*buf);
-    //printf("%s %d %s %d\n",*name_w,*w,*name_h,*h);
+    //fscanf(fp,"%d",buf);
+    //printf("buf=%d\n",*buf);
+    printf("%s %d %s %d\n",name_w,*w,name_h,*h);
    // fscanf(fd,  ,w);
     //printf("NDLw=%d,NDLh=%d\n",*w,*h);
     //read(fd, w, size);
