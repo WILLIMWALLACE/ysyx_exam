@@ -39,7 +39,7 @@ int NDL_PollEvent(char *buf, int len) {
 void NDL_OpenCanvas(int *w, int *h) {
   ///////////////// add /////////////////////
     FILE *fp;
-    fp = fopen("/proc/dispinfo","r");
+    fp = fopen("/proc/dispinfo","r+");
     if(fp == NULL){printf("bu cun zai wen jian\n");assert(0);} 
     else{
     //int fd = fileno(fp);
