@@ -53,8 +53,8 @@ void NDL_OpenCanvas(int *w, int *h) {
    // fscanf(fd,  ,w);
     //printf("NDLw=%d,NDLh=%d\n",*w,*h);
     read(fd, buf, 0);
-    sscanf(buf,"%d %d",w,h);
-    printf("NDLw=%d,NDLh=%d\n",*w,*h);
+    sscanf(buf,"%d",h);
+    printf("NDLh=%d\n",*h);
     fclose(fp);
     //if(*w==0){printf("*w=0,invalid width\n");assert(0);}
     //*h = size / (*w);
