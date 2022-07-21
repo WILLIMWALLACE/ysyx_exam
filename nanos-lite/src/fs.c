@@ -101,8 +101,8 @@ static Finfo file_table[] __attribute__((used)) = {
     }
     else if(c == 0){
       ramdisk_read(buf,file_table[fd].disk_offset,count);//sizeof(ehdr)
-      printf("打开文件=%s\n",file_table[fd].name);
-      printf("***********STRACE**************\nmcause=3,syscall_name=SYS_read_disk,ret_value=0\n");
+      //printf("打开文件=%s\n",file_table[fd].name);
+      //printf("***********STRACE**************\nmcause=3,syscall_name=SYS_read_disk,ret_value=0\n");
       return 0;
     }
     else{
