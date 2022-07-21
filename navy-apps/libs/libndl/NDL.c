@@ -48,12 +48,12 @@ void NDL_OpenCanvas(int *w, int *h) {
     //char *name_h;
     //char *buf;
     //rewind(fp);
-    printf("zhiqian %d%d\n",w,h);
+    printf("zhiqian %d%d\n",*w,*h);
     fscanf(fp,"WIDTH: %dHEIGHT: %d",w,h);
     //fscanf(fp,"%d%d",w,h);
     //fscanf(fp,"%d",buf);
     //printf("buf=%d\n",*buf);
-    printf("zhihou %d%d\n",w,h);
+    printf("zhihou %d%d\n",*w,*h);
    // fscanf(fd,  ,w);
     //printf("NDLw=%d,NDLh=%d\n",*w,*h);
     //read(fd, w, size);
