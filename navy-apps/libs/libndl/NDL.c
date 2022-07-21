@@ -45,7 +45,7 @@ void NDL_OpenCanvas(int *w, int *h) {
     int fd = fileno(fp);
     //char *buf;
     //rewind(fp);
-    //fscanf(fp,"WIDTH: %dHEIGHT: %d",w,h);
+    fscanf(fp,"WIDTH: %dHEIGHT: %d",w,h);
     //fscanf(fp,"%d%d",w,h);
     //fscanf(fp,"%d",buf);
     //printf("buf=%d\n",*buf);
