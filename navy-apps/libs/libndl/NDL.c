@@ -49,14 +49,20 @@ void NDL_OpenCanvas(int *w, int *h) {
     memset(buffer,0,60); memset(key_info,0,60);
     read(fd, buffer, 0);
     sscanf(buffer,"%s %d %s %d",key_info,&read_w,key_info,&read_h);
-    *w = read_w; *h = read_h;
+    //////////////   add//////////////////////
+    if(*w<read_w){screen_w = *w; }
+    if(*h<read_h){screen_h = *h;}
+    else if(*w>=read_w) { screen_w = read_w;}
+    else if(*h>=read_h) { screen_h = read_h;}
+////////////////add //////////////////////
     fclose(fp);
     }
     //////////////////  add  ////////////////////
   if (getenv("NWM_APP")) {
     int fbctl = 4;
     fbdev = 5;
-    screen_w = *w; screen_h = *h;
+    //screen_w = *w; 
+    //screen_h = *h;
     char buf[64];
     int len = sprintf(buf, "%d %d", screen_w, screen_h);
     // let NWM resize the window and create the frame buffer
