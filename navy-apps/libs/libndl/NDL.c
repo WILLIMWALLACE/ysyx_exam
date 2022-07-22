@@ -80,7 +80,7 @@ void NDL_OpenCanvas(int *w, int *h) {
 // 向画布`(x, y)`坐标处绘制`w*h`的矩形图像, 并将该绘制区域同步到屏幕上
 // 像素按行优先方式存储在`pixels`中, 每个像素用32位整数以`00RRGGBB`的方式描述颜色
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
-  uint32_t *buffer[w];//every address present one byte
+  uint32_t *buffer[w*4];//every address present one byte
    FILE *fp;
    fp = fopen("/dev/fb","r");
    if(fp == NULL){printf("bu cun zai wen jian\n");assert(0);} 
