@@ -92,7 +92,7 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
     //printf("%d\n",pixels);
     //memcpy(buffer, pixels, 400*300);
    // printf("buffer=%d,pixels=%s\n",*buffer,pixels);
-    //printf("fu zhi wan cheng\n");
+    printf("fu zhi wan cheng\n");
     write(fd,buffer,w);
     //printf("system call write\n");
   }  
