@@ -85,17 +85,17 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
    fp = fopen("/dev/fb","r");
    if(fp == NULL){printf("bu cun zai wen jian\n");assert(0);} 
    int fd = fileno(fp);
-  //for(int i=0;i<h;i++,pixels+=w){
+  for(int i=0;i<h;i++,pixels+=w){
     //printf("jin ru fu zhi\n");
     //printf("&buffer[y+i]=%d,pixels=%d,w=%d\n",&buffer[y+i], pixels, w);
-    //memcpy(&buffer[(y+i)*w], pixels, w*sizeof(uint32_t));
-    printf("%d\n",pixels);
+    memcpy(&buffer[(y+i)*w], pixels, w*sizeof(uint32_t));
+    //printf("%d\n",pixels);
     //memcpy(buffer, pixels, 400*300);
    // printf("buffer=%d,pixels=%s\n",*buffer,pixels);
-    printf("fu zhi wan cheng\n");
-    write(fd,pixels,w);
-    printf("system call write\n");
-  //}  
+    //printf("fu zhi wan cheng\n");
+    write(fd,buffer,w);
+    //printf("system call write\n");
+  }  
 }
 
 void NDL_OpenAudio(int freq, int channels, int samples) {
