@@ -28,7 +28,7 @@ int SDL_WaitEvent(SDL_Event *event) {
   sscanf(key_buf,"%s %s",NDL_key_type,key_name);
    //printf("NDL_key_type == %s,   key_name==%s\n",NDL_key_type,key_name);
   if(strcmp(NDL_key_type,"kd")==0){
-    printf("NDL_key_type == %s,   key_name==%s\n",NDL_key_type,key_name);
+   // printf("NDL_key_type == %s,   key_name==%s\n",NDL_key_type,key_name);
     event->type           = SDL_KEYDOWN;
     for(int i=0;i<(sizeof(key_name)/sizeof(char));i++){
       if(strcmp(key_name,keyname[i])==0)
