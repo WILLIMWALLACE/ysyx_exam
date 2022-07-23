@@ -18,10 +18,11 @@ int SDL_PollEvent(SDL_Event *ev) {
 }
 
 int SDL_WaitEvent(SDL_Event *event) {
-  char *key_buf;
+  char key_buf[60];
   char NDL_key_type[60];
   int  key_name=0;
   printf("receive key_buf=%s\n",key_buf);
+  memset(key_buf,0,60); 
   NDL_PollEvent(key_buf, sizeof(key_buf));//obtain key infomation
   printf("receive key_buf=%s\n",key_buf);
   memset(NDL_key_type,0,60); 
