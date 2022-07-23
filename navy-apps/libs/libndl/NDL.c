@@ -30,6 +30,7 @@ int NDL_PollEvent(char *buf, int len) {
     //printf("finish open\n");
     int flag = read(fd,buf,0);
     //printf("finish read\n");
+    if(buf!=NULL){ printf("receive key = %s\n",buf);}
     fclose(fp);
     if(flag == 0){return 0;}
     else{return 1;}
