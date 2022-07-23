@@ -160,6 +160,9 @@ long sys_lseek(int fd, long offset, int whence){
        if(file_table[fd].lseek_off == file_table[fd].size-1){
         file_table[fd].lseek_off = 0;
        }
+       if(fd==8){
+       printf("*******lseek_off=%d\n",file_table[fd].lseek_off);
+       }
 ramdisk_read(buf,file_table[fd].lseek_off+file_table[fd].disk_offset,count);//sizeof(ehdr)
       //c->GPRx = count;
       file_table[fd].lseek_off += count; 
