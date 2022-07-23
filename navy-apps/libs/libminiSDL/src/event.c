@@ -1,6 +1,6 @@
 #include <NDL.h>
 #include <SDL.h>
-
+#include <string.h>
 #define keyname(k) #k,
 
 static const char *keyname[] = {
@@ -19,9 +19,21 @@ int SDL_PollEvent(SDL_Event *ev) {
 
 int SDL_WaitEvent(SDL_Event *event) {
   char *key_buf;
+  char NDL_key_type[60];
+  int  key_name=0;
+
   NDL_PollEvent(key_buf, 0);//obtain key infomation
-  event->type = SDL_KEYDOWN;
-  
+  memset(NDL_key_type,0,60); 
+  sscanf(key_buf,"%s %d",NDL_key_type,&key_name);
+
+  if(NDL_key_type == "kd"){
+    event->type           = SDL_KEYDOWN;
+    event->key.keysym.sym = key_name;
+  }
+  else if(NDL_key_type == "ku"){
+    event->type           = SDL_KEYUP;
+    event->key.keysym.sym = key_name;
+  }
   printf("receive key_buf=%s\n",key_buf);
   return 1;
 }

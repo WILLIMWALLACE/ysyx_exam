@@ -50,7 +50,7 @@ void NDL_OpenCanvas(int *w, int *h) {
     memset(buffer,0,60); memset(key_info,0,60);
     read(fd, buffer, 0);
     sscanf(buffer,"%s %d %s %d",key_info,&read_w,key_info,&read_h);
-    printf("key_info = %s,read_w=%d\n",key_info,read_w);
+   // printf("key_info = %s,read_w=%d\n",key_info,read_w);
     //////////////   add//////////////////////
     if(*w<read_w){screen_w = *w; }
     if(*h<read_h){screen_h = *h;}
