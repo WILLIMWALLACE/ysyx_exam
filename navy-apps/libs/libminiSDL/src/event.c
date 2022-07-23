@@ -29,16 +29,16 @@ int SDL_WaitEvent(SDL_Event *event) {
    //printf("NDL_key_type == %s,   key_name==%s\n",NDL_key_type,key_name);
   if(strcmp(NDL_key_type,"kd")==0){
    // printf("NDL_key_type == %s,   key_name==%s\n",NDL_key_type,key_name);
-   printf("SIZE=%d\n",(sizeof(key_name)/sizeof(char)));
+   //printf("SIZE=%d\n",(sizeof(key_name)/sizeof(char)));
     event->type           = SDL_KEYDOWN;
-    for(int i=0;i<(sizeof(key_name)/sizeof(char));i++){
+    for(int i=0;i<83;i++){
       if(strcmp(key_name,keyname[i])==0)
       {event->key.keysym.sym = i;printf("receive key_id=%d\n",i);break;}
     }
   }
   if(strcmp(NDL_key_type,"ku")==0){
     event->type           = SDL_KEYUP;
-    for(int i=0;i<(sizeof(key_name)/sizeof(char));i++){
+    for(int i=0;i<83;i++){
       if(strcmp(key_name,keyname[i])==0)
       {event->key.keysym.sym = i;printf("receive key_id=%d\n",i);break;}
     }
