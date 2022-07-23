@@ -90,6 +90,7 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
    if(fp == NULL){printf("bu cun zai wen jian\n");assert(0);} 
    int fd = fileno(fp);
    memset(buffer,0,w*4);
+    lseek(5,0,SEEK_SET);
   for(int i=0;i<h;i++,pixels+=w){
     //printf("jin ru fu zhi\n");
     //printf("len_pixels=%d\n",sizeof(uint32_t));
