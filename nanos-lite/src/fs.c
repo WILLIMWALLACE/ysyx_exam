@@ -157,13 +157,15 @@ long sys_lseek(int fd, long offset, int whence){
        if(file_table[fd].lseek_off+count>file_table[fd].size){
         count = file_table[fd].size - file_table[fd].lseek_off;
        }
-       if(file_table[fd].lseek_off == 11388){
-        file_table[fd].lseek_off = 0;
-       }
-       if(fd==8){
-       printf("*******lseek_off=%d\n",file_table[fd].lseek_off);
+       if(file_table[fd].lseek_off == file_table[fd].size){
+        printf("*******lseek_off=%d\n",file_table[fd].lseek_off);
        printf("count=%d\n",count);
+        file_table[fd].lseek_off = 357914;
        }
+      // if(fd==8){
+      // printf("*******lseek_off=%d\n",file_table[fd].lseek_off);
+      // printf("count=%d\n",count);
+      // }
 ramdisk_read(buf,file_table[fd].lseek_off+file_table[fd].disk_offset,count);//sizeof(ehdr)
       //c->GPRx = count;
       file_table[fd].lseek_off += count; 
