@@ -103,6 +103,7 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
     //printf("w****=%d\n",w);
     //printf("system call write\n");
   }  
+   fclose(fp);
 }
 
 void NDL_OpenAudio(int freq, int channels, int samples) {
