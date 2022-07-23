@@ -48,6 +48,7 @@ static Finfo file_table[] __attribute__((used)) = {
   for(int i=0;i<39;i++){
     if(strcmp(path,file_table[i].name)==0){
       //printf("***********STRACE**************\nmcause=2,syscall_name=SYS_open,ret_value=%d\n",i);
+      file_table[i].lseek_off = 0;
       return i;
     }     
   }
@@ -157,11 +158,11 @@ long sys_lseek(int fd, long offset, int whence){
        if(file_table[fd].lseek_off+count>file_table[fd].size){
         count = file_table[fd].size - file_table[fd].lseek_off;
        }
-       if(file_table[fd].lseek_off == file_table[fd].size){
+      /* if(file_table[fd].lseek_off == file_table[fd].size){
         printf("*******lseek_off=%d\n",file_table[fd].lseek_off);
        printf("count=%d\n",count);
         file_table[fd].lseek_off = 357914;
-       }
+       }*/
       // if(fd==8){
       // printf("*******lseek_off=%d\n",file_table[fd].lseek_off);
       // printf("count=%d\n",count);
