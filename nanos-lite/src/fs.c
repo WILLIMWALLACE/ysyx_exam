@@ -69,7 +69,7 @@ static Finfo file_table[] __attribute__((used)) = {
   // printf("********************\n");
    c->GPRx = file_table[fd].write(buf,file_table[fd].lseek_off,count);
    
-      //file_table[fd].lseek_off += count;
+      file_table[fd].lseek_off += count;
   return c->GPRx;
  }
  else{
