@@ -21,22 +21,24 @@ int SDL_WaitEvent(SDL_Event *event) {
   char key_buf[60];
   char NDL_key_type[60];
   int  key_name=0;
-  printf("receive key_buf=%s\n",key_buf);
-  memset(key_buf,0,60); 
+  //printf("receive key_buf=%s\n",key_buf);
+  //memset(key_buf,0,60); 
   NDL_PollEvent(key_buf, sizeof(key_buf));//obtain key infomation
-  printf("receive key_buf=%s\n",key_buf);
+  //printf("receive key_buf=%s\n",key_buf);
   memset(NDL_key_type,0,60); 
   sscanf(key_buf,"%s %d",NDL_key_type,&key_name);
 
   if(NDL_key_type == "kd"){
     event->type           = SDL_KEYDOWN;
     event->key.keysym.sym = key_name;
+     printf("receive key_buf=%s\n",key_buf);
   }
   else if(NDL_key_type == "ku"){
     event->type           = SDL_KEYUP;
     event->key.keysym.sym = key_name;
+     printf("receive key_buf=%s\n",key_buf);
   }
-  printf("receive key_buf=%s\n",key_buf);
+ // printf("receive key_buf=%s\n",key_buf);
   return 1;
 }
 

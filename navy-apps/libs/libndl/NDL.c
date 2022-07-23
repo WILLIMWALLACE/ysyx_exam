@@ -27,9 +27,9 @@ int NDL_PollEvent(char *buf, int len) {
     int fd = fileno(fp);
     //*buf = NULL;
     memset(buf,0,strlen(buf));
-    printf("finish open\n");
+    //printf("finish open\n");
     int flag = read(fd,buf,0);
-    printf("finish read\n");
+    //printf("finish read\n");
     fclose(fp);
     if(flag == 0){return 0;}
     else{return 1;}
