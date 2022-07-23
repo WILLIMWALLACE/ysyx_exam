@@ -30,8 +30,8 @@ void* BMP_Load(const char *filename, int *width, int *height) {
 
   printf("hdr.bitcount=%d,hdr.cpmpression=%d\n",hdr.bitcount,hdr.compression);
 
-  if (hdr.bitcount != 24) return NULL;
-  if (hdr.compression != 0) return NULL;
+  //if (hdr.bitcount != 24) return NULL;
+  //if (hdr.compression != 0) return NULL;
   int w = hdr.width;
   int h = hdr.height;
   uint32_t *pixels = malloc(w * h * sizeof(uint32_t));
