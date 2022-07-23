@@ -157,6 +157,9 @@ long sys_lseek(int fd, long offset, int whence){
        if(file_table[fd].lseek_off+count>file_table[fd].size){
         count = file_table[fd].size - file_table[fd].lseek_off;
        }
+       if(file_table[fd].lseek_off == file_table[fd].size){
+        file_table[fd].lseek_off = 0;
+       }
 ramdisk_read(buf,file_table[fd].lseek_off+file_table[fd].disk_offset,count);//sizeof(ehdr)
       //c->GPRx = count;
       file_table[fd].lseek_off += count; 
