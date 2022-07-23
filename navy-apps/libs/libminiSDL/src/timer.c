@@ -3,14 +3,17 @@
 #include <stdio.h>
 
 SDL_TimerID SDL_AddTimer(uint32_t interval, SDL_NewTimerCallback callback, void *param) {
+  //printf("NOT IMMPLEMENT\n");assert(0);
   return NULL;
 }
 
 int SDL_RemoveTimer(SDL_TimerID id) {
+  //printf("NOT IMMPLEMENT\n");assert(0);
   return 1;
 }
 
 uint32_t SDL_GetTicks() {
+ // printf("NOT IMMPLEMENT\n");assert(0);
   return 0;
 }
 

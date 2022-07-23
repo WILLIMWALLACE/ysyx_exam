@@ -41,11 +41,11 @@ typedef struct {
 } SDL_PixelFormat;
 
 typedef struct {
-	uint32_t flags;
-	SDL_PixelFormat *format;
-	int w, h;
-	uint16_t pitch;
-	uint8_t *pixels;
+	uint32_t flags; 
+	SDL_PixelFormat *format; //存储在surface中的像素格式/只读
+	int w, h;		//宽、高，以像素为单位
+	uint16_t pitch;		//一行像素的长度，以字节为单位
+	uint8_t *pixels;	//指向实际象素数据
 } SDL_Surface;
 
 SDL_Surface* SDL_CreateRGBSurfaceFrom(void *pixels, int width, int height, int depth,

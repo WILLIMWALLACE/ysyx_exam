@@ -13,6 +13,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
 }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
+    NDL_DrawRect(s->pixels,x,y,w,h);
 }
 
 // APIs below are already implemented.
@@ -139,7 +140,7 @@ void SDL_SetPalette(SDL_Surface *s, int flags, SDL_Color *colors, int firstcolor
       uint8_t g = colors[i].g;
       uint8_t b = colors[i].b;
     }
-    SDL_UpdateRect(s, 0, 0, 0, 0);
+    SDL_UpdateRect(s, 0, 0, s->w, s->h);
   }
 }
 

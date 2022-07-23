@@ -77,7 +77,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+//定义 定点数 位数 为32
 #if FIXEDPT_BITS == 32
 typedef int32_t fixedpt;
 typedef	int64_t	fixedptd;
@@ -91,7 +91,7 @@ typedef	__uint128_t fixedptud;
 #else
 #error "FIXEDPT_BITS must be equal to 32 or 64"
 #endif
-
+//定义 整数部分为24位
 #ifndef FIXEDPT_WBITS
 #define FIXEDPT_WBITS	24
 #endif
@@ -101,17 +101,22 @@ typedef	__uint128_t fixedptud;
 #endif
 
 #define FIXEDPT_VCSID "$Id$"
-
+//定义浮点数位数
 #define FIXEDPT_FBITS	(FIXEDPT_BITS - FIXEDPT_WBITS)
+//定义浮点数掩码，低八位为1
 #define FIXEDPT_FMASK	(((fixedpt)1 << FIXEDPT_FBITS) - 1)
-
+#define FIXEDPT_IMASK 	(~FIXEDPT_FMASK)
+//小数用Rconst，整数用fromint。  把整型数转换成定点数// 加减0.5做了四舍五入?
 #define fixedpt_rconst(R) ((fixedpt)((R) * FIXEDPT_ONE + ((R) >= 0 ? 0.5 : -0.5)))
 #define fixedpt_fromint(I) ((fixedptd)(I) << FIXEDPT_FBITS)
+//转换 回  int整型变量
 #define fixedpt_toint(F) ((F) >> FIXEDPT_FBITS)
+//计算函数
 #define fixedpt_add(A,B) ((A) + (B))
 #define fixedpt_sub(A,B) ((A) - (B))
 #define fixedpt_fracpart(A) ((fixedpt)(A) & FIXEDPT_FMASK)
 
+//定点数“1”=1.0000 0000 8位小数
 #define FIXEDPT_ONE	((fixedpt)((fixedpt)1 << FIXEDPT_FBITS))
 #define FIXEDPT_ONE_HALF (FIXEDPT_ONE >> 1)
 #define FIXEDPT_TWO	(FIXEDPT_ONE + FIXEDPT_ONE)
@@ -126,36 +131,52 @@ typedef	__uint128_t fixedptud;
 #define fixedpt_tofloat(T) ((float) ((T)*((float)(1)/(float)(1L << FIXEDPT_FBITS))))
 
 /* Multiplies a fixedpt number with an integer, returns the result. */
-static inline fixedpt fixedpt_muli(fixedpt A, int B) {
-	return 0;
+static inline fixedpt fixedpt_muli(fixedpt A, int B) {	
+return ((fixedpt)((fixedpt)A * ((fixedpt)(fixedpt_fromint(B)))) >> FIXEDPT_FBITS);
 }
 
 /* Divides a fixedpt number with an integer, returns the result. */
 static inline fixedpt fixedpt_divi(fixedpt A, int B) {
-	return 0;
+return ((fixedpt)((fixedpt)A<<FIXEDPT_FBITS) / ((fixedpt)(fixedpt_fromint(B))));
 }
-
+//乘了两次2^8，最后除去多余的
 /* Multiplies two fixedpt numbers, returns the result. */
 static inline fixedpt fixedpt_mul(fixedpt A, fixedpt B) {
-	return 0;
+	return (((fixedpt)A * (fixedpt)B) >> FIXEDPT_FBITS);
 }
-
-
+//相除会 除掉 2^8，提前乘上保留
 /* Divides two fixedpt numbers, returns the result. */
-static inline fixedpt fixedpt_div(fixedpt A, fixedpt B) {
-	return 0;
+static inline fixedpt fixedpt_div(fixedpt A, fixedpt B) {	
+	return (((fixedpt)A << FIXEDPT_FBITS) / ((fixedpt)B));
 }
 
 static inline fixedpt fixedpt_abs(fixedpt A) {
-	return 0;
+	return ((fixedpt)((A<0) ? (-(A)) : (A)));
 }
-
+//向下取整 -1.5=-2//1.5=1
 static inline fixedpt fixedpt_floor(fixedpt A) {
-	return 0;
+	if(((fixedpt)A) > 0){
+		return (((fixedpt)A) & (FIXEDPT_IMASK));
+	}
+	else if(((fixedpt)A) < 0){
+		return ((((fixedpt)A)-1) & (FIXEDPT_IMASK));
+	}
+	else{
+		return ((fixedpt)A);
+	}
 }
-
+//向上取整 -3.5>-4 = -3
 static inline fixedpt fixedpt_ceil(fixedpt A) {
-	return 0;
+	if((((fixedpt)A)>((fixedpt)(fixedpt_floor(A)))) &&(((fixedpt)A)>0))
+	{
+		return ((((fixedpt)A)+1)&FIXEDPT_IMASK);
+	}
+	else if((((fixedpt)A)>((fixedpt)(fixedpt_floor(A)))) &&(((fixedpt)A)<0)){
+		return (((fixedpt)A)&FIXEDPT_IMASK);
+	}
+	else{
+		return ((fixedpt)A);
+	}
 }
 
 /*
