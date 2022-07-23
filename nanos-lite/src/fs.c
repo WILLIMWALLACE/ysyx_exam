@@ -62,10 +62,10 @@ static Finfo file_table[] __attribute__((used)) = {
   return c->GPRx;
   }
  else if(fd == 5){
-   /*if(file_table[fd].lseek_off>file_table[fd].size)
+   if(file_table[fd].lseek_off>file_table[fd].size)
      { assert(0);}
    if(file_table[fd].lseek_off+count>file_table[fd].size)
-     { count = file_table[fd].size - file_table[fd].lseek_off;}*/  
+     { count = file_table[fd].size - file_table[fd].lseek_off;}  
   // printf("********************\n");
    c->GPRx = file_table[fd].write(buf,file_table[fd].lseek_off,count);
    
