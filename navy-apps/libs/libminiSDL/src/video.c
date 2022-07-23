@@ -14,7 +14,10 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
    // printf("enter the NDL_draw\n");
-    NDL_DrawRect(s->pixels,x,y,w,h);
+   int full_screen = (x==0) && (y==0) && (w==0) && (h==0);
+   int real_w = full_screen ? s->w : w;
+   int real_h = full_screen ? s->h : h ;
+    NDL_DrawRect(s->pixels,x,y,real_w,real_h);
     //printf("finish update\n");printf("w=%d,h=%d\n",w,h);
 }
 
