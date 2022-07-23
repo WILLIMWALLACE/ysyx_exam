@@ -90,6 +90,7 @@ static Finfo file_table[] __attribute__((used)) = {
  int sys_read(int fd,void *buf,size_t count,Context *c){
     if(fd==3){ //for events read
      c->GPRx = file_table[fd].read(buf, 0, 0);   
+     printf("***********READ FD =3**************\n");
      return 0;
     }
     else if(fd == 4){//// *buf=*w  count = size
@@ -97,15 +98,18 @@ static Finfo file_table[] __attribute__((used)) = {
       c->GPRx = file_table[fd].read(buf,0,0);
       //printf("buf=\n%s\n",buf);
       //  printf("read_buf=%s\n",*(char*)buf);
+       printf("***********READ FD =4**************\n");
       return 0;
     }
     else if(c == 0){
       ramdisk_read(buf,file_table[fd].disk_offset,count);//sizeof(ehdr)
       //printf("打开文件=%s\n",file_table[fd].name);
+       printf("***********READ C =0**************\n");
       //printf("***********STRACE**************\nmcause=3,syscall_name=SYS_read_disk,ret_value=0\n");
       return 0;
     }
     else{
+       printf("***********READ FD =%d*************\n",fd);
        if(file_table[fd].lseek_off>file_table[fd].size){
         assert(0);
        }
