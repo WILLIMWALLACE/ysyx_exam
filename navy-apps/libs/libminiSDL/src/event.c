@@ -19,26 +19,26 @@ int SDL_PollEvent(SDL_Event *ev) {
 
 int SDL_WaitEvent(SDL_Event *event) {
   char key_buf[60];
-  char NDL_key_type[60];
-  char key_name;
-  //printf("receive key_buf=%s\n",key_buf);
-  //memset(key_buf,0,60); 
-  //memset(NDL_key_type,0,60); 
+  char NDL_key_type[20];
+  char key_name[40]; //there is 82 names; 
   NDL_PollEvent(key_buf, sizeof(key_buf));//obtain key infomation
-  //printf("receive key_buf=%s\n",key_buf);
-  sscanf(key_buf,"%s %s",NDL_key_type,&key_name);
-  printf("NDL_key_type == %s,   key_name==%d\n",NDL_key_type,key_name);
+
+  sscanf(key_buf,"%s %s",NDL_key_type,key_name);
+  //printf("NDL_key_type == %s,   key_name==%d\n",NDL_key_type,key_name);
   if(NDL_key_type == "kd"){
     event->type           = SDL_KEYDOWN;
-    event->key.keysym.sym = key_name;
-     printf("receive key_buf=%s\n",key_buf);
+    for(int i=0;i<(sizeof(key_name)/sizeof(char));i++){
+      if(strcmp(key_name,keyname[i])==0)
+      {event->key.keysym.sym = i;printf("receive key_id=%d\n",i);break;}
+    }
   }
   else if(NDL_key_type == "ku"){
     event->type           = SDL_KEYUP;
-    event->key.keysym.sym = key_name;
-     printf("receive key_buf=%s\n",key_buf);
+    for(int i=0;i<(sizeof(key_name)/sizeof(char));i++){
+      if(strcmp(key_name,keyname[i])==0)
+      {event->key.keysym.sym = i;printf("receive key_id=%d\n",i);break;}
+    }
   }
- // printf("receive key_buf=%s\n",key_buf);
   return 1;
 }
 
