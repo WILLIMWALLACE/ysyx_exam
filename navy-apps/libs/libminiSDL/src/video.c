@@ -3,6 +3,8 @@
 #include <assert.h>
 #include <string.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) {
   assert(dst && src);
@@ -18,6 +20,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
    int real_w = full_screen ? s->w : w;
    int real_h = full_screen ? s->h : h ;
     NDL_DrawRect(s->pixels,x,y,real_w,real_h);
+    lseek(5,0,SEEK_SET);
     //printf("finish update\n");printf("w=%d,h=%d\n",w,h);
 }
 
