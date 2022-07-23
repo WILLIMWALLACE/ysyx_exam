@@ -28,7 +28,7 @@ size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 
 int sys_open(const char *path);
 int sys_write(int fd,  char *buf, size_t count,Context *c);
-int sys_read(int fd,void *buf,size_t count,Context *c);
+int sys_read(int fd,void *buf,size_t count);
 int file_size(int fd);
 int ret_offset(int fd);
 int sys_close();
@@ -43,7 +43,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   int fd = sys_open(filename);
   //printf("fd=%d\n",fd);
   //printf("du wan\n");
-  sys_read(fd,&ehdr,sizeof(ehdr),0);
+  sys_read(fd,&ehdr,sizeof(ehdr));
   //printf("du wan\n");
   //printf("readfinish\n");
   Elf_Phdr phdr[ehdr.e_phnum];

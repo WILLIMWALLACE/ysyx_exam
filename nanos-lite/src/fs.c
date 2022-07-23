@@ -106,7 +106,8 @@ static Finfo file_table[] __attribute__((used)) = {
  }*/
 
 /////////////// fs_read  /////////////////////
- int sys_read(int fd,void *buf,size_t count,Context *c){
+ //int sys_read(int fd,void *buf,size_t count,Context *c){
+   int sys_read(int fd,void *buf,size_t count){
    /* if(fd==3){ //for events read
      c->GPRx = file_table[fd].read(buf, 0, 0);   
      return 0;
@@ -122,8 +123,8 @@ static Finfo file_table[] __attribute__((used)) = {
       return 0;
     }*/
     if(file_table[fd].read != NULL){
-      c->GPRx = file_table[fd].read(buf,0,0);
-      return 0;
+   
+      return   file_table[fd].read(buf,0,0);;
     }
     else{
        if(file_table[fd].lseek_off>file_table[fd].size){
@@ -133,10 +134,10 @@ static Finfo file_table[] __attribute__((used)) = {
         count = file_table[fd].size - file_table[fd].lseek_off;
        }  
       ramdisk_read(buf,file_table[fd].lseek_off+file_table[fd].disk_offset, count);//sizeof(ehdr)
-      c->GPRx = count;
+      //c->GPRx = count;
       file_table[fd].lseek_off += count; 
       //printf("***********STRACE**************\nmcause=3,syscall_name=SYS_read_file,ret_value=%d\n",c->GPRx);
-       return c->GPRx;
+       return count;
       //assert(0);
     }
 }
