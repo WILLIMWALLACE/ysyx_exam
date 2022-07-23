@@ -70,7 +70,7 @@ static Finfo file_table[] __attribute__((used)) = {
    c->GPRx = file_table[fd].write(buf,file_table[fd].lseek_off,count);
    
       file_table[fd].lseek_off += count;
-  return 0;
+  return c->GPRx;
  }
  else{
   if(file_table[fd].lseek_off>file_table[fd].size){
