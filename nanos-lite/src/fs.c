@@ -123,8 +123,7 @@ static Finfo file_table[] __attribute__((used)) = {
       return 0;
     }*/
     if(file_table[fd].read != NULL){
-   
-      return   file_table[fd].read(buf,0,0);;
+      return   file_table[fd].read(buf,0,0);
     }
     else{
        if(file_table[fd].lseek_off>file_table[fd].size){
