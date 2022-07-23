@@ -4,6 +4,7 @@
 
 SDL_Surface* SDL_LoadBMP(const char *filename) {
   int w, h;
+  printf("load_filename=%s\n",filename);
   void *pixels = BMP_Load(filename, &w, &h);
   printf("pixels=%s\n",pixels);
   assert(pixels);
