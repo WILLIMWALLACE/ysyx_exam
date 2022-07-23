@@ -79,7 +79,7 @@ size_t fb_write(const void *buf, size_t offset, size_t len) {
   io_write(AM_GPU_FBDRAW, x , y , (uint32_t*)buf, len, 1, true);
   /////   x=400/2-128/2,y=300/2-128/2  display for center
   //io_write(AM_GPU_FBDRAW, x+136 , y+96 , (uint32_t*)buf, len, 1, true);
-  return (strlen(buf));  // len = w
+  return 0;  // len = w
 }
 
 void init_device() {
