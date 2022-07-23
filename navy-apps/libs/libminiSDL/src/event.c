@@ -33,14 +33,14 @@ int SDL_WaitEvent(SDL_Event *event) {
     event->type           = SDL_KEYDOWN;
     for(int i=0;i<83;i++){
       if(strcmp(key_name,keyname[i])==0)
-      {event->key.keysym.sym = i;printf("receive key_id=%d\n",i);break;}
+      {event->key.keysym.sym = i;break;}
     }
   }
   if(strcmp(NDL_key_type,"ku")==0){
     event->type           = SDL_KEYUP;
     for(int i=0;i<83;i++){
       if(strcmp(key_name,keyname[i])==0)
-      {event->key.keysym.sym = i;printf("receive key_id=%d\n",i);break;}
+      {event->key.keysym.sym = i;break;}
     }
   }
   return 1;
