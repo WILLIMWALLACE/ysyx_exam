@@ -88,23 +88,6 @@ static Finfo file_table[] __attribute__((used)) = {
   return c->GPRx;
 }
 
-/*size_t fs_read(int fd, void *buf, size_t len){ 
- if(file_table[fd].read != NULL){ 
- return (file_table[fd].read)(buf,0,len); 
- } 
- else{ 
- size_t f_size = file_table[fd].size; 
- if(open_offset >= f_size){ 
- return -1; 
- } 
- if(open_offset + len > f_size){ 
- len = f_size - open_offset; 
- } 
- ramdisk_read(buf, file_table[fd].disk_offset + open_offset, len); 
- open_offset = open_offset + len; 
- return len; 
- } 
- }*/
  ///////////////  fs_lseek  ///////////////////
 long sys_lseek(int fd, long offset, int whence){
     switch(whence){
@@ -131,23 +114,7 @@ long sys_lseek(int fd, long offset, int whence){
 /////////////// fs_read  /////////////////////
  //int sys_read(int fd,void *buf,size_t count,Context *c){
    int sys_read(int fd,void *buf,size_t count){
-   /* if(fd==3){ //for events read
-     c->GPRx = file_table[fd].read(buf, 0, 0);   
-     return 0;
-    }
-    else if(fd == 4){//// *buf=*w  count = size
-      c->GPRx = file_table[fd].read(buf,0,0);
-      return 0;
-    }
-    else if(c == 0){
-      ramdisk_read(buf,file_table[fd].disk_offset,count);//sizeof(ehdr)
-      //printf("打开文件=%s\n",file_table[fd].name);
-      //printf("***********STRACE**************\nmcause=3,syscall_name=SYS_read_disk,ret_value=0\n");
-      return 0;
-    }*/
     if(file_table[fd].read != NULL){
-      //if(fd==)
-      //printf()
       return   file_table[fd].read(buf,0,0);
     }
     else{
@@ -158,21 +125,11 @@ long sys_lseek(int fd, long offset, int whence){
        if(file_table[fd].lseek_off+count>file_table[fd].size){
         count = file_table[fd].size - file_table[fd].lseek_off;
        }
-      /* if(file_table[fd].lseek_off == file_table[fd].size){
-        printf("*******lseek_off=%d\n",file_table[fd].lseek_off);
-       printf("count=%d\n",count);
-        file_table[fd].lseek_off = 357914;
-       }*/
-      // if(fd==8){
-      // printf("*******lseek_off=%d\n",file_table[fd].lseek_off);
-      // printf("count=%d\n",count);
-      // }
 ramdisk_read(buf,file_table[fd].lseek_off+file_table[fd].disk_offset,count);//sizeof(ehdr)
       //c->GPRx = count;
       file_table[fd].lseek_off += count; 
       //printf("***********STRACE**************\nmcause=3,syscall_name=SYS_read_file,ret_value=%d\n",c->GPRx);
        return count;
-      //assert(0);
     }
 }
 
