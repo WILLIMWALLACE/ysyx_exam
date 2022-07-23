@@ -104,6 +104,28 @@ static Finfo file_table[] __attribute__((used)) = {
  return len; 
  } 
  }*/
+ ///////////////  fs_lseek  ///////////////////
+long sys_lseek(int fd, long offset, int whence){
+    switch(whence){
+      case SEEK_SET: file_table[fd].lseek_off = offset;
+      //printf("seek_set\n"); 
+      break;
+      case SEEK_CUR: file_table[fd].lseek_off += offset;
+      //printf("seek_cur\n");
+      break;
+      case SEEK_END: file_table[fd].lseek_off = file_table[fd].size+offset;
+      //printf("seek_end\n");
+      break;
+      default : printf("invalid whence!\n");  assert(0);
+    }
+    if(file_table[fd].lseek_off<1||file_table[fd].lseek_off>file_table[fd].size){
+      return -1;
+    }
+    else{
+      //printf("lseek_off = %d\n",file_table[fd].lseek_off);
+      return file_table[fd].lseek_off;
+    }
+}
 
 /////////////// fs_read  /////////////////////
  //int sys_read(int fd,void *buf,size_t count,Context *c){
@@ -131,6 +153,9 @@ static Finfo file_table[] __attribute__((used)) = {
        }
        if(file_table[fd].lseek_off+count>file_table[fd].size){
         count = file_table[fd].size - file_table[fd].lseek_off;
+       }
+    if(file_table[fd].lseek_off==file_table[fd].size){
+        sys_lseek(fd,(long)0,SEEK_SET);
        }  
       ramdisk_read(buf,file_table[fd].lseek_off+file_table[fd].disk_offset, count);//sizeof(ehdr)
       //c->GPRx = count;
@@ -138,28 +163,6 @@ static Finfo file_table[] __attribute__((used)) = {
       //printf("***********STRACE**************\nmcause=3,syscall_name=SYS_read_file,ret_value=%d\n",c->GPRx);
        return count;
       //assert(0);
-    }
-}
-///////////////  fs_lseek  ///////////////////
- long sys_lseek(int fd, long offset, int whence){
-    switch(whence){
-      case SEEK_SET: file_table[fd].lseek_off = offset;
-      //printf("seek_set\n"); 
-      break;
-      case SEEK_CUR: file_table[fd].lseek_off += offset;
-      //printf("seek_cur\n");
-      break;
-      case SEEK_END: file_table[fd].lseek_off = file_table[fd].size+offset;
-      //printf("seek_end\n");
-      break;
-      default : printf("invalid whence!\n");  assert(0);
-    }
-    if(file_table[fd].lseek_off<1||file_table[fd].lseek_off>file_table[fd].size){
-      return -1;
-    }
-    else{
-      //printf("lseek_off = %d\n",file_table[fd].lseek_off);
-      return file_table[fd].lseek_off;
     }
 }
 
