@@ -18,7 +18,9 @@ int SDL_PollEvent(SDL_Event *ev) {
 }
 
 int SDL_WaitEvent(SDL_Event *event) {
-  //printf("NOT IMMPLEMENT\n");assert(0);
+  char *key_buf;
+  NDL_PollEvent(key_buf, 0);//obtain key infomation
+  printf("receive key_buf=%s\n",key_buf);
   return 1;
 }
 
