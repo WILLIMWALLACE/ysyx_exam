@@ -23,8 +23,8 @@ int SDL_WaitEvent(SDL_Event *event) {
   char key_name[40]; //there is 82 names; 
   
   NDL_PollEvent(key_buf, sizeof(key_buf));//obtain key infomation
-  memset(NDL_key_type,0,20); 
-  memset(key_name,0,40);
+  //memset(NDL_key_type,0,20); 
+  //memset(key_name,0,40);
   sscanf(key_buf,"%s %s",NDL_key_type,key_name);
    printf("NDL_key_type == %s,   key_name==%s\n",NDL_key_type,key_name);
   if(NDL_key_type == "kd"){
