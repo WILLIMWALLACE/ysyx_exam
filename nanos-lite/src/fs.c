@@ -104,7 +104,7 @@ static Finfo file_table[] __attribute__((used)) = {
  return len; 
  } 
  }*/
-  
+
 /////////////// fs_read  /////////////////////
  int sys_read(int fd,void *buf,size_t count,Context *c){
    /* if(fd==3){ //for events read
@@ -123,7 +123,7 @@ static Finfo file_table[] __attribute__((used)) = {
     }*/
     if(file_table[fd].read != NULL){
       c->GPRx = file_table[fd].read(buf,0,0);
-      return c->GPRx;
+      return 0;
     }
     else{
        if(file_table[fd].lseek_off>file_table[fd].size){
