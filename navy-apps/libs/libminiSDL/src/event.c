@@ -20,13 +20,13 @@ int SDL_PollEvent(SDL_Event *ev) {
 int SDL_WaitEvent(SDL_Event *event) {
   char key_buf[60];
   char NDL_key_type[60];
-  int  key_name=0;
+  char key_name;
   //printf("receive key_buf=%s\n",key_buf);
   //memset(key_buf,0,60); 
   //memset(NDL_key_type,0,60); 
   NDL_PollEvent(key_buf, sizeof(key_buf));//obtain key infomation
   //printf("receive key_buf=%s\n",key_buf);
-  sscanf(key_buf,"%s %d",NDL_key_type,&key_name);
+  sscanf(key_buf,"%s %s",NDL_key_type,&key_name);
   printf("NDL_key_type == %s,   key_name==%d\n",NDL_key_type,key_name);
   if(NDL_key_type == "kd"){
     event->type           = SDL_KEYDOWN;
