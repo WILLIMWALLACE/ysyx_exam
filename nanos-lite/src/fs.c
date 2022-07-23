@@ -145,6 +145,7 @@ long sys_lseek(int fd, long offset, int whence){
       return 0;
     }*/
     if(file_table[fd].read != NULL){
+      //if(fd==)
       return   file_table[fd].read(buf,0,0);
     }
     else{
