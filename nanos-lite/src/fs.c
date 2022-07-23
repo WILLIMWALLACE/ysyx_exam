@@ -45,7 +45,7 @@ static Finfo file_table[] __attribute__((used)) = {
 
 ////////////  fs_open    ////////////////////
  int sys_open(const char *path){
-  for(int i=0;i<30;i++){
+  for(int i=0;i<249;i++){
     if(strcmp(path,file_table[i].name)==0){
     //  printf("***********STRACE**************\nmcause=2,syscall_name=SYS_open,ret_value=%d\n",i);
       return i;
@@ -162,7 +162,7 @@ static Finfo file_table[] __attribute__((used)) = {
 void init_fs() {
   int w = io_read(AM_GPU_CONFIG).width ;
   int h = io_read(AM_GPU_CONFIG).height ;
-  for(int i=0;i<29;i++){
+  for(int i=0;i<249;i++){
     if(strcmp("/dev/fb",file_table[i].name)==0){
       file_table[i].size = w*h*4; //byte num
     }     
