@@ -28,6 +28,7 @@ int NDL_PollEvent(char *buf, int len) {
     //*buf = NULL;
     memset(buf,0,strlen(buf));
     int flag = read(fd,buf,0);
+    printf("du chu\n");
     fclose(fp);
     if(flag == 0){return 0;}
     else{return 1;}
