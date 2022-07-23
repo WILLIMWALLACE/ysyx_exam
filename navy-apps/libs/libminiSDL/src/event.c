@@ -25,7 +25,7 @@ int SDL_WaitEvent(SDL_Event *event) {
   //memset(key_buf,0,60); 
   //memset(NDL_key_type,0,60); 
   NDL_PollEvent(key_buf, sizeof(key_buf));//obtain key infomation
-  //printf("receive key_buf=%s\n",key_buf);
+  printf("receive key_buf=%s\n",key_buf);
   
   sscanf(key_buf,"%s %d",NDL_key_type,&key_name);
 
