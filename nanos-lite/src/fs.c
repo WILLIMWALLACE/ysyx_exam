@@ -99,12 +99,12 @@ static Finfo file_table[] __attribute__((used)) = {
       //  printf("read_buf=%s\n",*(char*)buf);
       return 0;
     }
-   /* else if(c == 0){
+    else if(c == 0){
       ramdisk_read(buf,file_table[fd].disk_offset,count);//sizeof(ehdr)
       //printf("打开文件=%s\n",file_table[fd].name);
       //printf("***********STRACE**************\nmcause=3,syscall_name=SYS_read_disk,ret_value=0\n");
       return 0;
-    }*/
+    }
     else{
        if(file_table[fd].lseek_off>file_table[fd].size){
         assert(0);
