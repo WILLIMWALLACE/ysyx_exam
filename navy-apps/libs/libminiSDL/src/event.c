@@ -27,7 +27,7 @@ int SDL_WaitEvent(SDL_Event *event) {
   //memset(key_name,0,40);
   sscanf(key_buf,"%s %s",NDL_key_type,key_name);
    //printf("NDL_key_type == %s,   key_name==%s\n",NDL_key_type,key_name);
-  if(NDL_key_type == "kd"){
+  if(strcmp(NDL_key_type,"kd")==0){
     printf("NDL_key_type == %s,   key_name==%s\n",NDL_key_type,key_name);
     event->type           = SDL_KEYDOWN;
     for(int i=0;i<(sizeof(key_name)/sizeof(char));i++){
@@ -35,7 +35,7 @@ int SDL_WaitEvent(SDL_Event *event) {
       {event->key.keysym.sym = i;printf("receive key_id=%d\n",i);break;}
     }
   }
-  else if(NDL_key_type == "ku"){
+  if(NDL_key_type == "ku"){
     event->type           = SDL_KEYUP;
     for(int i=0;i<(sizeof(key_name)/sizeof(char));i++){
       if(strcmp(key_name,keyname[i])==0)
