@@ -20,6 +20,8 @@ int SDL_PollEvent(SDL_Event *ev) {
 int SDL_WaitEvent(SDL_Event *event) {
   char *key_buf;
   NDL_PollEvent(key_buf, 0);//obtain key infomation
+  event->type = SDL_KEYDOWN;
+  
   printf("receive key_buf=%s\n",key_buf);
   return 1;
 }
