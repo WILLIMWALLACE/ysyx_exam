@@ -54,14 +54,14 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
     temp_rect.x = 0;
     temp_rect.y = 0;
     dstrect      = &temp_rect;   
-    printf("fu zhi cheng gong\n");    
+    //printf("fu zhi cheng gong\n");    
   }
+  printf("dstrect: x=%d,y=%d,w=%d,h=%d\n",dstrect->x,dstrect->y,dstrect->w,dstrect->h);
   uint32_t rect_size = (dstrect->h)*(dstrect->w);
   for(int i=0;i<rect_size;i++){
     *(uint32_t *)dst->pixels = color;
     dst->pixels++;
   }
-printf("dstrect: x=%d,y=%d,w=%d,h=%d\n",dstrect->x,dstrect->y,dstrect->w,dstrect->h);
 NDL_DrawRect((uint32_t *)dst->pixels,dstrect->x,dstrect->y,dstrect->w,dstrect->h);
 }
 
