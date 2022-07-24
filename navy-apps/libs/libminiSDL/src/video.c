@@ -46,14 +46,14 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
 //快速以指定颜色填充矩形区域
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
   printf("jinru fill\n");
-  SDL_Rect *temp_rect;
+  SDL_Rect temp_rect;
   if(dstrect==NULL){
      //printf("fu zhi cheng gong\n");    
-    temp_rect->w = dst->w;
-    temp_rect->h = dst->h;
-    temp_rect->x = 0;
-    temp_rect->y = 0;
-    dstrect      = temp_rect;   
+    temp_rect.w= dst->w;
+    temp_rect.h = dst->h;
+    temp_rect.x = 0;
+    temp_rect.y = 0;
+    dstrect      = &temp_rect;   
     printf("fu zhi cheng gong\n");    
   }
   uint32_t rect_size = (dstrect->h)*(dstrect->w);
