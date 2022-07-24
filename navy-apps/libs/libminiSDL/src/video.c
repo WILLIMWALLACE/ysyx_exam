@@ -5,13 +5,52 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
-
+//for test
+#include <stdio.h>
+// 将一张画布中的指定矩形区域复制到另一张画布的指定位置
+//to output BDF char pixels infomation
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) {
   assert(dst && src);
   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
+  /*SDL_Rect *temp_src;
+  SDL_Rect *temp_dst;
+  //  if rect==NULL,rect=full screen
+  if(srcrect==NULL){
+    temp_src->w = src->w;
+    temp_src->h = src->h;
+    temp_src->x = 0;
+    temp_src->y = 0;
+    srcrect     = temp_src;
+  }  
+  if(dstrect==NULL){
+    temp_dst->w = src->w;
+    temp_dst->h = src->h;
+    temp_dst->x = 0;
+    temp_dst->y = 0;
+    dstrect     = temp_dst;
+  } */ 
+  //draw picture
+  //偏移到画布中的  某一块举行区域rect
+  int screen_offset_src = (srcrect->y * src->w) + srcrect->x;
+  int screen_offset_dst = (dstrect->y * dst->w) + dstrect->x;
+  //在矩形区域内遍历赋值
+  for(int i=0;i<srcrect->h;i++){
+    for(int j=0;j<srcrect->w;j++){
+      *(uint32_t *)dst->pixels =  *(uint32_t *)src->pixels;
+      dst->pixels += (i*dst->w+j + screen_offset_src);
+      src->pixels += (i*src->w+j + screen_offset_dst);
+    }
+  }
 }
-
+//快速以指定颜色填充矩形区域
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
+  uint32_t rect_size = (dstrect->h)*(dstrect->w);
+  for(int i=0;i<rect_size;i++){
+    *(uint32_t *)dst->pixels = color;
+    dst->pixels++;
+  }
+  printf("dstrect: x=%d,y=%d,w=%d,h=%d\n",dstrect->x,dstrect->y,dstrect->w,dstrect->h);
+NDL_DrawRect((uint32_t *)dst->pixels,dstrect->x,dstrect->y,dstrect->w,dstrect->h);
 }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
@@ -19,7 +58,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
    int full_screen = (x==0) && (y==0) && (w==0) && (h==0);
    int real_w = full_screen ? s->w : w;
    int real_h = full_screen ? s->h : h ;
-    NDL_DrawRect(s->pixels,x,y,real_w,real_h);
+    NDL_DrawRect((uint32_t *)s->pixels,x,y,real_w,real_h);
     //lseek(5,0,SEEK_SET);
     //printf("finish update\n");printf("w=%d,h=%d\n",w,h);
 }

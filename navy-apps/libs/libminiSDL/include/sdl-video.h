@@ -29,10 +29,10 @@ typedef union {
 typedef struct {
 	int ncolors;
 	SDL_Color *colors;
-} SDL_Palette;
+} SDL_Palette;//调色板结构体
 
 typedef struct {
-	SDL_Palette *palette;
+	SDL_Palette *palette;//调色板参数
 	uint8_t BitsPerPixel;
 	uint8_t BytesPerPixel;
 	uint8_t Rloss, Gloss, Bloss, Aloss;
