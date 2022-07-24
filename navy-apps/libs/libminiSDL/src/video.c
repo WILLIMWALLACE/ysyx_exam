@@ -12,7 +12,7 @@
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) {
   assert(dst && src);
   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
-  /*SDL_Rect *temp_src;
+  SDL_Rect *temp_src;
   SDL_Rect *temp_dst;
   //  if rect==NULL,rect=full screen
   if(srcrect==NULL){
@@ -28,7 +28,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
     temp_dst->x = 0;
     temp_dst->y = 0;
     dstrect     = temp_dst;
-  } */ 
+  }  
   //draw picture
   //偏移到画布中的  某一块举行区域rect
   int screen_offset_src = (srcrect->y * src->w) + srcrect->x;
