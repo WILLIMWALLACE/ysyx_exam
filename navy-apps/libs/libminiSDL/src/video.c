@@ -13,22 +13,22 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
   printf("jin ru fu zhi hui tu\n");
   assert(dst && src);
   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
-  SDL_Rect *temp_src;
-  SDL_Rect *temp_dst;
+  SDL_Rect temp_src;
+  SDL_Rect temp_dst;
   //  if rect==NULL,rect=full screen
   if(srcrect==NULL){
-    temp_src->w = src->w;
-    temp_src->h = src->h;
-    temp_src->x = 0;
-    temp_src->y = 0;
-    srcrect     = temp_src;
+    temp_src.w = src->w;
+    temp_src.h = src->h;
+    temp_src.x = 0;
+    temp_src.y = 0;
+    srcrect     = &temp_src;
   }  
   if(dstrect==NULL){
-    temp_dst->w = src->w;
-    temp_dst->h = src->h;
-    temp_dst->x = 0;
-    temp_dst->y = 0;
-    dstrect     = temp_dst;
+    temp_dst.w = src->w;
+    temp_dst.h = src->h;
+    temp_dst.x = 0;
+    temp_dst.y = 0;
+    dstrect     = &temp_dst;
   }  
   //draw picture
   //偏移到画布中的  某一块举行区域rect
