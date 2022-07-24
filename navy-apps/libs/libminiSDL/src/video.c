@@ -45,12 +45,20 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
 }
 //快速以指定颜色填充矩形区域
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
+  SDL_Rect *temp_rect;
+  if(dstrect==NULL){
+    temp_rect->w = dst->w;
+    temp_rect->h = dst->h;
+    temp_rect->x = 0;
+    temp_rect->y = 0;
+    dstrect      = temp_rect;       
+  }
   uint32_t rect_size = (dstrect->h)*(dstrect->w);
   for(int i=0;i<rect_size;i++){
     *(uint32_t *)dst->pixels = color;
     dst->pixels++;
   }
-  printf("dstrect: x=%d,y=%d,w=%d,h=%d\n",dstrect->x,dstrect->y,dstrect->w,dstrect->h);
+printf("dstrect: x=%d,y=%d,w=%d,h=%d\n",dstrect->x,dstrect->y,dstrect->w,dstrect->h);
 NDL_DrawRect((uint32_t *)dst->pixels,dstrect->x,dstrect->y,dstrect->w,dstrect->h);
 }
 
