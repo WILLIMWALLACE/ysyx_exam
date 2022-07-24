@@ -77,6 +77,7 @@ int main(int argc, char *argv[], char *envp[]) {
   set_i_max();
   //printf("wancheng set\n");
   while (1) {
+    printf("jinru xunhuan\n");
     display_menu(i_max);
     printf("finish display_menu\n");
     SDL_Event e;
