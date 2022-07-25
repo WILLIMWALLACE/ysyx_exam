@@ -7,8 +7,8 @@ SDL_Surface* BDF_CreateSurface(BDF_Font *font, char ch, uint32_t fg, uint32_t bg
   if (!bm) return NULL;
   int w = font->w, h = font->h;
   uint32_t *pixels = (uint32_t *)malloc(w * h * sizeof(uint32_t));
-  printf("pixels=%s\n",pixels);
-  printf("w=%d,h=%d\n",w,h);
+  //printf("pixels=%s\n",pixels);
+  //printf("w=%d,h=%d\n",w,h);
   assert(pixels);
   
   for (int j = 0; j < h; j ++) {

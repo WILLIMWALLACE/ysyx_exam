@@ -80,7 +80,7 @@ int main(int argc, char *argv[], char *envp[]) {
   while (1) {
     //printf("jinru xunhuan\n");
     display_menu(i_max);
-    printf("finish display_menu\n");
+    //printf("finish display_menu\n");
     SDL_Event e;
     do {
       SDL_WaitEvent(&e);
