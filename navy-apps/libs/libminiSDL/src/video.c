@@ -45,7 +45,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
 }
 //快速以指定颜色填充矩形区域
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
-  printf("jinru fill\n");
+  //printf("jinru fill\n");
   SDL_Rect temp_rect;
   if(dstrect==NULL){
      //printf("fu zhi cheng gong\n");    
@@ -55,15 +55,15 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
     temp_rect.y = 0;
     dstrect      = &temp_rect;   
     //printf("fu zhi cheng gong\n");    
-  }printf("dst: x=0,y=0,w=%d,h=%d\n",dst->w,dst->h);
-  printf("temp_rect: x=%d,y=%d,w=%d,h=%d\n",temp_rect.x,temp_rect.y,temp_rect.w,temp_rect.h);
-  printf("dstrect: x=%d,y=%d,w=%d,h=%d\n",dstrect->x,dstrect->y,dstrect->w,dstrect->h);
+  }//printf("dst: x=0,y=0,w=%d,h=%d\n",dst->w,dst->h);
+  //printf("temp_rect: x=%d,y=%d,w=%d,h=%d\n",temp_rect.x,temp_rect.y,temp_rect.w,temp_rect.h);
+  //printf("dstrect: x=%d,y=%d,w=%d,h=%d\n",dstrect->x,dstrect->y,dstrect->w,dstrect->h);
   uint32_t rect_size = (dstrect->h)*(dstrect->w);
   for(int i=0;i<rect_size;i++){
-    *(uint32_t *)dst->pixels = color;
+    *dst->pixels = color;
     dst->pixels++;
   }
-NDL_DrawRect((uint32_t *)dst->pixels,dstrect->x,dstrect->y,dstrect->w,dstrect->h);
+NDL_DrawRect(dst->pixels,dstrect->x,dstrect->y,dstrect->w,dstrect->h);
 }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
