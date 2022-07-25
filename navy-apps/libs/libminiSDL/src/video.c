@@ -39,7 +39,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
   //在矩形区域内遍历赋值
   printf("offset: src-position=%d,dst-position=%d\n",screen_offset_src,screen_offset_dst);
   printf("src_rect:w=%d,h=%d\n",srcrect->w,srcrect->h);
-  printf("dst_rect:w=%d,h=%d\n",dstrect->w,dstrect->h);
+  printf("dst_rect:w=%x,h=%x\n",dstrect->w,dstrect->h);
   for(int i=0;i<srcrect->h;i++){
     for(int j=0;j<srcrect->w;j++){
       *((uint32_t *)dst->pixels+(i*dst->w+j + screen_offset_dst)) =  *((uint32_t *)src->pixels+(i*src->w+j + screen_offset_src));
