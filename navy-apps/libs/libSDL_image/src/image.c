@@ -12,24 +12,6 @@ SDL_Surface* IMG_Load_RW(SDL_RWops *src, int freesrc) {
 }
 
 SDL_Surface* IMG_Load(const char *filename) {
-  printf("IMG_Load:%s\n",filename);
-  FILE *fp = fopen(filename, "r+");
-  assert(fp!=NULL);
-
-  fseek(fp,0,SEEK_END);
-  int size=ftell(fp);
-  printf("SDL_Surface* IMG_Load:%d\n",size);
-  uint8_t *buf=(uint8_t *)malloc(size);
-  fseek(fp,0,SEEK_SET);
-  assert(fread(buf,size,1,fp)==1);
-  SDL_Surface* screen=STBIMG_LoadFromMemory(buf, size);
-  assert(screen!=NULL);
-  free(buf);
-  printf("=====================SDL_Surface* IMG_Load\n");
-  return screen;
-}
-
-/*SDL_Surface* IMG_Load(const char *filename) {
   FILE *fp = fopen(filename, "r");
   if(fp==NULL){ printf("fp==NULL,invalid filename!\n"); assert(0);}
   printf("filename = %s\n",filename);
@@ -39,7 +21,7 @@ SDL_Surface* IMG_Load(const char *filename) {
   //obtain the num(char) of string ,from start to presetn fp
   int len = ftell(fp);
   printf("file len = %d\n",len);
-  char *pixels = malloc(len * sizeof(char));  
+  uint8_t *pixels = malloc(len*sizeof(uint8_t));  
   //assert(pixels!=NULL);
   printf("finish malloc\n");
   fseek(fp,0,SEEK_SET);
@@ -55,7 +37,7 @@ SDL_Surface* IMG_Load(const char *filename) {
   fclose(fp);
   
   return surface;
-}*/
+}
 
 int IMG_isPNG(SDL_RWops *src) {
   return 0;
