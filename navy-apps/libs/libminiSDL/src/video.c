@@ -22,7 +22,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
     temp_src.x = 0;
     temp_src.y = 0;
     srcrect     = &temp_src;
-    printf("srcrect==NULL\n");
+    //printf("srcrect==NULL\n");
   }  
   if(dstrect==NULL){
     temp_dst.w = dst->w;
@@ -30,7 +30,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
     temp_dst.x = 0;
     temp_dst.y = 0;
     dstrect    = &temp_dst;
-    printf("dstrect==NULL\n");
+   // printf("dstrect==NULL\n");
   }  
   //draw picture
   //偏移到画布中的  某一块举行区域rect
