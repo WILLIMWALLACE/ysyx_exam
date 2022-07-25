@@ -16,15 +16,15 @@ SDL_Surface* IMG_Load(const char *filename) {
   if(fp==NULL){ printf("fp==NULL,invalid filename!\n"); assert(0);}
   printf("filename = %s\n",filename);
   //fp will move to the end of file
-  int fb = fileno(fp);
-  lseek(fb,0,SEEK_END);
+  //fb = fileno(fp);
+  fseek(fp,0,SEEK_END);
   //obtain the num(char) of string ,from start to presetn fp
   int len = ftell(fp);
   printf("file len = %d\n",len);
   uint8_t *pixels = malloc(len*sizeof(uint8_t));  
   //assert(pixels!=NULL);
   printf("finish malloc\n");
-  lseek(fb,0,SEEK_SET);
+  fseek(fp,0,SEEK_SET);
 
   assert(1==fread(pixels,len,1,fp));
   printf("pixel=%s\n",pixels);
