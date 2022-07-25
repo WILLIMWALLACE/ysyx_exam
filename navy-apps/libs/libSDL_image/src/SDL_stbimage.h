@@ -196,7 +196,7 @@ SDL_STBIMG_DEF SDL_Surface* STBIMG_LoadFromMemory(const unsigned char* buffer, i
 		SDL_SetError("STBIMG_LoadFromMemory(): passed buffer was NULL!");
 		return NULL;
 	}
-	printf("buffer != NULL\n");
+	//printf("buffer != NULL\n");
 	if(length <= 0)
 	{
 		SDL_SetError("STBIMG_LoadFromMemory(): passed invalid length: %d!", length);
