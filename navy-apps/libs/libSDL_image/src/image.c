@@ -21,7 +21,7 @@ SDL_Surface* IMG_Load(const char *filename) {
   //obtain the num(char) of string ,from start to presetn fp
   int len = ftell(fp);
   printf("file len = %d\n",len);
-  char *pixels = malloc(len);  
+  char *pixels = malloc(len * sizeof(char));  
   //assert(pixels!=NULL);
   printf("finish malloc\n");
   fseek(fp,0,SEEK_SET);
