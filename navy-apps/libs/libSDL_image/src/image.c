@@ -18,6 +18,7 @@ SDL_Surface* IMG_Load(const char *filename) {
   fseek(fp,0,SEEK_END);
   //obtain the num(char) of string ,from start to presetn fp
   int len = ftell(fp);
+  printf("file len = %d\n",len);
   uint8_t *pixels = malloc(len*sizeof(uint8_t));  
   fseek(fp,0,SEEK_SET);
 
@@ -26,8 +27,9 @@ SDL_Surface* IMG_Load(const char *filename) {
   if(surface==NULL) 
   {printf("surface==NULL,STBIMG_LoadFromMemory failed\n"); assert(0);}
   
-  fclose(fp);
   free(pixels);
+  fclose(fp);
+  
   return surface;
 }
 
