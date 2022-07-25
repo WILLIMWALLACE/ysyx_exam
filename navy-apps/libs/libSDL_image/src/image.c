@@ -12,7 +12,7 @@ SDL_Surface* IMG_Load_RW(SDL_RWops *src, int freesrc) {
 }
 
 SDL_Surface* IMG_Load(const char *filename) {
-  FILE *fp = fopen(filename, "r+");
+  FILE *fp = fopen(filename, "r");
   if(fp==NULL){ printf("fp==NULL,invalid filename!\n"); assert(0);}
   //fp will move to the end of file
   fseek(fp,0,SEEK_END);
@@ -30,7 +30,7 @@ SDL_Surface* IMG_Load(const char *filename) {
   {printf("surface==NULL,STBIMG_LoadFromMemory failed\n"); assert(0);}
   
   free(pixels);
-  fclose(fp);
+  //fclose(fp);
   
   return surface;
 }
