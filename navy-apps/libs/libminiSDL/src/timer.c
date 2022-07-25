@@ -13,8 +13,8 @@ int SDL_RemoveTimer(SDL_TimerID id) {
 }
 
 uint32_t SDL_GetTicks() {
- // printf("NOT IMMPLEMENT\n");assert(0);
-  return 0;
+uint32_t ms = NDL_GetTicks(); 
+  return ms;
 }
 
 void SDL_Delay(uint32_t ms) {
