@@ -62,7 +62,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
     //printf("fu zhi cheng gong\n");    
   }//printf("dst: x=0,y=0,w=%d,h=%d\n",dst->w,dst->h);
   //printf("temp_rect: x=%d,y=%d,w=%d,h=%d\n",temp_rect.x,temp_rect.y,temp_rect.w,temp_rect.h);
-  //printf("dstrect: x=%d,y=%d,w=%d,h=%d\n",dstrect->x,dstrect->y,dstrect->w,dstrect->h);
+  printf("dstrect: x=%d,y=%d,w=%d,h=%d\n",dstrect->x,dstrect->y,dstrect->w,dstrect->h);
   uint32_t rect_size = (dstrect->h)*(dstrect->w);
   for(int i=0;i<rect_size;i++){
     *(uint32_t *)dst->pixels = color;
