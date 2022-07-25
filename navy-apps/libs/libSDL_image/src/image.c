@@ -25,6 +25,7 @@ SDL_Surface* IMG_Load(const char *filename) {
 
   assert(1==fread(pixels,len,1,fp));
   SDL_Surface *surface = STBIMG_LoadFromMemory(pixels,len);
+  printf("finish STBIMG_LoadFromMemory\n");
   if(surface==NULL) 
   {printf("surface==NULL,STBIMG_LoadFromMemory failed\n"); assert(0);}
   
