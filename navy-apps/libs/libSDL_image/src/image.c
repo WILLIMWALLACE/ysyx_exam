@@ -30,7 +30,7 @@ SDL_Surface* IMG_Load(const char *filename) {
   {printf("surface==NULL,STBIMG_LoadFromMemory failed\n"); assert(0);}
   
   free(pixels);
-  //fclose(fp);
+  fclose(fp);
   
   return surface;
 }
