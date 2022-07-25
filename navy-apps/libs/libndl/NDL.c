@@ -53,12 +53,12 @@ void NDL_OpenCanvas(int *w, int *h) {
     read(fd, buffer, 0);
     sscanf(buffer,"%s %d %s %d",key_info,&read_w,key_info,&read_h);
    // printf("key_info = %s,read_w=%d\n",key_info,read_w);
-    //////////////   add//////////////////////
-    if(*w<read_w){screen_w = *w; }
-    if(*h<read_h){screen_h = *h;}
-    else if(*w>=read_w) { screen_w = read_w;}
-    else if(*h>=read_h) { screen_h = read_h;}
-////////////////add //////////////////////
+   
+    if(*w<read_w && *w!=0){ screen_w = *w; }
+    if(*h<read_h && *h!=0){ screen_h = *h; }
+    if(*w>=read_w || *w==0) { screen_w = read_w; *w=read_w;}
+    if(*h>=read_h || *h==0) { screen_h = read_h; *h=read_h;}
+
     fclose(fp);
     }
     //////////////////  add  ////////////////////
