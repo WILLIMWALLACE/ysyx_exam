@@ -54,7 +54,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
   SDL_Rect temp_rect;
   if(dstrect==NULL){
      //printf("fu zhi cheng gong\n");    
-    temp_rect.w= dst->w;
+    temp_rect.w = dst->w;
     temp_rect.h = dst->h;
     temp_rect.x = 0;
     temp_rect.y = 0;
