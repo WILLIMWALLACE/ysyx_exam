@@ -20,6 +20,7 @@ SDL_Surface* IMG_Load(const char *filename) {
   int len = ftell(fp);
   printf("file len = %d\n",len);
   uint8_t *pixels = malloc(len*sizeof(uint8_t));  
+  printf("finish malloc\n");
   fseek(fp,0,SEEK_SET);
 
   assert(1==fread(pixels,len,1,fp));
