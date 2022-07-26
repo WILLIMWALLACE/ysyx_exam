@@ -3723,6 +3723,7 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
    for (;;) {
       stbi__pngchunk c = stbi__get_chunk_header(s);
       switch (c.type) {
+         printf("enter the switch\n");
          case STBI__PNG_TYPE('C','g','B','I'):
             is_iphone = 1;
             stbi__skip(s, c.length);
