@@ -102,6 +102,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
    for(int i=0;i<real_size;i++){
     buffer[i] = 0;
    }
+   printf("exit the first for\n");
    //obtain the pixels of pal in the palette
    for(int j=0;j<real_size;j++,s->pixels++){
     printf("enter the for\n");
