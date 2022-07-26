@@ -3718,31 +3718,25 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
 
    if (!stbi__check_png_header(s)) return 0;
 
-   if (scan == STBI__SCAN_type)    return 1;
+   if (scan == STBI__SCAN_type) return 1;
 
    for (;;) {
-     // printf("enter for\n");//////////////
       stbi__pngchunk c = stbi__get_chunk_header(s);
-     // printf("enter the switch\n");////////////
       switch (c.type) {
          case STBI__PNG_TYPE('C','g','B','I'):
-         //printf("enter 1\n");/////////
             is_iphone = 1;
             stbi__skip(s, c.length);
             break;
          case STBI__PNG_TYPE('I','H','D','R'): {
-         //printf("enter 2\n");/////////
             int comp,filter;
             if (!first) return stbi__err("multiple IHDR","Corrupt PNG");
             first = 0;
-            // printf("enter 2\n");/////////
             if (c.length != 13) return stbi__err("bad IHDR len","Corrupt PNG");
             s->img_x = stbi__get32be(s);
             s->img_y = stbi__get32be(s);
             if (s->img_y > STBI_MAX_DIMENSIONS) return stbi__err("too large","Very large image (corrupt?)");
             if (s->img_x > STBI_MAX_DIMENSIONS) return stbi__err("too large","Very large image (corrupt?)");
-      
-            z->depth = stbi__get8(s);  if (z->depth != 1 && z->depth != 2 && z->depth != 4 && z->depth != 8 && z->depth != 16) return stbi__err("1/2/4/8/16-bit only","PNG not supported: 1/2/4/8/16-bit only");
+            z->depth = stbi__get8(s);  if (z->depth != 1 && z->depth != 2 && z->depth != 4 && z->depth != 8 && z->depth != 16)  return stbi__err("1/2/4/8/16-bit only","PNG not supported: 1/2/4/8/16-bit only");
             color = stbi__get8(s);  if (color > 6)         return stbi__err("bad ctype","Corrupt PNG");
             if (color == 3 && z->depth == 16)                  return stbi__err("bad ctype","Corrupt PNG");
             if (color == 3) pal_img_n = 3; else if (color & 1) return stbi__err("bad ctype","Corrupt PNG");
@@ -3765,7 +3759,6 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
          }
 
          case STBI__PNG_TYPE('P','L','T','E'):  {
-           //  printf("enter 3\n");/////////
             if (first) return stbi__err("first not IHDR", "Corrupt PNG");
             if (c.length > 256*3) return stbi__err("invalid PLTE","Corrupt PNG");
             pal_len = c.length / 3;
@@ -3780,7 +3773,6 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
          }
 
          case STBI__PNG_TYPE('t','R','N','S'): {
-             //printf("enter 4\n");/////////
             if (first) return stbi__err("first not IHDR", "Corrupt PNG");
             if (z->idata) return stbi__err("tRNS after IDAT","Corrupt PNG");
             if (pal_img_n) {
@@ -3804,7 +3796,6 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
          }
 
          case STBI__PNG_TYPE('I','D','A','T'): {
-             //printf("enter 5\n");/////////
             if (first) return stbi__err("first not IHDR", "Corrupt PNG");
             if (pal_img_n && !pal_len) return stbi__err("no PLTE","Corrupt PNG");
             if (scan == STBI__SCAN_header) { s->img_n = pal_img_n; return 1; }
@@ -3825,7 +3816,6 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
          }
 
          case STBI__PNG_TYPE('I','E','N','D'): {
-            // printf("enter 6\n");/////////
             stbi__uint32 raw_len, bpl;
             if (first) return stbi__err("first not IHDR", "Corrupt PNG");
             if (scan != STBI__SCAN_load) return 1;
@@ -3884,7 +3874,6 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
             stbi__skip(s, c.length);
             break;
       }
-     // printf("exit the switch\n");
       // end of PNG chunk, read and skip CRC
       stbi__get32be(s);
    }
@@ -3939,16 +3928,13 @@ static int stbi__png_test(stbi__context *s)
 
 static int stbi__png_info_raw(stbi__png *p, int *x, int *y, int *comp)
 {
-   printf("stbi__png_info_raw==1\n");
    if (!stbi__parse_png_file(p, STBI__SCAN_header, 0)) {
       stbi__rewind( p->s );
-      printf("stbi__parse_png_file==0\n");
       return 0;
    }
    if (x) *x = p->s->img_x;
    if (y) *y = p->s->img_y;
    if (comp) *comp = p->s->img_n;
-   printf("finish return 1\n");
    return 1;
 }
 
@@ -3956,7 +3942,6 @@ static int stbi__png_info(stbi__context *s, int *x, int *y, int *comp)
 {
    stbi__png p;
    p.s = s;
-   printf("stbi__png_info\n");
    return stbi__png_info_raw(&p, x, y, comp);
 }
 
@@ -5359,39 +5344,32 @@ static int      stbi__pnm_info(stbi__context *s, int *x, int *y, int *comp)
 
 static int stbi__info_main(stbi__context *s, int *x, int *y, int *comp)
 {
-   printf("x=%d,y=%d,comp=%d\n",*x,*y,*comp);
    #ifndef STBI_NO_JPEG
    if (stbi__jpeg_info(s, x, y, comp)) return 1;
-   printf("stbi__jpeg_info\n");
    #endif
 
    #ifndef STBI_NO_PNG
    if (stbi__png_info(s, x, y, comp))  return 1;
-    printf("stbi__png_info\n");
    #endif
 
    #ifndef STBI_NO_GIF
    if (stbi__gif_info(s, x, y, comp))  return 1;
-    printf("stbi__gif_info\n");
    #endif
 
    #ifndef STBI_NO_BMP
    if (stbi__bmp_info(s, x, y, comp))  return 1;
-     printf("stbi__bmp_info\n");
    #endif
 
 
 
    #ifndef STBI_NO_PNM
    if (stbi__pnm_info(s, x, y, comp))  return 1;
-     printf("stbi__pnm_info\n");
    #endif
 
 
    // test tga last because it's a crappy test!
    #ifndef STBI_NO_TGA
    if (stbi__tga_info(s, x, y, comp))
-   printf("stbi__tga_info\n");
        return 1;
    #endif
    return stbi__err("unknown image type", "Image not of any known type, or corrupt");
@@ -5412,7 +5390,6 @@ STBIDEF int stbi_info_from_memory(stbi_uc const *buffer, int len, int *x, int *y
 {
    stbi__context s;
    stbi__start_mem(&s,buffer,len);
-   printf("finish stbi__start_mem\n");
    return stbi__info_main(&s,x,y,comp);
 }
 
