@@ -3721,6 +3721,7 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
    if (scan == STBI__SCAN_type){printf("1111111111\n"); return 1;}
 
    for (;;) {
+      printf("enter for\n");
       stbi__pngchunk c = stbi__get_chunk_header(s);
       switch (c.type) {
          printf("enter the switch\n");
