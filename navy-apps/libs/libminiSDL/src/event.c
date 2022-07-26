@@ -16,6 +16,7 @@ int SDL_PushEvent(SDL_Event *ev) {
 }
 
 int SDL_PollEvent(SDL_Event *ev) {
+   printf("enter SDL_PollEvent\n");
   char key_buf[60];
   char NDL_key_type[20];
   char key_name[40]; //there is 82 names; 
@@ -52,6 +53,7 @@ int SDL_PollEvent(SDL_Event *ev) {
 }
 
 int SDL_WaitEvent(SDL_Event *event) {
+     printf("enter SDL_WaitEvent\n");
   char key_buf[60];
   char NDL_key_type[20];
   char key_name[40]; //there is 82 names; 
