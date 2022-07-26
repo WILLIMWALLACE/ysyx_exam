@@ -13,24 +13,20 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
   //printf("jin ru fu zhi hui tu\n");
   assert(dst && src);
   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
-  SDL_Rect temp_src;
-  SDL_Rect temp_dst;
+  //SDL_Rect temp_src;
+  //SDL_Rect temp_dst;
   //  if rect==NULL,rect=full screen
   if(srcrect==NULL){
-    temp_src.w = src->w;
-    temp_src.h = src->h;
-    temp_src.x = 0;
-    temp_src.y = 0;
-    srcrect     = &temp_src;
-    //printf("srcrect==NULL\n");
+    srcrect->w = src->w;
+    srcrect->h = src->h;
+    srcrect->x = 0;
+    srcrect->y = 0;
   }  
   if(dstrect==NULL){
-    temp_dst.w = dst->w;
-    temp_dst.h = dst->h;
-    temp_dst.x = 0;
-    temp_dst.y = 0;
-    dstrect    = &temp_dst;
-   // printf("dstrect==NULL\n");
+    dstrect->w = dst->w;
+    dstrect->h = dst->h;
+    dstrect->x = 0;
+    dstrect->y = 0;
   }  
   //draw picture
   //偏移到画布中的  某一块举行区域rect
@@ -51,18 +47,16 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
 //快速以指定颜色填充矩形区域
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
   //printf("jinru fill\n");
-  SDL_Rect temp_rect;
+  //SDL_Rect temp_rect;
   if(dstrect==NULL){
      //printf("fu zhi cheng gong\n");    
-    temp_rect.w = dst->w;
-    temp_rect.h = dst->h;
-    temp_rect.x = 0;
-    temp_rect.y = 0;
-    dstrect      = &temp_rect;   
-    //printf("fu zhi cheng gong\n");    
+    dstrect->w = dst->w;
+    dstrect->h = dst->h;
+    dstrect->x = 0;
+    dstrect->y = 0;    
   }//printf("dst: x=0,y=0,w=%d,h=%d\n",dst->w,dst->h);
   //printf("temp_rect: x=%d,y=%d,w=%d,h=%d\n",temp_rect.x,temp_rect.y,temp_rect.w,temp_rect.h);
-  printf("dstrect: x=%d,y=%d,w=%d,h=%d\n",dstrect->x,dstrect->y,dstrect->w,dstrect->h);
+  //printf("dstrect: x=%d,y=%d,w=%d,h=%d\n",dstrect->x,dstrect->y,dstrect->w,dstrect->h);
   uint32_t rect_size = (dstrect->h)*(dstrect->w);
   for(int i=0;i<rect_size;i++){
     *((uint32_t *)dst->pixels+i) = color;

@@ -32,12 +32,12 @@ typedef struct {
 } SDL_Palette;//调色板结构体
 
 typedef struct {
-	SDL_Palette *palette;//调色板参数
-	uint8_t BitsPerPixel;
-	uint8_t BytesPerPixel;
-	uint8_t Rloss, Gloss, Bloss, Aloss;
-	uint8_t Rshift, Gshift, Bshift, Ashift;
-	uint32_t Rmask, Gmask, Bmask, Amask;
+	SDL_Palette *palette;//调色板参数,当BitsPerPixel>8时，为NULL。
+	uint8_t BitsPerPixel;//每个像素的位数8,16,24,32
+	uint8_t BytesPerPixel;//每个像素的字节数，1~4
+	uint8_t Rloss, Gloss, Bloss, Aloss; //每个颜色分量的精度损失（2[RGBA]loss）指数形式
+	uint8_t Rshift, Gshift, Bshift, Ashift;//每个像素分量在 像素pxiels中 的 二进制左移
+	uint32_t Rmask, Gmask, Bmask, Amask;   //像素掩码
 } SDL_PixelFormat;
 
 typedef struct {
