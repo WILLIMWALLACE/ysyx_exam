@@ -196,27 +196,24 @@ SDL_STBIMG_DEF SDL_Surface* STBIMG_LoadFromMemory(const unsigned char* buffer, i
 		SDL_SetError("STBIMG_LoadFromMemory(): passed buffer was NULL!");
 		return NULL;
 	}
-	//printf("buffer != NULL\n");
 	if(length <= 0)
 	{
 		SDL_SetError("STBIMG_LoadFromMemory(): passed invalid length: %d!", length);
 		return NULL;
 	}
-	//printf("length > 0\n");
+
 	inforet = stbi_info_from_memory(buffer, length, &img.w, &img.h, &img.format);
-	//printf("finish stbi_info_from_memory\n");
 	if(!inforet)
 	{
 		SDL_SetError("STBIMG_LoadFromMemory(): Couldn't get image info: %s!\n", stbi_failure_reason());
 		return NULL;
 	}
-	//printf("inforet == 0\n");
+
 	// no alpha => use RGB, else use RGBA
 	origin_has_alpha = !(img.format == STBI_grey || img.format == STBI_rgb);
 	bppToUse = STBI_rgb_alpha;
 
 	img.data = stbi_load_from_memory(buffer, length, &img.w, &img.h, &img.format, bppToUse);
-	//printf("finish stbi_load_from_memory\n");
 	if(img.data == NULL)
 	{
 		SDL_SetError("STBIMG_LoadFromMemory(): Couldn't load image: %s!\n", stbi_failure_reason());
@@ -225,9 +222,7 @@ SDL_STBIMG_DEF SDL_Surface* STBIMG_LoadFromMemory(const unsigned char* buffer, i
 	img.format = bppToUse;
 
 	ret = STBIMG__CreateSurfaceImpl(img, origin_has_alpha, 1);
-	
-	//printf("finish STBIMG__CreateSurfaceImpl\n");
-	
+
 	if(ret == NULL)
 	{
 		// no need to log an error here, it was an SDL error which should still be available through SDL_GetError()
