@@ -8,20 +8,7 @@
 //#include <fcntl.h>
 //for test
 #include <stdio.h>
-//use plaette struct 
-// 现在像素阵列中直接存放32位的颜色信息
-//uint32_t color_xy = pixels[x][y];*****************
-// 仙剑奇侠传中的像素阵列存放的是8位的调色板下标,
-// 用这个下标在调色板中进行索引, 得到的才是32位的颜色信息
-//uint32_t pal_color_xy = palette[pixels[x][y]];**************
-SDL_Color* color(SDL_Surface *s){
-  SDL_Color color;
-  color.a = s->format->palette->ncolors[pixels[x][y]]
-  color
 
-
-  return  ;
-}
 // 将一张画布中的指定矩形区域复制到另一张画布的指定位置
 //to output BDF char pixels infomation
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) {
@@ -64,17 +51,12 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
     }
   }
 }
+
 //快速以指定颜色填充矩形区域
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
   //printf("jinru fill\n");
   SDL_Rect temp_rect;
   if(dstrect==NULL){
-     //printf("fu zhi cheng gong\n");    
-   /* temp_rect.w = dst->w;
-    temp_rect.h = dst->h;
-    temp_rect.x = 0;
-    temp_rect.y = 0;
-    dstrect      = &temp_rect; */  
     uint32_t rect_size = (dst->h)*(dst->w);
     for(int i=0;i<rect_size;i++){
     *((uint32_t *)dst->pixels+i) = color;
@@ -82,16 +64,11 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
     //(uint32_t *)dst->pixels  += i;
     }
     NDL_DrawRect((uint32_t *)dst->pixels,0,0,dst->w,dst->h);
-    //printf("fu zhi cheng gong\n");    
-  }//printf("dst: x=0,y=0,w=%d,h=%d\n",dst->w,dst->h);
-  //printf("temp_rect: x=%d,y=%d,w=%d,h=%d\n",temp_rect.x,temp_rect.y,temp_rect.w,temp_rect.h);
- // printf("dstrect: x=%d,y=%d,w=%d,h=%d\n",dstrect->x,dstrect->y,dstrect->w,dstrect->h);
+  }
   else{
     uint32_t rect_size = (dstrect->h)*(dstrect->w);
     for(int i=0;i<rect_size;i++){
     *((uint32_t *)dst->pixels+i) = color;
-    //*((uint32_t *)dst->pixels) = color;
-    //(uint32_t *)dst->pixels  += i;
     }
  NDL_DrawRect((uint32_t *)dst->pixels,dstrect->x,dstrect->y,dstrect->w,dstrect->h);
   }
@@ -101,15 +78,23 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
    // printf("enter the NDL_draw\n");
    int full_screen = (x==0) && (y==0) && (w==0) && (h==0);
    int real_w = full_screen ? s->w : w;
-   int real_h = full_screen ? s->h : h ;
-   if(s->format->palette == NULL){
-   NDL_DrawRect((uint32_t *)s->pixels,x,y,real_w,real_h);
+   int real_h = full_screen ? s->h : h;
+   if(s->format->palette == NULL){//do not sue palette
+    NDL_DrawRect((uint32_t *)s->pixels,x,y,real_w,real_h);
    }
 
-   else{
-   
-   
-   NDL_DrawRect((uint8_t *)s->pixels,x,y,real_w,real_h);
+   else{//use palette
+   int real_size = real_w * real_h;
+   SDL_Color color;
+   uint32_t buffer[real_size];
+   for(int i=0;i<real_size;i++){
+    buffer[i] = 0;
+   }
+   //obtain the pixels of pal in the palette
+   for(int j=0;j<real_size;j++){
+     buffer[j] = s->format->palette->ncolors[s->pixels];
+   }
+    NDL_DrawRect((uint32_t *)buffer,x,y,real_w,real_h);
    }
     //lseek(5,0,SEEK_SET);
     //printf("finish update\n");printf("w=%d,h=%d\n",w,h);
