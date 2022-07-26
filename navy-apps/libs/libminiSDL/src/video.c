@@ -91,9 +91,11 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
    int real_h = full_screen ? s->h : h;
    if(s->format->palette == NULL){//do not sue palette
     NDL_DrawRect((uint32_t *)s->pixels,x,y,real_w,real_h);
+     printf("enter the palette==NULL\n");
    }
 
    else{//use palette
+   printf("use the palette\n");
    int real_size = real_w * real_h;
    SDL_Color color;
    uint32_t buffer[real_size];
