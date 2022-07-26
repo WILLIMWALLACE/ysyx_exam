@@ -57,7 +57,6 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
   //printf("jinru fill\n");
   SDL_Rect temp_rect;
   if(dstrect==NULL){
-   
     uint32_t rect_size = (dst->h)*(dst->w);
     for(int i=0;i<rect_size;i++){
     *((uint32_t *)dst->pixels+i) = color;
@@ -82,7 +81,6 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
      else{
       NDL_DrawRect((uint8_t *)dst->pixels,dstrect->x,dstrect->y,dstrect->w,dstrect->h);
      }
- 
   }
 }
 
