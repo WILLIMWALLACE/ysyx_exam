@@ -3930,6 +3930,7 @@ static int stbi__png_info_raw(stbi__png *p, int *x, int *y, int *comp)
 {
    if (!stbi__parse_png_file(p, STBI__SCAN_header, 0)) {
       stbi__rewind( p->s );
+      printf("!stbi__parse_png_file\n");
       return 0;
    }
    if (x) *x = p->s->img_x;

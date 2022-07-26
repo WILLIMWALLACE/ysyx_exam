@@ -14,16 +14,16 @@ SDL_Surface* IMG_Load_RW(SDL_RWops *src, int freesrc) {
 SDL_Surface* IMG_Load(const char *filename) {
   FILE *fp = fopen(filename, "r");
   if(fp==NULL){ printf("fp==NULL,invalid filename!\n"); assert(0);}
-  printf("filename = %s\n",filename);
+  //printf("filename = %s\n",filename);
   //fp will move to the end of file
   //fb = fileno(fp);
   fseek(fp,0,SEEK_END);
   //obtain the num(char) of string ,from start to presetn fp
   int len = ftell(fp);
-  printf("file len = %d\n",len);
+  //printf("file len = %d\n",len);
   uint8_t *pixels = malloc(len*sizeof(uint8_t));  
   //assert(pixels!=NULL);
-  printf("finish malloc\n");
+ // printf("finish malloc\n");
   fseek(fp,0,SEEK_SET);
 
   assert(1==fread(pixels,len,1,fp));
