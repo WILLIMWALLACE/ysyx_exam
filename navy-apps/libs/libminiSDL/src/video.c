@@ -90,28 +90,31 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
    int real_w = full_screen ? s->w : w;
    int real_h = full_screen ? s->h : h;
    int real_size = real_w * real_h;
+
    if(s->format->palette == NULL){//do not sue palette
     NDL_DrawRect((uint32_t *)s->pixels,x,y,real_w,real_h);
     // printf("enter the palette==NULL\n");
    }
 
    else{//use palette
-   printf("use the palette\n");
+   //printf("use the palette\n");
    SDL_Color color;
    uint32_t *buffer = malloc(real_size*4);  
    //printf("exit the first for\n");
    //obtain the pixels of pal in the palette
-   for(int j=0;j<real_size;j++,s->pixels++){
-    
-     color.a = s->format->palette->colors[*(s->pixels)].a;
-     color.r = s->format->palette->colors[*(s->pixels)].r;
-     color.g = s->format->palette->colors[*(s->pixels)].g;
-     color.b = s->format->palette->colors[*(s->pixels)].b;
-     *(buffer++) = color.a<<24 + color.r<<16 + color.g<<8 + color.b;
+   //for(int j=0;j<real_size;j++,s->pixels++){
+    for(int col=y; col<real_h;col++){
+      for(int row=x;row<real_w;row++){
+      color.a = s->format->palette->colors[*(s->pixels+col*real_w+row)].a;
+      color.r = s->format->palette->colors[*(s->pixels+col*real_w+row)].r;
+      color.g = s->format->palette->colors[*(s->pixels+col*real_w+row)].g;
+      color.b = s->format->palette->colors[*(s->pixels+col*real_w+row)].b;
+      *(buffer+col*real_w+row) = color.a<<24 + color.r<<16 + color.g<<8 + color.b;
       //printf("buffer=%d\n",buffer[j]);
-   }
-   printf("exit the for\n");
-    printf("buffer=%s\n",buffer);
+      }
+    }
+   //printf("exit the for\n");
+    //printf("buffer=%s\n",buffer);
     NDL_DrawRect(buffer,x,y,real_w,real_h);
    }
     //lseek(5,0,SEEK_SET);
