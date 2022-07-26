@@ -66,9 +66,9 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
   printf("dstrect: x=%d,y=%d,w=%d,h=%d\n",dstrect->x,dstrect->y,dstrect->w,dstrect->h);
   uint32_t rect_size = (dstrect->h)*(dstrect->w);
   for(int i=0;i<rect_size;i++){
-    //*((uint32_t *)dst->pixels+i) = color;
-    *((uint32_t *)dst->pixels) = color;
-    dst->pixels  += i;
+    *((uint32_t *)dst->pixels+i) = color;
+    //*((uint32_t *)dst->pixels) = color;
+    //dst->pixels  += i;
   }
 NDL_DrawRect((uint32_t *)dst->pixels,dstrect->x,dstrect->y,dstrect->w,dstrect->h);
 }
