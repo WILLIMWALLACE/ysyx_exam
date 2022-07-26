@@ -3716,9 +3716,9 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
    z->idata = NULL;
    z->out = NULL;
 
-   if (!stbi__check_png_header(s))printf("0000000\n"); return 0;
+   if (!stbi__check_png_header(s)){printf("0000000\n"); return 0;}
 
-   if (scan == STBI__SCAN_type)printf("1111111111\n"); return 1;
+   if (scan == STBI__SCAN_type){printf("1111111111\n"); return 1;}
 
    for (;;) {
       stbi__pngchunk c = stbi__get_chunk_header(s);
