@@ -3876,6 +3876,7 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
             stbi__skip(s, c.length);
             break;
       }
+      printf("exit the switch\n");
       // end of PNG chunk, read and skip CRC
       stbi__get32be(s);
    }
