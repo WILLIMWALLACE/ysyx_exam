@@ -3935,6 +3935,7 @@ static int stbi__png_info_raw(stbi__png *p, int *x, int *y, int *comp)
    if (x) *x = p->s->img_x;
    if (y) *y = p->s->img_y;
    if (comp) *comp = p->s->img_n;
+   printf("stbi__png_info_raw==1\n");
    return 1;
 }
 
