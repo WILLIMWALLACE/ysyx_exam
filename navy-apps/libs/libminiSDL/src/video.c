@@ -94,7 +94,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
    for(int j=0;j<real_size;j++){
      buffer[j] = s->format->palette->ncolors[s->pixels];
    }
-    NDL_DrawRect((uint32_t *)buffer,x,y,real_w,real_h);
+    NDL_DrawRect(buffer,x,y,real_w,real_h);
    }
     //lseek(5,0,SEEK_SET);
     //printf("finish update\n");printf("w=%d,h=%d\n",w,h);
