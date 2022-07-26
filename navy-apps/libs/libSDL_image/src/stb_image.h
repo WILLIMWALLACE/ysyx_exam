@@ -3716,15 +3716,15 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
    z->idata = NULL;
    z->out = NULL;
 
-   if (!stbi__check_png_header(s)){printf("0000000\n"); return 0;}
+   if (!stbi__check_png_header(s)) return 0;
 
-   if (scan == STBI__SCAN_type){printf("1111111111\n"); return 1;}
+   if (scan == STBI__SCAN_type)    return 1;
 
    for (;;) {
       printf("enter for\n");
       stbi__pngchunk c = stbi__get_chunk_header(s);
+      printf("enter the switch\n");
       switch (c.type) {
-         printf("enter the switch\n");
          case STBI__PNG_TYPE('C','g','B','I'):
             is_iphone = 1;
             stbi__skip(s, c.length);
