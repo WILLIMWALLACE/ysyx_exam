@@ -42,9 +42,10 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
   //printf("dst_rect:w=%d,h=%d\n",dstrect->w,dstrect->h);
   for(int i=0;i<srcrect->h;i++){
     for(int j=0;j<srcrect->w;j++){
-      *((uint32_t *)dst->pixels+(i*dst->w+j + screen_offset_dst)) =  *((uint32_t *)src->pixels+(i*src->w+j + screen_offset_src));
-      //dst->pixels += (i*dst->w+j + screen_offset_dst);
-      //src->pixels += (i*src->w+j + screen_offset_src);
+      //*((uint32_t *)dst->pixels+(i*dst->w+j + screen_offset_dst)) =  *((uint32_t *)src->pixels+(i*src->w+j + screen_offset_src));
+      *((uint32_t *)dst->pixels) =   *((uint32_t *)src->pixels);
+      dst->pixels += (i*dst->w+j + screen_offset_dst);
+      src->pixels += (i*src->w+j + screen_offset_src);
     }
   }
 }
@@ -65,7 +66,9 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
   printf("dstrect: x=%d,y=%d,w=%d,h=%d\n",dstrect->x,dstrect->y,dstrect->w,dstrect->h);
   uint32_t rect_size = (dstrect->h)*(dstrect->w);
   for(int i=0;i<rect_size;i++){
-    *((uint32_t *)dst->pixels+i) = color;
+    //*((uint32_t *)dst->pixels+i) = color;
+    *((uint32_t *)dst->pixels) = color;
+    dst->pixels  += i;
   }
 NDL_DrawRect((uint32_t *)dst->pixels,dstrect->x,dstrect->y,dstrect->w,dstrect->h);
 }
