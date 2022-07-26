@@ -3721,12 +3721,12 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
    if (scan == STBI__SCAN_type)    return 1;
 
    for (;;) {
-      printf("enter for\n");//////////////
+     // printf("enter for\n");//////////////
       stbi__pngchunk c = stbi__get_chunk_header(s);
-      printf("enter the switch\n");////////////
+     // printf("enter the switch\n");////////////
       switch (c.type) {
          case STBI__PNG_TYPE('C','g','B','I'):
-         printf("enter 1\n");/////////
+         //printf("enter 1\n");/////////
             is_iphone = 1;
             stbi__skip(s, c.length);
             break;
@@ -3735,6 +3735,7 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
             int comp,filter;
             if (!first) return stbi__err("multiple IHDR","Corrupt PNG");
             first = 0;
+             printf("enter 2\n");/////////
             if (c.length != 13) return stbi__err("bad IHDR len","Corrupt PNG");
             s->img_x = stbi__get32be(s);
             s->img_y = stbi__get32be(s);
@@ -3763,7 +3764,7 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
          }
 
          case STBI__PNG_TYPE('P','L','T','E'):  {
-             printf("enter 3\n");/////////
+           //  printf("enter 3\n");/////////
             if (first) return stbi__err("first not IHDR", "Corrupt PNG");
             if (c.length > 256*3) return stbi__err("invalid PLTE","Corrupt PNG");
             pal_len = c.length / 3;
@@ -3778,7 +3779,7 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
          }
 
          case STBI__PNG_TYPE('t','R','N','S'): {
-             printf("enter 4\n");/////////
+             //printf("enter 4\n");/////////
             if (first) return stbi__err("first not IHDR", "Corrupt PNG");
             if (z->idata) return stbi__err("tRNS after IDAT","Corrupt PNG");
             if (pal_img_n) {
@@ -3802,7 +3803,7 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
          }
 
          case STBI__PNG_TYPE('I','D','A','T'): {
-             printf("enter 5\n");/////////
+             //printf("enter 5\n");/////////
             if (first) return stbi__err("first not IHDR", "Corrupt PNG");
             if (pal_img_n && !pal_len) return stbi__err("no PLTE","Corrupt PNG");
             if (scan == STBI__SCAN_header) { s->img_n = pal_img_n; return 1; }
@@ -3823,7 +3824,7 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
          }
 
          case STBI__PNG_TYPE('I','E','N','D'): {
-             printf("enter 6\n");/////////
+            // printf("enter 6\n");/////////
             stbi__uint32 raw_len, bpl;
             if (first) return stbi__err("first not IHDR", "Corrupt PNG");
             if (scan != STBI__SCAN_load) return 1;
@@ -3866,7 +3867,6 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
          }
 
          default:
-          printf("enter 7\n");/////////
             // if critical, fail
             if (first) return stbi__err("first not IHDR", "Corrupt PNG");
             if ((c.type & (1 << 29)) == 0) {
