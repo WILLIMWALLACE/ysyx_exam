@@ -98,23 +98,18 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
    else{//use palette
    printf("use the palette\n");
    SDL_Color color;
-   uint32_t buffer[real_size];
-   printf("real-size=%d\n",real_size);
-   for(int i=0;i<real_size;i++){
-    buffer[i] = 0;
-    printf("i=%d\n",i);
-   }
-   printf("exit the first for\n");
+   uint32_t *buffer = malloc(real_size*4);  
+   //printf("exit the first for\n");
    //obtain the pixels of pal in the palette
    for(int j=0;j<real_size;j++,s->pixels++){
-    printf("enter the for\n");
+    //printf("enter the for\n");
     //printf("s->pixesl=%s\n",s->pixels);
      color.a = s->format->palette->colors[*(s->pixels)].a;
      color.r = s->format->palette->colors[*(s->pixels)].r;
      color.g = s->format->palette->colors[*(s->pixels)].g;
      color.b = s->format->palette->colors[*(s->pixels)].b;
-     buffer[j] = color.a<<24 + color.r<<16 + color.g<<8 + color.b;
-      printf("buffer=%d\n",buffer[j]);
+     *(buffer++) = color.a<<24 + color.r<<16 + color.g<<8 + color.b;
+      //printf("buffer=%d\n",buffer[j]);
    }
    printf("exit the for\n");
     printf("buffer=%s\n",buffer);
