@@ -57,20 +57,32 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
   //printf("jinru fill\n");
   SDL_Rect temp_rect;
   if(dstrect==NULL){
+   
     uint32_t rect_size = (dst->h)*(dst->w);
     for(int i=0;i<rect_size;i++){
     *((uint32_t *)dst->pixels+i) = color;
     //*((uint32_t *)dst->pixels) = color;
     //(uint32_t *)dst->pixels  += i;
     }
-    NDL_DrawRect((uint32_t *)dst->pixels,0,0,dst->w,dst->h);
+     if(dst->format->palette==NULL){
+      NDL_DrawRect((uint32_t *)dst->pixels,0,0,dst->w,dst->h);
+     }
+     else{
+      NDL_DrawRect((uint8_t *)dst->pixels,0,0,dst->w,dst->h);
+     }
   }
   else{
     uint32_t rect_size = (dstrect->h)*(dstrect->w);
     for(int i=0;i<rect_size;i++){
     *((uint32_t *)dst->pixels+i) = color;
     }
- NDL_DrawRect((uint32_t *)dst->pixels,dstrect->x,dstrect->y,dstrect->w,dstrect->h);
+    if(dst->format->palette==NULL){
+      NDL_DrawRect((uint32_t *)dst->pixels,dstrect->x,dstrect->y,dstrect->w,dstrect->h);
+     }
+     else{
+      NDL_DrawRect((uint8_t *)dst->pixels,dstrect->x,dstrect->y,dstrect->w,dstrect->h);
+     }
+ 
   }
 }
 
