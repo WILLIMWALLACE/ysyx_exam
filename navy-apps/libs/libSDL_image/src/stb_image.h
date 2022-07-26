@@ -984,7 +984,6 @@ enum
 stbi_inline static stbi_uc stbi__get8(stbi__context *s)
 {
    //if (s->img_buffer < s->img_buffer_end)
-   printf("count\n");
       return *s->img_buffer++;
    //return 0;
 }
@@ -3732,11 +3731,11 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
             stbi__skip(s, c.length);
             break;
          case STBI__PNG_TYPE('I','H','D','R'): {
-         printf("enter 2\n");/////////
+         //printf("enter 2\n");/////////
             int comp,filter;
             if (!first) return stbi__err("multiple IHDR","Corrupt PNG");
             first = 0;
-             printf("enter 2\n");/////////
+            // printf("enter 2\n");/////////
             if (c.length != 13) return stbi__err("bad IHDR len","Corrupt PNG");
             s->img_x = stbi__get32be(s);
             s->img_y = stbi__get32be(s);
