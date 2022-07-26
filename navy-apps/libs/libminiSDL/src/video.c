@@ -12,7 +12,7 @@
 // 将一张画布中的指定矩形区域复制到另一张画布的指定位置
 //to output BDF char pixels infomation
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) {
-  //printf("jin ru fu zhi hui tu\n");
+  printf("jin ru fu zhi hui tu\n");
   assert(dst && src);
   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
   SDL_Rect temp_src;
