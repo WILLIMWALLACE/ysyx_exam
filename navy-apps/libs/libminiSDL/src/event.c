@@ -25,9 +25,10 @@ int SDL_PollEvent(SDL_Event *ev) {
   
   memset(key_buf,0,60);
   NDL_PollEvent(key_buf, sizeof(key_buf));//obtain key infomation
-  if(*key_buf == 0){return 0;}
   
+  if(*key_buf == 0){return 0;} 
   else{
+  printf("enter identify key!\n");
   memset(NDL_key_type,0,20); 
   memset(key_name,0,40);
   sscanf(key_buf,"%s %s",NDL_key_type,key_name);
@@ -53,6 +54,7 @@ int SDL_PollEvent(SDL_Event *ev) {
     printf("can not identify user_event\n");
     assert(0);
    }
+   printf("exit SDL_PollEvent!\n");
   return 1;
   }
 }
