@@ -18,7 +18,7 @@ int SDL_PushEvent(SDL_Event *ev) {
 }
 
 int SDL_PollEvent(SDL_Event *ev) {
-  // printf("enter SDL_PollEvent\n");
+  printf("enter SDL_PollEvent\n");
   char key_buf[60];
   char NDL_key_type[20];
   char key_name[40]; //there is 82 names; 
@@ -101,7 +101,7 @@ int SDL_PeepEvents(SDL_Event *ev, int numevents, int action, uint32_t mask) {
 }
 
 uint8_t* SDL_GetKeyState(int *numkeys) {
-//  printf("enter SDL_GetKeyState\n");
+  printf("enter SDL_GetKeyState\n");
   //assert(0);
 
   return keystate;
