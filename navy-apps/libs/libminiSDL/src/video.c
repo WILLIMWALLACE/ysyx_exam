@@ -66,12 +66,12 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
     //*((uint32_t *)dst->pixels) = color;
     //(uint32_t *)dst->pixels  += i;
     }
-   //  if(dst->format->palette==NULL){
+     if(dst->format->palette==NULL){
       NDL_DrawRect((uint32_t *)dst->pixels,0,0,dst->w,dst->h);
-     //}
-     //else{
-     // NDL_DrawRect((uint8_t *)dst->pixels,0,0,dst->w,dst->h);
-    // }
+     }
+     else{
+      NDL_DrawRect((uint8_t *)dst->pixels,0,0,dst->w,dst->h);
+     }
   }
   else{
     uint32_t rect_size = (dstrect->h)*(dstrect->w);
