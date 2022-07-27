@@ -116,7 +116,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
    //for(int j=0;j<real_size;j++,s->pixels++){
     //printf("real_h=%d,real_w=%d\n",real_h,real_w);
     //printf("real_size=%d\n",real_size);
-     int k= 0;
+    int k= 0;
     for(int col=0; col<real_h;col++){
       for(int row=0;row<real_w;row++){
       color.a = s->format->palette->colors[*(s->pixels+(col+y)*real_w+row+x)].a;
@@ -124,12 +124,12 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
       color.g = s->format->palette->colors[*(s->pixels+(col+y)*real_w+row+x)].g;
       color.b = s->format->palette->colors[*(s->pixels+(col+y)*real_w+row+x)].b;
       //*(buffer+col*real_w+row) = color.a<<24 + color.r<<16 + color.g<<8 + color.b;
-      //printf("a=%d,r=%d,g=%d,b=%d\n",color.a,color.r,color.g,color.b);
+      printf("a=%d,r=%d,g=%d,b=%d\n",color.a,color.r,color.g,color.b);
       buffer[k] = color.a<<24 | color.r<<16 | color.g<<8 | color.b;
       k++;
       //printf("buffer=%d\n",buffer[j]);
-      if(k==real_size || k==(real_size-1))
-      printf("k=%d\n",k);
+     // if(k==real_size || k==(real_size-1))
+     // printf("k=%d\n",k);
       }
     }
    // assert(k==real_size);
