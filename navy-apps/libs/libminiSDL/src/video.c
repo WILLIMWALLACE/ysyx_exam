@@ -102,8 +102,10 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
    else{//use palette
    //printf("use the palette\n");
    SDL_Color color;
-   uint32_t *buffer = (uint32_t *)malloc(real_size*sizeof(u_int32_t));  
-   printf("buffer=%s\n",buffer);
+   //uint32_t *buffer = (uint32_t *)malloc(real_size*sizeof(u_int32_t));  
+   //printf("buffer=%s\n",buffer);
+   uint32_t buffer[real_size];
+   memset(buffer,0,real_size);
    //obtain the pixels of pal in the palette
    //for(int j=0;j<real_size;j++,s->pixels++){
     for(int col=y; col<real_h;col++){
@@ -112,7 +114,8 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
       color.r = s->format->palette->colors[*(s->pixels+col*real_w+row)].r;
       color.g = s->format->palette->colors[*(s->pixels+col*real_w+row)].g;
       color.b = s->format->palette->colors[*(s->pixels+col*real_w+row)].b;
-      *(buffer+col*real_w+row) = color.a<<24 + color.r<<16 + color.g<<8 + color.b;
+      //*(buffer+col*real_w+row) = color.a<<24 + color.r<<16 + color.g<<8 + color.b;
+      buffer[col*real_w+row] = color.a<<24 + color.r<<16 + color.g<<8 + color.b;
       //printf("buffer=%d\n",buffer[j]);
       }
     }
