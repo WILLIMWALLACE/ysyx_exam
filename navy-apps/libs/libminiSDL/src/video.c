@@ -118,7 +118,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
       color.g = s->format->palette->colors[*(s->pixels+(col+y)*real_w+row+x)].g;
       color.b = s->format->palette->colors[*(s->pixels+(col+y)*real_w+row+x)].b;
       //*(buffer+col*real_w+row) = color.a<<24 + color.r<<16 + color.g<<8 + color.b;
-      printf("a=%d,r=%d,g=%d,b=%d\n",color.a,color.r,color.g,color.b);
+      //printf("a=%d,r=%d,g=%d,b=%d\n",color.a,color.r,color.g,color.b);
       buffer[k] = color.a<<24 | color.r<<16 | color.g<<8 | color.b;
       k++;
       //printf("buffer=%d\n",buffer[j]);
