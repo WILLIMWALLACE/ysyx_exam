@@ -24,8 +24,9 @@ int SDL_PollEvent(SDL_Event *ev) {
   char key_name[40]; //there is 82 names; 
   
   memset(key_buf,0,60);
+  printf("finish memset\n");
   NDL_PollEvent(key_buf, sizeof(key_buf));//obtain key infomation
-  
+  printf("finish NDL_PollEvent\n");
   if(*key_buf == 0){return 0;} 
   else{
   printf("enter identify key!\n");
