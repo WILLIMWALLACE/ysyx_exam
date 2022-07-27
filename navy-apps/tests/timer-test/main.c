@@ -13,11 +13,11 @@ int main() {
    while(1){
 //	    printf("jinru xun huan\n");
     //	gettimeofday(&time,NULL);
-	ms = NDL_GetTicks();
+	ms = NDL_GetTicks() - start_ms;
 //	printf("user_time=%d\n",time.tv_sec);
 	//cnt++;
-  //printf("ms=%d\n",ms);
-	if(ms%500==0){
+  printf("ms=%d\n",ms);
+	if((ms%500)==0){
 	  //flag = cnt;
   	  printf("The time of day is %ld s!\n",ms);
 	}
