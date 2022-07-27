@@ -110,8 +110,8 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
    ///////////////
    //obtain the pixels of pal in the palette
    //for(int j=0;j<real_size;j++,s->pixels++){
-    for(int col=y; col<real_h;col++){
-      for(int row=x;row<real_w;row++){
+    for(int col=0; col<real_h;col++){
+      for(int row=0;row<real_w;row++){
       int k= 0;
       color.a = s->format->palette->colors[*(s->pixels+(col+y)*real_w+row+x)].a;
       color.r = s->format->palette->colors[*(s->pixels+(col+y)*real_w+row+x)].r;
