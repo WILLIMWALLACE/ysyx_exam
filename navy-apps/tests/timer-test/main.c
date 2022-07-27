@@ -9,7 +9,7 @@ int main() {
     uint64_t ms = 0;
     uint64_t start_ms = NDL_GetTicks();
     //uint64_t cnt=0;
-    //uint64_t flag=0;
+    uint64_t flag=0;
    while(1){
 //	    printf("jinru xun huan\n");
     //	gettimeofday(&time,NULL);
@@ -17,8 +17,8 @@ int main() {
 //	printf("user_time=%d\n",time.tv_sec);
 	//cnt++;
   //printf("ms=%d\n",ms);
-	if((ms%500)==0){
-	  //flag = cnt;
+	if((ms%500)==0&&(flag!=ms)){
+	  flag = ms;
   	  printf("The time of day is %ld s!\n",ms/1000);
 	}
     }
