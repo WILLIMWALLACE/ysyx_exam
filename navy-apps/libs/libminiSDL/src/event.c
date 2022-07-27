@@ -41,7 +41,7 @@ int SDL_PollEvent(SDL_Event *ev) {
       { 
         keystate[i]        = 1;
         ev->key.keysym.sym = i;
-      //  printf("i=%d\n",i); 
+        printf("i=%d\n",i); 
         break;
       }
     }
