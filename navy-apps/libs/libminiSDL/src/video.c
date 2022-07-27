@@ -127,7 +127,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
    //printf("exit the for\n");
     //printf("buffer=%s\n",buffer);
     NDL_DrawRect(buffer,x,y,real_w,real_h);
-     printf("exit tht NDL_draw\n");
+    printf("exit tht NDL_draw\n");
      //free(buffer);
    }
     //lseek(5,0,SEEK_SET);
