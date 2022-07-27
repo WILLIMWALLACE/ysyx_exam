@@ -4,6 +4,8 @@
 #include <assert.h>
 #define keyname(k) #k,
 
+static uint8_t keystate[83]={0};
+
 static const char *keyname[] = {
   "NONE",
   _KEYS(keyname)
@@ -33,7 +35,10 @@ int SDL_PollEvent(SDL_Event *ev) {
     ev->type           = SDL_KEYDOWN;
     for(int i=0;i<83;i++){
       if(strcmp(key_name,keyname[i])==0)
-      {ev->key.keysym.sym = i;break;}
+      { 
+        keystate[i]        = 1;
+        ev->key.keysym.sym = i;break;
+      }
     }
    }
    else if(strcmp(NDL_key_type,"ku")==0){
@@ -92,5 +97,5 @@ uint8_t* SDL_GetKeyState(int *numkeys) {
   //printf("not immplement SDL_GetKeyState\n");
   //assert(0);
 
-  return numkeys;
+  return keystate;
 }
