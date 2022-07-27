@@ -27,6 +27,7 @@ int SDL_PollEvent(SDL_Event *ev) {
   printf("finish memset\n");
   NDL_PollEvent(key_buf, sizeof(key_buf));//obtain key infomation
   printf("finish NDL_PollEvent\n");
+  printf("key_buf = %s\n",key_buf);
   if(*key_buf == 0){return 0;} 
   else{
   printf("enter identify key!\n");
