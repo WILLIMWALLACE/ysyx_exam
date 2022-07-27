@@ -1,6 +1,7 @@
 #include <am.h>
 #include <klib.h>
 #include <klib-macros.h>
+#include <unistd.h>
 
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 static unsigned long int next = 1;
@@ -36,7 +37,13 @@ void *malloc(size_t size) {
 #if !(defined(__ISA_NATIVE__) && defined(__NATIVE_USE_KLIB__))
   panic("Not implemented");
 #endif
-  return NULL;
+  //return NULL;
+  void *ret;
+  ret = sbrk(0); // return the present offset
+  if((sbrk(size) == (void *)-1)||(size==0) )
+  {return NULL;}//fail to increse the offset
+
+  return ret;
 }
 
 void free(void *ptr) {
