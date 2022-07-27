@@ -40,7 +40,9 @@ int SDL_PollEvent(SDL_Event *ev) {
       if(strcmp(key_name,keyname[i])==0)
       { 
         keystate[i]        = 1;
-        ev->key.keysym.sym = i;break;
+        ev->key.keysym.sym = i;
+        printf("i=%d\n",i); 
+        break;
       }
     }
    }
