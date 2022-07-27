@@ -18,19 +18,19 @@ int SDL_PushEvent(SDL_Event *ev) {
 }
 
 int SDL_PollEvent(SDL_Event *ev) {
-   printf("enter SDL_PollEvent\n");
+  // printf("enter SDL_PollEvent\n");
   char key_buf[60];
   char NDL_key_type[20];
   char key_name[40]; //there is 82 names; 
   
   memset(key_buf,0,60);
-  printf("finish memset\n");
+  //printf("finish memset\n");
   NDL_PollEvent(key_buf, sizeof(key_buf));//obtain key infomation
-  printf("finish NDL_PollEvent\n");
-  printf("key_buf = %s\n",key_buf);
+  //printf("finish NDL_PollEvent\n");
+  //printf("key_buf = %s\n",key_buf);
   if(*key_buf == 0){printf("just return\n"); return 0;} 
   else{
-  printf("enter identify key!\n");
+  //printf("enter identify key!\n");
   memset(NDL_key_type,0,20); 
   memset(key_name,0,40);
   sscanf(key_buf,"%s %s",NDL_key_type,key_name);
@@ -41,7 +41,7 @@ int SDL_PollEvent(SDL_Event *ev) {
       { 
         keystate[i]        = 1;
         ev->key.keysym.sym = i;
-        printf("i=%d\n",i); 
+      //  printf("i=%d\n",i); 
         break;
       }
     }
@@ -58,7 +58,7 @@ int SDL_PollEvent(SDL_Event *ev) {
     printf("can not identify user_event\n");
     assert(0);
    }
-   printf("exit SDL_PollEvent!\n");
+   //printf("exit SDL_PollEvent!\n");
   return 1;
   }
 }
@@ -101,7 +101,7 @@ int SDL_PeepEvents(SDL_Event *ev, int numevents, int action, uint32_t mask) {
 }
 
 uint8_t* SDL_GetKeyState(int *numkeys) {
-  printf("enter SDL_GetKeyState\n");
+//  printf("enter SDL_GetKeyState\n");
   //assert(0);
 
   return keystate;
