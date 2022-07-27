@@ -126,6 +126,8 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
       buffer[k] = color.a<<24 | color.r<<16 | color.g<<8 | color.b;
       k++;
       //printf("buffer=%d\n",buffer[j]);
+      if(k==real_size || k==(real_size-1))
+      printf("k=%d\n",k);
       }
     }
    // assert(k==real_size);
