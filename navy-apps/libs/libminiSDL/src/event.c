@@ -19,7 +19,6 @@ int SDL_PushEvent(SDL_Event *ev) {
 
 int SDL_PollEvent(SDL_Event *ev) {
    printf("enter SDL_PollEvent\n");
-   printf("num=%d\n",sizeof(keyname)/sizeof(keyname[0]));
   char key_buf[60];
   char NDL_key_type[20];
   char key_name[40]; //there is 82 names; 
@@ -75,7 +74,8 @@ int SDL_WaitEvent(SDL_Event *event) {
     event->type           = SDL_KEYDOWN;
     for(int i=0;i<83;i++){
       if(strcmp(key_name,keyname[i])==0)
-      {event->key.keysym.sym = i;break;}
+      { keystate[i]           = 1;
+        event->key.keysym.sym = i;break;}
     }
   }
   if(strcmp(NDL_key_type,"ku")==0){
