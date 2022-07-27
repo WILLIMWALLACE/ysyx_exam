@@ -103,7 +103,7 @@ int SDL_PeepEvents(SDL_Event *ev, int numevents, int action, uint32_t mask) {
 uint8_t* SDL_GetKeyState(int *numkeys) {
   printf("enter SDL_GetKeyState\n");
   //for(int i=0;i<83;i++){
-  printf("keystate= 0x%16x\n",keystate);
+  printf("keystate= 0x%lx\n",keystate);
   printf("leng=%ld\n",sizeof(keystate));
   //}
   //assert(0);
