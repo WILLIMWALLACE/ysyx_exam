@@ -48,7 +48,7 @@ static Finfo file_table[] __attribute__((used)) = {
   //   sizeof  获取了数据在内存中所占用的存储空间,以字节为单位来计数
   for(int i=0;i<sizeof(file_table)/sizeof(Finfo);i++){
     if(strcmp(path,file_table[i].name)==0){
-      printf("***********STRACE**************\nmcause=2,syscall_name=SYS_open,ret_value=%d\n",i);
+     // printf("***********STRACE**************\nmcause=2,syscall_name=SYS_open,ret_value=%d\n",i);
       file_table[i].lseek_off = 0;
       return i;
     }     
