@@ -4,7 +4,7 @@
 #include <assert.h>
 #define keyname(k) #k,
 
-static uint8_t keystate[sizeof(keyname)/sizeof(keyname[0])]={0};
+static uint8_t keystate[83]={0};
 
 static const char *keyname[] = {
   "NONE",
@@ -19,6 +19,7 @@ int SDL_PushEvent(SDL_Event *ev) {
 
 int SDL_PollEvent(SDL_Event *ev) {
   printf("enter SDL_PollEvent\n");
+  assert(ev);
   char key_buf[60];
   char NDL_key_type[20];
   char key_name[40]; //there is 82 names; 
@@ -65,6 +66,7 @@ int SDL_PollEvent(SDL_Event *ev) {
 
 int SDL_WaitEvent(SDL_Event *event) {
      printf("enter SDL_WaitEvent\n");
+      assert(ev);
   char key_buf[60];
   char NDL_key_type[20];
   char key_name[40]; //there is 82 names; 
