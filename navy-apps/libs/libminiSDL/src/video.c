@@ -114,6 +114,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
    ///////////////
    //obtain the pixels of pal in the palette
    //for(int j=0;j<real_size;j++,s->pixels++){
+    printf("real_size=%d\n",real_size);
     for(int col=0; col<real_h;col++){
       for(int row=0;row<real_w;row++){
       int k= 0;
