@@ -101,29 +101,29 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
 
    else{//use palette
    //printf("use the palette\n");
-   //SDL_Color color;
+   SDL_Color color;
    //uint32_t *buffer = (uint32_t *)malloc(real_size*sizeof(u_int32_t));  
    //printf("buffer=%s\n",buffer);
    //////////////
    uint32_t buffer[real_size];
    memset(buffer,0,real_size);
-   uint8_t a=0;
-   uint8_t r=0;
-   uint8_t g=0;
-   uint8_t b=0;
+   //uint8_t a=0;
+   //uint8_t r=0;
+   //uint8_t g=0;
+   //uint8_t b=0;
    ///////////////
    //obtain the pixels of pal in the palette
    //for(int j=0;j<real_size;j++,s->pixels++){
     for(int col=0; col<real_h;col++){
       for(int row=0;row<real_w;row++){
       int k= 0;
-      a = s->format->palette->colors[*(s->pixels+(col+y)*real_w+row+x)].a;
-      r = s->format->palette->colors[*(s->pixels+(col+y)*real_w+row+x)].r;
-      g = s->format->palette->colors[*(s->pixels+(col+y)*real_w+row+x)].g;
-      b = s->format->palette->colors[*(s->pixels+(col+y)*real_w+row+x)].b;
+      color.a = s->format->palette->colors[*(s->pixels+(col+y)*real_w+row+x)].a;
+      color.r = s->format->palette->colors[*(s->pixels+(col+y)*real_w+row+x)].r;
+      color.g = s->format->palette->colors[*(s->pixels+(col+y)*real_w+row+x)].g;
+      color.b = s->format->palette->colors[*(s->pixels+(col+y)*real_w+row+x)].b;
       //*(buffer+col*real_w+row) = color.a<<24 + color.r<<16 + color.g<<8 + color.b;
-      printf("a=%d,r=%d,g=%d,b=%d\n",a,r,g,b);
-      buffer[k] = a<<24 | r<<16 | g<<8 | b;
+      printf("a=%d,r=%d,g=%d,b=%d\n",color.a,color.r,color.g,color.b);
+      buffer[k] = color.a<<24 | color.r<<16 | color.g<<8 | color.b;
       k++;
       //printf("buffer=%d\n",buffer[j]);
       }
