@@ -4,7 +4,7 @@
 #include <assert.h>
 #define keyname(k) #k,
 
-static uint8_t keystate[83]={0};
+static uint8_t keystate[sizeof(keyname)/sizeof(keyname[0])]={0};
 
 static const char *keyname[] = {
   "NONE",
