@@ -16,10 +16,10 @@ int main() {
 	ms = NDL_GetTicks() - start_ms;
 //	printf("user_time=%d\n",time.tv_sec);
 	//cnt++;
-  printf("ms=%d\n",ms);
+  //printf("ms=%d\n",ms);
 	if((ms%500)==0){
 	  //flag = cnt;
-  	  printf("The time of day is %ld s!\n",ms);
+  	  printf("The time of day is %ld s!\n",ms/1000);
 	}
     }
   return 0;
