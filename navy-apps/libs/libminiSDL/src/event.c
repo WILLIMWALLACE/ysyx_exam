@@ -58,7 +58,7 @@ int SDL_PollEvent(SDL_Event *ev) {
     printf("can not identify user_event\n");
     assert(0);
    }
-   //printf("exit SDL_PollEvent!\n");
+   printf("exit SDL_PollEvent!\n");
   return 1;
   }
 }
