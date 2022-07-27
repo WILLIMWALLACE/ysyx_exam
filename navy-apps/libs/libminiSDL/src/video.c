@@ -105,7 +105,8 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
    //uint32_t *buffer = (uint32_t *)malloc(real_size*sizeof(u_int32_t));  
    //printf("buffer=%s\n",buffer);
    //////////////
-   uint32_t buffer[real_size*4];
+   //uint32_t buffer[real_size*4];
+   uint32_t *buffer[real_size*4];
    memset(buffer,0,real_size*4);
    //uint8_t a=0;
    //uint8_t r=0;
@@ -125,7 +126,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
       color.b = s->format->palette->colors[*(s->pixels+(col+y)*real_w+row+x)].b;
       //*(buffer+col*real_w+row) = color.a<<24 + color.r<<16 + color.g<<8 + color.b;
       //printf("a=%d,r=%d,g=%d,b=%d\n",color.a,color.r,color.g,color.b);
-      buffer[k*4] = color.a<<24 | color.r<<16 | color.g<<8 | color.b;
+      *buffer[k*4] = color.a<<24 | color.r<<16 | color.g<<8 | color.b;
       k++;
       //printf("buffer=%d\n",buffer[j]);
      // if(k==real_size || k==(real_size-1))
