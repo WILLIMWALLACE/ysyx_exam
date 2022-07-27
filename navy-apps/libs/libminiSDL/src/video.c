@@ -107,13 +107,12 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
    //////////////
    uint32_t buffer[real_size];
    memset(buffer,0,real_size);
-   int k= 0;
    ///////////////
    //obtain the pixels of pal in the palette
    //for(int j=0;j<real_size;j++,s->pixels++){
     for(int col=y; col<real_h;col++){
       for(int row=x;row<real_w;row++){
-        
+      int k= 0;
       color.a = s->format->palette->colors[*(s->pixels+col*real_w+row)].a;
       color.r = s->format->palette->colors[*(s->pixels+col*real_w+row)].r;
       color.g = s->format->palette->colors[*(s->pixels+col*real_w+row)].g;
@@ -124,7 +123,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
       //printf("buffer=%d\n",buffer[j]);
       }
     }
-    assert(k==real_size);
+   // assert(k==real_size);
    //printf("exit the for\n");
     //printf("buffer=%s\n",buffer);
     NDL_DrawRect(buffer,x,y,real_w,real_h);
