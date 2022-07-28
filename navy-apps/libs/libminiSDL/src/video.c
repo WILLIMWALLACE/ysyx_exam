@@ -11,7 +11,7 @@
 
 // 将一张画布中的指定矩形区域复制到另一张画布的指定位置
 //to output BDF char pixels infomation
-/*void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) {
+void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) {
   //printf("enter SDL_BlitSurface\n");
   assert(dst && src);
   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
@@ -53,61 +53,6 @@
       {*((uint8_t *)dst->pixels+(i*dstrect->w+j + screen_offset_dst)) =  *((uint8_t *)src->pixels+(i*srcrect->w+j + screen_offset_src));}   
     }
   }
-}*/
-void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) {
-  assert(dst && src);
-  assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
-  int src_x,src_y,src_w,src_h;
-  int dst_x,dst_y;
-
-  if(srcrect == NULL){
-    src_x = 0;
-    src_y = 0;
-    src_w = src->w;
-    src_h = src->h;
-  }
-  else{
-    src_x = srcrect->x;
-    src_y = srcrect->y;
-    src_w = srcrect->w;
-    src_h = srcrect->h;
-  }
-
-  if(dstrect == NULL){
-    dst_x = 0;
-    dst_y = 0;
-  } 
-  else{
-    dst_x = dstrect->x;
-    dst_y = dstrect->y;
-  }
-
-  if(dst->format->BitsPerPixel == 32){
-    uint32_t * src_pixels = (uint32_t *)src->pixels;
-    uint32_t * dst_pixels = (uint32_t *)dst->pixels;
-    int len = src_w * 4;
-    for(int i = 0; i < src_h; i++){
-      int x = src_x + (src_y + i) * src->w;
-      int y = dst_x + (dst_y + i) * dst->w; 
-      memcpy((dst_pixels + y), (src_pixels + x), len);
-    }
-  }
-  else if(dst->format->BitsPerPixel == 8){
-    //printf("w:%d, h:%d, w:%d, h:%d\n",src_w, src_h, src->w,src->h);
-    uint8_t * src_pixels = src->pixels;
-    uint8_t * dst_pixels = dst->pixels;
-    int len = src_w;
-    for(int i = 0; i < src_h; i++){
-      int x = src_x + (src_y + i) * src->w;
-      int y = dst_x + (dst_y + i) * dst->w; 
-
-      memcpy((dst_pixels + y), (src_pixels + x), len);
-    }
-  }
-  else{
-    printf("BitsPerPixel is no 32 or 8\n");
-  }
-
 }
 
 //快速以指定颜色填充矩形区域
