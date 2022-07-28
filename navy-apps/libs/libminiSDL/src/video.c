@@ -23,7 +23,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
     temp_src.h = src->h;
     temp_src.x = 0;
     temp_src.y = 0;
-    //srcrect     = &temp_src;
+    srcrect     = &temp_src;
     //printf("srcrect==NULL\n");
   }  
   else{ // appoint size
@@ -38,7 +38,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
     temp_dst.h = dst->h;
     temp_dst.x = 0;
     temp_dst.y = 0;
-    //dstrect    = &temp_dst;
+    dstrect    = &temp_dst;
    // printf("dstrect==NULL\n");
   }  
   else{//appoint size
