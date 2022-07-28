@@ -23,30 +23,30 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
     temp_src.h = src->h;
     temp_src.x = 0;
     temp_src.y = 0;
-    srcrect     = &temp_src;
+    //srcrect     = &temp_src;
     //printf("srcrect==NULL\n");
   }  
-  /*else{ // appoint size
+  else{ // appoint size
     temp_src.w = srcrect->w;
     temp_src.h = srcrect->h;
     temp_src.x = srcrect->x;
     temp_src.y = srcrect->y;
-  }*/
+  }
   //full_screen
   if(dstrect==NULL){
     temp_dst.w = dst->w;
     temp_dst.h = dst->h;
     temp_dst.x = 0;
     temp_dst.y = 0;
-    dstrect    = &temp_dst;
+   // dstrect    = &temp_dst;
    // printf("dstrect==NULL\n");
   }  
- /* else{//appoint size
+  else{//appoint size
     temp_dst.w = dstrect->w;
     temp_dst.h = dstrect->h;
     temp_dst.x = dstrect->x;
     temp_dst.y = dstrect->y;
-  }*/
+  }
 //draw picture
 //偏移到画布中的  某一块区域rect
   int dst_offset=0;
