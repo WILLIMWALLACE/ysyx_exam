@@ -49,7 +49,28 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
   }
 //draw picture
 //偏移到画布中的  某一块举行区域rect
-  int dst_offset=0;
+//draw picture
+  //偏移到画布中的  某一块举行区域rect
+  int screen_offset_src = (srcrect->y * srcrect->w) + srcrect->x;
+  int screen_offset_dst = (dstrect->y * dstrect->w) + dstrect->x;
+  //在矩形区域内遍历赋值
+  //printf("offset: src-position=%d,dst-position=%d\n",screen_offset_src,screen_offset_dst);
+  //printf("src_rect:w=%x,h=%x\n",srcrect->w,srcrect->h);
+  //printf("dst_rect:w=%d,h=%d\n",dstrect->w,dstrect->h);
+  for(int i=0;i<srcrect->h;i++){
+    for(int j=0;j<srcrect->w;j++){
+      if(src->format->palette==NULL && dst->format->palette==NULL)
+      {*((uint32_t *)dst->pixels+((dstrect->y+i)*dstrect->w+(dstrect->x+j))) =  *((uint32_t *)src->pixels+((srcrect->y+i)*srcrect->w+(j+srcrect->x)));}
+      //*((uint32_t *)dst->pixels) =   *((uint32_t *)src->pixels);
+      //(uint32_t *)dst->pixels += (i*dst->w+j + screen_offset_dst);
+      //(uint32_t *)src->pixels += (i*src->w+j + screen_offset_src);
+      else
+      {*((uint8_t *)dst->pixels+((dstrect->y+i)*dstrect->w+(dstrect->x+j))) =  *((uint8_t *)src->pixels+((srcrect->y+i)*srcrect->w+(j+srcrect->x)));}   
+    }
+  }
+}
+/*
+int dst_offset=0;
   int src_offset=0;
   if(dst->format->palette == NULL){// bit per pixel >8
     for(int i=0;i<temp_src.h;i++){
@@ -69,28 +90,8 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
         *((uint8_t *) dst->pixels+dst_offset) = *((uint8_t *) src->pixels+src_offset);
       }
     }
-  }
-}
-/*
- //draw picture
-  //偏移到画布中的  某一块举行区域rect
-  int screen_offset_src = (srcrect->y * srcrect->w) + srcrect->x;
-  int screen_offset_dst = (dstrect->y * dstrect->w) + dstrect->x;
-  //在矩形区域内遍历赋值
-  //printf("offset: src-position=%d,dst-position=%d\n",screen_offset_src,screen_offset_dst);
-  //printf("src_rect:w=%x,h=%x\n",srcrect->w,srcrect->h);
-  //printf("dst_rect:w=%d,h=%d\n",dstrect->w,dstrect->h);
-  for(int i=0;i<srcrect->h;i++){
-    for(int j=0;j<srcrect->w;j++){
-      if(src->format->palette==NULL && dst->format->palette==NULL)
-      {*((uint32_t *)dst->pixels+((dstrect->y+i)*dstrect->w+(dstrect->x+j))) =  *((uint32_t *)src->pixels+((srcrect->y+i)*srcrect->w+(j+srcrect->x)));}
-      //*((uint32_t *)dst->pixels) =   *((uint32_t *)src->pixels);
-      //(uint32_t *)dst->pixels += (i*dst->w+j + screen_offset_dst);
-      //(uint32_t *)src->pixels += (i*src->w+j + screen_offset_src);
-      else
-      {*((uint8_t *)dst->pixels+((dstrect->y+i)*dstrect->w+(dstrect->x+j))) =  *((uint8_t *)src->pixels+((srcrect->y+i)*srcrect->w+(j+srcrect->x)));}   
-    }
   }*/
+ 
 
 //快速以指定颜色填充矩形区域
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
