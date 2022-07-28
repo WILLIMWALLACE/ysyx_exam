@@ -50,7 +50,10 @@ int SDL_PollEvent(SDL_Event *ev) {
     ev->type           = SDL_KEYUP;
     for(int i=0;i<83;i++){
       if(strcmp(key_name,keyname[i])==0)
-      {ev->key.keysym.sym = i;break;}
+      { keystate[i]        = 1;
+        ev->key.keysym.sym = i;
+        printf("poll event %d\n",i); 
+        break;}
     }
    }
    else{
