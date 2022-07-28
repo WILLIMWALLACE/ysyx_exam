@@ -48,7 +48,30 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
     temp_dst.y = dstrect->y;
   }*/
 //draw picture
-//偏移到画布中的  某一块举行区域rect
+//偏移到画布中的  某一块区域rect
+  int dst_offset=0;
+  int src_offset=0;
+  if(dst->format->palette == NULL){// bit per pixel >8
+    for(int i=0;i<temp_src.h;i++){
+      for(int j=0;j<temp_src.w;j++){
+         dst_offset = (temp_dst.y+i)*dst->w + j+temp_dst.x;
+         src_offset = (temp_src.y+i)*src->w + j+temp_src.x;
+        *((uint32_t *) dst->pixels+dst_offset) = *((uint32_t *) src->pixels+src_offset);
+      }
+    }
+  }
+
+  else{ // bit per pixel = 8
+    for(int i=0;i<temp_src.h;i++){
+      for(int j=0;j<temp_src.w;j++){
+         dst_offset = (temp_dst.y+i)*dst->w + j+temp_dst.x;
+         src_offset = (temp_src.y+i)*src->w + j+temp_src.x;
+        *((uint8_t *) dst->pixels+dst_offset) = *((uint8_t *) src->pixels+src_offset);
+      }
+    }
+  }
+}
+/*
 //draw picture
   //偏移到画布中的  某一块举行区域rect
   int screen_offset_src = (srcrect->y * srcrect->w) + srcrect->x;
@@ -67,30 +90,9 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
       else
       {*((uint8_t *)dst->pixels+((dstrect->y+i)*dstrect->w+(dstrect->x+j))) =  *((uint8_t *)src->pixels+((srcrect->y+i)*srcrect->w+(j+srcrect->x)));}   
     }
-  }
-}
-/*
-int dst_offset=0;
-  int src_offset=0;
-  if(dst->format->palette == NULL){// bit per pixel >8
-    for(int i=0;i<temp_src.h;i++){
-      for(int j=0;j<temp_src.w;j++){
-         dst_offset = (temp_dst.y+i)*temp_dst.w + j+temp_dst.x;
-         src_offset = (temp_src.y+i)*temp_src.w + j+temp_src.x;
-        *((uint32_t *) dst->pixels+dst_offset) = *((uint32_t *) src->pixels+src_offset);
-      }
-    }
-  }
-
-  else{ // bit per pixel = 8
-    for(int i=0;i<temp_src.h;i++){
-      for(int j=0;j<temp_src.w;j++){
-         dst_offset = (temp_dst.y+i)*temp_dst.w + j+temp_dst.x;
-         src_offset = (temp_src.y+i)*temp_src.w + j+temp_src.x;
-        *((uint8_t *) dst->pixels+dst_offset) = *((uint8_t *) src->pixels+src_offset);
-      }
-    }
   }*/
+
+
  
 
 //快速以指定颜色填充矩形区域
