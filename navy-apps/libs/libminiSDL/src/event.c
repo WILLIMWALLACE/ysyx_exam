@@ -41,7 +41,7 @@ int SDL_PollEvent(SDL_Event *ev) {
       { 
         keystate[i]        = 1;
         ev->key.keysym.sym = i;
-        //printf("i=%d\n",i); 
+        printf("poll event %d\n",i); 
         break;
       }
     }
@@ -81,7 +81,9 @@ int SDL_WaitEvent(SDL_Event *event) {
     for(int i=0;i<83;i++){
       if(strcmp(key_name,keyname[i])==0)
       { keystate[i]           = 1;
-        event->key.keysym.sym = i;break;}
+        event->key.keysym.sym = i;
+        printf("wait event %d\n",i);
+        break;}
     }
   }
   if(strcmp(NDL_key_type,"ku")==0){
