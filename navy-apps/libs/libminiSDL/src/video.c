@@ -12,7 +12,7 @@
 // 将一张画布中的指定矩形区域复制到另一张画布的指定位置
 //to output BDF char pixels infomation
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) {
-  //printf("enter SDL_BlitSurface\n");
+  printf("enter SDL_BlitSurface\n");
   assert(dst && src);
   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
   SDL_Rect temp_src;
@@ -57,7 +57,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
 
 //快速以指定颜色填充矩形区域
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
-  //printf("enter SDL_FillRect\n");
+  printf("enter SDL_FillRect\n");
   SDL_Rect temp_rect;
   if(dstrect==NULL){
     uint32_t rect_size = (dst->h)*(dst->w);
@@ -88,7 +88,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
 }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
-  //printf("enter the SDL_UpdateRect\n");
+  printf("enter the SDL_UpdateRect\n");
    int full_screen = (x==0) && (y==0) && (w==0) && (h==0);
    int real_w = full_screen ? s->w : w;
    int real_h = full_screen ? s->h : h;
